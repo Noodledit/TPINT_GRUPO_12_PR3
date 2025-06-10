@@ -8,10 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entidades", "Entidades", "{136ECFD5-2F11-4467-AD9F-8634BDC1DCCD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logica", "Logica", "{1CC15565-DBCA-428C-9E41-6E0696F54D5D}"
-	ProjectSection(SolutionItems) = preProject
-		ClinicaM\ListadoTurnos.aspx.cs = ClinicaM\ListadoTurnos.aspx.cs
-		ClinicaM\ListadoTurnos.aspx.designer.cs = ClinicaM\ListadoTurnos.aspx.designer.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Datos", "Datos", "{369CB01D-A1A7-72D2-AABC-3F0945D148A2}"
 EndProject
