@@ -11,21 +11,7 @@
             width: 100%;
         }
         .auto-style2 {
-            width: 254px;
-        }
-        .auto-style3 {
-            width: 260px;
-        }
-        .auto-style4 {
-            width: 254px;
-            height: 23px;
-        }
-        .auto-style5 {
-            width: 260px;
-            height: 23px;
-        }
-        .auto-style6 {
-            height: 23px;
+            width: 414px;
         }
     </style>
 </head>
@@ -39,15 +25,46 @@
         <asp:Label ID="lblContrasenia" runat="server" Style="float: right; margin-top: 10px; margin-right: 1px;" Text="Contraseña:"></asp:Label>
         <asp:TextBox ID="txtUsuario" Style="float: right; margin-top: 10px; margin-right: 10px;" runat="server"></asp:TextBox>
         <asp:Label ID="lblNombreUsuario" runat="server" Style="float: right; margin-top: 10px; margin-right: 1px;" Text="Nombre de usuario:"></asp:Label>
-        <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvTurnos_SelectedIndexChanged" Width="254px">
+        <p>
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style2">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">Turnos Asignados</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">
+        <asp:Button ID="btnBuscar" runat="server" Text="Consultar Turno" />
+        <asp:TextBox ID="txtBuscador" runat="server" style="margin-bottom: 0px">Ingrese Dni</asp:TextBox>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">
+                        <asp:Button ID="Button1" runat="server" Text="Consultar por Fecha" />
+                        <asp:DropDownList ID="DropDownList1" runat="server">
+                        </asp:DropDownList>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">
+        <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvTurnos_SelectedIndexChanged" Width="353px">
             <Columns>
                 <asp:TemplateField HeaderText="Doctor(a)"></asp:TemplateField>
                 <asp:TemplateField HeaderText="Fecha"></asp:TemplateField>
                 <asp:TemplateField HeaderText="Sitio de Consulta"></asp:TemplateField>
+                <asp:TemplateField HeaderText="Estado de Turno"></asp:TemplateField>
             </Columns>
         </asp:GridView>
-        <asp:TextBox ID="txtBuscador" runat="server" style="margin-bottom: 0px">Ingrese Dni</asp:TextBox>
-        <asp:Button ID="btnBuscar" runat="server" Text="Consultar Turno" />
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </p>
     </form>
 </body>
 </html>
