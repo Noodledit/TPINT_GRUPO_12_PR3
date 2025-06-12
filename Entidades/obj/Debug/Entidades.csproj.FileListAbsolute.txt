@@ -1,0 +1,6 @@
+E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\TPINT_GRUPO_12_PR3\Entidades\bin\Debug\Entidades.dll
+E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\TPINT_GRUPO_12_PR3\Entidades\bin\Debug\Entidades.pdb
+E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.dll
+E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.pdb
