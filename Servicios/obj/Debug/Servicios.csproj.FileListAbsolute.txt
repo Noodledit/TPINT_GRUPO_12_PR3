@@ -9,3 +9,14 @@ E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\
 E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.csproj.Up2Date
 E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.dll
 E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.pdb
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Servicios.dll
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Servicios.pdb
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Datos.dll
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Entidades.dll
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Datos.pdb
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Entidades.pdb
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.csproj.AssemblyReference.cache
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.csproj.CoreCompileInputs.cache
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.csproj.Up2Date
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.dll
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.pdb

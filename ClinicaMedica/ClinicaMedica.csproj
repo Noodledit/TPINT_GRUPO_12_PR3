@@ -67,10 +67,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AsignacionTurnos.aspx" />
     <Content Include="ListadoTurnos.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsignacionTurnos.aspx.cs">
+      <DependentUpon>AsignacionTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AsignacionTurnos.aspx.designer.cs">
+      <DependentUpon>AsignacionTurnos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListadoTurnos.aspx.cs">
       <DependentUpon>ListadoTurnos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

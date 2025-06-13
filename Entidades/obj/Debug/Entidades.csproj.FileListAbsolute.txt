@@ -4,3 +4,9 @@ E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\
 E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.dll
 E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.pdb
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Entidades\bin\Debug\Entidades.dll
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Entidades\bin\Debug\Entidades.pdb
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.dll
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.pdb
