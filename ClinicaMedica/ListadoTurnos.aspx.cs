@@ -28,5 +28,7 @@ namespace ClinicaMedica
                 estado = true;
             }
         }
+
+       
     }
 }
