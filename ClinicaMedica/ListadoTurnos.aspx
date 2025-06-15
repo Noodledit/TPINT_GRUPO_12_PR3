@@ -11,61 +11,34 @@
     </style>
     </head>
 <body style="margin: 0; background-color: #BDC4D4;">
-<%--    <style>
-    .boton-hover {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        border-radius: 6px;
-    }
-
-    .boton-hover:hover {
-        transform: scale(1.03);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-    }
-        .auto-style3 {
-            width: 100%;
-        }
-        .auto-style4 {
-            width: 152px;
-        }
-        .auto-style5 {
-            width: 1171px;
-        }
-    </style>--%>
-
     <form id="form1" runat="server">
-        <header>
+        <div class="header">
             <section>
-            <asp:Button ID="btnUn_Login" runat="server" Style="float: right; margin-right: 10px;" Text="Ingresar" OnClick="btnUn_Login_Click" CssClass="boton-hover"/>
-            <asp:Label ID="lblBienvenidoUsuario" Style="float: right; margin-right: 10px;" runat="server"></asp:Label>
-            <asp:TextBox ID="txtContrasenia" runat="server" Style="float: right; margin-right: 1px;" TextMode="Password"></asp:TextBox>
-            <asp:Label ID="lblContrasenia" runat="server" Style="float: right; margin-right: 1px;" Text="Contraseña:"></asp:Label>
-            <asp:TextBox ID="txtUsuario" Style="float: right; margin-right: 10px;" runat="server"></asp:TextBox>
-            <asp:Label ID="lblNombreUsuario" runat="server" Style="float: right; margin-right: 1px;" Text="Nombre de usuario:"></asp:Label>
+                <asp:Button ID="btnUn_Login" runat="server" Style="float: right; margin-right: 10px;" Text="Ingresar" CssClass="boton-hover"/>
+                <asp:Label ID="lblBienvenidoUsuario" Style="float: right; margin-right: 10px;" runat="server"></asp:Label>
+                <asp:TextBox ID="txtContrasenia" runat="server" Style="float: right; margin-right: 1px;" TextMode="Password"></asp:TextBox>
+                <asp:Label ID="lblContrasenia" runat="server" Style="float: right; margin-right: 1px;" Text="Contraseña:"></asp:Label>
+                <asp:TextBox ID="txtUsuario" Style="float: right; margin-right: 10px;" runat="server"></asp:TextBox>
+                <asp:Label ID="lblNombreUsuario" runat="server" Style="float: right; margin-right: 1px;" Text="Nombre de usuario:"></asp:Label>
             </section>
-            <h1>Clinica Medica 🏥</h1>            
-            <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica"/>
-            <nav class="Navegador">
-                <asp:HyperLink ID="hlListadoTurnos" CssClass="HyperLink" runat="server">Listado de turnos </asp:HyperLink>
-                &nbsp;&nbsp;
-                <asp:HyperLink ID="hlAsignacionTurnos" CssClass="HyperLink" runat="server" NavigateUrl="~/AsignacionTurnos.aspx" Style="color: #7A859D;">Asignacion de Turnos</asp:HyperLink>
-            </nav>
-        </header>
-        <main>
-           <section style="
-    background: #7A859D;
-    margin: 10% auto;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-   // border: 2px solid #5c6a82;" 
-    class="auto-style2">
-                <div>
-                    <br />
-                <asp:Label ID="lblTituloTurnosAsignados" runat="server" Font-Bold="True" Font-Size="24pt" Font-Underline="True" style="margin-left: 3%; padding-bottom: 6%;" Text="Turnos Asignados" ForeColor="White"></asp:Label>
+            <div class="titulo-header">
+                <h1>Clinica Medica</h1>
+                <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica"/>
+                <div class="header-links">
+                    <asp:HyperLink ID="hlInicio" runat="server" CssClass="header-link" NavigateUrl="#" Text="Inicio"></asp:HyperLink>
+                    <asp:HyperLink ID="hlAgregarPaciente" runat="server" CssClass="header-link" NavigateUrl="#" Text="Agregar Paciente"></asp:HyperLink>
+                    <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="#" Text="Asignar Turnos"></asp:HyperLink>
+                    <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link" NavigateUrl="#" Text="Listar Turnos"></asp:HyperLink>
+                    <asp:HyperLink ID="hlInformes" runat="server" CssClass="header-link" NavigateUrl="#" Text="Informes"></asp:HyperLink>
                 </div>
-                <div style="margin: 25px 10px 5px 20px;">
+            </div>
+        </div>
+            <div class="contenido" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                <div class="caja" style="width: 250px; height: 50px; text-align: center; align-items: center; justify-content: center; font-size: 20px; font-weight: bolder; color: white;">
+                    Turnos Asignados
+                </div>
+                <div class="caja">
+                                    <div style="margin: 25px 10px 5px 20px;">
                 <asp:Button ID="btnBuscar" runat="server" style="margin-left:10px; margin-bottom: 2%" Text="Consultar Turno" CssClass="boton-hover" />
                 <asp:TextBox ID="txtBuscador" runat="server" style="margin-bottom: 3%">Ingrese DNI: </asp:TextBox>
                 </div>
@@ -98,13 +71,8 @@
                         </td>
                     </tr>
                 </table>
-                <br />
-            </section>            
-        </main>
-        <footer>
-
-
-        </footer>
+                </div>
+            </div>
     </form>
 </body>
 </html>

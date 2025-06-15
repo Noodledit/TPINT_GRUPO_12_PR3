@@ -5,28 +5,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <link rel="stylesheet" type="text/css" href="Estilo/EstiloClinica.css"/>
-    <title>Clinica Medica</title>
-    <style type="text/css">
-        .auto-style1 {
-            position: absolute;
-            top: 10px;
-            right: 32px;
-            color: white;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 300;
-            font-size: 16px;
-            max-width: 200px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-    .boton-hover {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        border-radius: 6px;
-    }
-
-    </style>
 </head>
 <body>
     <form id="form2" runat="server">
@@ -44,7 +22,8 @@
                 <h1>Clinica Medica</h1>
                 <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica"/>
                 <div class="header-links">
-                    <asp:HyperLink ID="hlInicio" runat="server" CssClass="header-link" NavigateUrl="#" Text="Se Agregan.."></asp:HyperLink>
+                    <asp:HyperLink ID="hlInicio" runat="server" CssClass="header-link" NavigateUrl="#" Text="Inicio"></asp:HyperLink>
+                    <asp:HyperLink ID="hlAgregarPaciente" runat="server" CssClass="header-link" NavigateUrl="#" Text="Agregar Paciente"></asp:HyperLink>
                     <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="#" Text="Asignar Turnos"></asp:HyperLink>
                     <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link" NavigateUrl="#" Text="Listar Turnos"></asp:HyperLink>
                     <asp:HyperLink ID="hlInformes" runat="server" CssClass="header-link" NavigateUrl="#" Text="Informes"></asp:HyperLink>
