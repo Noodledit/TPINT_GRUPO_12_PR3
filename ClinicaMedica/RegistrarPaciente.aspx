@@ -6,77 +6,88 @@
 <head runat="server">
 <link rel="stylesheet" type="text/css" href="Estilo/EstiloClinica.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Clinica Medica</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
-        <header class="auto-style1">
-            <h1>Clinica Medica 🏥</h1>
-            <nav class="Navegador">
-                <asp:HyperLink CssClass="HyperLink" ID="hlListadoTurnos" runat="server" NavigateUrl="~/ListadoTurnos.aspx" Style="color: #7A859D;">Listado de turnos </asp:HyperLink>
-                &nbsp;&nbsp;
-                <asp:HyperLink CssClass="HyperLink" ID="hlAsignacionTurnos" runat="server" NavigateUrl="~/AsignacionTurnos.aspx" Style="color: #7A859D;">Asignacion de Turnos</asp:HyperLink>
-            </nav>
-        </header>
-        <main>
-            <section class="form-container auto-style2">
-                <asp:Label ID="lblTituloNuevoPaciente" runat="server" Font-Bold="True" Font-Size="24pt" Font-Underline="True" 
-                    style="margin-bottom: 30px;" Text="Nuevo Paciente" ForeColor="White"></asp:Label>
-                <div class="form-row">
-                    <div class="form-col" style="display:inline;">
-                        <div class="form-group">
-                            <label class="form-label" for="txtNombre">Nombre:</label>
-                            <asp:TextBox ID="txtNombre" runat="server" CssClass="auto-style3" placeholder="Claudio"></asp:TextBox>
-
-                            <label class="form-label" for="txtApellido">Apellido:</label>
-                            <asp:TextBox ID="txtApellido" runat="server" CssClass="auto-style3" placeholder="Fernandez"></asp:TextBox>
-
-                            <label class="form-label" for="ddlSexo">Sexo:</label>
-                            <asp:DropDownList ID="ddlSexo" runat="server" CssClass="auto-style3">
-                                <asp:ListItem Text="Masculino" Value="M"></asp:ListItem>
-                                <asp:ListItem Text="Femenino" Value="F"></asp:ListItem>
-                                <asp:ListItem Text="Otro" Value="O"></asp:ListItem>
-                            </asp:DropDownList>
-
-                            <label class="form-label" for="txtNacionalidad">Nacionalidad:</label>
-                            <asp:TextBox ID="txtNacionalidad" runat="server" CssClass="auto-style3" placeholder="Argentina"></asp:TextBox>
-
-                            <label class="form-label" for="txtFechaNacimiento">Fecha de nacimiento:</label>
-                            <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="auto-style3" placeholder="1/1/1992"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="form-col" style="display:inline;">
-                            <label class="form-label" for="txtDireccion">Direccion:</label>
-                            <asp:TextBox ID="txtDireccion" runat="server" CssClass="auto-style3" placeholder="Hipólito Yrigoyen 288"></asp:TextBox>
-
-                            <label class="form-label" for="txtProvincia">Provincia:</label>
-                            <asp:DropDownList ID="ddlProvincias" runat="server" CssClass="auto-style3">
-                                <asp:ListItem Text="Seleccione Provincia" Value="0"></asp:ListItem>
-                                <asp:ListItem Text="Provincia 1" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="Provincia 2" Value="2"></asp:ListItem>
-                                <asp:ListItem Text="Provincia 3" Value="3"></asp:ListItem>
-                            </asp:DropDownList>
-
-                            <label class="form-label" for="txtLocalidad">Localidad:</label>
-                            <asp:DropDownList ID="ddlLocalidades" runat="server" CssClass="auto-style3">
-                                <asp:ListItem Text="Seleccione Localidad" Value="0"></asp:ListItem>
-                                <asp:ListItem Text="Localidad 1" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="Localidad 2" Value="2"></asp:ListItem>
-                                <asp:ListItem Text="Localidad 3" Value="3"></asp:ListItem>
-                            </asp:DropDownList>
-
-                            <label class="form-label" for="txtCorreo">Correo electrónico:</label>
-                            <asp:TextBox ID="txtCorreo" runat="server" CssClass="auto-style3" placeholder="ejemplo@correo.com" TextMode="Email"></asp:TextBox>
-
-                            <label class="form-label" for="txtTelefono">Numero de telefono:</label>
-                            <asp:TextBox ID="txtTelefono" runat="server" CssClass="auto-style3" placeholder="1512345678" TextMode="Phone"></asp:TextBox>
-                    </div>
-                </div>
+        <div class="header">
+            <section>
+                <asp:Button ID="btnUn_Login" runat="server" Style="float: right; margin-right: 10px;" Text="Ingresar" CssClass="boton-hover"/>
+                <asp:Label ID="lblBienvenidoUsuario" Style="float: right; margin-right: 10px;" runat="server"></asp:Label>
+                <asp:TextBox ID="txtContrasenia" runat="server" Style="float: right; margin-right: 1px;" TextMode="Password"></asp:TextBox>
+                <asp:Label ID="lblContrasenia" runat="server" Style="float: right; margin-right: 1px;" Text="Contraseña:"></asp:Label>
+                <asp:TextBox ID="txtUsuario" Style="float: right; margin-right: 10px;" runat="server"></asp:TextBox>
+                <asp:Label ID="lblNombreUsuario" runat="server" Style="float: right; margin-right: 1px;" Text="Nombre de usuario:"></asp:Label>
             </section>
-        </main>
-        <footer>
-        </footer>
-    </form>
-</body>
+            <div class="titulo-header">
+                <h1>Clinica Medica</h1>
+                <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica"/>
+                <div class="header-links">
+                    <asp:HyperLink ID="hlInicio" runat="server" CssClass="header-link" NavigateUrl="#" Text="Inicio"></asp:HyperLink>
+                    <asp:HyperLink ID="hlAgregarPaciente" runat="server" CssClass="header-link" NavigateUrl="#" Text="Agregar Paciente"></asp:HyperLink>
+                    <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="#" Text="Asignar Turnos"></asp:HyperLink>
+                    <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link" NavigateUrl="#" Text="Listar Turnos"></asp:HyperLink>
+                    <asp:HyperLink ID="hlInformes" runat="server" CssClass="header-link" NavigateUrl="#" Text="Informes"></asp:HyperLink>
+                </div>
+            </div>
+        </div>
+        <div class="contenido" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+            <div class="caja" style="width: 250px; height: 50px; text-align: center; align-items: center; justify-content: center; font-size: 20px; font-weight: bolder; color: white;">
+                Agregar Nuevo Paciente
+            </div>
+            <div class="caja">
+<div class="form-row">
+    <div class="form-col" style="display:inline;">
+        <div class="form-group">
+            <label class="form-label" for="txtNombre">Nombre:</label>
+            <asp:TextBox ID="TextBox1" runat="server" CssClass="auto-style3" placeholder="Claudio"></asp:TextBox>
+
+            <label class="form-label" for="txtApellido">Apellido:</label>
+            <asp:TextBox ID="TextBox2" runat="server" CssClass="auto-style3" placeholder="Fernandez"></asp:TextBox>
+
+            <label class="form-label" for="ddlSexo">Sexo:</label>
+            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="auto-style3">
+                <asp:ListItem Text="Masculino" Value="M"></asp:ListItem>
+                <asp:ListItem Text="Femenino" Value="F"></asp:ListItem>
+                <asp:ListItem Text="Otro" Value="O"></asp:ListItem>
+            </asp:DropDownList>
+
+            <label class="form-label" for="txtNacionalidad">Nacionalidad:</label>
+            <asp:TextBox ID="TextBox3" runat="server" CssClass="auto-style3" placeholder="Argentina"></asp:TextBox>
+
+            <label class="form-label" for="txtFechaNacimiento">Fecha de nacimiento:</label>
+            <asp:TextBox ID="TextBox4" runat="server" CssClass="auto-style3" placeholder="1/1/1992"></asp:TextBox>
+        </div>
+    </div>
+    <div class="form-col" style="display:inline;">
+            <label class="form-label" for="txtDireccion">Direccion:</label>
+            <asp:TextBox ID="TextBox5" runat="server" CssClass="auto-style3" placeholder="Hipólito Yrigoyen 288"></asp:TextBox>
+
+            <label class="form-label" for="txtProvincia">Provincia:</label>
+            <asp:DropDownList ID="DropDownList2" runat="server" CssClass="auto-style3">
+                <asp:ListItem Text="Seleccione Provincia" Value="0"></asp:ListItem>
+                <asp:ListItem Text="Provincia 1" Value="1"></asp:ListItem>
+                <asp:ListItem Text="Provincia 2" Value="2"></asp:ListItem>
+                <asp:ListItem Text="Provincia 3" Value="3"></asp:ListItem>
+            </asp:DropDownList>
+
+            <label class="form-label" for="txtLocalidad">Localidad:</label>
+            <asp:DropDownList ID="DropDownList3" runat="server" CssClass="auto-style3">
+                <asp:ListItem Text="Seleccione Localidad" Value="0"></asp:ListItem>
+                <asp:ListItem Text="Localidad 1" Value="1"></asp:ListItem>
+                <asp:ListItem Text="Localidad 2" Value="2"></asp:ListItem>
+                <asp:ListItem Text="Localidad 3" Value="3"></asp:ListItem>
+            </asp:DropDownList>
+
+            <label class="form-label" for="txtCorreo">Correo electrónico:</label>
+            <asp:TextBox ID="TextBox6" runat="server" CssClass="auto-style3" placeholder="ejemplo@correo.com" TextMode="Email"></asp:TextBox>
+
+            <label class="form-label" for="txtTelefono">Numero de telefono:</label>
+            <asp:TextBox ID="TextBox7" runat="server" CssClass="auto-style3" placeholder="1512345678" TextMode="Phone"></asp:TextBox>
+    </div>
+</div>
+                </div>
+            </div>
+        </form>
+    </body>
 </html>

@@ -17,7 +17,7 @@ body {
     background: linear-gradient(90deg, #2B3D5B, #15253F);
     position: relative;
     color: white;
-    /*border-radius: 0 0 5px 5px;*/
+    /*border-radius: 0 0 5px 5px; no me gusta*/
     padding: 20px 40px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     justify-content: space-between;
@@ -46,7 +46,7 @@ body {
 }
 
 .header-image {
-    height: 100px;
+    height: 110px;
     display: inline;
     width: auto;
     margin-right: 10px;
@@ -54,34 +54,39 @@ body {
 
 .titulo-header h1{
     color: white;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
     font-family: 'Open Sans', sans-serif;
     transform: translateY(-5px);
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .header-links {
     display: flex;
-    margin-left: 70px;
-    gap: 20px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin-left: 0;
 }
 
 .header-link {
     color: #B0C4DE;
     font-family: 'Open Sans', sans-serif;
     font-weight: bolder;
-    font-size: 20px;
+    font-size: 15px;
     text-decoration: none;
     display: inline-block;
     min-width: 60px;
     text-align: center;
-    transition: ease-in-out;
+    padding: 10px 10px;
+    transition: all 0.3s ease-in-out;
 }
 
 .header-link:hover{
     color: #E6E6FA;
-    transform: scale(1.1);
+    background-color: #808b9d;
+    padding: 10px 14px;
+    z-index: 1;
 }
 
 .contenido {
@@ -97,11 +102,12 @@ body {
     border-radius: 5px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     padding: 20px;
-    min-width: 90%;
+    min-width: 50px;
     max-width: 90%;
-    min-height: 200px;
+    min-height: 30px;
     margin: auto;
     flex: 1;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .Navegador {
@@ -149,7 +155,7 @@ body {
     box-shadow: 0 2px 6px rgba(0,0,0,0.07);
     font-size: 15px;
     box-sizing: border-box;
-    font-family: 'Roboto', Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .input-form:focus {
@@ -192,6 +198,8 @@ body {
     border: 1px solid #ccc;
     box-shadow: 0 2px 6px rgba(0,0,0,0.07);
     font-size: 15px;
+    font-weight: bold;
     box-sizing: border-box;
-    font-family: 'Roboto', Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    color: #55647c;
 }
