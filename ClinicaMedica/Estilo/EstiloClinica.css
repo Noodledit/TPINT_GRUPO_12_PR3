@@ -11,7 +11,7 @@ body {
     text-decoration: none;
 }*/
 
-header {
+.header {
     height: 150px;
     height: 100%;
     background: linear-gradient(90deg, #2B3D5B, #15253F);
@@ -97,7 +97,8 @@ header {
     border-radius: 5px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     padding: 20px;
-    min-width: 90%;
+    min-width: 80%;
+    max-width: 90%;
     min-height: 200px;
     margin: auto;
     flex: 1;
