@@ -1,0 +1,32 @@
+# Archivos de compilación
+bin/
+obj/
+
+# Archivos de Visual Studio
+.vs/
+*.suo
+*.user
+
+# Archivos de paquetes
+packages/
+*.nupkg
+
+# Archivos de configuración local
+*.config
+!web.config
+
+# Archivos temporales
+*.cache
+*.log
+*.tmp
+
+# Archivos de entorno
+.env
+
+# Archivos de depuración
+Debug/
+Release/
+
+# Archivos de proyecto ignorados
+*.csproj.user
+*.sln.docstates
