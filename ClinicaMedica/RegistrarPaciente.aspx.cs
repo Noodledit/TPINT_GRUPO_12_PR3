@@ -7,14 +7,9 @@ using System.Web.UI.WebControls;
 
 namespace ClinicaMedica
 {
-    public partial class AsignacionTurnos : System.Web.UI.Page
+    public partial class RegistrarPaciente : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnUn_Login_Click(object sender, EventArgs e)
         {
 
         }

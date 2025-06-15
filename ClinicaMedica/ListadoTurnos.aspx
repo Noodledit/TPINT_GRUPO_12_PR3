@@ -4,19 +4,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+<link rel="stylesheet" type="text/css" href="Estilo/EstiloClinica.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>Clinica Medica</title>
     <style type="text/css">
-        .auto-style1 {
-            height: 20%;
-        }
-        .auto-style2 {
-            width: 80%;
-        }
     </style>
     </head>
 <body style="margin: 0; background-color: #BDC4D4;">
-    <style>
+<%--    <style>
     .boton-hover {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -37,21 +32,10 @@
         .auto-style5 {
             width: 1171px;
         }
-    </style>
+    </style>--%>
 
     <form id="form1" runat="server">
-        <header style="
-            background: linear-gradient(90deg, #2B3D5B, #15253F);
-            color: white;
-            height: 100px; 
-            border-radius: 20px;
-            ///border-radius: 0 0 10,6% 10%;
-            padding: 20px 40px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            justify-content: space-between;" 
-            align-items: center;
-
-            class="auto-style1">
+        <header>
             <section>
             <asp:Button ID="btnUn_Login" runat="server" Style="float: right; margin-right: 10px;" Text="Ingresar" OnClick="btnUn_Login_Click" CssClass="boton-hover"/>
             <asp:Label ID="lblBienvenidoUsuario" Style="float: right; margin-right: 10px;" runat="server"></asp:Label>
@@ -60,12 +44,13 @@
             <asp:TextBox ID="txtUsuario" Style="float: right; margin-right: 10px;" runat="server"></asp:TextBox>
             <asp:Label ID="lblNombreUsuario" runat="server" Style="float: right; margin-right: 1px;" Text="Nombre de usuario:"></asp:Label>
             </section>
-            <h1>Clinica Medica 🏥</h1>
-            <nav style="align-content: end; justify-content: end;">
-                <asp:HyperLink ID="hlListadoTurnos" runat="server">Listado de turnos </asp:HyperLink>
+            <h1>Clinica Medica 🏥</h1>            
+            <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica"/>
+            <nav class="Navegador">
+                <asp:HyperLink ID="hlListadoTurnos" CssClass="HyperLink" runat="server">Listado de turnos </asp:HyperLink>
                 &nbsp;&nbsp;
-                <asp:HyperLink ID="hlAsignacionTurnos" runat="server" NavigateUrl="~/AsignacionTurnos.aspx" Style="color: #7A859D;">Asignacion de Turnos</asp:HyperLink>
-    </nav>
+                <asp:HyperLink ID="hlAsignacionTurnos" CssClass="HyperLink" runat="server" NavigateUrl="~/AsignacionTurnos.aspx" Style="color: #7A859D;">Asignacion de Turnos</asp:HyperLink>
+            </nav>
         </header>
         <main>
            <section style="
