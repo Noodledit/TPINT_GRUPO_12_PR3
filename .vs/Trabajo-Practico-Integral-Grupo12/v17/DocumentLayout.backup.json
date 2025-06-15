@@ -1,14 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\",
+  "WorkspaceRootPath": "C:\\Users\\M4st3r\\Documents\\GitHub\\TPINT_GRUPO_12_PR3\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\camim\\onedrive\\escritorio\\new folder\\tpint_grupo_12_pr3\\clinicamedica\\asignacionturnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\asignacionturnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|C:\\Users\\M4st3r\\Documents\\GitHub\\TPINT_GRUPO_12_PR3\\clinicamedica\\listadoturnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\listadoturnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\camim\\onedrive\\escritorio\\new folder\\tpint_grupo_12_pr3\\clinicamedica\\listadoturnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\listadoturnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\m4st3r\\documents\\github\\tpint_grupo_12_pr3\\clinicamedica\\asignacionturnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\asignacionturnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,30 +18,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AsignacionTurnos.aspx",
-              "DocumentMoniker": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\AsignacionTurnos.aspx",
+              "DocumentMoniker": "C:\\Users\\M4st3r\\Documents\\GitHub\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\AsignacionTurnos.aspx",
               "RelativeDocumentMoniker": "ClinicaMedica\\AsignacionTurnos.aspx",
-              "ToolTip": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\AsignacionTurnos.aspx",
+              "ToolTip": "C:\\Users\\M4st3r\\Documents\\GitHub\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\AsignacionTurnos.aspx",
               "RelativeToolTip": "ClinicaMedica\\AsignacionTurnos.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "LogicalView": "7651a702-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2025-06-12T21:44:59.276Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ListadoTurnos.aspx",
-              "DocumentMoniker": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoTurnos.aspx",
+              "DocumentMoniker": "C:\\Users\\M4st3r\\Documents\\GitHub\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoTurnos.aspx",
               "RelativeDocumentMoniker": "ClinicaMedica\\ListadoTurnos.aspx",
-              "ToolTip": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoTurnos.aspx",
+              "ToolTip": "C:\\Users\\M4st3r\\Documents\\GitHub\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoTurnos.aspx",
               "RelativeToolTip": "ClinicaMedica\\ListadoTurnos.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "LogicalView": "7651a702-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2025-06-11T20:03:28.749Z",
               "EditorCaption": ""

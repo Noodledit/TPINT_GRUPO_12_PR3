@@ -28,7 +28,16 @@
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         cursor: pointer;
     }
-</style>
+        .auto-style3 {
+            width: 100%;
+        }
+        .auto-style4 {
+            width: 152px;
+        }
+        .auto-style5 {
+            width: 1171px;
+        }
+    </style>
 
     <form id="form1" runat="server">
         <header style="
@@ -72,22 +81,38 @@
                 <asp:Label ID="lblTituloTurnosAsignados" runat="server" Font-Bold="True" Font-Size="24pt" Font-Underline="True" style="margin-left: 3%; padding-bottom: 6%;" Text="Turnos Asignados" ForeColor="White"></asp:Label>
                 </div>
                 <div style="margin: 25px 10px 5px 20px;">
-                    <span style="color: white;">Ingrese DNI:</span>
-                <asp:TextBox ID="txtBuscador" runat="server" style="margin-bottom: 3%"></asp:TextBox>
                 <asp:Button ID="btnBuscar" runat="server" style="margin-left:10px; margin-bottom: 2%" Text="Consultar Turno" CssClass="boton-hover" />
+                <asp:TextBox ID="txtBuscador" runat="server" style="margin-bottom: 3%">Ingrese DNI: </asp:TextBox>
                 </div>
                 <div style="margin: 5px 10px 15px 20px;">
-                            <asp:DropDownList ID="ddlFechas" runat="server"></asp:DropDownList>
-                            <asp:Button Style="margin-left:10px;" ID="btnFiltroFecha" runat="server" Text="Consultar por Fecha" CssClass="boton-hover"/>
+                            <asp:Button Style="margin-left:10px;" ID="btnFiltroFecha" runat="server" Text="Consultar por Fecha" CssClass="boton-hover" Width="144px"/>
+                            <asp:DropDownList ID="ddlFechas" runat="server" Height="17px"></asp:DropDownList>
                 </div>
-                <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" Width="353px"> 
+                <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" Width="658px"> 
                     <Columns>
                         <asp:TemplateField HeaderText="Doctor(a)"></asp:TemplateField>
                         <asp:TemplateField HeaderText="Fecha"></asp:TemplateField>
                         <asp:TemplateField HeaderText="Sitio de Consulta"></asp:TemplateField>
                         <asp:TemplateField HeaderText="Estado de Turno"></asp:TemplateField>
+                        <asp:TemplateField HeaderText="Paciente"></asp:TemplateField>
+                        <asp:TemplateField HeaderText="Contacto del Medico"></asp:TemplateField>
+                        <asp:TemplateField HeaderText="Opciones"></asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+                <table class="auto-style3">
+                    <tr>
+                        <td class="auto-style5">
+                            <asp:Button ID="btnMostrarTodo" runat="server" Text="Mostrar Todo" />
+                        </td>
+                        <td class="auto-style4">
+                            <asp:Button ID="btnConsultarEstado" runat="server" Text="Consultar por Estado" Width="141px" />
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="DropDownList1" runat="server">
+                            </asp:DropDownList>
+                        </td>
+                    </tr>
+                </table>
                 <br />
             </section>            
         </main>
