@@ -7,8 +7,6 @@
 <link rel="stylesheet" type="text/css" href="Estilo/EstiloClinica.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Clinica Medica</title>
-    <style type="text/css">
-    </style>
     </head>
 <body>
     <form id="form1" runat="server">
@@ -32,12 +30,12 @@
                 </div>
             </div>
         </div>
-            <div class="contenido" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
-                <div class="caja" style="width: 250px; height: 50px; text-align: center; align-items: center; justify-content: center; font-size: 20px; font-weight: bolder; color: white;">
+            <div class="contenido">
+                <div class="solapa">
                     Turnos Asignados
                 </div>
                 <div class="caja">
-                                    <div style="margin: 25px 10px 5px 20px;">
+                <div style="margin: 25px 10px 5px 20px;">
                 <asp:Button ID="btnBuscar" runat="server" style="margin-left:10px; margin-bottom: 2%" Text="Consultar Turno" CssClass="button"/>
                 <asp:TextBox ID="txtBuscador" runat="server" style="margin-bottom: 3%">Ingrese DNI: </asp:TextBox>
                 </div>

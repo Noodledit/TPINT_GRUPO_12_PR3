@@ -4,6 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <title>Asignación de Turnos</title>
 <link rel="stylesheet" type="text/css" href="Estilo/EstiloClinica.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet" />
@@ -26,8 +27,8 @@
                 </div>
             </div>
         </div>
-        <div class="contenido" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
-            <div class="caja" style="width: 250px; height: 50px; text-align: center; align-items: center; justify-content: center; font-size: 20px; font-weight: bolder; color: white;">
+        <div class="contenido">
+            <div class="solapa">
                 Asiganción de Turno
             </div>
             <div class="caja">
