@@ -96,6 +96,15 @@ namespace ClinicaMedica
         protected global::System.Web.UI.WebControls.HyperLink hlAgregarPaciente;
 
         /// <summary>
+        /// Control hlAgregarMedico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlAgregarMedico;
+
+        /// <summary>
         /// Control hlAsignarTurnos.
         /// </summary>
         /// <remarks>

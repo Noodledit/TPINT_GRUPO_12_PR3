@@ -73,6 +73,7 @@
     <Content Include="Estilo\user.png" />
     <Content Include="Informes.aspx" />
     <Content Include="ListadoTurnos.aspx" />
+    <Content Include="RegistrarMedico.aspx" />
     <Content Include="RegistrarPaciente.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -99,6 +100,13 @@
       <DependentUpon>ListadoTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrarMedico.aspx.cs">
+      <DependentUpon>RegistrarMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrarMedico.aspx.designer.cs">
+      <DependentUpon>RegistrarMedico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RegistrarPaciente.aspx.cs">
       <DependentUpon>RegistrarPaciente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

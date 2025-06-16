@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegistrarPaciente.aspx.cs" Inherits="ClinicaMedica.RegistrarPaciente" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegistrarMedico.aspx.cs" Inherits="ClinicaMedica.RegistrarMedico" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Registrar Paciente</title>
+    <title>Registrar Médico</title>
     <link rel="stylesheet" type="text/css" href="Estilo/EstiloClinica.css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet" />
@@ -30,7 +30,7 @@
         </div>
         <div class="contenido">
             <div class="solapa">
-                Agregar Nuevo Paciente
+                Agregar Nuevo Médico
             </div>
             <div class="caja">
                 <div class="form-row">
@@ -57,36 +57,8 @@
                         </div>
                     </div>
                     <div class="form-col" style="display:inline;">
-                        <label class="form-label" for="txtDireccion">Direccion:</label>
-                        <asp:TextBox ID="txtDireccion" runat="server" CssClass="auto-style3" placeholder="Hipólito Yrigoyen 288"></asp:TextBox>
 
-                        <label class="form-label" for="txtProvincia">Provincia:</label>
-                        <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="auto-style3">
-                            <asp:ListItem Text="Seleccione Provincia" Value="0"></asp:ListItem>
-                            <asp:ListItem Text="Provincia 1" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="Provincia 2" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="Provincia 3" Value="3"></asp:ListItem>
-                        </asp:DropDownList>
-
-                        <label class="form-label" for="txtLocalidad">Localidad:</label>
-                        <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="auto-style3">
-                            <asp:ListItem Text="Seleccione Localidad" Value="0"></asp:ListItem>
-                            <asp:ListItem Text="Localidad 1" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="Localidad 2" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="Localidad 3" Value="3"></asp:ListItem>
-                        </asp:DropDownList>
-
-                        <label class="form-label" for="txtCorreo">Correo electrónico:</label>
-                        <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="auto-style3" placeholder="ejemplo@correo.com" TextMode="Email"></asp:TextBox>
-
-                        <label class="form-label" for="txtTelefono">Numero de telefono:</label>
-                        <asp:TextBox ID="txtNumeroTelefono" runat="server" CssClass="auto-style3" placeholder="1512345678" TextMode="Phone"></asp:TextBox>
                     </div>
-                </div>
-                <!-- Botones de acción -->
-                <div class="form-actions">
-                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn-aceptar"/>
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn-cancelar" />
                 </div>
             </div>
         </div>
