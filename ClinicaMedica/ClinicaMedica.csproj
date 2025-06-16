@@ -70,6 +70,7 @@
     <Content Include="AsignacionTurnos.aspx" />
     <Content Include="Estilo\EstiloClinica.css" />
     <Content Include="Estilo\logoClinica.png" />
+    <Content Include="Estilo\user.png" />
     <Content Include="Informes.aspx" />
     <Content Include="ListadoTurnos.aspx" />
     <Content Include="RegistrarPaciente.aspx" />

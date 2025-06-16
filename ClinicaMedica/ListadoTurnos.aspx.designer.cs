@@ -78,13 +78,13 @@ namespace ClinicaMedica
         protected global::System.Web.UI.WebControls.Label lblNombreUsuario;
 
         /// <summary>
-        /// hlInicio control.
+        /// hlListarTurnos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlInicio;
+        protected global::System.Web.UI.WebControls.HyperLink hlListarTurnos;
 
         /// <summary>
         /// hlAgregarPaciente control.
@@ -103,15 +103,6 @@ namespace ClinicaMedica
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlAsignarTurnos;
-
-        /// <summary>
-        /// hlListarTurnos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlListarTurnos;
 
         /// <summary>
         /// hlInformes control.
