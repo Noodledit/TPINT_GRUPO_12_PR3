@@ -38,31 +38,31 @@
                     <div class="form-col" style="display:inline;">
                         <div class="form-group">
                             <label class="form-label" for="txtNombre">Nombre:</label>
-                            <asp:TextBox ID="txtNombre" runat="server" CssClass="auto-style3" placeholder="Claudio"></asp:TextBox>
+                            <asp:TextBox ID="txtNombre" runat="server" CssClass="txtBox-caja" placeholder="Claudio"></asp:TextBox>
 
                             <label class="form-label" for="txtApellido">Apellido:</label>
-                            <asp:TextBox ID="txtApellido" runat="server" CssClass="auto-style3" placeholder="Fernandez"></asp:TextBox>
+                            <asp:TextBox ID="txtApellido" runat="server" CssClass="txtBox-caja" placeholder="Fernandez"></asp:TextBox>
 
                             <label class="form-label" for="ddlSexo">Sexo:</label>
-                            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="auto-style3">
+                            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="txtBox-caja">
                                 <asp:ListItem Text="Masculino" Value="M"></asp:ListItem>
                                 <asp:ListItem Text="Femenino" Value="F"></asp:ListItem>
                                 <asp:ListItem Text="Otro" Value="O"></asp:ListItem>
                             </asp:DropDownList>
 
                             <label class="form-label" for="txtNacionalidad">Nacionalidad:</label>
-                            <asp:TextBox ID="txtNacionalidad" runat="server" CssClass="auto-style3" placeholder="Argentina"></asp:TextBox>
+                            <asp:TextBox ID="txtNacionalidad" runat="server" CssClass="txtBox-caja" placeholder="Argentina"></asp:TextBox>
 
                             <label class="form-label" for="txtFechaNacimiento">Fecha de nacimiento:</label>
-                            <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="auto-style3" placeholder="1/1/1992"></asp:TextBox>
+                            <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="txtBox-caja" placeholder="1/1/1992"></asp:TextBox>
                         </div>
                     </div>
                     <div class="form-col" style="display:inline;">
                         <label class="form-label" for="txtDireccion">Direccion:</label>
-                        <asp:TextBox ID="txtDireccion" runat="server" CssClass="auto-style3" placeholder="Hipólito Yrigoyen 288"></asp:TextBox>
+                        <asp:TextBox ID="txtDireccion" runat="server" CssClass="txtBox-caja" placeholder="Hipólito Yrigoyen 288"></asp:TextBox>
 
                         <label class="form-label" for="txtProvincia">Provincia:</label>
-                        <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="auto-style3">
+                        <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="txtBox-caja">
                             <asp:ListItem Text="Seleccione Provincia" Value="0"></asp:ListItem>
                             <asp:ListItem Text="Provincia 1" Value="1"></asp:ListItem>
                             <asp:ListItem Text="Provincia 2" Value="2"></asp:ListItem>
@@ -70,7 +70,7 @@
                         </asp:DropDownList>
 
                         <label class="form-label" for="txtLocalidad">Localidad:</label>
-                        <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="auto-style3">
+                        <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="txtBox-caja">
                             <asp:ListItem Text="Seleccione Localidad" Value="0"></asp:ListItem>
                             <asp:ListItem Text="Localidad 1" Value="1"></asp:ListItem>
                             <asp:ListItem Text="Localidad 2" Value="2"></asp:ListItem>
@@ -78,10 +78,10 @@
                         </asp:DropDownList>
 
                         <label class="form-label" for="txtCorreo">Correo electrónico:</label>
-                        <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="auto-style3" placeholder="ejemplo@correo.com" TextMode="Email"></asp:TextBox>
+                        <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="txtBox-caja" placeholder="ejemplo@correo.com" TextMode="Email"></asp:TextBox>
 
                         <label class="form-label" for="txtTelefono">Numero de telefono:</label>
-                        <asp:TextBox ID="txtNumeroTelefono" runat="server" CssClass="auto-style3" placeholder="1512345678" TextMode="Phone"></asp:TextBox>
+                        <asp:TextBox ID="txtNumeroTelefono" runat="server" CssClass="txtBox-caja" placeholder="1512345678" TextMode="Phone"></asp:TextBox>
                     </div>
                 </div>
                 <!-- Botones de acción -->

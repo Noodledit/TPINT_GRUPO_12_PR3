@@ -38,26 +38,26 @@
                     <div class="form-col" style="display:inline;">
                         <div class="form-group">
                             <label class="form-label" for="txtNombre">Nombre:</label>
-                            <asp:TextBox ID="txtNombre" runat="server" placeholder="Claudio"></asp:TextBox>
+                            <asp:TextBox ID="txtNombre" runat="server" CssClass="txtBox-caja" placeholder="Claudio"></asp:TextBox>
 
                             <label class="form-label" for="txtApellido">Apellido:</label>
-                            <asp:TextBox ID="txtApellido" runat="server" placeholder="Fernandez"></asp:TextBox>
+                            <asp:TextBox ID="txtApellido" runat="server" CssClass="txtBox-caja" placeholder="Fernandez"></asp:TextBox>
 
                             <label class="form-label" for="ddlSexo">Sexo:</label>
-                            <asp:DropDownList ID="DropDownList1" runat="server">
+                            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="txtBox-caja">
                                 <asp:ListItem Text="Masculino" Value="M"></asp:ListItem>
                                 <asp:ListItem Text="Femenino" Value="F"></asp:ListItem>
                                 <asp:ListItem Text="Otro" Value="O"></asp:ListItem>
                             </asp:DropDownList>
 
                             <label class="form-label" for="txtNacionalidad">Nacionalidad:</label>
-                            <asp:TextBox ID="txtNacionalidad" runat="server" placeholder="Argentina"></asp:TextBox>
+                            <asp:TextBox ID="txtNacionalidad" runat="server" CssClass="txtBox-caja" placeholder="Argentina"></asp:TextBox>
 
                             <label class="form-label" for="txtFechaNacimiento">Fecha de nacimiento:</label>
-                            <asp:TextBox ID="txtFechaNacimiento" runat="server" placeholder="1/1/1992"></asp:TextBox>
+                            <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="txtBox-caja" placeholder="1/1/1992"></asp:TextBox>
 
                             <label class="form-label" for="txtProvincia">Provincia:</label>
-                            <asp:DropDownList ID="ddlProvincia" runat="server">
+                            <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="txtBox-caja">
                                 <asp:ListItem Text="Seleccione Provincia" Value="0"></asp:ListItem>
                                 <asp:ListItem Text="Provincia 1" Value="1"></asp:ListItem>
                                 <asp:ListItem Text="Provincia 2" Value="2"></asp:ListItem>
@@ -67,10 +67,10 @@
                     </div>
                     <div class="form-col" style="display:inline;">
                         <label class="form-label" for="txtDireccion">Direccion:</label>
-                        <asp:TextBox ID="txtDireccion" runat="server" placeholder="Hipólito Yrigoyen 288"></asp:TextBox>
+                        <asp:TextBox ID="txtDireccion" runat="server" CssClass="txtBox-caja" placeholder="Hipólito Yrigoyen 288"></asp:TextBox>
 
                         <label class="form-label" for="txtLocalidad">Localidad:</label>
-                        <asp:DropDownList ID="ddlLocalidad" runat="server">
+                        <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="txtBox-caja" >
                             <asp:ListItem Text="Seleccione Localidad" Value="0"></asp:ListItem>
                             <asp:ListItem Text="Localidad 1" Value="1"></asp:ListItem>
                             <asp:ListItem Text="Localidad 2" Value="2"></asp:ListItem>
@@ -78,23 +78,26 @@
                         </asp:DropDownList>
 
                         <label class="form-label" for="txtCorreo">Correo electrónico:</label>
-                        <asp:TextBox ID="txtCorreoElectronico" runat="server" placeholder="ejemplo@correo.com" TextMode="Email"></asp:TextBox>
+                        <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="txtBox-caja" placeholder="ejemplo@correo.com" TextMode="Email"></asp:TextBox>
 
                         <label class="form-label" for="txtTelefono">Numero de telefono:</label>
-                        <asp:TextBox ID="txtNumeroTelefono" runat="server" placeholder="1512345678" TextMode="Phone"></asp:TextBox>
+                        <asp:TextBox ID="txtNumeroTelefono" runat="server" CssClass="txtBox-caja" placeholder="1512345678" TextMode="Phone" ></asp:TextBox>
                         
-                        <label class="form-label" for="txtLocalidad">Especialidad:</label>
-                        <asp:DropDownList ID="ddlEspecialidad" runat="server">
+                        <label class="form-label" for="txtEspecialidad">Especialidad:</label>
+                        <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="txtBox-caja">
                             <asp:ListItem Text="Seleccione Especialidad" Value="0"></asp:ListItem>
                             <asp:ListItem Text="Especialidad 1" Value="1"></asp:ListItem>
                             <asp:ListItem Text="Especialidad 2" Value="2"></asp:ListItem>
                             <asp:ListItem Text="Especialidad 3" Value="3"></asp:ListItem>
                         </asp:DropDownList>
+                        <label class="form-label" for="txtNumLegajo">Numero de legajo:</label>
+                        <asp:TextBox ID="txtLegajo" runat="server" CssClass="txtBox-caja" Text="12345" ReadOnly="True" Style="color: white; background: transparent; border-width: 2px;" ></asp:TextBox>
 
-                        <label class="form-label Cuadro" for="txtLegajo"> Numero de legajo: N</label>
-                        
-                        <asp:Button ID="btnRegristrar" runat="server" Text="Registrár"/>
                     </div>                    
+                </div>
+                <div class="form-actions">
+                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn-aceptar"/>
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn-cancelar" />
                 </div>
             </div>
         </div>
