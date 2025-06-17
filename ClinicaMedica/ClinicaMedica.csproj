@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AsignacionTurnos.aspx" />
+    <Content Include="CambiarContraseña.aspx" />
     <Content Include="Estilo\EstiloClinica.css" />
     <Content Include="Estilo\logoClinica.png" />
     <Content Include="Estilo\user.png" />
@@ -84,6 +85,13 @@
     </Compile>
     <Compile Include="AsignacionTurnos.aspx.designer.cs">
       <DependentUpon>AsignacionTurnos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CambiarContraseña.aspx.cs">
+      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CambiarContraseña.aspx.designer.cs">
+      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
     </Compile>
     <Compile Include="Informes.aspx.cs">
       <DependentUpon>Informes.aspx</DependentUpon>
