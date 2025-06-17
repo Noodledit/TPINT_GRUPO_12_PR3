@@ -39,12 +39,10 @@
             <!-- Estadísticas generales -->
             <div class="caja-informe" style="background: #f1f7ff; margin-bottom: 20px;">
                 <h3>Resumen Estadístico</h3>
-                Total turnos:<asp:Label ID="lblTotalTurnos" runat="server" CssClass="form-label" />
-                Porcentaje:<asp:Label ID="lblTotalPresentes" runat="server" CssClass="form-label" />
-                Ausentes:<asp:Label ID="lblTotalAusentes" runat="server" CssClass="form-label" />
-                Presentes:<asp:Label ID="lblPorcentajePresentes" runat="server" CssClass="form-label" />
-                Ausentes:<asp:Label ID="lblPorcentajeAusentes" runat="server" CssClass="form-label" />
-            </div>
+                Los presentes este mes alcanzan el porcentaje de:<asp:Label ID="lblInformePresentismo" runat="server" CssClass="form-label" />
+                Los ausentes este mes alcanzan el porcentaje de:<asp:Label ID="lblInformeAusentismo" runat="server" CssClass="form-label" />
+                con respecto al mes anterior se ve una diferencia en atencion del: <asp:Label ID="lblInformeComparacionMesAnterior" runat="server" CssClass="form-label" />
+                </div>
 
             </div>
          </div>

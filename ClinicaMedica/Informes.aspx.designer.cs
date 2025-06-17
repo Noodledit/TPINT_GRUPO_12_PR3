@@ -132,48 +132,30 @@ namespace ClinicaMedica
         protected global::System.Web.UI.WebControls.Button btnGenerarInforme;
 
         /// <summary>
-        /// Control lblTotalTurnos.
+        /// Control lblInformePresentismo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalTurnos;
+        protected global::System.Web.UI.WebControls.Label lblInformePresentismo;
 
         /// <summary>
-        /// Control lblTotalPresentes.
+        /// Control lblInformeAusentismo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalPresentes;
+        protected global::System.Web.UI.WebControls.Label lblInformeAusentismo;
 
         /// <summary>
-        /// Control lblTotalAusentes.
+        /// Control lblInformeComparacionMesAnterior.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalAusentes;
-
-        /// <summary>
-        /// Control lblPorcentajePresentes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPorcentajePresentes;
-
-        /// <summary>
-        /// Control lblPorcentajeAusentes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPorcentajeAusentes;
+        protected global::System.Web.UI.WebControls.Label lblInformeComparacionMesAnterior;
     }
 }
