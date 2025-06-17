@@ -32,7 +32,7 @@
             </div>
         </div>
             <div class="contenido">
-                <div class="solapa">
+                <div class="solapa" style=" transform: translateX(+20px); ">
                     Turnos Asignados
                 </div>
                 <div class="caja">
