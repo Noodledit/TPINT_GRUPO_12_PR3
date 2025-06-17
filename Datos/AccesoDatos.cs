@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Datos
 {
@@ -36,5 +36,20 @@ namespace Datos
                 }
             }
         }
+
+        private SqlCommand sqlCommand(string query, SqlConnection conexion)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand(query, conexion);
+                return cmd;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
     }
+
 }
