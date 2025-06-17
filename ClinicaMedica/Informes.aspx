@@ -20,6 +20,7 @@
                     <asp:HyperLink ID="hlAgregarPaciente" runat="server" CssClass="header-link" NavigateUrl="RegistrarPaciente.aspx" Text="Agregar Paciente"></asp:HyperLink>
                     <asp:HyperLink ID="hlAgregarMedico" runat="server" CssClass="header-link" NavigateUrl="RegistrarMedico.aspx" Text="Agregar Medico"></asp:HyperLink>
                     <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="AsignacionTurnos.aspx" Text="Asignar Turnos"></asp:HyperLink>
+                     <asp:HyperLink ID="hListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos"></asp:HyperLink>
                     <asp:HyperLink ID="hlInformes" runat="server" CssClass="header-link" NavigateUrl="Informes.aspx" Text="Informes"></asp:HyperLink>
                 </div>
             </div>
@@ -39,7 +40,7 @@
             <div class="caja-informe" style="background: #f1f7ff; margin-bottom: 20px;">
                 <h3>Resumen Estadístico</h3>
                 Total turnos:<asp:Label ID="lblTotalTurnos" runat="server" CssClass="form-label" />
-                Presentes:<asp:Label ID="lblTotalPresentes" runat="server" CssClass="form-label" />
+                Porcentaje:<asp:Label ID="lblTotalPresentes" runat="server" CssClass="form-label" />
                 Ausentes:<asp:Label ID="lblTotalAusentes" runat="server" CssClass="form-label" />
                 Presentes:<asp:Label ID="lblPorcentajePresentes" runat="server" CssClass="form-label" />
                 Ausentes:<asp:Label ID="lblPorcentajeAusentes" runat="server" CssClass="form-label" />

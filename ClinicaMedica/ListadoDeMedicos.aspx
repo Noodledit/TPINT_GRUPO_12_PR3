@@ -1,0 +1,63 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListadoDeMedicos.aspx.cs" Inherits="ClinicaMedica.ListadoDeMedicos" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Listado de Medicos</title>
+    <link rel="stylesheet" type="text/css" href="Estilo/EstiloClinica.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="header">
+            <section>
+                <img src="Estilo/user.png" class="user-image"/>
+                <asp:Label ID="lblBienvenidoUsuario" runat="server" Style="float: right; font-size:15px ; margin-right: 8px; letter-spacing: 2px; font-weight: bold; transform: translateY(+5px);" Text="Peter Lanzani"></asp:Label>
+            </section>
+            <div class="titulo-header">
+                <h1>Clinica Medica</h1>
+                <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica"/>
+                <div class="header-links">
+                    <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link" NavigateUrl="ListadoTurnos.aspx" Text="Listado de Turnos"></asp:HyperLink>
+                    <asp:HyperLink ID="hlAgregarPaciente" runat="server" CssClass="header-link" NavigateUrl="RegistrarPaciente.aspx" Text="Agregar Paciente"></asp:HyperLink>
+                    <asp:HyperLink ID="hlAgregarMedico" runat="server" CssClass="header-link" NavigateUrl="RegistrarMedico.aspx" Text="Agregar Medico"></asp:HyperLink>
+                    <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="AsignacionTurnos.aspx" Text="Asignar Turnos"></asp:HyperLink>
+                    <asp:HyperLink ID="hListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos"></asp:HyperLink>
+                    <asp:HyperLink ID="hlInformes" runat="server" CssClass="header-link" NavigateUrl="Informes.aspx" Text="Informes"></asp:HyperLink>
+                </div>
+            </div>
+        </div>
+        <div class="contenido">
+            <div class="solapa">
+                Listado de Medicos</div>
+            <div class="caja">
+<div style="margin: 25px 10px 5px 20px;">
+    <asp:Button ID="btnBuscarMeds" runat="server" Text="Buscar Medicos" />
+<asp:TextBox ID="txtBuscadorMeds" runat="server" style="margin-bottom: 3%">Ingrese Legajo: </asp:TextBox>
+</div>
+<div style="margin: 25px 10px 5px 20px;">
+    <asp:Button ID="btnFiltrarEspecialidad" runat="server" Text="Filtrar por Especialidad" Width="202px" />
+    <asp:DropDownList ID="ddlEspecialidades" runat="server">
+    </asp:DropDownList>
+</div>
+
+<asp:GridView ID="gvMedicos" runat="server" AutoGenerateColumns="False" Width="658px"> 
+    <Columns>
+        <asp:TemplateField HeaderText="Doctor(a)"></asp:TemplateField>
+        <asp:TemplateField HeaderText="Especialidad"></asp:TemplateField>
+        <asp:TemplateField HeaderText="Contacto del Medico"></asp:TemplateField>
+        <asp:TemplateField HeaderText="Dar de Baja"></asp:TemplateField>
+    </Columns>
+</asp:GridView>
+                <div style="margin: 25px 10px 5px 20px;">
+    <asp:Button ID="btnMostrarTodo" runat="server" Text="Mostrar Todo" Width="202px" />
+</div>
+            
+</div>                                  
+        </div>
+    </form>
+</body>
+</html>
+

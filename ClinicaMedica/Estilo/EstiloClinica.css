@@ -181,7 +181,7 @@ font{
     border-radius: 15px 15px 0 0;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     padding: 7px 12px 0 12px;
-    height: 10px;
+    height: 0px;
     /*text-align: center;*/
     /*align-items: normal;*/
     justify-content: normal;

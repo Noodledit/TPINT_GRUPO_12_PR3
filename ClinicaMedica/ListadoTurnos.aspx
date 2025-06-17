@@ -27,6 +27,7 @@
                     <asp:HyperLink ID="hlAgregarPaciente" runat="server" CssClass="header-link" NavigateUrl="RegistrarPaciente.aspx" Text="Agregar Paciente"></asp:HyperLink>
                     <asp:HyperLink ID="hlAgregarMedico" runat="server" CssClass="header-link" NavigateUrl="RegistrarMedico.aspx" Text="Agregar Medico"></asp:HyperLink>
                     <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="AsignacionTurnos.aspx" Text="Asignar Turnos"></asp:HyperLink>
+                     <asp:HyperLink ID="hListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos"></asp:HyperLink>
                     <asp:HyperLink ID="hlInformes" runat="server" CssClass="header-link" NavigateUrl="Informes.aspx" Text="Informes"></asp:HyperLink>
                 </div>
             </div>
@@ -41,7 +42,7 @@
                 <asp:TextBox ID="txtBuscador" runat="server" style="margin-bottom: 3%">Ingrese DNI: </asp:TextBox>
                 </div>
                 <div style="margin: 5px 10px 15px 20px;">
-                            <asp:Button Style="margin-left:10px;" ID="btnFiltroFecha" runat="server" Text="Consultar por Fecha" CssClass="button"  Width="144px"/>
+                            <asp:Button Style="margin-left:10px;" ID="btnFiltroFecha" runat="server" Text="Consultar por Fecha" CssClass="button"  Width="206px"/>
                             <asp:DropDownList ID="ddlFechas" runat="server" Height="17px"></asp:DropDownList>
                 </div>
                 <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" Width="658px"> 
@@ -64,7 +65,7 @@
                             <asp:Button ID="btnConsultarEstado" runat="server" Text="Consultar por Estado" Width="141px" />
                         </td>
                         <td>
-                            <asp:DropDownList ID="DropDownList1" runat="server">
+                            <asp:DropDownList ID="ddlEstados" runat="server">
                             </asp:DropDownList>
                         </td>
                     </tr>

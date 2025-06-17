@@ -42,3 +42,14 @@ C:\Users\M4st3r\Documents\GitHub\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicio
 C:\Users\M4st3r\Documents\GitHub\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.csproj.Up2Date
 C:\Users\M4st3r\Documents\GitHub\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.dll
 C:\Users\M4st3r\Documents\GitHub\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.pdb
+C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Servicios.dll
+C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Servicios.pdb
+C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Datos.dll
+C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Entidades.dll
+C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Datos.pdb
+C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Entidades.pdb
+C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.csproj.AssemblyReference.cache
+C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.csproj.CoreCompileInputs.cache
+C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.csproj.Up2Date
+C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.dll
+C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.pdb
