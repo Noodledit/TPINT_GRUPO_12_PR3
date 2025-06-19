@@ -53,6 +53,7 @@
                         <asp:TemplateField HeaderText="Doctor(a)"></asp:TemplateField>
                         <asp:TemplateField HeaderText="Especialidad"></asp:TemplateField>
                         <asp:TemplateField HeaderText="Contacto del Medico"></asp:TemplateField>
+                        <asp:TemplateField HeaderText="Telefono"></asp:TemplateField>
                         <asp:TemplateField HeaderText="Dar de Baja"></asp:TemplateField>
                     </Columns>
                 </asp:GridView>
