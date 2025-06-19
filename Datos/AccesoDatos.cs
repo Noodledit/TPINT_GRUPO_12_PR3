@@ -50,6 +50,28 @@ namespace Datos
             }
         }
 
-    }
 
+        public DataTable EjecutarConsultaDataAdapter(string query, SqlParameter parametro = null)
+        {
+            try
+            {
+                using (SqlCommand cmd = sqlCommand(query, connection()))
+                {
+                    if (cmd == null) return null;
+                    if (parametro != null)
+                    {
+                        cmd.Parameters.Add(parametro);
+                    }
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable tabla = new DataTable();
+                    adapter.Fill(tabla);
+                    return tabla;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+    }
 }
