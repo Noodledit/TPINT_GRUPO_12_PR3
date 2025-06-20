@@ -37,11 +37,12 @@ namespace Datos
             }
         }
 
-        private SqlCommand sqlCommand(string query, SqlConnection conexion)
+        private SqlCommand sqlCommand(string ProcedimientoAlmacenado, SqlConnection conexion)
         {
             try
             {
-                SqlCommand cmd = new SqlCommand(query, conexion);
+                SqlCommand cmd = new SqlCommand(ProcedimientoAlmacenado, conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
                 return cmd;
             }
             catch (Exception ex)
@@ -51,21 +52,22 @@ namespace Datos
         }
 
 
-        public DataTable EjecutarConsultaDataAdapter(string query, SqlParameter parametro = null)
+        public DataTable EjecutarConsultaSelectDataAdapter(string ProcedimientoAlmacenado, SqlParameter parametro = null)
         {
             try
             {
-                using (SqlCommand cmd = sqlCommand(query, connection()))
+                using (SqlCommand cmd = sqlCommand(ProcedimientoAlmacenado, connection()))
                 {
                     if (cmd == null) return null;
                     if (parametro != null)
                     {
                         cmd.Parameters.Add(parametro);
                     }
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable tabla = new DataTable();
-                    adapter.Fill(tabla);
-                    return tabla;
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd)) {
+                        DataTable tabla = new DataTable();
+                        adapter.Fill(tabla);
+                        return tabla;
+                    }
                 }
             }
             catch (Exception ex)
