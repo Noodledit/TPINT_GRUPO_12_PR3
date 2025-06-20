@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Servicios;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -11,9 +12,11 @@ namespace ClinicaMedica
     public partial class ListadoTurnos : System.Web.UI.Page
     {
         bool estado = false;
+        private GestionTablas gestionTablas = new GestionTablas();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos();
+            gvTurnos.DataBind();
         }
 
         protected void btnUn_Login_Click(object sender, EventArgs e)
