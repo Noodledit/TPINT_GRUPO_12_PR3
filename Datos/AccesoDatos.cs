@@ -73,5 +73,18 @@ namespace Datos
                 return null;
             }
         }
+        public int EjecutarProcedimientoAlmacenado(SqlCommand Comando, String Nombre)
+        {
+            int FilasCambiadas;
+            SqlConnection Conexion = connection();
+            SqlCommand cmd = new SqlCommand();
+            cmd = Comando;
+            cmd.Connection = Conexion;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = Nombre;
+            FilasCambiadas = cmd.ExecuteNonQuery();
+            Conexion.Close();
+            return FilasCambiadas;
+        }
     }
 }
