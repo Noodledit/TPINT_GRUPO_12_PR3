@@ -47,13 +47,36 @@
                 </div>
                 <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" Width="658px">
                     <Columns>
-                        <asp:TemplateField HeaderText="Doctor(a)"></asp:TemplateField>
-                        <asp:TemplateField HeaderText="Fecha"></asp:TemplateField>
-                        <asp:TemplateField HeaderText="Sitio de Consulta"></asp:TemplateField>
-                        <asp:TemplateField HeaderText="Estado de Turno"></asp:TemplateField>
-                        <asp:TemplateField HeaderText="Paciente"></asp:TemplateField>
-                        <asp:TemplateField HeaderText="Contacto del Medico"></asp:TemplateField>
-                        <asp:TemplateField HeaderText="Opciones"></asp:TemplateField>
+                        <asp:TemplateField HeaderText="Doctor(a)">
+                            <ItemTemplate>
+                                <asp:Label ID="lblNombreDoctor" runat="server" Text='<%# Bind("NombreDoctor") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Fecha">
+                            <ItemTemplate>
+                                <asp:Label ID="lblFecha" runat="server" Text='<%# Bind("Fecha") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Especialidad">
+                            <ItemTemplate>
+                                <asp:Label ID="lblEspecialidad" runat="server" Text='<%# Bind("Especialidad") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Estado">
+                            <ItemTemplate>
+                                <asp:Label ID="lblEstado" runat="server" Text='<%# Bind("Estado") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Paciente">
+                            <ItemTemplate>
+                                <asp:Label ID="lblPaciente" runat="server" Text='<%# Bind("Paciente") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Contacto del Medico">
+                            <ItemTemplate>
+                                <asp:Label ID="lblContactoMedico" runat="server" Text='<%# Bind("ContactoMedico") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
                 <table class="auto-style3">
