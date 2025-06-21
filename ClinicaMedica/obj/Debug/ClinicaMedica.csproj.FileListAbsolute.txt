@@ -315,3 +315,5 @@ C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\ClinicaMedica\bin\Microsoft.CodeDom.Pr
 C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\ClinicaMedica\obj\Debug\ClinicaM.C90C84E6.Up2Date
 E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\TPINT_GRUPO_12_PR3\ClinicaMedica\bin\Datos.dll
 E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\TPINT_GRUPO_12_PR3\ClinicaMedica\bin\Datos.pdb
+C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\ClinicaMedica\bin\Datos.dll
+C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\ClinicaMedica\bin\Datos.pdb

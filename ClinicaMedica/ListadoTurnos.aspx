@@ -40,12 +40,23 @@
                 <div style="display: flex; align-items: center; gap: 20px;">
                     <asp:Button ID="btnBuscar" runat="server"  Text="Consultar Turno" CssClass="button" Width="210px" Height="40" />
                     <asp:TextBox ID="txtBuscador" runat="server" placeholder="Ingrese Dni" CssClass="txtBox-caja" Style=" margin-top: 18px;"> </asp:TextBox>
-                </div>
                 <div style="display: flex; align-items: center; gap: 20px;">
                     <asp:Button ID="btnFiltroFecha" runat="server" Text="Consultar por Fecha" CssClass="button" Width="210px" Height="40" />
                     <asp:DropDownList ID="ddlFechas" runat="server" CssClass="txtBox-caja" Style=" margin-top: 18px;"></asp:DropDownList>
+                    <br />
+                    <br />
                 </div>
-                <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" Width="658px">
+                </div>
+                <div style="display: flex; align-items: center; gap: 20px;">
+                            <asp:Button ID="btnMostrarTodo" runat="server" Text="Mostrar Todo" CssClass="button" />
+                            <asp:Button ID="btnConsultarEstado" runat="server" Text="Consultar por Estado" Width="215px" CssClass="button" />
+                            <asp:DropDownList ID="ddlEstados" runat="server">
+                            </asp:DropDownList>
+                    <br />
+                    <br />
+                </div>
+                <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" Width="658px" CellPadding="4" ForeColor="#333333" GridLines="None">
+                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:TemplateField HeaderText=" Numero de turno">
                             <EditItemTemplate>
@@ -56,39 +67,50 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Especialidad">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_it_Especialidad" runat="server" Text='<%# Bind("Especialidad") %>'></asp:Label>
+                            </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Doctor(a)">
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Contacto del Medico">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_it_DoctorNombre" runat="server" Text='<%# Bind("Doctor") %>'></asp:Label>
+                            </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Fecha">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_it_Fecha" runat="server" Text='<%# Bind("Fecha") %>'></asp:Label>
+                            </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Horario">
                             <EditItemTemplate>
                                 <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:Label ID="Label2" runat="server"></asp:Label>
+                                <asp:Label ID="lbl_it_Horario" runat="server" Text='<%# Bind("Horario") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Paciente">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_it_NombrePaciente" runat="server" Text='<%# Bind("NombrePaciente") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Dni del Paciente">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_it_DniPaciente" runat="server" Text='<%# Bind("DNIpaciente") %>'></asp:Label>
+                            </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
+                    <EditRowStyle BackColor="#999999" />
+                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
-                <table class="auto-style3">
-                    <tr>
-                        <td class="auto-style5">
-                            <asp:Button ID="btnMostrarTodo" runat="server" Text="Mostrar Todo" CssClass="button" />
-                        </td>
-                        <td class="auto-style4">
-                            <asp:Button ID="btnConsultarEstado" runat="server" Text="Consultar por Estado" Width="141px" CssClass="button" />
-                        </td>
-                        <td>
-                            <asp:DropDownList ID="ddlEstados" runat="server">
-                            </asp:DropDownList>
-                        </td>
-                    </tr>
-                </table>
             </div>
         </div>
     </form>
