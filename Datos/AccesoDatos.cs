@@ -36,7 +36,6 @@ namespace Datos
                 }
             }
         }
-
         private SqlCommand sqlCommand(string ProcedimientoAlmacenado, SqlConnection conexion)
         {
             try
@@ -50,8 +49,6 @@ namespace Datos
                 return null;
             }
         }
-
-
         public DataTable EjecutarConsultaSelectDataAdapter(string ProcedimientoAlmacenado , SqlParameter[] parametro = null)
         {
             try
@@ -61,7 +58,7 @@ namespace Datos
                     if (cmd == null) return null;
                     if (parametro != null)
                     {
-                        cmd.Parameters.Add(parametro);
+                        cmd.Parameters.AddRange(parametro);
                     }
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd)) {
                         DataTable tabla = new DataTable();
@@ -75,6 +72,7 @@ namespace Datos
                 return null;
             }
         }
+
         public int EjecutarProcedimientoAlmacenado(SqlCommand Comando, String Nombre)
         {
             int FilasCambiadas;
