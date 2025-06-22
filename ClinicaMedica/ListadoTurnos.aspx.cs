@@ -37,6 +37,11 @@ namespace ClinicaMedica
                     Session["UsuarioActivo"] = usuario;
                     ComprobacionDeSesion();
                 }
+                else
+                {
+                    lblBienvenidoUsuario.ForeColor = System.Drawing.Color.Red;
+                    lblBienvenidoUsuario.Text = "Usuario o contraseña incorrectos";
+                }
             }
             else
             {
@@ -53,6 +58,7 @@ namespace ClinicaMedica
                 txtUsuario.Visible = false;
                 lblContrasenia.Visible = false;
                 lblNombreUsuario.Visible = false;
+                lblBienvenidoUsuario.ForeColor = System.Drawing.Color.Black;
                 lblBienvenidoUsuario.Text = ((Usuario)Session["UsuarioActivo"]).NombreUsuario + " " + ((Usuario)Session["UsuarioActivo"]).ApellidoUsuario;
                 btnUn_Login.Text = "Cerrar sesion";
             }

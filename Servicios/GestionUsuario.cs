@@ -22,7 +22,7 @@ namespace Servicios
             DatosDeUsuario = dao.SolicitudLogin(User, Pass);
             
             Usuario usuarioLogueado = null;
-            if (DatosDeUsuario != null)
+            if (DatosDeUsuario != null && DatosDeUsuario.Rows.Count != 0)
             {
                 DataRow row = DatosDeUsuario.Rows[0];
                 //Usuario(user, pass, IdUsuario, int tipoUsuario, string nombreUsuario, string apellidoUsuario)
