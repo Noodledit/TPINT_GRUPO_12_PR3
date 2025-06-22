@@ -50,10 +50,26 @@
 
                 <asp:GridView ID="gvMedicos" runat="server" AutoGenerateColumns="False" Width="658px">
                     <Columns>
-                        <asp:TemplateField HeaderText="Doctor(a)"></asp:TemplateField>
-                        <asp:TemplateField HeaderText="Especialidad"></asp:TemplateField>
-                        <asp:TemplateField HeaderText="Telefono"></asp:TemplateField>
-                        <asp:TemplateField HeaderText="Contacto del Medico"></asp:TemplateField>
+                        <asp:TemplateField HeaderText="Doctor(a)">
+                            <ItemTemplate>
+                                <asp:Label ID="lblDoctor" runat="server" Text='<%# Bind("Doctor") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Especialidad">
+                            <ItemTemplate>
+                                <asp:Label ID="lblEspecialidad" runat="server" Text='<%# Bind("Especialidad") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Telefono">
+                            <ItemTemplate>
+                                <asp:Label ID="lblTelefono" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Contacto del Medico">
+                            <ItemTemplate>
+                                <asp:Label ID="lblContacto" runat="server" Text='<%# Bind("Contacto") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Dar de Baja"></asp:TemplateField>
                     </Columns>
                 </asp:GridView>

@@ -12,10 +12,15 @@ namespace Servicios
     {
         private DaoTurnos daoTurnos = new DaoTurnos();
         public GestionTablas() { 
-        
+
         }
         public DataTable ObtenerTablaTurnos() {
             return daoTurnos.ListadoTurnos("SP_RetornarListaTurnos");
+        }
+        public DataTable ObtenerTablaMedicos()
+        {
+            DaoMedicos daoMedicos = new DaoMedicos();
+            return daoMedicos.ListarMedicos("SP_ListarMedicos");
         }
     }
 }

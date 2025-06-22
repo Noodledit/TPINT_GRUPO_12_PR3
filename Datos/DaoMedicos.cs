@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,5 +21,9 @@ namespace Datos
         //    //return ds.EjecutarConsultaDataAdapter(consulta);
 
         //}
+        public DataTable ListarMedicos(string SP_ListarMedicos)
+        {
+            return ds.EjecutarConsultaSelectDataAdapter(SP_ListarMedicos);
+        }
     }
 }
