@@ -22,11 +22,15 @@ namespace Entidades
         public string NombreUsuario { get; set; }
         public string ApellidoUsuario { get; set; }
 
-       /* public Usuario(string user, string pass, bool admin)
+        public Usuario(string user, string pass, int IdUsuario, TipoUsuario tipoUsuario, string nombreUsuario, string apellidoUsuario)
         {
             User = user;
             Password = pass;
-            TipoUsuario = admin ? TipoUsuario.ADMIN : TipoUsuario.MEDICO;
-        }*/
+            Id = IdUsuario;
+            TipoUsuario = tipoUsuario;
+            NombreUsuario = nombreUsuario;
+            ApellidoUsuario = apellidoUsuario;
+
+        }
     }
 }

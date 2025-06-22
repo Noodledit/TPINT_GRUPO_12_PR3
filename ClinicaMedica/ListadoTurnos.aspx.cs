@@ -23,41 +23,41 @@ namespace ClinicaMedica
 
         protected void btnUn_Login_Click(object sender, EventArgs e)
         {
-            if (!estado)
-            {
-                btnUn_Login.Text = "Cerrar sesión";
-                lblBienvenidoUsuario.Text = "Bienvenido, " + txtUsuario.Text;
-                lblNombreUsuario.Visible = false;
-                lblContrasenia.Visible = false;
-                txtUsuario.Visible = false;
-                txtContrasenia.Visible = false;
-                estado = true;
-            }
-        }
-
-        protected void btnUn_Login_Click1(object sender, EventArgs e)
-        {
-         /*  Usuario usuario = new Usuario();
-            usuario.User = txtUsuario.Text;
-            usuario.Password = txtContrasenia.Text;
+            string user = txtUsuario.Text;
+            string pass = txtContrasenia.Text;
 
             GestionUsuario gestionUsuario = new GestionUsuario();
-            bool loginCorrecto = gestionUsuario.Loguear(usuario);
 
-            if (loginCorrecto)
+            Usuario usuario = gestionUsuario.Loguear(user, pass);
+            
+            if(usuario != null)
             {
-                gestionUsuario.Loguear(usuario);
-
                 Session["UsuarioActivo"] = usuario;
-                txtUsuario.Visible = false;
-                txtContrasenia.Visible = false;
-                lblNombreUsuario.Visible = false;
-                lblContrasenia.Visible = false;
-                btnUn_Login.Text = "Cerrar sesion";
-
-                lblBienvenidoUsuario.Text = usuario.NombreUsuario + " " + usuario.ApellidoUsuario;
+                ComprobacionDeSesion();
             }
-            else { lblBienvenidoUsuario.Text = "Error"; }*/
+
+        }
+
+        protected void ComprobacionDeSesion()
+        {
+            if (Session["UsuarioActivo"] != null)
+            {
+                txtContrasenia.Visible = false;
+                txtUsuario.Visible = false;
+                lblContrasenia.Visible = false;
+                lblNombreUsuario.Visible = false;
+                lblBienvenidoUsuario.Text = ((Usuario)Session["UsuarioActivo"]).NombreUsuario + " " + ((Usuario)Session["UsuarioActivo"]).ApellidoUsuario;
+                btnUn_Login.Text = "Cerrar sesion";
+            }
+            else
+            {
+                txtContrasenia.Visible = true;
+                txtUsuario.Visible = true;
+                lblContrasenia.Visible = true;
+                lblNombreUsuario.Visible = true;
+                lblBienvenidoUsuario.Text = string.Empty;
+                btnUn_Login.Text = "Ingresar";
+            }
         }
     }
 }

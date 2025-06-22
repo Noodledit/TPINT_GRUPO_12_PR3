@@ -11,8 +11,8 @@ namespace Datos
     public class AccesoDatos
     {
         private string connectionString = "Data Source=localhost\\sqlexpress;Initial Catalog=ClinicaMedica;Integrated Security=True";
-
-        private SqlConnection connection()
+        //cambie a public
+        public SqlConnection connection()
         {
             SqlConnection cnxn = null;
             try
@@ -52,7 +52,7 @@ namespace Datos
         }
 
 
-        public DataTable EjecutarConsultaSelectDataAdapter(string ProcedimientoAlmacenado , SqlParameter parametro = null)
+        public DataTable EjecutarConsultaSelectDataAdapter(string ProcedimientoAlmacenado , SqlParameter[] parametro = null)
         {
             try
             {
