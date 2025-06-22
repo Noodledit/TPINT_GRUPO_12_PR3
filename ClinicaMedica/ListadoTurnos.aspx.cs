@@ -23,16 +23,24 @@ namespace ClinicaMedica
 
         protected void btnUn_Login_Click(object sender, EventArgs e)
         {
-            string user = txtUsuario.Text;
-            string pass = txtContrasenia.Text;
-
-            GestionUsuario gestionUsuario = new GestionUsuario();
-
-            Usuario usuario = gestionUsuario.Loguear(user, pass);
-            
-            if(usuario != null)
+            if (Session["UsuarioActivo"] == null)
             {
-                Session["UsuarioActivo"] = usuario;
+                string user = txtUsuario.Text;
+                string pass = txtContrasenia.Text;
+
+                GestionUsuario gestionUsuario = new GestionUsuario();
+
+                Usuario usuario = gestionUsuario.Loguear(user, pass);
+
+                if (usuario != null)
+                {
+                    Session["UsuarioActivo"] = usuario;
+                    ComprobacionDeSesion();
+                }
+            }
+            else
+            {
+                Session["UsuarioActivo"] = null;
                 ComprobacionDeSesion();
             }
         }
