@@ -21,7 +21,7 @@ namespace ClinicaMedica
             gvTurnos.DataBind();
         }
 
-        protected void btnUn_Login_Click(object sender, EventArgs e)
+        protected void btnLogin_Click(object sender, EventArgs e)
         {
             if (Session["UsuarioActivo"] == null)
             {
@@ -43,34 +43,37 @@ namespace ClinicaMedica
                     lblBienvenidoUsuario.Text = "Usuario o contraseña incorrectos";
                 }
             }
-            else
-            {
-                Session["UsuarioActivo"] = null;
-                ComprobacionDeSesion();
-            }
         }
 
         protected void ComprobacionDeSesion()
         {
             if (Session["UsuarioActivo"] != null)
             {
+                btnLogin.Visible = false;
+                btnUnlogin.Visible = true;
                 txtContrasenia.Visible = false;
                 txtUsuario.Visible = false;
                 lblContrasenia.Visible = false;
                 lblNombreUsuario.Visible = false;
-                lblBienvenidoUsuario.ForeColor = System.Drawing.Color.Black;
+                lblBienvenidoUsuario.ForeColor = System.Drawing.Color.White;
                 lblBienvenidoUsuario.Text = ((Usuario)Session["UsuarioActivo"]).NombreUsuario + " " + ((Usuario)Session["UsuarioActivo"]).ApellidoUsuario;
-                btnUn_Login.Text = "Cerrar sesion";
             }
             else
             {
+                btnLogin.Visible = true;
+                btnUnlogin.Visible = false;
                 txtContrasenia.Visible = true;
                 txtUsuario.Visible = true;
                 lblContrasenia.Visible = true;
                 lblNombreUsuario.Visible = true;
                 lblBienvenidoUsuario.Text = string.Empty;
-                btnUn_Login.Text = "Ingresar";
             }
+        }
+
+        protected void btnUnlogin_Click(object sender, EventArgs e)
+        {
+            Session["UsuarioActivo"] = null;
+            ComprobacionDeSesion();
         }
     }
 }
