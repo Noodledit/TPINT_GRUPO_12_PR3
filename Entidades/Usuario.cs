@@ -19,12 +19,14 @@ namespace Entidades
         public string User { get; set; }
         public string Password { get; set; }
         public TipoUsuario TipoUsuario { get; set; }
+        public string NombreUsuario { get; set; }
+        public string ApellidoUsuario { get; set; }
 
-        public Usuario(string user, string pass, bool admin)
+       /* public Usuario(string user, string pass, bool admin)
         {
             User = user;
             Password = pass;
             TipoUsuario = admin ? TipoUsuario.ADMIN : TipoUsuario.MEDICO;
-        }
+        }*/
     }
 }
