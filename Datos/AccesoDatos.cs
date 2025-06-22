@@ -52,7 +52,7 @@ namespace Datos
         }
 
 
-        public DataTable EjecutarConsultaSelectDataAdapter(string ProcedimientoAlmacenado, SqlParameter parametro = null)
+        public DataTable EjecutarConsultaSelectDataAdapter(string ProcedimientoAlmacenado , SqlParameter parametro = null)
         {
             try
             {

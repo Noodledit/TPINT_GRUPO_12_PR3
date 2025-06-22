@@ -317,3 +317,5 @@ E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\
 E:\Usuarios\Noodledit\Desktop\Programacion III\TPs\Trabajo -Practico-Integrador\TPINT_GRUPO_12_PR3\ClinicaMedica\bin\Datos.pdb
 C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\ClinicaMedica\bin\Datos.dll
 C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\ClinicaMedica\bin\Datos.pdb
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\ClinicaMedica\bin\Datos.dll
+C:\Users\camim\OneDrive\Escritorio\New folder\TPINT_GRUPO_12_PR3\ClinicaMedica\bin\Datos.pdb
