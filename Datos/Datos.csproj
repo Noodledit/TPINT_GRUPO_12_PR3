@@ -68,6 +68,7 @@
     <Compile Include="AccesoDatos.cs" />
     <Compile Include="DaoMedicos.cs" />
     <Compile Include="DaoTurnos.cs" />
+    <Compile Include="DaoUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
