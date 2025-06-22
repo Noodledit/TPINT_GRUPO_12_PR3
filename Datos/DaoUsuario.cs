@@ -11,7 +11,7 @@ namespace Datos
 {
     public class DaoUsuario
     {
-        AccesoDatos accesoDatos;
+        AccesoDatos accesoDatos = new AccesoDatos();
         public DataTable SolicitudLogin(string user, string pass) {
 
             DataTable DatosDeUsuario = new DataTable();

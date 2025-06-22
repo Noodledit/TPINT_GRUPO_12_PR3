@@ -35,7 +35,6 @@ namespace ClinicaMedica
                 Session["UsuarioActivo"] = usuario;
                 ComprobacionDeSesion();
             }
-
         }
 
         protected void ComprobacionDeSesion()

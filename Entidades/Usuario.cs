@@ -18,11 +18,11 @@ namespace Entidades
         public int Id { get; set; }
         public string User { get; set; }
         public string Password { get; set; }
-        public TipoUsuario TipoUsuario { get; set; }
+        public int TipoUsuario { get; set; }
         public string NombreUsuario { get; set; }
         public string ApellidoUsuario { get; set; }
 
-        public Usuario(string user, string pass, int IdUsuario, TipoUsuario tipoUsuario, string nombreUsuario, string apellidoUsuario)
+        public Usuario(string user, string pass, int IdUsuario, int tipoUsuario, string nombreUsuario, string apellidoUsuario)
         {
             User = user;
             Password = pass;
@@ -30,7 +30,6 @@ namespace Entidades
             TipoUsuario = tipoUsuario;
             NombreUsuario = nombreUsuario;
             ApellidoUsuario = apellidoUsuario;
-
         }
     }
 }
