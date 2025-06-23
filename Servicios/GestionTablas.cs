@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Data.SqlClient;
 using Datos;
+using System.Web.UI.WebControls;
 
 namespace Servicios
 {
@@ -22,5 +24,6 @@ namespace Servicios
             DaoMedicos daoMedicos = new DaoMedicos();
             return daoMedicos.ListarMedicos("SP_ListarMedicos");
         }
+
     }
 }
