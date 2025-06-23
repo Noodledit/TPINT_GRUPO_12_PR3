@@ -24,7 +24,7 @@
                 <h1>Clinica Medica</h1>
                 <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica" />
                 <div class="header-links">
-                    <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link" NavigateUrl="ListadoTurnos.aspx" Text="Listado de Turnos"></asp:HyperLink>
+                    <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link-active" NavigateUrl="ListadoTurnos.aspx" Text="Listado de Turnos"></asp:HyperLink>
                     <asp:HyperLink ID="hlAgregarPaciente" runat="server" CssClass="header-link" NavigateUrl="RegistrarPaciente.aspx" Text="Agregar Paciente"></asp:HyperLink>
                     <asp:HyperLink ID="hlAgregarMedico" runat="server" CssClass="header-link" NavigateUrl="RegistrarMedico.aspx" Text="Agregar Medico"></asp:HyperLink>
                     <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="AsignacionTurnos.aspx" Text="Asignar Turnos"></asp:HyperLink>
@@ -49,15 +49,14 @@
                 </div>
                 </div>
                 <div style="display: flex; align-items: center; gap: 20px;">
-                            <asp:Button ID="btnMostrarTodo" runat="server" Text="Mostrar Todo" CssClass="button" />
-                            <asp:Button ID="btnConsultarEstado" runat="server" Text="Consultar por Estado" Width="215px" CssClass="button" />
-                            <asp:DropDownList ID="ddlEstados" runat="server">
+                            <asp:Button ID="btnMostrarTodo" runat="server" Text="Mostrar Todo" CssClass="button" Style="font-size: 14px"/>
+                            <asp:Button ID="btnConsultarEstado" runat="server" Text="Consultar por Estado" Width="200px" CssClass="button" Style="font-size: 14px" />
+                            <asp:DropDownList ID="ddlEstados" runat="server" CssClass="txtBox-caja"  Style="margin-top: 18px; height: 24px; width:200; font-size: 14px;">
                             </asp:DropDownList>
                     <br />
                     <br />
                 </div>
-                <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" Width="658px" CellPadding="4" ForeColor="#333333" GridLines="None">
-                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="tabla-turnos">
                     <Columns>
                         <asp:TemplateField HeaderText=" Numero de turno">
                             <EditItemTemplate>
