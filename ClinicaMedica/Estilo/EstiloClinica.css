@@ -437,8 +437,5 @@ font{
     border: 2px solid #B0C4DE !important;
     color: #333333 !important; 
     text-align: center;
-}
-
-.tabla-turnos tr:nth-child(even) {
-    background-color: #99a2b0;
+    background-color: white;
 }

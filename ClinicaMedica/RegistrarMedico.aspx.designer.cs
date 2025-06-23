@@ -132,13 +132,13 @@ namespace ClinicaMedica
         protected global::System.Web.UI.WebControls.TextBox txtFechaNacimiento;
 
         /// <summary>
-        /// ddlProvincia control.
+        /// ddlProvincias control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProvincia;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProvincias;
 
         /// <summary>
         /// txtDireccion control.
@@ -150,13 +150,13 @@ namespace ClinicaMedica
         protected global::System.Web.UI.WebControls.TextBox txtDireccion;
 
         /// <summary>
-        /// ddlLocalidad control.
+        /// ddlLocalidades control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLocalidad;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLocalidades;
 
         /// <summary>
         /// txtCorreoElectronico control.
@@ -177,13 +177,13 @@ namespace ClinicaMedica
         protected global::System.Web.UI.WebControls.TextBox txtNumeroTelefono;
 
         /// <summary>
-        /// ddlEspecialidad control.
+        /// ddlEspecialidades control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidad;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidades;
 
         /// <summary>
         /// txtLegajo control.
