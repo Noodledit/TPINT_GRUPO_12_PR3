@@ -51,7 +51,7 @@
                 <div style="display: flex; align-items: center; gap: 20px;">
                             <asp:Button ID="btnMostrarTodo" runat="server" Text="Mostrar Todo" CssClass="button" Style="font-size: 14px"/>
                             <asp:Button ID="btnConsultarEstado" runat="server" Text="Consultar por Estado" Width="200px" CssClass="button" Style="font-size: 14px" />
-                            <asp:DropDownList ID="ddlEstados" runat="server" CssClass="txtBox-caja"  Style="margin-top: 18px; height: 24px; width:200; font-size: 14px;">
+                            <asp:DropDownList ID="ddlEstados" runat="server" CssClass="txtBox-caja"  Style="margin-top: 18px; height: 24px; width:200px; font-size: 14px;">
                             </asp:DropDownList>
                     <br />
                     <br />
