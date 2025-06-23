@@ -13,11 +13,20 @@ namespace ClinicaMedica
         protected void Page_Load(object sender, EventArgs e)
         {
 
+           
+                
+            
         }
 
         protected void btnUn_Login_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnAsignarTurno_Click(object sender, EventArgs e)
+        {
+            Session["DniSeleccionado"] = txtDni1.Text.Trim();
+            Response.Redirect("RegistrarPaciente.aspx");
         }
     }
 }

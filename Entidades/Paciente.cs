@@ -12,17 +12,17 @@ namespace Entidades
         //Me gustaria hacer esto privado mas adelante, para que este mejor encapsulado, aunque habria que hacer los respectivos getters y setters
         //Lo dejo asi por tiempo Att: Miguel
 
-        public string Dni;
-        public string Nombre;
-        public string Apellido;
-        public string Sexo;
-        public string Nacionalidad;
-        public DateTime Fecha;//No sabia que existia este tipo de variable, lo busque por la del sql, ya que en la bd esta como datetime, capaz se modifica despues
-        public string Direccion;
-        public string Provincia;
-        public string Localidad;
-        public string Correo;
-        public string Telefono;
+        private string Dni;
+        private string Nombre;
+        private string Apellido;
+        private string Sexo;
+        private string Nacionalidad;
+        private DateTime Fecha;//No sabia que existia este tipo de variable, lo busque por la del sql, ya que en la bd esta como datetime, capaz se modifica despues
+        private string Direccion;
+        private string Provincia;
+        private string Localidad;
+        private string Correo;
+        private string Telefono;
 
 
         public Paciente(string dni, string nombre, string apellido, string sexo, string nacionalidad, DateTime fecha, string direccion, string provincia, string localidad, string correo, string telefono)

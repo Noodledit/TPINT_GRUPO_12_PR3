@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegistrarPaciente.aspx.cs" Inherits="ClinicaMedica.RegistrarPaciente" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AsignacionTurnos.aspx.cs" Inherits="ClinicaMedica.AsignacionTurnos" %>
 
 <!DOCTYPE html>
 
@@ -36,7 +36,7 @@
             <div class="caja">
                 <div style="margin: 15px 10px 20px 20px;">
                     <span style="color: white; font-size: 20px;">DNI paciente:</span>
-                    &nbsp;<asp:TextBox ID="TextBox1" runat="server" CssClass="txtBox-caja"></asp:TextBox>
+                    &nbsp;<asp:TextBox ID="txtDni1" runat="server" CssClass="txtBox-caja"></asp:TextBox>
                 </div>
 
                 <div style="margin: 5px 10px 20px 20px;">
@@ -45,23 +45,23 @@
 
                 <div style="margin: 15px 10px 20px 20px;" id="ddlEspecialidad">
                     <span style="color: white; font-size: 20px;">Especialidad:</span>
-                    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="txtBox-caja" >
+                    <asp:DropDownList ID="ddlEspecilidad" runat="server" CssClass="txtBox-caja" >
                     </asp:DropDownList>
                     <br />
                     <span style="color: white; font-size: 20px;">Fecha:</span>
-                    <asp:DropDownList ID="DropDownList2" runat="server" CssClass="txtBox-caja" >
+                    <asp:DropDownList ID="ddlFecha" runat="server" CssClass="txtBox-caja" >
                     </asp:DropDownList>
                     <br />
                     <span style="color: white; font-size: 20px;">Hora:</span>
-                    <asp:DropDownList ID="DropDownList3" runat="server" CssClass="txtBox-caja" >
+                    <asp:DropDownList ID="ddlHora" runat="server" CssClass="txtBox-caja" >
                     </asp:DropDownList>
                     <br />
                     <span style="color: white; font-size: 20px;">Médico:</span>
-                    <asp:DropDownList ID="DropDownList4" runat="server" CssClass="txtBox-caja" >
+                    <asp:DropDownList ID="ddlMedico" runat="server" CssClass="txtBox-caja" >
                     </asp:DropDownList>
                 </div>
                 <div style="margin: 25px 10px 5px 20px;">
-                    <asp:Button ID="btnAsignarTurno" runat="server" CssClass="button" Text="Asignar Turno" Width="210px" Height="40" />
+                    <asp:Button ID="btnAsignarTurno" runat="server" CssClass="button" Text="Asignar Turno" Width="210px" Height="40" OnClick="btnAsignarTurno_Click" />
                 </div>
 
 

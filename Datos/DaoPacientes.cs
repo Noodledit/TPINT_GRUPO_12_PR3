@@ -16,17 +16,17 @@ namespace Datos
         {
             SqlCommand comand = new SqlCommand();
 
-            comand.Parameters.AddWithValue("@DniPaciente", paciente.Dni);
-            comand.Parameters.AddWithValue("@NombrePaciente", paciente.Nombre);
-            comand.Parameters.AddWithValue("@ApellidoPaciente", paciente.Apellido);
-            comand.Parameters.AddWithValue("@SexoPaciente", paciente.Sexo);
-            comand.Parameters.AddWithValue("@NacionalidadPaciente", paciente.Nacionalidad);
-            comand.Parameters.AddWithValue("@FechaNacimientoPaciente", paciente.Fecha);
-            comand.Parameters.AddWithValue("@DireccionPaciente", paciente.Direccion);
-            comand.Parameters.AddWithValue("@LocalidadPaciente", paciente.Localidad);
-            comand.Parameters.AddWithValue("@IdProvinciaPaciente", paciente.Provincia);
-            comand.Parameters.AddWithValue("@CorreoElectronicoPaciente", paciente.Correo);
-            comand.Parameters.AddWithValue("@TelefonoPaciente", paciente.Telefono);
+            comand.Parameters.AddWithValue("@DniPaciente", paciente.GetDni());
+            comand.Parameters.AddWithValue("@NombrePaciente", paciente.GetNombre());
+            comand.Parameters.AddWithValue("@ApellidoPaciente", paciente.GetApellido());
+            comand.Parameters.AddWithValue("@SexoPaciente", paciente.GetSexo());
+            comand.Parameters.AddWithValue("@NacionalidadPaciente", paciente.GetNacionalidad());
+            comand.Parameters.AddWithValue("@FechaNacimientoPaciente", paciente.GetFecha());
+            comand.Parameters.AddWithValue("@DireccionPaciente", paciente.GetDireccion());
+            comand.Parameters.AddWithValue("@LocalidadPaciente", paciente.GetLocalidad());
+            comand.Parameters.AddWithValue("@IdProvinciaPaciente", paciente.GetProvincia());
+            comand.Parameters.AddWithValue("@CorreoElectronicoPaciente", paciente.GetCorreo());
+            comand.Parameters.AddWithValue("@TelefonoPaciente", paciente.GetTelefono());
 
             
             //deberia devolver las filas cambiadas

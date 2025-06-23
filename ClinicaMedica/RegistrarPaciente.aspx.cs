@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entidades;
+using Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +11,8 @@ namespace ClinicaMedica
 {
     public partial class RegistrarPaciente : System.Web.UI.Page
     {
+        GestionPaciente gestionP = new GestionPaciente();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -23,6 +27,25 @@ namespace ClinicaMedica
 
         }
 
-    }
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            string DNI = null;
+            if (Session["DniSeleccionado"] != null) { 
+            
+                 DNI = Session["DniSeleccionado"].ToString();
+            }
 
+
+            Paciente NuevoPaciente = new Paciente(DNI,txtNombre.Text.Trim(), txtApellido.Text.Trim(), Convert.ToString(ddlSexo.SelectedValue), txtNacionalidad.Text.Trim(), Convert.ToDateTime(txtFechaNacimiento.Text.Trim()), txtDireccion.Text.Trim(), Convert.ToString(ddlProvincia.SelectedValue), Convert.ToString(ddlLocalidad.SelectedValue), txtCorreoElectronico.Text.Trim(), txtNumeroTelefono.Text.Trim());
+            int filas = gestionP.RegistrarPaciente(NuevoPaciente);
+
+            if (filas > 0)
+            {
+                ///Funciona
+
+            }
+        }
+
+        
+    }
 }

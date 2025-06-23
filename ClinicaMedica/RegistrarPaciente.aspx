@@ -44,7 +44,7 @@
                             <asp:TextBox ID="txtApellido" runat="server" CssClass="txtBox-caja" placeholder="Fernandez"></asp:TextBox>
 
                             <label class="form-label" for="ddlSexo">Sexo:</label>
-                            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="txtBox-caja">
+                            <asp:DropDownList ID="ddlSexo" runat="server" CssClass="txtBox-caja">
                                 <asp:ListItem Text="Masculino" Value="M"></asp:ListItem>
                                 <asp:ListItem Text="Femenino" Value="F"></asp:ListItem>
                                 <asp:ListItem Text="Otro" Value="O"></asp:ListItem>
