@@ -22,3 +22,9 @@ C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.csproj.A
 C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.dll
 C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.pdb
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Entidades\bin\Debug\Entidades.dll
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Entidades\bin\Debug\Entidades.pdb
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.dll
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.pdb

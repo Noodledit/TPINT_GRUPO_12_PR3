@@ -94,3 +94,27 @@ C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.csproj.CoreCompi
 C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.csproj.Up2Date
 C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.dll
 C:\Repositorios GitHub\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.pdb
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\Datos.dll
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\Datos.pdb
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\Entidades.dll
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Data.SqlClient.dll
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.Helpers.dll
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.Mvc.dll
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.Razor.dll
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.WebPages.dll
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\Entidades.pdb
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Data.SqlClient.xml
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.Helpers.xml
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.Mvc.xml
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.Razor.xml
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.WebPages.xml
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.csproj.Up2Date
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.dll
+C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.pdb

@@ -12,6 +12,17 @@ namespace ClinicaMedica
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
+
         }
+
+        protected void txtCorreoElectronico_TextChanged(object sender, EventArgs e)
+        {
+
+
+
+        }
+
     }
+
 }
