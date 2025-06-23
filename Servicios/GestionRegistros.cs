@@ -8,13 +8,25 @@ using System.Threading.Tasks;
 
 namespace Servicios
 {
-    public class GestionPaciente
+    public class GestionRegistros
     {
         DaoPacientes dpaciente = new DaoPacientes();
+        DaoMedicos dmedico = new DaoMedicos();
 
         public int RegistrarPaciente(Paciente paciente)
         {
             return dpaciente.registroPaciente(paciente);
+        }
+
+        public bool RegistarMedico(Medico medico)
+        {
+            int filas = dmedico.registroMedico(medico);
+            return filas > 0;
+        }
+
+        public string ObtenerProxLegajo()
+        {
+            return dmedico.ObtenerProxLegajo();
         }
     }
 }

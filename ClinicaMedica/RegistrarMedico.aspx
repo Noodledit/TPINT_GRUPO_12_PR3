@@ -37,52 +37,60 @@
                 <div class="form-row">
                     <div class="form-col" style="display:inline;">
                         <div class="form-group">
-                            <label class="form-label" for="txtNombre">Nombre:</label>
+                            <label class="form-label">Nombre:</label>
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="txtBox-caja" placeholder="Claudio"></asp:TextBox>
 
-                            <label class="form-label" for="txtApellido">Apellido:</label>
+                            <label class="form-label">Apellido:</label>
                             <asp:TextBox ID="txtApellido" runat="server" CssClass="txtBox-caja" placeholder="Fernandez"></asp:TextBox>
 
-                            <label class="form-label" for="ddlSexo">Sexo:</label>
-                            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="txtBox-caja">
-                                <asp:ListItem Text="Masculino" Value="M"></asp:ListItem>
-                                <asp:ListItem Text="Femenino" Value="F"></asp:ListItem>
-                                <asp:ListItem Text="Otro" Value="O"></asp:ListItem>
+                            <label class="form-label">Sexo:</label>
+                            <asp:DropDownList ID="ddlSexo" runat="server" CssClass="txtBox-caja">
+                                <asp:ListItem Text="Masculino" Value="Masculino"></asp:ListItem>
+                                <asp:ListItem Text="Femenino" Value="Femenino"></asp:ListItem>
+                                <asp:ListItem Text="Otro" Value="Otro"></asp:ListItem>
                             </asp:DropDownList>
 
-                            <label class="form-label" for="txtNacionalidad">Nacionalidad:</label>
+                            <label class="form-label">Nacionalidad:</label>
                             <asp:TextBox ID="txtNacionalidad" runat="server" CssClass="txtBox-caja" placeholder="Argentina"></asp:TextBox>
 
-                            <label class="form-label" for="txtFechaNacimiento">Fecha de nacimiento:</label>
-                            <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="txtBox-caja" placeholder="1/1/1992"></asp:TextBox>
+                            <label class="form-label">Fecha de nacimiento:</label>
+                            <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="txtBox-caja" TextMode="Date" placeholder="1/1/1992"></asp:TextBox>
+                            
+                            <label class="form-label">DNI:</label>
+                            <asp:TextBox ID="txtDniMedico" runat="server" CssClass="txtBox-caja" placeholder="12345678" MaxLength="10"></asp:TextBox>
 
-                            <label class="form-label" for="txtProvincias">Provincia:</label>
-                            <asp:DropDownList ID="ddlProvincias" AutoPostBack="true" OnSelectedIndexChanged="ddlProvincias_OnSelectedIndexChanged" runat="server" CssClass="txtBox-caja"></asp:DropDownList>
                         </div>
                     </div>
                     <div class="form-col" style="display:inline;">
-                        <label class="form-label" for="txtDireccion">Direccion:</label>
+                        
+                        <label class="form-label">Provincia:</label>
+                        <asp:DropDownList ID="ddlProvincias" AutoPostBack="true" OnSelectedIndexChanged="ddlProvincias_OnSelectedIndexChanged" runat="server" CssClass="txtBox-caja"></asp:DropDownList>
+
+                        <label class="form-label">Localidad:</label>
+                        <asp:DropDownList ID="ddlLocalidades" runat="server" CssClass="txtBox-caja" ></asp:DropDownList>
+                        
+                        <label class="form-label">Direccion:</label>
                         <asp:TextBox ID="txtDireccion" runat="server" CssClass="txtBox-caja" placeholder="Hipólito Yrigoyen 288"></asp:TextBox>
 
-                        <label class="form-label" for="txtLocalidad">Localidad:</label>
-                        <asp:DropDownList ID="ddlLocalidades" runat="server" CssClass="txtBox-caja" >
-                            <asp:ListItem Text="Seleccione Localidad" Value="0"></asp:ListItem></asp:DropDownList>
-
-                        <label class="form-label" for="txtCorreo">Correo electrónico:</label>
+                        <label class="form-label">Correo electrónico:</label>
                         <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="txtBox-caja" placeholder="ejemplo@correo.com" TextMode="Email"></asp:TextBox>
 
-                        <label class="form-label" for="txtTelefono">Numero de telefono:</label>
+                        <label class="form-label">Numero de telefono:</label>
                         <asp:TextBox ID="txtNumeroTelefono" runat="server" CssClass="txtBox-caja" placeholder="1512345678" TextMode="Phone" ></asp:TextBox>
                         
-                        <label class="form-label" for="txtEspecialidades">Especialidad:</label>
+                        <label class="form-label">Especialidad:</label>
                         <asp:DropDownList ID="ddlEspecialidades" runat="server" CssClass="txtBox-caja"></asp:DropDownList>
-                        <label class="form-label" for="txtNumLegajo">Numero de legajo:</label>
-                        <asp:TextBox ID="txtLegajo" runat="server" CssClass="txtBox-caja" Text="12345" ReadOnly="True" Style="color: white; background: transparent; border-width: 2px;" ></asp:TextBox>
+
 
                     </div>                    
                 </div>
-                <div class="form-actions">
-                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn-aceptar"/>
+                <div style="display: flex; flex-direction: column; align-items: center;">   
+                    <label class="form-label">Numero de legajo:</label>
+                    <asp:TextBox ID="txtLegajo" runat="server" CssClass="txtBox-caja" Text="0000" ReadOnly="True" Style="color: white; background: transparent; border-width: 2px;" ></asp:TextBox>
+                    <asp:Label ID="lblMensaje" runat="server" Style="font-weight: 700; font-size: 15px;" Visible="False"></asp:Label>
+                </div>
+                <div class="form-actions" style="margin-top: 15px;">
+                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn-aceptar" OnClick="btnAceptar_Click"/>
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn-cancelar" />
                 </div>
             </div>
