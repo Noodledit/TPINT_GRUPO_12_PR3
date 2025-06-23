@@ -45,6 +45,7 @@
 
                             <label class="form-label">Sexo:</label>
                             <asp:DropDownList ID="ddlSexo" runat="server" CssClass="txtBox-caja">
+                                <asp:ListItem Text="Seleccione Sexo"></asp:ListItem>
                                 <asp:ListItem Text="Masculino" Value="Masculino"></asp:ListItem>
                                 <asp:ListItem Text="Femenino" Value="Femenino"></asp:ListItem>
                                 <asp:ListItem Text="Otro" Value="Otro"></asp:ListItem>
@@ -91,7 +92,7 @@
                 </div>
                 <div class="form-actions" style="margin-top: 15px;">
                     <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn-aceptar" OnClick="btnAceptar_Click"/>
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn-cancelar" />
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn-cancelar" OnClick="btnCancelar_Click" />
                 </div>
             </div>
         </div>
