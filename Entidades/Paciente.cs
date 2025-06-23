@@ -50,8 +50,7 @@ namespace Entidades
 
         // lo cual genera que se ahorre mucho el código usado
         
-        public void SetDni(string dni) => Dni = dni; 
-        public string GetDni() => Dni;
+        public void SetDni(string dni) => Dni = dni; public string GetDni() => Dni;
         public void SetNombre(string nombre) => Nombre = nombre; public string GetNombre() => Nombre;
         public void SetApellido(string apellido) => Apellido = apellido; public string GetApellido() => Apellido;
         public void SetSexo(string sexo) => Sexo = sexo; public string GetSexo() => Sexo;
