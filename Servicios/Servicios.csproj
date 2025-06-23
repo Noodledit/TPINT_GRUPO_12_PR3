@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GestionDdl.cs" />
-    <Compile Include="GestionPaciente.cs" />
+    <Compile Include="GestionRegistros.cs" />
     <Compile Include="GestionTablas.cs" />
     <Compile Include="GestionUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

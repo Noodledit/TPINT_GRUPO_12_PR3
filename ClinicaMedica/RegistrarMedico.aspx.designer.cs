@@ -105,13 +105,13 @@ namespace ClinicaMedica
         protected global::System.Web.UI.WebControls.TextBox txtApellido;
 
         /// <summary>
-        /// DropDownList1 control.
+        /// ddlSexo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSexo;
 
         /// <summary>
         /// txtNacionalidad control.
@@ -132,6 +132,15 @@ namespace ClinicaMedica
         protected global::System.Web.UI.WebControls.TextBox txtFechaNacimiento;
 
         /// <summary>
+        /// txtDniMedico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDniMedico;
+
+        /// <summary>
         /// ddlProvincias control.
         /// </summary>
         /// <remarks>
@@ -141,15 +150,6 @@ namespace ClinicaMedica
         protected global::System.Web.UI.WebControls.DropDownList ddlProvincias;
 
         /// <summary>
-        /// txtDireccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDireccion;
-
-        /// <summary>
         /// ddlLocalidades control.
         /// </summary>
         /// <remarks>
@@ -157,6 +157,15 @@ namespace ClinicaMedica
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlLocalidades;
+
+        /// <summary>
+        /// txtDireccion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDireccion;
 
         /// <summary>
         /// txtCorreoElectronico control.
@@ -193,6 +202,15 @@ namespace ClinicaMedica
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLegajo;
+
+        /// <summary>
+        /// lblMensaje control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
 
         /// <summary>
         /// btnAceptar control.

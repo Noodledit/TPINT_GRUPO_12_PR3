@@ -11,7 +11,7 @@ namespace ClinicaMedica
 {
     public partial class RegistrarPaciente : System.Web.UI.Page
     {
-        GestionPaciente gestionP = new GestionPaciente();
+        GestionRegistros registros = new GestionRegistros();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,7 +37,7 @@ namespace ClinicaMedica
 
 
             Paciente NuevoPaciente = new Paciente(DNI,txtNombre.Text.Trim(), txtApellido.Text.Trim(), Convert.ToString(ddlSexo.SelectedValue), txtNacionalidad.Text.Trim(), Convert.ToDateTime(txtFechaNacimiento.Text.Trim()), txtDireccion.Text.Trim(), Convert.ToString(ddlProvincia.SelectedValue), Convert.ToString(ddlLocalidad.SelectedValue), txtCorreoElectronico.Text.Trim(), txtNumeroTelefono.Text.Trim());
-            int filas = gestionP.RegistrarPaciente(NuevoPaciente);
+            int filas = registros.RegistrarPaciente(NuevoPaciente);
 
             if (filas > 0)
             {

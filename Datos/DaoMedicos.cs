@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -12,18 +13,44 @@ namespace Datos
     {
         AccesoDatos ds = new AccesoDatos();
 
-        //public DataTable ListadoMedicos()
-        //{
-
-        //    //string consulta = @"SELECT DatosPersonales.Nombre_DP + ' ' + DatosPersonales.Apellido_DP AS NombreComp, Especialidades.Nombre_Esp AS EspecialidadMed, DatosPersonales.Telefono_DP AS Telefono, DatosPersonales.CorreoElectronico_DP AS Contacto FROM Medicos INNER JOIN DatosPersonales ON Medicos.Dni_Me = DatosPersonales.Dni_DP INNER JOIN Especialidades ON Medicos.IdEspecialidad_Me = Especialidades.Id_Esp";
-
-
-        //    //return ds.EjecutarConsultaDataAdapter(consulta);
-
-        //}
         public DataTable ListarMedicos(string SP_ListarMedicos)
         {
             return ds.EjecutarConsultaSelectDataAdapter(SP_ListarMedicos);
+        }
+
+        public int registroMedico(Medico medico)
+        {
+            SqlCommand command = new SqlCommand();
+
+            command.Parameters.AddWithValue("@Dni", medico.Dni);
+            command.Parameters.AddWithValue("@Nombre", medico.Nombre);
+            command.Parameters.AddWithValue("@Apellido", medico.Apellido);
+            command.Parameters.AddWithValue("@Sexo", medico.Sexo);
+            command.Parameters.AddWithValue("@Nacionalidad", medico.Nacionalidad);
+            command.Parameters.AddWithValue("@FechaNacimiento", medico.FechaNacimiento);
+            command.Parameters.AddWithValue("@Direccion", medico.Direccion);
+            command.Parameters.AddWithValue("@IdLocalidad", medico.IdLocalidad);
+            command.Parameters.AddWithValue("@IdProvincia", medico.IdProvincia);
+            command.Parameters.AddWithValue("@Correo", medico.Correo);
+            command.Parameters.AddWithValue("@Telefono", medico.Telefono);
+            command.Parameters.AddWithValue("@IdEspecialidad", medico.IdEspecialidad);
+
+
+            return ds.EjecutarProcedimientoAlmacenado(command, "SP_RegistrarMedico");
+
+        }
+        public string ObtenerProxLegajo()
+        {
+            DataTable dt = ds.EjecutarConsultaSelectDataAdapter("SP_ObtenerProxLegajo", null);
+
+            if (dt != null && dt.Rows.Count > 0 && dt.Rows[0]["ProximoLegajo"] != DBNull.Value)
+            {
+                return dt.Rows[0]["ProximoLegajo"].ToString();
+            }
+            else
+            {
+                return "1";
+            }
         }
     }
 }
