@@ -118,3 +118,27 @@ C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.csproj.CoreCo
 C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.csproj.Up2Date
 C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.dll
 C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.pdb
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\Datos.dll
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\Datos.pdb
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\Entidades.dll
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Data.SqlClient.dll
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.Helpers.dll
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.Mvc.dll
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.Razor.dll
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.WebPages.Deployment.dll
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.WebPages.dll
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.WebPages.Razor.dll
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\Entidades.pdb
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Data.SqlClient.xml
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.Helpers.xml
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.Mvc.xml
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.Razor.xml
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.WebPages.xml
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.WebPages.Deployment.xml
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\bin\Debug\System.Web.WebPages.Razor.xml
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.csproj.AssemblyReference.cache
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.csproj.CoreCompileInputs.cache
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.csproj.Up2Date
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.dll
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Datos\obj\Debug\Datos.pdb

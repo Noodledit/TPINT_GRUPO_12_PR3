@@ -64,3 +64,14 @@ C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.cspro
 C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.csproj.Up2Date
 C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.dll
 C:\Users\user\Desktop\INT\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.pdb
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Servicios.dll
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Servicios.pdb
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Datos.dll
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Entidades.dll
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Datos.pdb
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Entidades.pdb
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.csproj.AssemblyReference.cache
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.csproj.CoreCompileInputs.cache
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.csproj.Up2Date
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.dll
+E:\Usuarios\Noodledit\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.pdb
