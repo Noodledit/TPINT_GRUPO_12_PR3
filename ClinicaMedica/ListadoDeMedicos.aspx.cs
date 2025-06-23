@@ -14,6 +14,11 @@ namespace ClinicaMedica
         private GestionTablas gestor = new GestionTablas();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UsuarioActivo"] == null)
+            {
+                Response.Redirect("ListadoTurnos.aspx");
+            }
+
             if (!IsPostBack)
             {
                 llenarGrillaMedicos();

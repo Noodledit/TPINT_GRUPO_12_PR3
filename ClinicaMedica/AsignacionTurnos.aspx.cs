@@ -12,10 +12,11 @@ namespace ClinicaMedica
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UsuarioActivo"] == null)
+            {
+                Response.Redirect("ListadoTurnos.aspx");
+            }
 
-           
-                
-            
         }
 
         protected void btnUn_Login_Click(object sender, EventArgs e)
