@@ -86,7 +86,7 @@
                 </div>
                 <!-- Botones de acción -->
                 <div class="form-actions">
-                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn-aceptar"/>
+                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn-aceptar" OnClick="btnAceptar_Click" />
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn-cancelar" />
                 </div>
             </div>
