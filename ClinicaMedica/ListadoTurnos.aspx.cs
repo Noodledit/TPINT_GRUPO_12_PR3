@@ -86,7 +86,7 @@ namespace ClinicaMedica
                 if (((Usuario)Session["UsuarioActivo"]).TipoUsuario > 1)
                 {
                     hlAgregarMedico.Visible = true;
-                    hlAgregarPaciente.Visible = true;
+              
                     hlAsignarTurnos.Visible = true;
                     hlInformes.Visible = true;
                     hlListarMedicos.Visible = true;
@@ -105,7 +105,7 @@ namespace ClinicaMedica
             else
             {
                 hlAgregarMedico.Visible = false;
-                hlAgregarPaciente.Visible = false;
+               
                 hlAsignarTurnos.Visible = false;
                 hlInformes.Visible = false;
                 hlListarMedicos.Visible = false;
