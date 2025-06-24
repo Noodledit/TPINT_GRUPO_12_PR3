@@ -54,7 +54,7 @@
                             <asp:TextBox ID="txtNacionalidad" runat="server" CssClass="txtBox-caja" placeholder="Argentina"></asp:TextBox>
 
                             <label class="form-label" for="txtFechaNacimiento">Fecha de nacimiento:</label>
-                            <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="txtBox-caja" placeholder="1/1/1992"></asp:TextBox>
+                            <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="txtBox-caja" placeholder="1/1/1992" TextMode="Date"></asp:TextBox>
                         </div>
                     </div>
                     <div class="form-col" style="display:inline;">
@@ -62,7 +62,7 @@
                         <asp:TextBox ID="txtDireccion" runat="server" CssClass="txtBox-caja" placeholder="Hipólito Yrigoyen 288"></asp:TextBox>
 
                         <label class="form-label" for="txtProvincia">Provincia:</label>
-                        <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="txtBox-caja">
+                        <asp:DropDownList ID="ddlProvincias" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlProvincias_OnSelectedIndexChanged">
                             <asp:ListItem Text="Seleccione Provincia" Value="0"></asp:ListItem>
                             <asp:ListItem Text="Provincia 1" Value="1"></asp:ListItem>
                             <asp:ListItem Text="Provincia 2" Value="2"></asp:ListItem>
@@ -70,7 +70,7 @@
                         </asp:DropDownList>
 
                         <label class="form-label" for="txtLocalidad">Localidad:</label>
-                        <asp:DropDownList ID="ddlLocalidad" runat="server" CssClass="txtBox-caja">
+                        <asp:DropDownList ID="ddlLocalidades" runat="server" CssClass="txtBox-caja">
                             <asp:ListItem Text="Seleccione Localidad" Value="0"></asp:ListItem>
                             <asp:ListItem Text="Localidad 1" Value="1"></asp:ListItem>
                             <asp:ListItem Text="Localidad 2" Value="2"></asp:ListItem>
