@@ -13,9 +13,9 @@ namespace Datos
     {
         AccesoDatos ds = new AccesoDatos();
 
-        public DataTable ListarMedicos(string SP_ListarMedicos)
+        public DataTable ListarMedicos(string SP_RetornarListaMedicos)
         {
-            return ds.EjecutarConsultaSelectDataAdapter(SP_ListarMedicos);
+            return ds.EjecutarConsultaSelectDataAdapter(SP_RetornarListaMedicos);
         }
 
         public int registroMedico(Medico medico)
@@ -52,5 +52,29 @@ namespace Datos
                 return "1";
             }
         }
+        public bool DarDeBajaMedicoPorLegajo(int legajo)
+        {
+            using (SqlConnection conn = ds.connection())
+            {
+                SqlCommand cmd = new SqlCommand("SP_BajaMedico", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Legajo_Me", legajo);
+
+                SqlParameter retorno = new SqlParameter();
+                retorno.Direction = ParameterDirection.ReturnValue;
+                cmd.Parameters.Add(retorno);
+
+                // Solo abrir si está cerrada
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+
+                cmd.ExecuteNonQuery();
+                conn.Close();
+
+                return Convert.ToInt32(retorno.Value) == 0; // true = éxito
+            }
+        }
+
     }
 }

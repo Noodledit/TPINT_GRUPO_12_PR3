@@ -24,6 +24,15 @@ namespace Servicios
             DaoMedicos daoMedicos = new DaoMedicos();
             return daoMedicos.ListarMedicos("SP_RetornarListaMedicos");
         }
+        public class GestionMedicos
+{
+            DaoMedicos dao = new DaoMedicos();
+
+            public bool DarDeBajaMedico(int legajo)
+            {
+        return dao.DarDeBajaMedicoPorLegajo(legajo);
+    }
+}
 
     }
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static Servicios.GestionTablas;
 
 namespace ClinicaMedica
 {
@@ -42,6 +43,28 @@ namespace ClinicaMedica
         protected void btnMostrarTodo_Click(object sender, EventArgs e)
         {
 
+        }
+        protected void gvMedicos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Eliminar")
+            {
+                int legajo = Convert.ToInt32(e.CommandArgument);
+
+                var gestorMedicos = new GestionTablas.GestionMedicos();
+                bool exito = gestorMedicos.DarDeBajaMedico(legajo);
+
+                if (exito)
+                {
+                    lblMensaje.ForeColor = System.Drawing.Color.Green;
+                    lblMensaje.Text = "Médico dado de baja exitosamente.";
+                    llenarGrillaMedicos();
+                }
+                else
+                {
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
+                    lblMensaje.Text = "No se pudo dar de baja al médico.";
+                }
+            }
         }
     }
 }
