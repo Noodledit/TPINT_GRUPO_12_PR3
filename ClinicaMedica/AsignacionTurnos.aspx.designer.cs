@@ -78,58 +78,58 @@ namespace ClinicaMedica
         protected global::System.Web.UI.WebControls.HyperLink hlInformes;
 
         /// <summary>
-        /// Control txtDni1.
+        /// Control txtDni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDni1;
+        protected global::System.Web.UI.WebControls.TextBox txtDni;
 
         /// <summary>
-        /// Control Label1.
+        /// Control lblDatos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblDatos;
 
         /// <summary>
-        /// Control ddlEspecilidad.
+        /// Control ddlEspecialidades.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEspecilidad;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidades;
 
         /// <summary>
-        /// Control ddlFecha.
+        /// Control ddlMedicos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFecha;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMedicos;
 
         /// <summary>
-        /// Control ddlHora.
+        /// Control ddlFechas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlHora;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFechas;
 
         /// <summary>
-        /// Control ddlMedico.
+        /// Control ddlHoras.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMedico;
+        protected global::System.Web.UI.WebControls.DropDownList ddlHoras;
 
         /// <summary>
         /// Control btnAsignarTurno.

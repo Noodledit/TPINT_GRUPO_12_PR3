@@ -36,29 +36,29 @@
             <div class="caja">
                 <div style="margin: 15px 10px 20px 20px;">
                     <span style="color: white; font-size: 20px;">DNI paciente:</span>
-                    &nbsp;<asp:TextBox ID="txtDni1" runat="server" CssClass="txtBox-caja"></asp:TextBox>
+                    &nbsp;<asp:TextBox ID="txtDni" runat="server" CssClass="txtBox-caja"></asp:TextBox>
                 </div>
 
                 <div style="margin: 5px 10px 20px 20px;">
-                    <asp:Label ID="Label1" runat="server" Text="Datos" Font-Size="20px" ForeColor="White" Font-Underline="True"></asp:Label>
+                    <asp:Label ID="lblDatos" runat="server" Text="Datos" Font-Size="20px" ForeColor="White" Font-Underline="True"></asp:Label>
                 </div>
 
                 <div style="margin: 15px 10px 20px 20px;" id="ddlEspecialidad">
                     <span style="color: white; font-size: 20px;">Especialidad:</span>
-                    <asp:DropDownList ID="ddlEspecilidad" runat="server" CssClass="txtBox-caja" >
-                    </asp:DropDownList>
-                    <br />
-                    <span style="color: white; font-size: 20px;">Fecha:</span>
-                    <asp:DropDownList ID="ddlFecha" runat="server" CssClass="txtBox-caja" >
-                    </asp:DropDownList>
-                    <br />
-                    <span style="color: white; font-size: 20px;">Hora:</span>
-                    <asp:DropDownList ID="ddlHora" runat="server" CssClass="txtBox-caja" >
+                    <asp:DropDownList ID="ddlEspecialidades" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlEspecilidad_SelectedIndexChanged" >
                     </asp:DropDownList>
                     <br />
                     <span style="color: white; font-size: 20px;">Médico:</span>
-                    <asp:DropDownList ID="ddlMedico" runat="server" CssClass="txtBox-caja" >
+                    <asp:DropDownList ID="ddlMedicos" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged" >
                     </asp:DropDownList>
+                    <br />
+                    <span style="color: white; font-size: 20px;">Fecha:</span>
+                    <asp:DropDownList ID="ddlFechas" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlFecha_SelectedIndexChanged" >
+                    </asp:DropDownList>
+                    <br />
+                    <span style="color: white; font-size: 20px;">Hora:</span>
+                    <asp:DropDownList ID="ddlHoras" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlHora_SelectedIndexChanged" >
+                    </asp:DropDownList>                    
                 </div>
                 <div style="margin: 25px 10px 5px 20px;">
                     <asp:Button ID="btnAsignarTurno" runat="server" CssClass="button" Text="Asignar Turno" Width="210px" Height="40" OnClick="btnAsignarTurno_Click" />
