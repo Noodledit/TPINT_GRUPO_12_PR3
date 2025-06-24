@@ -45,9 +45,10 @@
 
                             <label class="form-label" for="ddlSexo">Sexo:</label>
                             <asp:DropDownList ID="ddlSexo" runat="server" CssClass="txtBox-caja">
-                                <asp:ListItem Text="Masculino" Value="M"></asp:ListItem>
-                                <asp:ListItem Text="Femenino" Value="F"></asp:ListItem>
-                                <asp:ListItem Text="Otro" Value="O"></asp:ListItem>
+                                <asp:ListItem Text="Seleccione Sexo"></asp:ListItem>
+                                <asp:ListItem Text="Masculino" Value="Masculino"></asp:ListItem>
+                                <asp:ListItem Text="Femenino" Value="Femenino"></asp:ListItem>
+                                <asp:ListItem Text="Otro" Value="Otro"></asp:ListItem>
                             </asp:DropDownList>
 
                             <label class="form-label" for="txtNacionalidad">Nacionalidad:</label>
@@ -61,21 +62,11 @@
                         <label class="form-label" for="txtDireccion">Direccion:</label>
                         <asp:TextBox ID="txtDireccion" runat="server" CssClass="txtBox-caja" placeholder="Hipólito Yrigoyen 288"></asp:TextBox>
 
-                        <label class="form-label" for="txtProvincia">Provincia:</label>
-                        <asp:DropDownList ID="ddlProvincias" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlProvincias_OnSelectedIndexChanged">
-                            <asp:ListItem Text="Seleccione Provincia" Value="0"></asp:ListItem>
-                            <asp:ListItem Text="Provincia 1" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="Provincia 2" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="Provincia 3" Value="3"></asp:ListItem>
-                        </asp:DropDownList>
+                        <label class="form-label">Provincia:</label>
+                        <asp:DropDownList ID="ddlProvincias" AutoPostBack="true" OnSelectedIndexChanged="ddlProvincias_OnSelectedIndexChanged" runat="server" CssClass="txtBox-caja"></asp:DropDownList>
 
-                        <label class="form-label" for="txtLocalidad">Localidad:</label>
-                        <asp:DropDownList ID="ddlLocalidades" runat="server" CssClass="txtBox-caja">
-                            <asp:ListItem Text="Seleccione Localidad" Value="0"></asp:ListItem>
-                            <asp:ListItem Text="Localidad 1" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="Localidad 2" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="Localidad 3" Value="3"></asp:ListItem>
-                        </asp:DropDownList>
+                        <label class="form-label">Localidad:</label>
+                        <asp:DropDownList ID="ddlLocalidades" runat="server" CssClass="txtBox-caja" ></asp:DropDownList>
 
                         <label class="form-label" for="txtCorreo">Correo electrónico:</label>
                         <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="txtBox-caja" placeholder="ejemplo@correo.com" TextMode="Email"></asp:TextBox>
