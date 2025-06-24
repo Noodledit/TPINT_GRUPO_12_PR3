@@ -19,13 +19,13 @@ namespace Entidades
         private string Nacionalidad;
         private DateTime Fecha;//No sabia que existia este tipo de variable, lo busque por la del sql, ya que en la bd esta como datetime, capaz se modifica despues
         private string Direccion;
-        private string Provincia;
-        private string Localidad;
+        private int Provincia;
+        private int Localidad;
         private string Correo;
         private string Telefono;
 
 
-        public Paciente(string dni, string nombre, string apellido, string sexo, string nacionalidad, DateTime fecha, string direccion, string provincia, string localidad, string correo, string telefono)
+        public Paciente(string dni, string nombre, string apellido, string sexo, string nacionalidad, DateTime fecha, string direccion, int provincia, int localidad, string correo, string telefono)
         {
             Dni = dni;
             Nombre = nombre;
@@ -57,8 +57,8 @@ namespace Entidades
         public void SetNacionalidad(string nacionalidad) => Nacionalidad = nacionalidad; public string GetNacionalidad() => Nacionalidad;
         public void SetFecha(DateTime fecha) => Fecha = fecha; public DateTime GetFecha() => Fecha;
         public void SetDireccion(string direccion) => Direccion = direccion; public string GetDireccion() => Direccion;
-        public void SetProvincia(string provincia) => Provincia = provincia; public string GetProvincia() => Provincia;
-        public void SetLocalidad(string localidad) => Localidad = localidad; public string GetLocalidad() => Localidad;
+        public void SetProvincia(int provincia) => Provincia = provincia; public int GetProvincia() => Provincia;
+        public void SetLocalidad(int localidad) => Localidad = localidad; public int GetLocalidad() => Localidad;
         public void SetCorreo(string correo) => Correo = correo; public string GetCorreo() => Correo;
         public void SetTelefono(string telefono) => Telefono = telefono; public string GetTelefono() => Telefono;
 
