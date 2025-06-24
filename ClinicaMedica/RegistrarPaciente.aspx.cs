@@ -12,11 +12,14 @@ namespace ClinicaMedica
     public partial class RegistrarPaciente : System.Web.UI.Page
     {
         GestionRegistros registros = new GestionRegistros();
+        private GestionDdl gestorDdl = new GestionDdl();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
+            
+            gestorDdl.CargarProvincias(ddlProvincia);
+            gestorDdl.CargarLocalidades(ddlLocalidad, 0);
+ 
 
         }
 

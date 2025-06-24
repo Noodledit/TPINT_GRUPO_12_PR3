@@ -26,7 +26,7 @@
                 <div class="header-links">
                     <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link-active" NavigateUrl="ListadoTurnos.aspx" Text="Listado de Turnos" Visible="False"></asp:HyperLink>
                     <asp:HyperLink ID="hlSeguimientoPaciente" runat="server" CssClass="header-link" Text="Seguimiento Paciente" Visible="False"></asp:HyperLink>
-                    <asp:HyperLink ID="hlAgregarPaciente" runat="server" CssClass="header-link" NavigateUrl="RegistrarPaciente.aspx" Text="Agregar Paciente" Visible="False"></asp:HyperLink>
+                    
                     <asp:HyperLink ID="hlAgregarMedico" runat="server" CssClass="header-link" NavigateUrl="RegistrarMedico.aspx" Text="Agregar Medico" Visible="False"></asp:HyperLink>
                     <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="AsignacionTurnos.aspx" Text="Asignar Turnos" Visible="False"></asp:HyperLink>
                     <asp:HyperLink ID="hlListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos" Visible="False"></asp:HyperLink>
