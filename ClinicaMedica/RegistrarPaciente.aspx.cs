@@ -36,7 +36,7 @@ namespace ClinicaMedica
             }
 
 
-            Paciente NuevoPaciente = new Paciente(DNI,txtNombre.Text.Trim(), txtApellido.Text.Trim(), Convert.ToString(ddlSexo.SelectedValue), txtNacionalidad.Text.Trim(), Convert.ToDateTime(txtFechaNacimiento.Text.Trim()), txtDireccion.Text.Trim(), Convert.ToInt32(ddlProvincia.SelectedValue), Convert.ToString(ddlLocalidad.SelectedValue), txtCorreoElectronico.Text.Trim(), txtNumeroTelefono.Text.Trim());
+            Paciente NuevoPaciente = new Paciente(DNI,txtNombre.Text.Trim(), txtApellido.Text.Trim(), Convert.ToString(ddlSexo.SelectedValue), txtNacionalidad.Text.Trim(), Convert.ToDateTime(txtFechaNacimiento.Text.Trim()), txtDireccion.Text.Trim(), Convert.ToString(ddlProvincia.SelectedValue), Convert.ToString(ddlLocalidad.SelectedValue), txtCorreoElectronico.Text.Trim(), txtNumeroTelefono.Text.Trim());
             int filas = registros.RegistrarPaciente(NuevoPaciente);
 
             if (filas > 0)
