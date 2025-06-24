@@ -22,7 +22,7 @@ namespace Servicios
         public DataTable ObtenerTablaMedicos()
         {
             DaoMedicos daoMedicos = new DaoMedicos();
-            return daoMedicos.ListarMedicos("SP_ListarMedicos");
+            return daoMedicos.ListarMedicos("SP_RetornarListaMedicos");
         }
 
     }
