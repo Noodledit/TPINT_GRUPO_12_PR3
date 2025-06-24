@@ -13,9 +13,8 @@ namespace ClinicaMedica
         protected void Page_Load(object sender, EventArgs e)
         {
 
-           
-                
-            
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+
         }
 
         protected void btnUn_Login_Click(object sender, EventArgs e)
@@ -28,5 +27,6 @@ namespace ClinicaMedica
             Session["DniSeleccionado"] = txtDni1.Text.Trim();
             Response.Redirect("RegistrarPaciente.aspx");
         }
+
     }
 }

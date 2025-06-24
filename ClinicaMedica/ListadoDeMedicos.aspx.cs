@@ -14,6 +14,9 @@ namespace ClinicaMedica
         private GestionTablas gestor = new GestionTablas();
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+
             if (!IsPostBack)
             {
                 llenarGrillaMedicos();

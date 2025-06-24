@@ -17,6 +17,9 @@ namespace ClinicaMedica
         private GestionTablas gestionTablas = new GestionTablas();
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+
             HabilitacionDeAcceso();
             gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos();
             gvTurnos.DataBind();

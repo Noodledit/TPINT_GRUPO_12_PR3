@@ -42,6 +42,7 @@
                 <div style="display: flex; align-items: center; gap: 20px;">
                     <asp:Button ID="btnBuscar" runat="server"  Text="Consultar Turno" CssClass="button" Width="210px" Height="40" />
                     <asp:TextBox ID="txtBuscador" runat="server" placeholder="Ingrese Dni" CssClass="txtBox-caja" Style=" margin-top: 18px;"> </asp:TextBox>
+                    <asp:RegularExpressionValidator ID="revConsultarTurno" runat="server" ControlToValidate="txtBuscador" ForeColor="#CC0000" ValidationExpression="^\d{8}$">El DNI debe contener un total de 8 dígitos</asp:RegularExpressionValidator>
                 <div style="display: flex; align-items: center; gap: 20px;">
                     <asp:Button ID="btnFiltroFecha" runat="server" Text="Consultar por Fecha" CssClass="button" Width="210px" Height="40" Visible="False" />
                     <asp:DropDownList ID="ddlFechas" runat="server" CssClass="txtBox-caja" Style=" margin-top: 18px;" Visible="False"></asp:DropDownList>

@@ -34,6 +34,10 @@
                     <asp:Label ID="lblFechaHasta" runat="server" Text="Hasta:" CssClass="label-fecha" style="margin-left: 20px;" />
                     <asp:TextBox ID="txtFechaHasta" runat="server" CssClass="input-fecha" TextMode="Date" />
                     <asp:Button ID="btnGenerarInforme" runat="server" Text="Generar Informe" CssClass="boton-hover" style="margin-left: 30px;" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:RequiredFieldValidator ID="rfvFechaDesde" runat="server" ControlToValidate="txtFechaDesde" ErrorMessage="RequiredFieldValidator" ForeColor="Red">Debe ingresar una fecha de inicio</asp:RequiredFieldValidator>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:RequiredFieldValidator ID="rfvFechaHasta" runat="server" ControlToValidate="txtFechaHasta" ErrorMessage="RequiredFieldValidator" ForeColor="Red">Debe ingresar una fecha de finalización</asp:RequiredFieldValidator>
                 </div>
 
             <!-- Estadísticas generales -->
