@@ -37,6 +37,7 @@
                 <div style="display: flex; align-items: center; gap: 20px;">
                     <asp:Button ID="btnBuscarMeds" runat="server" CssClass="button" Text="Buscar Medicos" Width="210" Height="40" />
                     <asp:TextBox ID="txtBuscadorMeds" runat="server" CssClass="txtBox-caja" placeholder="Ingrese Legajo" Style=" margin-top: 18px;"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvBuscarMedico" runat="server" ControlToValidate="txtBuscadorMeds" ForeColor="Red">Se debe ingresar un legajo</asp:RequiredFieldValidator>
                 </div>
                 <div style="display: flex; align-items: center; gap: 20px;">
                     <asp:Button ID="btnFiltrarEspecialidad" runat="server" CssClass="button" Text="Filtrar por Especialidad" Width="210" Height="40" />
@@ -46,6 +47,7 @@
                         <asp:ListItem Text="Especialidad 2" Value="2"></asp:ListItem>
                         <asp:ListItem Text="Especialidad 3" Value="3"></asp:ListItem>
                     </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="rfvBuscarMedico0" runat="server" ControlToValidate="ddlEspecialidad" ForeColor="Red">Se debe elegir una especialidad</asp:RequiredFieldValidator>
                 </div>
 
                 <asp:GridView ID="gvMedicos" runat="server" AutoGenerateColumns="False" Width="658px">

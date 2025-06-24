@@ -44,6 +44,13 @@ namespace ClinicaMedica
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            if (CamposIncompletos())
+            {
+                lblMensaje.Text = "Por favor, complete todos los campos.";
+                lblMensaje.Visible = true;
+                lblMensaje.ForeColor = Color.Red;
+                return;
+            }
             Medico nuevoMedico = new Medico
             {
                 Dni = txtDniMedico.Text.Trim(),
@@ -64,7 +71,7 @@ namespace ClinicaMedica
             {
                 lblMensaje.Text = "Médico registrado correctamente.";
                 lblMensaje.Visible = true;
-                lblMensaje.ForeColor = Color.Green;
+                lblMensaje.ForeColor = Color.LightGreen;
             }
             else
             {
@@ -73,12 +80,51 @@ namespace ClinicaMedica
                 lblMensaje.ForeColor = Color.Red;
             }
             CargarProxLegajo();
+            LimpiarCasillas();
         }
 
         private void CargarProxLegajo()
         {
             legajo = registros.ObtenerProxLegajo();
             txtLegajo.Text = legajo;
+        }
+        private bool CamposIncompletos()
+        {
+            return string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                   string.IsNullOrWhiteSpace(txtApellido.Text) ||
+                   string.IsNullOrWhiteSpace(txtDniMedico.Text) ||
+                   string.IsNullOrWhiteSpace(txtDireccion.Text) ||
+                   string.IsNullOrWhiteSpace(txtFechaNacimiento.Text) ||
+                   string.IsNullOrWhiteSpace(txtNacionalidad.Text) ||
+                   ddlProvincias.SelectedValue == "0" ||
+                   ddlLocalidades.SelectedValue == "0" ||
+                   ddlEspecialidades.SelectedValue == "0" ||
+                   string.IsNullOrWhiteSpace(txtCorreoElectronico.Text) ||
+                   string.IsNullOrWhiteSpace(txtNumeroTelefono.Text);
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCasillas();
+        }
+
+        private void LimpiarCasillas()
+        {
+            txtNombre.Text = string.Empty;
+            txtApellido.Text = string.Empty;
+            txtDniMedico.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
+            txtFechaNacimiento.Text = string.Empty;
+            txtNacionalidad.Text = string.Empty;
+            txtCorreoElectronico.Text = string.Empty;
+            txtNumeroTelefono.Text = string.Empty;
+
+            ddlProvincias.SelectedIndex = 0;
+            ddlLocalidades.SelectedIndex = 0;
+            ddlEspecialidades.SelectedIndex = 0;
+            ddlSexo.SelectedIndex = 0;
+
+            lblMensaje.Text = string.Empty;
         }
     }
 }

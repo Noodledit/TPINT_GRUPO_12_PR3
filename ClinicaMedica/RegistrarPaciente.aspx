@@ -40,8 +40,12 @@
                             <label class="form-label" for="txtNombre">Nombre:</label>
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="txtBox-caja" placeholder="Claudio"></asp:TextBox>
 
+                            &nbsp;<asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" ForeColor="Red">Debe ingresar nombre</asp:RequiredFieldValidator>
+
                             <label class="form-label" for="txtApellido">Apellido:</label>
                             <asp:TextBox ID="txtApellido" runat="server" CssClass="txtBox-caja" placeholder="Fernandez"></asp:TextBox>
+
+                            <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtNombre" ForeColor="Red">Debe ingresar apellido</asp:RequiredFieldValidator>
 
                             <label class="form-label" for="ddlSexo">Sexo:</label>
                             <asp:DropDownList ID="ddlSexo" runat="server" CssClass="txtBox-caja">
@@ -53,13 +57,18 @@
                             <label class="form-label" for="txtNacionalidad">Nacionalidad:</label>
                             <asp:TextBox ID="txtNacionalidad" runat="server" CssClass="txtBox-caja" placeholder="Argentina"></asp:TextBox>
 
+                            <asp:RequiredFieldValidator ID="rfvNombrePaciente" runat="server" ControlToValidate="txtNombre" ForeColor="Red">Ingrese una nacionalidad</asp:RequiredFieldValidator>
+
                             <label class="form-label" for="txtFechaNacimiento">Fecha de nacimiento:</label>
                             <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="txtBox-caja" placeholder="1/1/1992"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvApellidoPaciente" runat="server" ControlToValidate="txtApellido" ForeColor="Red">Ingrese una fecha</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-col" style="display:inline;">
                         <label class="form-label" for="txtDireccion">Direccion:</label>
                         <asp:TextBox ID="txtDireccion" runat="server" CssClass="txtBox-caja" placeholder="Hipólito Yrigoyen 288"></asp:TextBox>
+
+                        <asp:RequiredFieldValidator ID="rfvDireccionPaciente" runat="server" ControlToValidate="txtDireccion" ForeColor="Red">Ingrese una dirección</asp:RequiredFieldValidator>
 
                         <label class="form-label" for="txtProvincia">Provincia:</label>
                         <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="txtBox-caja">
@@ -79,6 +88,8 @@
 
                         <label class="form-label" for="txtCorreo">Correo electrónico:</label>
                         <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="txtBox-caja" placeholder="ejemplo@correo.com" TextMode="Email"></asp:TextBox>
+
+                        <asp:RequiredFieldValidator ID="rfvCorreoPaciente" runat="server" ControlToValidate="txtCorreoElectronico" ForeColor="Red">Ingrese un correo</asp:RequiredFieldValidator>
 
                         <label class="form-label" for="txtTelefono">Numero de telefono:</label>
                         <asp:TextBox ID="txtNumeroTelefono" runat="server" CssClass="txtBox-caja" placeholder="1512345678" TextMode="Phone"></asp:TextBox>
