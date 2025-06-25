@@ -46,9 +46,19 @@ namespace ClinicaMedica
                 ddlMedicos.Enabled = true;
                 ddlFechas.Enabled = true;
                 ddlHoras.Enabled = true;
-                gestorDdl.CargarFechas(ddlFechas, idEspecialidadSeleccionada);
                 gestorDdl.CargarMedicos(ddlMedicos, idEspecialidadSeleccionada);
+
+                gestorDdl.CargarFechas(ddlFechas, idEspecialidadSeleccionada);
+                if (ddlFechas.Items.Count == 0)
+                {
+                    ddlFechas.Enabled = false;
+                }
+
                 gestorDdl.CargarHoras(ddlHoras, idEspecialidadSeleccionada);
+                if (ddlHoras.Items.Count == 0)
+                {
+                    ddlHoras.Enabled = false;
+                }
             }
             else
             {

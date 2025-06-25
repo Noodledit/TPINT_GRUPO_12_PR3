@@ -40,3 +40,9 @@ C:\Users\hblan\OneDrive\Desktop\integrador\TPINT_GRUPO_12_PR3\Entidades\obj\Debu
 C:\Users\hblan\OneDrive\Desktop\integrador\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 C:\Users\hblan\OneDrive\Desktop\integrador\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.dll
 C:\Users\hblan\OneDrive\Desktop\integrador\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.pdb
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta\TPINT_GRUPO_12_PR3\Entidades\bin\Debug\Entidades.dll
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta\TPINT_GRUPO_12_PR3\Entidades\bin\Debug\Entidades.pdb
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.dll
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.pdb

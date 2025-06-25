@@ -123,7 +123,7 @@ namespace Servicios
                 new SqlParameter("@Legajo",LegajoMedico != 0 ? LegajoMedico : (object)DBNull.Value)
             };
             DataTable tablaHoras = acceso.EjecutarConsultaSelectDataAdapter("SP_RetornarHorasTurnos", parametros);
-            if (tablaHoras != null)
+            if (tablaHoras != null && tablaHoras.Rows.Count > 0)
             {
                 ddlHoras.DataSource = tablaHoras;
                 ddlHoras.DataTextField = "Hora";
