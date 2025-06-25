@@ -13,26 +13,35 @@ namespace Servicios
     public class GestionTablas
     {
         private DaoTurnos daoTurnos = new DaoTurnos();
+        private DaoMedicos daoMedicos = new DaoMedicos();
         public GestionTablas() { 
 
         }
         public DataTable ObtenerTablaTurnos() {
             return daoTurnos.ListadoTurnos("SP_RetornarListaTurnos");
         }
+
         public DataTable ObtenerTablaMedicos()
         {
-            DaoMedicos daoMedicos = new DaoMedicos();
-            return daoMedicos.ListarMedicos("SP_RetornarListaMedicos");
+            return daoMedicos.ListarMedicos();
         }
-        public class GestionMedicos
-{
+        public DataTable ObtenerTablaMedicosPorLegajo(string legajo)
+        {
+            return daoMedicos.ListarMedicosPorLegajo(legajo);
+        }
+        public DataTable ObtenerTablaMedicosPorIdEspecialidad(string idEspecialidad)
+        {
+            return daoMedicos.ListarMedicosPorIdEspecialidad(idEspecialidad);
+        }
+        public class GestionMedicos 
+        {
             DaoMedicos dao = new DaoMedicos();
 
             public bool DarDeBajaMedico(int legajo)
             {
-        return dao.DarDeBajaMedicoPorLegajo(legajo);
-    }
-}
+                return dao.DarDeBajaMedicoPorLegajo(legajo);
+            }
+        }
 
     }
 }

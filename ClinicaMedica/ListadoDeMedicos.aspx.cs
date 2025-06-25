@@ -22,27 +22,55 @@ namespace ClinicaMedica
                 gestorDdl.CargarEspecialidades(ddlEspecialidades);
             }
         }
-        private void llenarGrillaMedicos()
+        private void llenarGrillaMedicos(DataTable tabla = null)
         {
-            DataTable tabla = gestorTablas.ObtenerTablaMedicos();
+            if (tabla == null)
+            {
+               tabla = gestorTablas.ObtenerTablaMedicos();
+            }
             gvMedicos.DataSource = tabla;
             gvMedicos.DataBind();
-
         }
 
         protected void btnBuscarMeds_Click(object sender, EventArgs e)
         {
+            string legajo = txtBuscadorMeds.Text.Trim();
+            DataTable tablaFiltrada = gestorTablas.ObtenerTablaMedicosPorLegajo(legajo);
+            if (tablaFiltrada.Rows.Count > 0)
+            {
+                llenarGrillaMedicos(tablaFiltrada);
+            }
+            else
+            {
+                lblMensaje.Text = "No se encontraron médicos con el legajo.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                llenarGrillaMedicos();
+            }
+
 
         }
 
         protected void btnFiltrarEspecialidad_Click(object sender, EventArgs e)
         {
+            string idEspecialidad = ddlEspecialidades.SelectedValue;
+            DataTable tablaFiltrada = gestorTablas.ObtenerTablaMedicosPorIdEspecialidad(idEspecialidad);
+            if (tablaFiltrada.Rows.Count > 0)
+            {
+                llenarGrillaMedicos(tablaFiltrada);
+            }
+            else
+            {
+                lblMensaje.Text = "No se encontraron médicos con esa Especialidad.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                llenarGrillaMedicos();
+            }
+            
 
         }
 
         protected void btnMostrarTodo_Click(object sender, EventArgs e)
         {
-
+            llenarGrillaMedicos(null);
         }
         protected void gvMedicos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
