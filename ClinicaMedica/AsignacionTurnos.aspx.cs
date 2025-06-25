@@ -15,8 +15,8 @@ namespace ClinicaMedica
         protected void Page_Load(object sender, EventArgs e)
         {
             gestorDdl.CargarEspecialidades(ddlEspecialidades);
-            gestorDdl.CargarFechas(ddlFechas);
-            gestorDdl.
+            //gestorDdl.CargarFechas(ddlFechas);
+           // gestorDdl.
 
         }
 

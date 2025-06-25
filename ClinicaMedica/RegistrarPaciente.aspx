@@ -55,7 +55,7 @@
                             <asp:TextBox ID="txtNacionalidad" runat="server" CssClass="txtBox-caja" placeholder="Argentina"></asp:TextBox>
 
                             <label class="form-label" for="txtFechaNacimiento">Fecha de nacimiento:</label>
-                            <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="txtBox-caja" placeholder="1/1/1992" TextMode="Date"></asp:TextBox>
+                            <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="txtBox-caja" placeholder="1992/1/1" TextMode="Date"></asp:TextBox>
                         </div>
                     </div>
                     <div class="form-col" style="display:inline;">
@@ -77,8 +77,9 @@
                 </div>
                 <!-- Botones de acción -->
                 <div class="form-actions">
+                    <asp:Label ID="lblMensaje" runat="server" ForeColor="White" ></asp:Label>
                     <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn-aceptar" OnClick="btnAceptar_Click" />
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn-cancelar" />
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn-cancelar" OnClick="btnCancelar_Click" />
                 </div>
             </div>
         </div>

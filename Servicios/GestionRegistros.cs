@@ -13,9 +13,14 @@ namespace Servicios
         DaoPacientes dpaciente = new DaoPacientes();
         DaoMedicos dmedico = new DaoMedicos();
 
-        public int RegistrarPaciente(Paciente paciente)
+        public bool RegistrarPaciente(Paciente paciente)
         {
-            return dpaciente.registroPaciente(paciente);
+            int retorno = dpaciente.registroPaciente(paciente);
+            if (retorno == 0)
+            {
+                return true;
+            }
+            else { return false; }
         }
 
         public bool RegistarMedico(Medico medico)

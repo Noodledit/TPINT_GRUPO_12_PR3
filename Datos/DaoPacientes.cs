@@ -23,7 +23,7 @@ namespace Datos
             comand.Parameters.AddWithValue("@NacionalidadPaciente", paciente.GetNacionalidad());
             comand.Parameters.AddWithValue("@FechaNacimientoPaciente", paciente.GetFecha());
             comand.Parameters.AddWithValue("@DireccionPaciente", paciente.GetDireccion());
-            comand.Parameters.AddWithValue("@LocalidadPaciente", paciente.GetLocalidad());
+            comand.Parameters.AddWithValue("@IdLocalidadPaciente", paciente.GetLocalidad());
             comand.Parameters.AddWithValue("@IdProvinciaPaciente", paciente.GetProvincia());
             comand.Parameters.AddWithValue("@CorreoElectronicoPaciente", paciente.GetCorreo());
             comand.Parameters.AddWithValue("@TelefonoPaciente", paciente.GetTelefono());

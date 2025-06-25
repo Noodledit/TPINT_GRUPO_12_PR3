@@ -104,6 +104,7 @@ namespace ClinicaMedica
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
+            lblMensaje.Text = string.Empty;
             LimpiarCasillas();
         }
 
@@ -123,7 +124,7 @@ namespace ClinicaMedica
             ddlEspecialidades.SelectedIndex = 0;
             ddlSexo.SelectedIndex = 0;
 
-            lblMensaje.Text = string.Empty;
+            //lblMensaje.Text = string.Empty;
         }
     }
 }
