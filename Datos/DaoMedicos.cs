@@ -15,21 +15,20 @@ namespace Datos
 
         public DataTable ListarMedicos()
         {
-            string query = "SP_RetornarListaMedicos";
-            return ds.EjecutarConsultaSelectDataAdapter(query);
+            return ds.EjecutarConsultaSelectDataAdapter("SP_RetornarListaMedicos");
         }
 
         public DataTable ListarMedicosPorLegajo(string legajo)
         {
-            string query = "SP_RetornarListaMedicosPorLegajo";
-            SqlParameter[] parametros = new SqlParameter[] { new SqlParameter("@Legajo", legajo) };
-            return ds.EjecutarConsultaSelectDataAdapter(query, parametros);
+            SqlParameter[] parametros = new SqlParameter[] {
+                new SqlParameter("@Legajo", legajo) };
+            return ds.EjecutarConsultaSelectDataAdapter("SP_RetornarListaMedicos", parametros);
         }
         public DataTable ListarMedicosPorIdEspecialidad(string idEspecialidad)
         {
-            string query = "SP_RetornarListaMedicosPorEspecialidad";
-            SqlParameter[] parametros = new SqlParameter[] { new SqlParameter("@IdEspecialidad", idEspecialidad) };
-            return ds.EjecutarConsultaSelectDataAdapter(query, parametros);
+            SqlParameter[] parametros = new SqlParameter[] { new SqlParameter(
+                "@IdEspecialidad", idEspecialidad) };
+            return ds.EjecutarConsultaSelectDataAdapter("SP_RetornarListaMedicos", parametros);
         }
         public int registroMedico(Medico medico)
         {

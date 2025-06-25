@@ -61,14 +61,15 @@ namespace Servicios
             }
         }
 
-        public void CargarMedicos(DropDownList ddlMedicos, int idEspecialidad)
+        public void CargarMedicos(DropDownList ddlMedicos, int idEspecialidad, int idDia = 0)
         {
             DataTable tablaMedicos = new DataTable();
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@IdEspecialidad", idEspecialidad)
+                new SqlParameter("@IdEspecialidad", idEspecialidad),
+                new SqlParameter("@IdDia", idDia != 0 ? idDia : (object)DBNull.Value)
             };
-            tablaMedicos = acceso.EjecutarConsultaSelectDataAdapter("SP_ListarMedicos", parametros);
+            tablaMedicos = acceso.EjecutarConsultaSelectDataAdapter("SP_RetornarListaMedicos", parametros);
 
             if (tablaMedicos != null)
             {
@@ -79,28 +80,57 @@ namespace Servicios
                 ddlMedicos.Items.Insert(0, new ListItem("Seleccione Medico", "0"));
             }
         }
-        public void CargarFechas(DropDownList ddlFechas, int idEspecialidad, int LegajoMedico)
+
+        public void CargarFechas(DropDownList ddlFechas, int idEspecialidad, int LegajoMedico = 0)
         {
             acceso = new AccesoDatos();
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@IdEspecialidad", idEspecialidad),
-                new SqlParameter("",LegajoMedico)
+                new SqlParameter("@Legajo",LegajoMedico)
             };
-            DataTable tablaFechas = acceso.EjecutarConsultaSelectDataAdapter("SP_ObtenerFechasTurnos");
-            if (tablaFechas != null)
+            DataTable tablaFechas = acceso.EjecutarConsultaSelectDataAdapter("SP_RetornarFechasTurnos");
+            if (tablaFechas != null && tablaFechas.Rows.Count > 0)
             {
+                // Agregamos una columna solo para mostrar el texto formateado
+                if (!tablaFechas.Columns.Contains("FechaTexto"))
+                    tablaFechas.Columns.Add("FechaTexto", typeof(string));
+
+                foreach (DataRow row in tablaFechas.Rows)
+                {
+                    if (row["Fecha"] != DBNull.Value)
+                    {
+                        DateTime fecha = (DateTime)row["Fecha"];
+                        row["FechaTexto"] = fecha.ToString("dd/MM/yyyy");
+                    }
+                }
+
                 ddlFechas.DataSource = tablaFechas;
-                ddlFechas.DataTextField = "Fecha";
-                ddlFechas.DataValueField = "IdFecha";
+                ddlFechas.DataTextField = "FechaTexto";
+                ddlFechas.DataValueField = "IdDia";
                 ddlFechas.DataBind();
                 ddlFechas.Items.Insert(0, new ListItem("Seleccione Fecha", "0"));
             }
         }
 
-        public void CargarHoras(DropDownList ddlHoras)
+        public void CargarHoras(DropDownList ddlHoras, int idEspecialidad, int idDia = 0, int LegajoMedico = 0)
         {
-            DataTable tablaHoras = new DataTable();
+            acceso = new AccesoDatos();
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@IdDia", idDia),
+                new SqlParameter("@IdEspecialidad", idEspecialidad),
+                new SqlParameter("@Legajo",LegajoMedico)
+            };
+            DataTable tablaHoras = acceso.EjecutarConsultaSelectDataAdapter("SP_RetornarHorasTurnos");
+            if (tablaHoras != null)
+            {
+                ddlHoras.DataSource = tablaHoras;
+                ddlHoras.DataTextField = "Hora";
+                ddlHoras.DataValueField = "Hora";
+                ddlHoras.DataBind();
+                ddlHoras.Items.Insert(0, new ListItem("Seleccione Hora"));
+            }
         }
     }
 }

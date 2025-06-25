@@ -46,8 +46,6 @@ namespace ClinicaMedica
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
                 llenarGrillaMedicos();
             }
-
-
         }
 
         protected void btnFiltrarEspecialidad_Click(object sender, EventArgs e)
@@ -64,8 +62,6 @@ namespace ClinicaMedica
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
                 llenarGrillaMedicos();
             }
-            
-
         }
 
         protected void btnMostrarTodo_Click(object sender, EventArgs e)
