@@ -71,9 +71,14 @@
                                     <asp:Label ID="lblEspecialidad" runat="server" Text='<%# Bind("Especialidad") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Contacto del Médico">
+                            <asp:TemplateField HeaderText="Telefono">
                                 <ItemTemplate>
                                     <asp:Label ID="lblTelefono" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Correo Electronico">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblCorreo" runat="server" Text='<%# Bind("Correo") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Estado">
@@ -91,10 +96,7 @@
                     </asp:GridView>
                     <asp:Label ID="lblMensaje" runat="server" CssClass="mensaje-accion" ForeColor="Red" EnableViewState="false"></asp:Label>
                     <div style="margin: 25px 10px 5px 20px;">
-                        <asp:Button ID="Button1" runat="server" CssClass="button" Text="Mostrar Todo" Width="202px" OnClick="btnMostrarTodo_Click" />
-                    </div>
-                <div style="margin: 25px 10px 5px 20px;">
-                    <asp:Button ID="btnMostrarTodo" runat="server" CssClass="button" Text="Mostrar Todo" Width="202px" OnClick="btnMostrarTodo_Click" />
+                        <asp:Button ID="btnMostrarTodo" runat="server" CssClass="button" Text="Mostrar Todo" Width="202px" OnClick="btnMostrarTodo_Click" />
                 </div>
 
             </div>

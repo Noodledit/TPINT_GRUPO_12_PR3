@@ -22,27 +22,38 @@ namespace ClinicaMedica
                 gestorDdl.CargarEspecialidades(ddlEspecialidades);
             }
         }
-        private void llenarGrillaMedicos()
+        private void llenarGrillaMedicos(DataTable tabla = null)
         {
-            DataTable tabla = gestorTablas.ObtenerTablaMedicos();
+            if (tabla == null)
+            {
+               tabla = gestorTablas.ObtenerTablaMedicos();
+            }
             gvMedicos.DataSource = tabla;
             gvMedicos.DataBind();
-
         }
 
         protected void btnBuscarMeds_Click(object sender, EventArgs e)
         {
-
+            string legajo = txtBuscadorMeds.Text.Trim();
+            DataTable tablaFiltrada = gestorTablas.ObtenerTablaMedicosPorLegajo(legajo); // Método hipotético
+            llenarGrillaMedicos(tablaFiltrada);
         }
 
         protected void btnFiltrarEspecialidad_Click(object sender, EventArgs e)
         {
+            int idEspecialidad;
+            int.TryParse(ddlEspecialidades.SelectedValue, out idEspecialidad);
+            if (idEspecialidad != 0) 
+            {
+                DataTable tablaFiltrada = gestorTablas.ObtenerTablaMedicosPorIdEspecialidad(idEspecialidad);
+                llenarGrillaMedicos(tablaFiltrada);
+            }
 
         }
 
         protected void btnMostrarTodo_Click(object sender, EventArgs e)
         {
-
+            llenarGrillaMedicos(null);
         }
         protected void gvMedicos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
