@@ -52,12 +52,10 @@
                     <asp:DropDownList ID="ddlMedicos" autopostback="true" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged" Enabled="False" ></asp:DropDownList>
                     <br />
                     <span style="color: white; font-size: 20px;">Fecha:</span>
-                    <asp:DropDownList ID="ddlFechas" AutoPostBack="true" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlFecha_SelectedIndexChanged" Enabled="False" >
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlFechas" AutoPostBack="true" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlFecha_SelectedIndexChanged" Enabled="False" ></asp:DropDownList>
                     <br />
                     <span style="color: white; font-size: 20px;">Hora:</span>
-                    <asp:DropDownList ID="ddlHoras" AutoPostBack="true" runat="server" CssClass="txtBox-caja" Enabled="False" >
-                    </asp:DropDownList>                    
+                    <asp:DropDownList ID="ddlHoras" AutoPostBack="true" runat="server" CssClass="txtBox-caja" Enabled="False" ></asp:DropDownList>                    
                 </div>
                 <div style="margin: 25px 10px 5px 20px;">
                     <asp:Button ID="btnAsignarTurno" runat="server" CssClass="button" Text="Asignar Turno" Width="210px" Height="40" OnClick="btnAsignarTurno_Click" />
