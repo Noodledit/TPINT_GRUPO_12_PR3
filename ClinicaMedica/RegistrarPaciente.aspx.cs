@@ -58,8 +58,8 @@ namespace ClinicaMedica
             }
 
 
-            //Paciente NuevoPaciente = new Paciente(DNI, txtNombre.Text.Trim(), txtApellido.Text.Trim(), Convert.ToString(ddlSexo.SelectedValue), txtNacionalidad.Text.Trim(), Convert.ToDateTime(txtFechaNacimiento.Text.Trim()), txtDireccion.Text.Trim(), Convert.ToInt32(ddlProvincias.SelectedValue), Convert.ToInt32(ddlLocalidades.SelectedValue), txtCorreoElectronico.Text.Trim(), txtNumeroTelefono.Text.Trim());
-             Paciente NuevoPaciente = new Paciente(//Datos de prueba
+            Paciente NuevoPaciente = new Paciente(DNI, txtNombre.Text.Trim(), txtApellido.Text.Trim(), Convert.ToString(ddlSexo.SelectedValue), txtNacionalidad.Text.Trim(), Convert.ToDateTime(txtFechaNacimiento.Text.Trim()), txtDireccion.Text.Trim(), Convert.ToInt32(ddlProvincias.SelectedValue), Convert.ToInt32(ddlLocalidades.SelectedValue), txtCorreoElectronico.Text.Trim(), txtNumeroTelefono.Text.Trim());
+            /* Paciente NuevoPaciente = new Paciente(//Datos de prueba
              "97632321",                     
              "Leopoldo",                       
              "Valdez",                
@@ -71,7 +71,7 @@ namespace ClinicaMedica
              1,                     
              "ramon.valdez@mail.com",         
              "1134567890"                   
-             );
+             );*/
 
             
 
