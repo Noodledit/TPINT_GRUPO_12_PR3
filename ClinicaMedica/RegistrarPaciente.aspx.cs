@@ -42,9 +42,9 @@ namespace ClinicaMedica
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
 
-            if (CamposIncompletas())
+            if (CamposNoComletados())
             {
-                lblMensaje.Text = "Por favor, rellene todos los campos.";
+                lblMensaje.Text = "Por favor, rellene todos los datos.";
                 lblMensaje.Visible = true;
                 
                 return;
@@ -111,7 +111,7 @@ namespace ClinicaMedica
            
         }
 
-        private bool CamposIncompletas()
+        private bool CamposNoComletados()
         {
             return string.IsNullOrWhiteSpace(txtNombre.Text) ||
                    string.IsNullOrWhiteSpace(txtApellido.Text) ||

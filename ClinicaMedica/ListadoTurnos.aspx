@@ -100,6 +100,11 @@
                                 <asp:Label ID="lbl_it_DniPaciente" runat="server" Text='<%# Bind("DNIpaciente") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Estado">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_it_Estado" runat="server"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
