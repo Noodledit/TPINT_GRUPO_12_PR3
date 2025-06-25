@@ -45,19 +45,18 @@
 
                 <div style="margin: 15px 10px 20px 20px;" id="ddlEspecialidad">
                     <span style="color: white; font-size: 20px;">Especialidad:</span>
-                    <asp:DropDownList ID="ddlEspecialidades" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlEspecilidad_SelectedIndexChanged" >
+                    <asp:DropDownList ID="ddlEspecialidades" autopostback="true" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlEspecilidad_SelectedIndexChanged" >
                     </asp:DropDownList>
                     <br />
                     <span style="color: white; font-size: 20px;">Médico:</span>
-                    <asp:DropDownList ID="ddlMedicos" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged" >
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlMedicos" autopostback="true" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged" Enabled="False" ></asp:DropDownList>
                     <br />
                     <span style="color: white; font-size: 20px;">Fecha:</span>
-                    <asp:DropDownList ID="ddlFechas" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlFecha_SelectedIndexChanged" >
+                    <asp:DropDownList ID="ddlFechas" AutoPostBack="true" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlFecha_SelectedIndexChanged" Enabled="False" >
                     </asp:DropDownList>
                     <br />
                     <span style="color: white; font-size: 20px;">Hora:</span>
-                    <asp:DropDownList ID="ddlHoras" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlHora_SelectedIndexChanged" >
+                    <asp:DropDownList ID="ddlHoras" AutoPostBack="true" runat="server" CssClass="txtBox-caja" Enabled="False" >
                     </asp:DropDownList>                    
                 </div>
                 <div style="margin: 25px 10px 5px 20px;">
