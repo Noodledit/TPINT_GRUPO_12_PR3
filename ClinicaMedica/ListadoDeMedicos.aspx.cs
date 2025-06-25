@@ -35,19 +35,36 @@ namespace ClinicaMedica
         protected void btnBuscarMeds_Click(object sender, EventArgs e)
         {
             string legajo = txtBuscadorMeds.Text.Trim();
-            DataTable tablaFiltrada = gestorTablas.ObtenerTablaMedicosPorLegajo(legajo); // Método hipotético
-            llenarGrillaMedicos(tablaFiltrada);
+            DataTable tablaFiltrada = gestorTablas.ObtenerTablaMedicosPorLegajo(legajo);
+            if (tablaFiltrada.Rows.Count > 0)
+            {
+                llenarGrillaMedicos(tablaFiltrada);
+            }
+            else
+            {
+                lblMensaje.Text = "No se encontraron médicos con el legajo.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                llenarGrillaMedicos();
+            }
+
+
         }
 
         protected void btnFiltrarEspecialidad_Click(object sender, EventArgs e)
         {
-            int idEspecialidad;
-            int.TryParse(ddlEspecialidades.SelectedValue, out idEspecialidad);
-            if (idEspecialidad != 0) 
+            string idEspecialidad = ddlEspecialidades.SelectedValue;
+            DataTable tablaFiltrada = gestorTablas.ObtenerTablaMedicosPorIdEspecialidad(idEspecialidad);
+            if (tablaFiltrada.Rows.Count > 0)
             {
-                DataTable tablaFiltrada = gestorTablas.ObtenerTablaMedicosPorIdEspecialidad(idEspecialidad);
                 llenarGrillaMedicos(tablaFiltrada);
             }
+            else
+            {
+                lblMensaje.Text = "No se encontraron médicos con esa Especialidad.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                llenarGrillaMedicos();
+            }
+            
 
         }
 

@@ -37,6 +37,7 @@
                 <div style="display: flex; align-items: center; gap: 20px;">
                     <asp:Button ID="btnBuscarMeds" runat="server" CssClass="button" Text="Buscar Médicos" Width="210" Height="40" OnClick="btnBuscarMeds_Click" />
                     <asp:TextBox ID="txtBuscadorMeds" runat="server" CssClass="txtBox-caja" placeholder="Ingrese Legajo" Style=" margin-top: 18px;"></asp:TextBox>
+                    <asp:Label ID="lblMensaje" runat="server" CssClass="mensaje-accion" Style="font-weight: bolder; color: darkred; letter-spacing: 1.5px; margin-left: 10px" EnableViewState="false"></asp:Label>
                 </div>
                 <div style="display: flex; align-items: center; gap: 20px;">
                     <asp:Button ID="btnFiltrarEspecialidad" runat="server" CssClass="button" Text="Filtrar por Especialidad" Width="210" Height="40" OnClick="btnFiltrarEspecialidad_Click" />
@@ -94,7 +95,6 @@
                     </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
-                    <asp:Label ID="lblMensaje" runat="server" CssClass="mensaje-accion" ForeColor="Red" EnableViewState="false"></asp:Label>
                     <div style="margin: 25px 10px 5px 20px;">
                         <asp:Button ID="btnMostrarTodo" runat="server" CssClass="button" Text="Mostrar Todo" Width="202px" OnClick="btnMostrarTodo_Click" />
                 </div>

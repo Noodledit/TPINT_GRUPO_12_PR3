@@ -29,7 +29,7 @@ namespace Servicios
         {
             return daoMedicos.ListarMedicosPorLegajo(legajo);
         }
-        public DataTable ObtenerTablaMedicosPorIdEspecialidad(int idEspecialidad)
+        public DataTable ObtenerTablaMedicosPorIdEspecialidad(string idEspecialidad)
         {
             return daoMedicos.ListarMedicosPorIdEspecialidad(idEspecialidad);
         }

@@ -25,7 +25,7 @@ namespace Datos
             SqlParameter[] parametros = new SqlParameter[] { new SqlParameter("@Legajo", legajo) };
             return ds.EjecutarConsultaSelectDataAdapter(query, parametros);
         }
-        public DataTable ListarMedicosPorIdEspecialidad(int idEspecialidad)
+        public DataTable ListarMedicosPorIdEspecialidad(string idEspecialidad)
         {
             string query = "SP_RetornarListaMedicosPorEspecialidad";
             SqlParameter[] parametros = new SqlParameter[] { new SqlParameter("@IdEspecialidad", idEspecialidad) };
