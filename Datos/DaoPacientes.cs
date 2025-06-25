@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -33,5 +34,18 @@ namespace Datos
             return ds.EjecutarProcedimientoAlmacenado(comand, "SP_RegistrarPaciente");
 
         }
+
+        public bool verificarSiExistePaciente(string DNI)
+        {
+            SqlCommand comand = new SqlCommand();
+            comand.Parameters.AddWithValue("@DniPaciente", DNI);
+
+            bool Result = Convert.ToBoolean(ds.EjecutarProcedimientoAlmacenado(comand, "SP_RevisionDniPaciente"));
+
+             
+            return Result;
+        }
+
+
     }
 }

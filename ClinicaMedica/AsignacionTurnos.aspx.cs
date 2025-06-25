@@ -11,6 +11,7 @@ namespace ClinicaMedica
 {
     public partial class AsignacionTurnos : System.Web.UI.Page
     {
+        private GestionRegistros GestorReg = new GestionRegistros();
         private GestionDdl gestorDdl = new GestionDdl();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,6 +29,8 @@ namespace ClinicaMedica
         protected void btnAsignarTurno_Click(object sender, EventArgs e)
         {
             Session["DniSeleccionado"] = txtDni.Text.Trim();
+
+            bool existe = GestorReg.VerificarSiExiste(txtDni.Text.Trim());
 
 
             Response.Redirect("RegistrarPaciente.aspx");
