@@ -43,8 +43,16 @@ namespace ClinicaMedica
 
             bool existe = GestorReg.VerificarSiExiste(txtDni.Text.Trim());
 
+            if (existe == true)
+            {
+              //  Turno(ddlEspecialidades.SelectedValue, )
+            }
+            else {
+             Response.Redirect("RegistrarPaciente.aspx");
+            }
 
-            Response.Redirect("RegistrarPaciente.aspx");
+
+               
         }
 
         protected void ddlEspecilidad_SelectedIndexChanged(object sender, EventArgs e)

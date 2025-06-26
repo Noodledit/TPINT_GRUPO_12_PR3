@@ -9,8 +9,7 @@ namespace Entidades
     public class Paciente
     {
 
-        //Me gustaria hacer esto privado mas adelante, para que este mejor encapsulado, aunque habria que hacer los respectivos getters y setters
-        //Lo dejo asi por tiempo Att: Miguel
+       
 
         private string Dni;
         private string Nombre;
