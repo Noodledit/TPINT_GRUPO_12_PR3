@@ -9,9 +9,9 @@
     <form id="form2" runat="server">
         <div class="header">
             <section>
-                <img src="Estilo/user.png" class="user-image"/>
-                <asp:Label ID="lblBienvenidoUsuario" runat="server" Style="float: right; font-size:15px ; margin-right: 8px; letter-spacing: 2px; font-weight: bold; transform: translateY(+5px);" Text="Peter Lanzani"></asp:Label>
-            </section>
+    <asp:Button ID="btnUnlogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cerrar Sesion" CssClass="button" ValidationGroup="GrupoInicioSesion" OnClick="btnUnlogin_Click" />
+    <asp:Label ID="lblBienvenidoUsuario" runat="server" Style="float: right; font-size:15px ; margin-right: 8px; letter-spacing: 2px; font-weight: bold; transform: translateY(+5px);"></asp:Label>
+</section>
             <div class="titulo-header">
                 <h1>Clinica Medica</h1>
                 <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica"/>
