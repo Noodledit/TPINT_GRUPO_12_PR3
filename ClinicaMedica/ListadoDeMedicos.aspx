@@ -37,6 +37,7 @@
                 <div style="display: flex; align-items: center; gap: 20px;">
                     <asp:Button ID="btnBuscarMeds" runat="server" CssClass="button" Text="Buscar Médicos" Width="210" Height="40" OnClick="btnBuscarMeds_Click" />
                     <asp:TextBox ID="txtBuscadorMeds" runat="server" CssClass="txtBox-caja" placeholder="Ingrese Legajo" Style=" margin-top: 18px;"></asp:TextBox>
+                    <asp:Label ID="lblMensaje" runat="server" Font-Bold="True" ForeColor="#CC0000"></asp:Label>
                 </div>
                 <div style="display: flex; align-items: center; gap: 20px;">
                     <asp:Button ID="btnFiltrarEspecialidad" runat="server" CssClass="button" Text="Filtrar por Especialidad" Width="210" Height="40" OnClick="btnFiltrarEspecialidad_Click" />

@@ -44,6 +44,10 @@ namespace ClinicaMedica
                 ddlFechas.Enabled = true;
                 ddlHoras.Enabled = true;
                 gestorDdl.CargarFechas(ddlFechas, idEspecialidadSeleccionada);
+                if (ddlFechas.Items.Count == 0) 
+                {
+                    ddlFechas.Enabled = false;
+                }
                 gestorDdl.CargarMedicos(ddlMedicos, idEspecialidadSeleccionada);
                 gestorDdl.CargarHoras(ddlHoras, idEspecialidadSeleccionada);
             }
@@ -68,7 +72,7 @@ namespace ClinicaMedica
                 gestorDdl.CargarHoras(ddlHoras, idEspecialidadSeleccionada, idFechaSeleccionada, LegajoSeleccionado);
                 if (LegajoSeleccionado == 0) 
                 {
-                    gestorDdl.CargarMedicos(ddlMedicos, idEspecialidadSeleccionada, idFechaSeleccionada); 
+                    gestorDdl.CargarMedicos(ddlMedicos, idEspecialidadSeleccionada, idFechaSeleccionada);
                 }
             }
         }

@@ -87,9 +87,9 @@ namespace Servicios
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@IdEspecialidad", idEspecialidad),
-                new SqlParameter("@Legajo",LegajoMedico)
+                new SqlParameter("@Legajo", LegajoMedico != 0 ? LegajoMedico : (object)DBNull.Value)
             };
-            DataTable tablaFechas = acceso.EjecutarConsultaSelectDataAdapter("SP_RetornarFechasTurnos");
+            DataTable tablaFechas = acceso.EjecutarConsultaSelectDataAdapter("SP_RetornarFechasTurnos", parametros);
             if (tablaFechas != null && tablaFechas.Rows.Count > 0)
             {
                 // Agregamos una columna solo para mostrar el texto formateado
@@ -118,12 +118,13 @@ namespace Servicios
             acceso = new AccesoDatos();
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@IdDia", idDia),
                 new SqlParameter("@IdEspecialidad", idEspecialidad),
-                new SqlParameter("@Legajo",LegajoMedico)
+                new SqlParameter("@Legajo", LegajoMedico != 0 ? LegajoMedico : (object)DBNull.Value),
+                new SqlParameter("@IdDia", idDia != 0 ? idDia : (object)DBNull.Value)
+
             };
-            DataTable tablaHoras = acceso.EjecutarConsultaSelectDataAdapter("SP_RetornarHorasTurnos");
-            if (tablaHoras != null)
+            DataTable tablaHoras = acceso.EjecutarConsultaSelectDataAdapter("SP_RetornarHorasTurnos", parametros);
+            if (tablaHoras != null && tablaHoras.Rows.Count > 0)
             {
                 ddlHoras.DataSource = tablaHoras;
                 ddlHoras.DataTextField = "Hora";
