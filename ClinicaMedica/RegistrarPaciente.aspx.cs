@@ -22,6 +22,16 @@ namespace ClinicaMedica
             {
                 gestorDdl.CargarProvincias(ddlProvincias);
                 gestorDdl.CargarLocalidades(ddlLocalidades, 0);
+
+                if (Session["UsuarioActivo"] != null)
+                {
+                    Usuario usuario = (Usuario)Session["UsuarioActivo"];
+                    lblBienvenidoUsuario.Text = usuario.NombreUsuario + " " + usuario.ApellidoUsuario;
+                }
+                else
+                {
+                    Response.Redirect("ListadoTurnos.aspx");
+                }
             }
         }
 
@@ -129,6 +139,13 @@ namespace ClinicaMedica
             lblMensaje.Text = string.Empty;
             LimpiarTxtBox();
             Response.Redirect("AsignacionTurnos.aspx");
+
+        }
+
+        protected void btnUnlogin_Click(object sender, EventArgs e)
+        {
+            Session["UsuarioActivo"] = null;
+            Response.Redirect("ListadoTurnos.aspx");
 
         }
     }

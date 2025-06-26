@@ -1,4 +1,5 @@
-﻿using Servicios;
+﻿using Entidades;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,6 +21,16 @@ namespace ClinicaMedica
             {
                 llenarGrillaMedicos();
                 gestorDdl.CargarEspecialidades(ddlEspecialidades);
+
+                if (Session["UsuarioActivo"] != null)
+                {
+                    Usuario usuario = (Usuario)Session["UsuarioActivo"];
+                    lblBienvenidoUsuario.Text = usuario.NombreUsuario + " " + usuario.ApellidoUsuario;
+                }
+                else
+                {
+                    Response.Redirect("ListadoTurnos.aspx");
+                }
             }
         }
         private void llenarGrillaMedicos(DataTable tabla = null)
@@ -89,6 +100,13 @@ namespace ClinicaMedica
                     lblMensaje.Text = "No se pudo dar de baja al médico.";
                 }
             }
+        }
+
+        protected void btnUnlogin_Click(object sender, EventArgs e)
+        {
+            Session["UsuarioActivo"] = null;
+            Response.Redirect("ListadoTurnos.aspx");
+
         }
     }
 }

@@ -33,5 +33,13 @@ namespace Servicios
         {
             return dmedico.ObtenerProxLegajo();
         }
+
+        public bool VerificarSiExiste(string DNI)
+        {
+           return dpaciente.verificarSiExistePaciente(DNI);
+
+
+           
+        }
     }
 }

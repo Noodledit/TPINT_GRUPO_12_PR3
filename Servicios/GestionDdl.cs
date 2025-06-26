@@ -121,7 +121,6 @@ namespace Servicios
                 new SqlParameter("@IdEspecialidad", idEspecialidad),
                 new SqlParameter("@Legajo", LegajoMedico != 0 ? LegajoMedico : (object)DBNull.Value),
                 new SqlParameter("@IdDia", idDia != 0 ? idDia : (object)DBNull.Value)
-
             };
             DataTable tablaHoras = acceso.EjecutarConsultaSelectDataAdapter("SP_RetornarHorasTurnos", parametros);
             if (tablaHoras != null && tablaHoras.Rows.Count > 0)

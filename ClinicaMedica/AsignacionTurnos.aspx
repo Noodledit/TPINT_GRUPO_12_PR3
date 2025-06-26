@@ -13,9 +13,9 @@
     <form id="form1" runat="server">
         <div class="header">
             <section>
-                <img src="Estilo/user.png" class="user-image" />
-                <asp:Label ID="lblBienvenidoUsuario" runat="server" Style="float: right; font-size: 15px; margin-right: 8px; letter-spacing: 2px; font-weight: bold; transform: translateY(+5px);" Text="Peter Lanzani"></asp:Label>
-            </section>
+    <asp:Button ID="btnUnlogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cerrar Sesion" CssClass="button" ValidationGroup="GrupoInicioSesion" OnClick="btnUnlogin_Click" />
+    <asp:Label ID="lblBienvenidoUsuario" runat="server" Style="float: right; font-size:15px ; margin-right: 8px; letter-spacing: 2px; font-weight: bold; transform: translateY(+5px);"></asp:Label>
+</section>
             <div class="titulo-header">
                 <h1>Clinica Medica</h1>
                 <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica" />
@@ -52,12 +52,10 @@
                     <asp:DropDownList ID="ddlMedicos" autopostback="true" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged" Enabled="False" ></asp:DropDownList>
                     <br />
                     <span style="color: white; font-size: 20px;">Fecha:</span>
-                    <asp:DropDownList ID="ddlFechas" AutoPostBack="true" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlFecha_SelectedIndexChanged" Enabled="False" >
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlFechas" AutoPostBack="true" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlFecha_SelectedIndexChanged" Enabled="False" ></asp:DropDownList>
                     <br />
                     <span style="color: white; font-size: 20px;">Hora:</span>
-                    <asp:DropDownList ID="ddlHoras" AutoPostBack="true" runat="server" CssClass="txtBox-caja" Enabled="False" >
-                    </asp:DropDownList>                    
+                    <asp:DropDownList ID="ddlHoras" AutoPostBack="true" runat="server" CssClass="txtBox-caja" Enabled="False" ></asp:DropDownList>                    
                 </div>
                 <div style="margin: 25px 10px 5px 20px;">
                     <asp:Button ID="btnAsignarTurno" runat="server" CssClass="button" Text="Asignar Turno" Width="210px" Height="40" OnClick="btnAsignarTurno_Click" />

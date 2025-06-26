@@ -1,4 +1,5 @@
-﻿using Servicios;
+﻿using Entidades;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -11,12 +12,23 @@ namespace ClinicaMedica
 {
     public partial class AsignacionTurnos : System.Web.UI.Page
     {
+        private GestionRegistros GestorReg = new GestionRegistros();
         private GestionDdl gestorDdl = new GestionDdl();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 gestorDdl.CargarEspecialidades(ddlEspecialidades);
+
+                if (Session["UsuarioActivo"] != null)
+                {
+                    Usuario usuario = (Usuario)Session["UsuarioActivo"];
+                    lblBienvenidoUsuario.Text = usuario.NombreUsuario + " " + usuario.ApellidoUsuario;
+                }
+                else
+                {
+                    Response.Redirect("ListadoTurnos.aspx");
+                }
             }
         }
 
@@ -28,6 +40,8 @@ namespace ClinicaMedica
         protected void btnAsignarTurno_Click(object sender, EventArgs e)
         {
             Session["DniSeleccionado"] = txtDni.Text.Trim();
+
+            bool existe = GestorReg.VerificarSiExiste(txtDni.Text.Trim());
 
 
             Response.Redirect("RegistrarPaciente.aspx");
@@ -43,13 +57,26 @@ namespace ClinicaMedica
                 ddlMedicos.Enabled = true;
                 ddlFechas.Enabled = true;
                 ddlHoras.Enabled = true;
+
                 gestorDdl.CargarFechas(ddlFechas, idEspecialidadSeleccionada);
                 if (ddlFechas.Items.Count == 0) 
                 {
                     ddlFechas.Enabled = false;
                 }
+
                 gestorDdl.CargarMedicos(ddlMedicos, idEspecialidadSeleccionada);
+
+                gestorDdl.CargarFechas(ddlFechas, idEspecialidadSeleccionada);
+                if (ddlFechas.Items.Count == 0)
+                {
+                    ddlFechas.Enabled = false;
+                }
+
                 gestorDdl.CargarHoras(ddlHoras, idEspecialidadSeleccionada);
+                if (ddlHoras.Items.Count == 0)
+                {
+                    ddlHoras.Enabled = false;
+                }
             }
             else
             {
@@ -91,6 +118,13 @@ namespace ClinicaMedica
                 }
                 gestorDdl.CargarHoras(ddlHoras, idEspecialidadSeleccionada, idFechaSeleccionada, LegajoSeleccionado);
             }
+        }
+
+        protected void btnUnlogin_Click(object sender, EventArgs e)
+        {
+            Session["UsuarioActivo"] = null;
+            Response.Redirect("ListadoTurnos.aspx");
+
         }
     }
 }
