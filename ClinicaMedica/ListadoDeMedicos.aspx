@@ -13,9 +13,9 @@
     <form id="form1" runat="server">
         <div class="header">
             <section>
-                <img src="Estilo/user.png" class="user-image" />
-                <asp:Label ID="lblBienvenidoUsuario" runat="server" Style="float: right; font-size: 15px; margin-right: 8px; letter-spacing: 2px; font-weight: bold; transform: translateY(+5px);" Text="Peter Lanzani"></asp:Label>
-            </section>
+    <asp:Button ID="btnUnlogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cerrar Sesion" CssClass="button" ValidationGroup="GrupoInicioSesion" OnClick="btnUnlogin_Click" />
+    <asp:Label ID="lblBienvenidoUsuario" runat="server" Style="float: right; font-size:15px ; margin-right: 8px; letter-spacing: 2px; font-weight: bold; transform: translateY(+5px);"></asp:Label>
+</section>
             <div class="titulo-header">
                 <h1>Clinica Medica</h1>
                 <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica" />
@@ -37,6 +37,8 @@
                 <div style="display: flex; align-items: center; gap: 20px;">
                     <asp:Button ID="btnBuscarMeds" runat="server" CssClass="button" Text="Buscar Médicos" Width="210" Height="40" OnClick="btnBuscarMeds_Click" />
                     <asp:TextBox ID="txtBuscadorMeds" runat="server" CssClass="txtBox-caja" placeholder="Ingrese Legajo" Style=" margin-top: 18px;"></asp:TextBox>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                 </div>
                 <div style="display: flex; align-items: center; gap: 20px;">
                     <asp:Button ID="btnFiltrarEspecialidad" runat="server" CssClass="button" Text="Filtrar por Especialidad" Width="210" Height="40" OnClick="btnFiltrarEspecialidad_Click" />

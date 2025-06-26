@@ -1,4 +1,5 @@
-﻿using Servicios;
+﻿using Entidades;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -18,6 +19,16 @@ namespace ClinicaMedica
             if (!IsPostBack)
             {
                 gestorDdl.CargarEspecialidades(ddlEspecialidades);
+
+                if (Session["UsuarioActivo"] != null)
+                {
+                    Usuario usuario = (Usuario)Session["UsuarioActivo"];
+                    lblBienvenidoUsuario.Text = usuario.NombreUsuario + " " + usuario.ApellidoUsuario;
+                }
+                else
+                {
+                    Response.Redirect("ListadoTurnos.aspx");
+                }
             }
         }
 
@@ -100,6 +111,13 @@ namespace ClinicaMedica
                 }
                 gestorDdl.CargarHoras(ddlHoras, idEspecialidadSeleccionada, idFechaSeleccionada, LegajoSeleccionado);
             }
+        }
+
+        protected void btnUnlogin_Click(object sender, EventArgs e)
+        {
+            Session["UsuarioActivo"] = null;
+            Response.Redirect("ListadoTurnos.aspx");
+
         }
     }
 }
