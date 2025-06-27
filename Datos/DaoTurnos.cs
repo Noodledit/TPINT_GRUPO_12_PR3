@@ -36,6 +36,7 @@ namespace Datos
 
         public int registrarTurno(Turno turno)
         {
+            int retorno;
 
             SqlCommand command = new SqlCommand();
 
@@ -46,10 +47,10 @@ namespace Datos
             command.Parameters.AddWithValue("@LegajoDoctor", turno.legajoMed);
             command.Parameters.AddWithValue("@Horario", turno.Horas);
 
-            ds.EjecutarProcedimientoAlmacenado(command, "SP_AsignarTurno");
+            retorno = ds.EjecutarProcedimientoAlmacenado(command, "SP_AsignarTurno");
 
 
-            return 0;
+            return retorno;
 
 
         }

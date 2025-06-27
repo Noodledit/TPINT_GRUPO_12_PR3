@@ -110,13 +110,9 @@ namespace Servicios
                 ddlFechas.DataValueField = "IdDia";
                 ddlFechas.DataBind();
 
-                //Agrego La semana como un atributo "Oculto" para evitar dañar la logica establecida
+                
                 ddlFechas.Items.Insert(0, new ListItem("Seleccione Fecha", "0"));
 
-                for (int i = 0; i < tablaFechas.Rows.Count; i++)
-                {
-                    ddlFechas.Items[i].Attributes["data-IDSemana"] = tablaFechas.Rows[i]["Semana"].ToString();
-                }
             }
         }
 

@@ -46,9 +46,12 @@ namespace ClinicaMedica
             bool existe = GestorReg.VerificarSiExiste(txtDni.Text.Trim());
 
 
-            if (!existe)
+            if (existe == true)
             {
-                Turno NuevoTurno = new Turno(txtDni.Text.Trim(), /*int.Parse(ddlFechas.SelectedItem.Attributes["data-IDSemana"])*/1, int.Parse(ddlFechas.SelectedValue), int.Parse(ddlEspecialidades.SelectedValue), int.Parse(ddlMedicos.SelectedValue), TimeSpan.Parse(ddlHoras.SelectedValue));
+                int IdSemana = 1;//Falta hacer la toma de idsemana en cargar fecha o similar
+
+
+                Turno NuevoTurno = new Turno(txtDni.Text.Trim(),IdSemana, int.Parse(ddlFechas.SelectedValue), int.Parse(ddlEspecialidades.SelectedValue), int.Parse(ddlMedicos.SelectedValue), TimeSpan.Parse(ddlHoras.SelectedValue));
                
                /* Turno nuevoTurno = new Turno(
                     "111222333",     // DNI del paciente
@@ -87,11 +90,11 @@ namespace ClinicaMedica
                 ddlFechas.Enabled = true;
                 ddlHoras.Enabled = true;
 
-                gestorDdl.CargarFechas(ddlFechas, idEspecialidadSeleccionada);
+               /* gestorDdl.CargarFechas(ddlFechas, idEspecialidadSeleccionada);
                 if (ddlFechas.Items.Count == 0) 
                 {
                     ddlFechas.Enabled = false;
-                }
+                }*///Es necesario llamar dos veces?
 
                 gestorDdl.CargarMedicos(ddlMedicos, idEspecialidadSeleccionada);
 
@@ -143,7 +146,7 @@ namespace ClinicaMedica
             {
                 if (idFechaSeleccionada == 0)
                 {
-                    gestorDdl.CargarFechas(ddlFechas, idEspecialidadSeleccionada, idFechaSeleccionada);
+                    gestorDdl.CargarFechas(ddlFechas, idEspecialidadSeleccionada, /*idFechaSeleccionada*/ LegajoSeleccionado);
                 }
                 gestorDdl.CargarHoras(ddlHoras, idEspecialidadSeleccionada, idFechaSeleccionada, LegajoSeleccionado);
             }

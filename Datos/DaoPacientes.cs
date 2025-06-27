@@ -40,6 +40,8 @@ namespace Datos
             SqlCommand comand = new SqlCommand();
             comand.Parameters.AddWithValue("@DniPaciente", DNI);
 
+            //Esto esta mal hay que ver como pasar bien el valor
+
             bool Result = Convert.ToBoolean(ds.EjecutarProcedimientoAlmacenado(comand, "SP_RevisionDniPaciente"));
 
              

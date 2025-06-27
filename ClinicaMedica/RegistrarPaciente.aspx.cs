@@ -90,7 +90,8 @@ namespace ClinicaMedica
             {
                 lblMensaje.Text = "Se registro correctamente al paciente";
                 lblMensaje.Visible = true;
-    
+                LimpiarTxtBox();
+                Response.Redirect("AsignacionTurnos.aspx");
             }
             else
             {
@@ -101,7 +102,7 @@ namespace ClinicaMedica
 
 
 
-            LimpiarTxtBox();
+            
         }
 
         private void LimpiarTxtBox()

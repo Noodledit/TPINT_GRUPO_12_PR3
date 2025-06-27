@@ -39,8 +39,6 @@ namespace Servicios
         {
            return dpaciente.verificarSiExistePaciente(DNI);
 
-
-           
         }
 
         public bool RegistrarTurno(Turno turno)
