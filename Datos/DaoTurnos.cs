@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Datos
 {
@@ -29,6 +32,26 @@ namespace Datos
             //    LEFT JOIN DatosPersonales AS Paciente ON TurnosDisponibles.DniPaciente = Paciente.Dni_DP
             //    ";
             return ds.EjecutarConsultaSelectDataAdapter(ProcedimientoAlmacenado);
+        }
+
+        public int registrarTurno(Turno turno)
+        {
+
+            SqlCommand command = new SqlCommand();
+
+            command.Parameters.AddWithValue("@DniPaciente",turno.DniPaciente);
+            command.Parameters.AddWithValue("@Semana", turno.SemanaID);
+            command.Parameters.AddWithValue("@IdDia",turno.idDia);
+            command.Parameters.AddWithValue("@IDEspecialidad", turno.IDEspecialidad);
+            command.Parameters.AddWithValue("@LegajoDoctor", turno.legajoMed);
+            command.Parameters.AddWithValue("@Horario", turno.Horas);
+
+            ds.EjecutarProcedimientoAlmacenado(command, "SP_AsignarTurno");
+
+
+            return 0;
+
+
         }
     }
 }

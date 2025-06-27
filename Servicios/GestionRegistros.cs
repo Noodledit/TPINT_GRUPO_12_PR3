@@ -12,6 +12,7 @@ namespace Servicios
     {
         DaoPacientes dpaciente = new DaoPacientes();
         DaoMedicos dmedico = new DaoMedicos();
+        DaoTurnos dTurnos = new DaoTurnos();
 
         public bool RegistrarPaciente(Paciente paciente)
         {
@@ -40,6 +41,18 @@ namespace Servicios
 
 
            
+        }
+
+        public bool RegistrarTurno(Turno turno)
+        {
+            
+            int retorno = dTurnos.registrarTurno(turno);
+            if (retorno > 0)
+            {
+                return true;
+            }
+            else { return false; }
+
         }
     }
 }

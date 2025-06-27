@@ -41,11 +41,32 @@ namespace ClinicaMedica
         {
             Session["DniSeleccionado"] = txtDni.Text.Trim();
 
+
+
             bool existe = GestorReg.VerificarSiExiste(txtDni.Text.Trim());
 
-            if (existe == true)
+
+            if (!existe)
             {
-              //  Turno(ddlEspecialidades.SelectedValue, )
+                Turno NuevoTurno = new Turno(txtDni.Text.Trim(), /*int.Parse(ddlFechas.SelectedItem.Attributes["data-IDSemana"])*/1, int.Parse(ddlFechas.SelectedValue), int.Parse(ddlEspecialidades.SelectedValue), int.Parse(ddlMedicos.SelectedValue), TimeSpan.Parse(ddlHoras.SelectedValue));
+               
+               /* Turno nuevoTurno = new Turno(
+                    "111222333",     // DNI del paciente
+                    1,             // IDSemana
+                    3,              // IdDia
+                    3,              // IdEspecialidad
+                    13,             // Legajo del médico
+                    new TimeSpan(08, 00, 0)     // Horario (10:30:00)*/
+//);
+                bool Result = GestorReg.RegistrarTurno(NuevoTurno);
+
+                if (Result == true)
+                {
+                    //Funciono
+                }
+                else {
+                //No Funciono
+                }
             }
             else {
              Response.Redirect("RegistrarPaciente.aspx");

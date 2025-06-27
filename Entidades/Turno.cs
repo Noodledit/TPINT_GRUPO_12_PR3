@@ -8,17 +8,22 @@ namespace Entidades
 {
     public class Turno
     {
-        private int IDEspecialidad { get; set; }
-        private int legajoMed { get; set; }
-        private DateTime Fecha { get; set; }
-        private TimeSpan Horas { get; set; }
+        public string DniPaciente { get; set; }
+        public int SemanaID { get; set; }
+        public int idDia { get; set; }
+        public int IDEspecialidad { get; set; }
+        public int legajoMed { get; set; }
+       // public DateTime Fecha { get; set; }
+        public TimeSpan Horas { get; set; }
 
 
-        public Turno(int iDEspecialidad, int legajoMed, DateTime fecha, TimeSpan horas)
+        public Turno(string dnipaciente,int semanaid,int iddia, int iDEspecialidad, int legajoMed, TimeSpan horas)
         {
+            DniPaciente = dnipaciente;
+            SemanaID = semanaid;
+            idDia = iddia;
             IDEspecialidad = iDEspecialidad;
             this.legajoMed = legajoMed;
-            Fecha = fecha;
             Horas = horas;
         }
     }
