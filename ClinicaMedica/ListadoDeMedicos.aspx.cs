@@ -108,5 +108,11 @@ namespace ClinicaMedica
             Response.Redirect("ListadoTurnos.aspx");
 
         }
+
+        protected void gvMedicos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvMedicos.PageIndex = e.NewPageIndex;
+            llenarGrillaMedicos();
+        }
     }
 }

@@ -80,6 +80,7 @@ namespace ClinicaMedica
             ComprobacionDeSesion();
         }
 
+
         protected void HabilitacionDeAcceso()
         {
             if (Session["UsuarioActivo"] != null)
@@ -87,7 +88,7 @@ namespace ClinicaMedica
                 if (((Usuario)Session["UsuarioActivo"]).TipoUsuario > 1)
                 {
                     hlAgregarMedico.Visible = true;
-              
+
                     hlAsignarTurnos.Visible = true;
                     hlInformes.Visible = true;
                     hlListarMedicos.Visible = true;
@@ -106,7 +107,7 @@ namespace ClinicaMedica
             else
             {
                 hlAgregarMedico.Visible = false;
-               
+
                 hlAsignarTurnos.Visible = false;
                 hlInformes.Visible = false;
                 hlListarMedicos.Visible = false;
@@ -118,6 +119,12 @@ namespace ClinicaMedica
                 btnConsultarEstado.Visible = false;
                 ddlEstados.Visible = false;
             }
+        }
+
+        protected void gvTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvTurnos.PageIndex = e.NewPageIndex;
+            gvTurnos.DataBind();
         }
     }
 }

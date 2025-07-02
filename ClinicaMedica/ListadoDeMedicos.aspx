@@ -46,7 +46,7 @@
                     </asp:DropDownList>
                 </div>
 
-                <asp:GridView ID="gvMedicos" runat="server" AutoGenerateColumns="False" CssClass="tabla-turnos" OnRowCommand="gvMedicos_RowCommand">
+                <asp:GridView ID="gvMedicos" runat="server" AutoGenerateColumns="False" CssClass="tabla-turnos" OnRowCommand="gvMedicos_RowCommand" AllowPaging="True" OnPageIndexChanging="gvMedicos_PageIndexChanging" PageSize="5">
                         <Columns>
                             <asp:TemplateField HeaderText="Legajo">
                                 <ItemTemplate>
