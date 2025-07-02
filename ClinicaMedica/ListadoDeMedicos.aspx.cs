@@ -46,14 +46,36 @@ namespace ClinicaMedica
         protected void btnBuscarMeds_Click(object sender, EventArgs e)
         {
             string legajo = txtBuscadorMeds.Text.Trim();
-            DataTable tablaFiltrada = gestorTablas.ObtenerTablaMedicosPorLegajo(legajo);
-            if (tablaFiltrada.Rows.Count > 0)
+            string nombre = txtBuscadorNombre.Text.Trim();
+            DataTable tablaFiltrada = null;
+
+            // Validación: solo uno de los campos debe estar completo
+            if (!string.IsNullOrEmpty(legajo) && !string.IsNullOrEmpty(nombre))
+            {
+                lblMensaje.Text = "Por favor, complete solo uno de los campos de búsqueda.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                llenarGrillaMedicos();
+                return;
+            }
+            // si el campo de legajo está completo, filtramos por legajo
+            if (!string.IsNullOrEmpty(legajo))
+            {
+                tablaFiltrada = gestorTablas.ObtenerTablaMedicosPorLegajo(legajo);
+            }
+            // si el campo de nombre está completo, filtramos por nombre
+            else if (!string.IsNullOrEmpty(nombre))
+            {
+                tablaFiltrada = gestorTablas.ObtenerTablaMedicosPorNombre(nombre);
+            }
+            // si ninguno de los campos está completo, mostramos todos los médicos
+            if (tablaFiltrada != null && tablaFiltrada.Rows.Count > 0)
             {
                 llenarGrillaMedicos(tablaFiltrada);
+                lblMensaje.Text = "";
             }
             else
             {
-                lblMensaje.Text = "No se encontraron médicos con el legajo.";
+                lblMensaje.Text = "No se encontraron médicos con esos criterios.";
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
                 llenarGrillaMedicos();
             }
