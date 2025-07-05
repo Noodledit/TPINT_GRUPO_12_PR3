@@ -12,11 +12,11 @@
     <form id="form1" runat="server">
         <div class="header">
             <section>
-                <asp:Button ID="btnUnlogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cerrar Sesion" CssClass="button" OnClick="btnUnlogin_Click" ValidationGroup="GrupoInicioSesion" Visible="False" />
-                <asp:Button ID="btnLogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Ingresar" CssClass="button" OnClick="btnLogin_Click" ValidationGroup="GrupoInicioSesion" />
-                <asp:TextBox ID="txtContrasenia" runat="server" CssClass="txtBox-login" Style="float: right; margin-right: 10px; height: 20px;" TextMode="Password" ValidationGroup="GrupoInicioSesion"></asp:TextBox>
+                <asp:Button ID="btnUnlogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cerrar Sesion" CssClass="button" OnClick="btnUnlogin_Click" ValidationGroup="GrupoInicioSesion" Visible="False" TabIndex="3" />
+                <asp:Button ID="btnLogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Ingresar" CssClass="button" OnClick="btnLogin_Click" ValidationGroup="GrupoInicioSesion" TabIndex="3"/>
+                <asp:TextBox ID="txtContrasenia" runat="server" CssClass="txtBox-login" Style="float: right; margin-right: 10px; height: 20px;" TextMode="Password" ValidationGroup="GrupoInicioSesion" TabIndex="2"></asp:TextBox>
                 <asp:Label ID="lblContrasenia" runat="server" Style="float: right; margin-right: 2px; font-size: 15px;" Text="Contraseña:"></asp:Label>
-                <asp:TextBox ID="txtUsuario" runat="server" CssClass="txtBox-login" Style="float: right; margin-right: 10px; height: 20px;" ValidationGroup="GrupoInicioSesion"></asp:TextBox>
+                <asp:TextBox ID="txtUsuario" runat="server" CssClass="txtBox-login" Style="float: right; margin-right: 10px; height: 20px;" ValidationGroup="GrupoInicioSesion" TabIndex="1"></asp:TextBox>
                 <asp:Label ID="lblNombreUsuario" runat="server" Style="float: right; margin-right: 4px; font-size: 15px;" Text="Nombre de usuario:"></asp:Label>
                 <asp:Label ID="lblBienvenidoUsuario" runat="server" Style="float: right; margin-right: 10px;" Font-Bold="True"></asp:Label>
             </section>
@@ -24,13 +24,12 @@
                 <h1>Clinica Medica</h1>
                 <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica" />
                 <div class="header-links">
-                    <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link-active" NavigateUrl="ListadoTurnos.aspx" Text="Listado de Turnos" Visible="False"></asp:HyperLink>
-                    <asp:HyperLink ID="hlSeguimientoPaciente" runat="server" CssClass="header-link" Text="Seguimiento Paciente" Visible="False"></asp:HyperLink>
-                    
-                    <asp:HyperLink ID="hlAgregarMedico" runat="server" CssClass="header-link" NavigateUrl="RegistrarMedico.aspx" Text="Agregar Medico" Visible="False"></asp:HyperLink>
-                    <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="AsignacionTurnos.aspx" Text="Asignar Turnos" Visible="False"></asp:HyperLink>
-                    <asp:HyperLink ID="hlListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos" Visible="False"></asp:HyperLink>
-                    <asp:HyperLink ID="hlInformes" runat="server" CssClass="header-link" NavigateUrl="Informes.aspx" Text="Informes" Visible="False"></asp:HyperLink>
+                    <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link-active" NavigateUrl="ListadoTurnos.aspx" Text="Listado de Turnos" Visible="False" TabIndex="-1"></asp:HyperLink>
+                    <asp:HyperLink ID="hlSeguimientoPaciente" runat="server" CssClass="header-link" Text="Seguimiento Paciente" Visible="False" TabIndex="4"></asp:HyperLink>
+                    <asp:HyperLink ID="hlAgregarMedico" runat="server" CssClass="header-link" NavigateUrl="RegistrarMedico.aspx" Text="Agregar Medico" Visible="False" TabIndex="5"></asp:HyperLink>
+                    <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="AsignacionTurnos.aspx" Text="Asignar Turnos" Visible="False" TabIndex="6"></asp:HyperLink>
+                    <asp:HyperLink ID="hlListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos" Visible="False" TabIndex="7"></asp:HyperLink>
+                    <asp:HyperLink ID="hlInformes" runat="server" CssClass="header-link" NavigateUrl="Informes.aspx" Text="Informes" Visible="False" TabIndex="8"></asp:HyperLink>
                 </div>
             </div>
         </div>
@@ -38,22 +37,23 @@
             <div class="solapa">
                 Turnos Asignados
             </div>
-            <div class="caja">
-                <div style="display: flex; align-items: center; gap: 20px;">
-                    <asp:Button ID="btnBuscar" runat="server"  Text="Consultar Turno" CssClass="button" Width="210px" Height="40" />
-                    <asp:TextBox ID="txtBuscador" runat="server" placeholder="Ingrese Dni" CssClass="txtBox-caja" Style=" margin-top: 18px;"> </asp:TextBox>
-                <div style="display: flex; align-items: center; gap: 20px;">
-                    <asp:Button ID="btnFiltroFecha" runat="server" Text="Consultar por Fecha" CssClass="button" Width="210px" Height="40" Visible="False" />
-                    <asp:DropDownList ID="ddlFechas" runat="server" CssClass="txtBox-caja" Style=" margin-top: 18px;" Visible="False"></asp:DropDownList>
+                        <div class="caja">
+                <div style="display: flex; align-items: center; gap: 20px; padding-left: 10px;">
+                    <asp:TextBox ID="txtBuscador" runat="server" placeholder="Ingrese Dni" CssClass="txtBox-caja" Style=" margin-top: 18px;" TabIndex="8"> </asp:TextBox>
+                    <asp:Button ID="btnBuscar" runat="server"  Text="Consultar Turno" CssClass="button" Width="210px" Height="40" TabIndex="9"/>
+                    
+                <div style="display: flex; align-items: center; gap: 20px">
+                    <asp:DropDownList ID="ddlFechas" runat="server" CssClass="txtBox-caja" Style=" margin-top: 18px;" Visible="False" TabIndex="10"></asp:DropDownList>
+                    <asp:Button ID="btnFiltroFecha" runat="server" Text="Consultar por Fecha" CssClass="button" Width="210px" Height="40px" Visible="False" TabIndex="11"/>
+                    
                     <br />
                     <br />
                 </div>
                 </div>
-                <div style="display: flex; align-items: center; gap: 20px;">
-                            <asp:Button ID="btnMostrarTodo" runat="server" Text="Mostrar Todo" CssClass="button" Style="font-size: 14px" Visible="False"/>
-                            <asp:Button ID="btnConsultarEstado" runat="server" Text="Consultar por Estado" Width="200px" CssClass="button" Style="font-size: 14px" Visible="False" />
-                            <asp:DropDownList ID="ddlEstados" runat="server" CssClass="txtBox-caja"  Style="margin-top: 18px; height: 24px; width:200px; font-size: 14px;" Visible="False">
-                            </asp:DropDownList>
+                <div style="display: flex; align-items: center; gap: 20px; padding-left: 10px;">
+                    <asp:DropDownList ID="ddlEstados" runat="server" CssClass="txtBox-caja"  Style="margin-top: 18px; font-size: 14px;" Visible="False" TabIndex="11"></asp:DropDownList>
+                    <asp:Button ID="btnConsultarEstado" runat="server" Text="Consultar por Estado" Style=" width: 210px; height: 40px; font-size: 14px" CssClass="button" Visible="False" TabIndex="12"/>
+                    <asp:Button ID="btnMostrarTodo" runat="server" Text="Mostrar Todo" CssClass="button" Style="font-size: 14px; margin-left: auto;" Visible="False" TabIndex="13"/>
                     <br />
                     <br />
                 </div>
