@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -37,15 +38,24 @@ namespace Datos
 
         public bool verificarSiExistePaciente(string DNI)
         {
-            SqlCommand comand = new SqlCommand();
-            comand.Parameters.AddWithValue("@DniPaciente", DNI);
+            using (SqlConnection conexion = ds.connection())
+            {
+                SqlCommand comando = new SqlCommand("SP_RevisionDniPaciente", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
 
-            //Esto esta mal hay que ver como pasar bien el valor
+                // Parámetro de entrada
+                comando.Parameters.AddWithValue("@DniPaciente", DNI);
 
-            bool Result = Convert.ToBoolean(ds.EjecutarProcedimientoAlmacenado(comand, "SP_RevisionDniPaciente"));
+                // Parámetro de retorno
+                SqlParameter retorno = new SqlParameter();
+                retorno.Direction = ParameterDirection.ReturnValue;
+                comando.Parameters.Add(retorno);
 
-             
-            return Result;
+                comando.ExecuteNonQuery();
+
+                int valorRetornado = Convert.ToInt32(retorno.Value);
+                return valorRetornado == 1;
+            }
         }
 
 

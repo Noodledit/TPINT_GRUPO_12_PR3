@@ -39,44 +39,89 @@ namespace ClinicaMedica
 
         protected void btnAsignarTurno_Click(object sender, EventArgs e)
         {
-            Session["DniSeleccionado"] = txtDni.Text.Trim();
-
-
-
-            bool existe = GestorReg.VerificarSiExiste(txtDni.Text.Trim());
-
-
-            if (existe == true)
+            // Validaciones previas
+            string dniPaciente = txtDni.Text.Trim();
+            if (string.IsNullOrEmpty(dniPaciente))
             {
-                int IdSemana = 1;//Falta hacer la toma de idsemana en cargar fecha o similar
-
-
-                Turno NuevoTurno = new Turno(txtDni.Text.Trim(),IdSemana, int.Parse(ddlFechas.SelectedValue), int.Parse(ddlEspecialidades.SelectedValue), int.Parse(ddlMedicos.SelectedValue), TimeSpan.Parse(ddlHoras.SelectedValue));
-               
-               /* Turno nuevoTurno = new Turno(
-                    "111222333",     // DNI del paciente
-                    1,             // IDSemana
-                    3,              // IdDia
-                    3,              // IdEspecialidad
-                    13,             // Legajo del médico
-                    new TimeSpan(08, 00, 0)     // Horario (10:30:00)*/
-//);
-                bool Result = GestorReg.RegistrarTurno(NuevoTurno);
-
-                if (Result == true)
-                {
-                    //Funciono
-                }
-                else {
-                //No Funciono
-                }
-            }
-            else {
-             Response.Redirect("RegistrarPaciente.aspx");
+                lblMensaje.Text = "Debe ingresar el DNI del paciente.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Visible = true;
+                return;
             }
 
+            if (ddlEspecialidades.SelectedValue == "0" ||
+                ddlMedicos.SelectedValue == "0" ||
+                ddlFechas.SelectedValue == "0" ||
+                ddlHoras.SelectedValue == "0")
+            {
+                lblMensaje.Text = "Debe seleccionar especialidad, médico, fecha y hora.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Visible = true;
+                return;
+            }
 
-               
+            // Verificar existencia del paciente
+            bool existe = GestorReg.VerificarSiExiste(dniPaciente);
+            if (!existe)
+            {
+                Response.Redirect("RegistrarPaciente.aspx");
+                return;
+            }
+
+            // Mostrar panel de confirmación
+            pnlConfirmacion.Visible = true;
+            btnAsignarTurno.Visible = false;
+            lblMensaje.Visible = false;
+
+            // Guardar datos en sesión para usarlos en la confirmación
+            Session["TurnoPendiente"] = new Turno(
+                dniPaciente,
+                1, 
+                int.Parse(ddlFechas.SelectedValue),
+                int.Parse(ddlEspecialidades.SelectedValue),
+                int.Parse(ddlMedicos.SelectedValue),
+                TimeSpan.Parse(ddlHoras.SelectedValue)
+            );
+        }
+
+        protected void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            // Recuperar el turno pendiente de la sesión
+            Turno nuevoTurno = Session["TurnoPendiente"] as Turno;
+            if (nuevoTurno == null)
+            {
+                lblMensaje.Text = "Error interno. Vuelva a intentarlo.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Visible = true;
+                pnlConfirmacion.Visible = false;
+                btnAsignarTurno.Visible = true;
+                return;
+            }
+
+            bool resultado = GestorReg.RegistrarTurno(nuevoTurno);
+
+            lblMensaje.Visible = true;
+            if (resultado)
+            {
+                lblMensaje.Text = "Se agregó correctamente en la base de datos";
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
+            }
+            else
+            {
+                lblMensaje.Text = "No se pudo asignar el turno. Intente nuevamente.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+            }
+            pnlConfirmacion.Visible = false;
+            btnAsignarTurno.Visible = true;
+            Session.Remove("TurnoPendiente");
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            pnlConfirmacion.Visible = false;
+            btnAsignarTurno.Visible = true;
+            lblMensaje.Visible = false;
+            Session.Remove("TurnoPendiente");
         }
 
         protected void ddlEspecilidad_SelectedIndexChanged(object sender, EventArgs e)

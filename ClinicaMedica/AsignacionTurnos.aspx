@@ -59,6 +59,15 @@
                 </div>
                 <div style="margin: 25px 10px 5px 20px;">
                     <asp:Button ID="btnAsignarTurno" runat="server" CssClass="button" Text="Asignar Turno" Width="210px" Height="40" OnClick="btnAsignarTurno_Click" />
+
+                    <asp:Panel ID="pnlConfirmacion" runat="server" Visible="false" CssClass="panel-confirmacion" style="margin-top:15px;">
+                        <asp:Label ID="lblConfirmacion" runat="server" Text="¿Está seguro de que desea asignar este turno?" />
+                        <br />
+                        <asp:Button ID="btnConfirmar" runat="server" Text="Sí" OnClick="btnConfirmar_Click" CssClass="button" />
+                        <asp:Button ID="btnCancelar" runat="server" Text="No" OnClick="btnCancelar_Click" CssClass="button" />
+                    </asp:Panel>
+
+                    <asp:Label ID="lblMensaje" runat="server" Visible="false"></asp:Label>
                 </div>
 
 

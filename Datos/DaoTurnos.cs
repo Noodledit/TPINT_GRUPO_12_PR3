@@ -36,23 +36,30 @@ namespace Datos
 
         public int registrarTurno(Turno turno)
         {
-            int retorno;
+            SqlCommand command = new SqlCommand
+            {
+                CommandType = CommandType.StoredProcedure,
+                CommandText = "SP_AsignarTurno"
+            };
 
-            SqlCommand command = new SqlCommand();
-
-            command.Parameters.AddWithValue("@DniPaciente",turno.DniPaciente);
+            command.Parameters.AddWithValue("@DniPaciente", turno.DniPaciente);
             command.Parameters.AddWithValue("@Semana", turno.SemanaID);
-            command.Parameters.AddWithValue("@IdDia",turno.idDia);
+            command.Parameters.AddWithValue("@IdDia", turno.idDia);
             command.Parameters.AddWithValue("@IDEspecialidad", turno.IDEspecialidad);
             command.Parameters.AddWithValue("@LegajoDoctor", turno.legajoMed);
             command.Parameters.AddWithValue("@Horario", turno.Horas);
 
-            retorno = ds.EjecutarProcedimientoAlmacenado(command, "SP_AsignarTurno");
+            // Agregar parámetro de salida
+            var resultadoParam = new SqlParameter("@Resultado", System.Data.SqlDbType.Int)
+            {
+                Direction = System.Data.ParameterDirection.Output
+            };
+            command.Parameters.Add(resultadoParam);
 
+            ds.EjecutarProcedimientoAlmacenado(command, "SP_AsignarTurno");
 
-            return retorno;
-
-
+            int resultado = (int)command.Parameters["@Resultado"].Value;
+            return resultado;
         }
     }
 }
