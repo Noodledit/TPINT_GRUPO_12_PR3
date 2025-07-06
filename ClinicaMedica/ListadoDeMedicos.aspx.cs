@@ -42,7 +42,6 @@ namespace ClinicaMedica
             gvMedicos.DataSource = tabla;
             gvMedicos.DataBind();
         }
-
         protected void btnBuscarMeds_Click(object sender, EventArgs e)
         {
             string legajo = txtBuscadorMeds.Text.Trim();
@@ -80,7 +79,6 @@ namespace ClinicaMedica
                 llenarGrillaMedicos();
             }
         }
-
         protected void btnFiltrarEspecialidad_Click(object sender, EventArgs e)
         {
             string idEspecialidad = ddlEspecialidades.SelectedValue;
@@ -96,7 +94,6 @@ namespace ClinicaMedica
                 llenarGrillaMedicos();
             }
         }
-
         protected void btnMostrarTodo_Click(object sender, EventArgs e)
         {
             llenarGrillaMedicos(null);
@@ -123,14 +120,11 @@ namespace ClinicaMedica
                 }
             }
         }
-
         protected void btnUnlogin_Click(object sender, EventArgs e)
         {
             Session["UsuarioActivo"] = null;
             Response.Redirect("ListadoTurnos.aspx");
-
         }
-
         protected void gvMedicos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvMedicos.PageIndex = e.NewPageIndex;
