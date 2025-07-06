@@ -34,7 +34,7 @@ namespace ClinicaMedica
 
         protected void btnUn_Login_Click(object sender, EventArgs e)
         {
-
+            Session["UsuarioActivo"] = null;
         }
 
         protected void btnAsignarTurno_Click(object sender, EventArgs e)

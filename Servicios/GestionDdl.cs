@@ -81,12 +81,12 @@ namespace Servicios
             }
         }
 
-        public void CargarFechas(DropDownList ddlFechas, int idEspecialidad, int LegajoMedico = 0)
+        public void CargarFechas(DropDownList ddlFechas, int idEspecialidad = 0, int LegajoMedico = 0)
         {
             acceso = new AccesoDatos();
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@IdEspecialidad", idEspecialidad),
+                new SqlParameter("@IdEspecialidad", idEspecialidad != 0 ? idEspecialidad : (object)DBNull.Value),
                 new SqlParameter("@Legajo", LegajoMedico != 0 ? LegajoMedico : (object)DBNull.Value)
             };
             DataTable tablaFechas = acceso.EjecutarConsultaSelectDataAdapter("SP_RetornarFechasTurnos", parametros);
