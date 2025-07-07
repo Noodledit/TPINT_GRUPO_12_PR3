@@ -141,15 +141,25 @@ namespace ClinicaMedica
 
         protected void gvTurnos_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+         
         }
 
         protected void gvTurnos_RowEditing(object sender, GridViewEditEventArgs e)
         {
-
+            gvTurnos.EditIndex = e.NewEditIndex;
+            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos();
+            gvTurnos.DataBind();
         }
 
         protected void gvTurnos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            //Logico de eliminar va aqui o el llamado a eliminar el turno, se hace a traves del mismo metodo de asignar turno,
+            //aunque hay que ver como exactamente, si no me equivoco creo que pasando los datos del turno sin el dni
+            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos();
+            gvTurnos.DataBind();
+        }
+
+        protected void gvTurnos_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
 
         }
