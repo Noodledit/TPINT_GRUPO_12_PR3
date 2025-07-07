@@ -33,7 +33,6 @@ namespace Datos
             
             //deberia devolver las filas cambiadas
             return ds.EjecutarProcedimientoAlmacenado(comand, "SP_RegistrarPaciente");
-
         }
 
         public bool verificarSiExistePaciente(string DNI)
