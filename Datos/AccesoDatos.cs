@@ -75,19 +75,16 @@ namespace Datos
 
         public int EjecutarProcedimientoAlmacenado(SqlCommand Comando, String Nombre)
         {
-            int FilasCambiadas;
+            int FilasAfectadas;
             SqlConnection Conexion = connection();
             SqlCommand cmd = new SqlCommand();
             cmd = Comando;
             cmd.Connection = Conexion;
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = Nombre;
-            FilasCambiadas = cmd.ExecuteNonQuery();
+            FilasAfectadas = cmd.ExecuteNonQuery();
             Conexion.Close();
-            return FilasCambiadas;
+            return FilasAfectadas;
         }
-
-        
-
     }
 }

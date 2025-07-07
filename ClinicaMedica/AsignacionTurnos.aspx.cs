@@ -61,6 +61,15 @@ namespace ClinicaMedica
             }
 
             // Verificar existencia del paciente
+            Session["TurnoPendiente"] = new Turno(
+                dniPaciente,
+                1, // Numero de Semana, hay que modificar
+                int.Parse(ddlFechas.SelectedValue),
+                int.Parse(ddlEspecialidades.SelectedValue),
+                int.Parse(ddlMedicos.SelectedValue),
+                TimeSpan.Parse(ddlHoras.SelectedValue)
+                );
+
             bool existe = GestorReg.VerificarSiExiste(dniPaciente);
             if (!existe)
             {
@@ -74,14 +83,6 @@ namespace ClinicaMedica
             lblMensaje.Visible = false;
 
             // Guardar datos en sesión para usarlos en la confirmación
-            Session["TurnoPendiente"] = new Turno(
-                dniPaciente,
-                1, 
-                int.Parse(ddlFechas.SelectedValue),
-                int.Parse(ddlEspecialidades.SelectedValue),
-                int.Parse(ddlMedicos.SelectedValue),
-                TimeSpan.Parse(ddlHoras.SelectedValue)
-            );
         }
 
         protected void btnConfirmar_Click(object sender, EventArgs e)
@@ -98,12 +99,13 @@ namespace ClinicaMedica
                 return;
             }
 
-            bool resultado = GestorReg.RegistrarTurno(nuevoTurno);
+            int resultado = GestorReg.RegistrarTurno(nuevoTurno);
 
             lblMensaje.Visible = true;
-            if (resultado)
+            if (resultado == 1)
             {
                 lblMensaje.Text = "Se agregó correctamente en la base de datos";
+                lblMensaje.Font.Bold = true;
                 lblMensaje.ForeColor = System.Drawing.Color.Green;
             }
             else
@@ -134,12 +136,6 @@ namespace ClinicaMedica
                 ddlMedicos.Enabled = true;
                 ddlFechas.Enabled = true;
                 ddlHoras.Enabled = true;
-
-               /* gestorDdl.CargarFechas(ddlFechas, idEspecialidadSeleccionada);
-                if (ddlFechas.Items.Count == 0) 
-                {
-                    ddlFechas.Enabled = false;
-                }*///Es necesario llamar dos veces?
 
                 gestorDdl.CargarMedicos(ddlMedicos, idEspecialidadSeleccionada);
 
@@ -201,7 +197,6 @@ namespace ClinicaMedica
         {
             Session["UsuarioActivo"] = null;
             Response.Redirect("ListadoTurnos.aspx");
-
         }
     }
 }

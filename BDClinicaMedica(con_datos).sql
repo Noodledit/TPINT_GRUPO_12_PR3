@@ -253,39 +253,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE SP_RetornarListaTurnos
-    @IdEspecialidad INT = NULL,
-    @DniPaciente VARCHAR(10) = NULL,
-    @Fecha DATE = NULL
-AS
-BEGIN
-SET NOCOUNT ON
-    SELECT     
-	CAST(Semana_TD AS VARCHAR) +'-'+
-    CAST(IdDia_TD AS VARCHAR) + '-' +
-    CAST(IdEspecialidad_TD AS VARCHAR) +  '-' +
-	CAST(LegajoDoctor AS VARCHAR) AS NumeroTurno, 
-	Especialidades.Nombre_Esp as Especialidad,
-	VistaMedicos.Nombre_DP + ' ' + VistaMedicos.Apellido_DP AS Doctor,
-	DatosDoctor.Telefono_DP AS TelefonoDoctor,
-	Fecha_TD as Fecha, 
-	Horario_TD as Horario,
-	DatosPaciente.Nombre_DP As NombrePaciente,
-	DniPaciente as DNIpaciente
 
-    FROM TurnosDisponibles 
-		INNER JOIN Especialidades ON IdEspecialidad_TD = Id_Esp 
-		--INNER JOIN VistaMedicos ON Id_Esp = IdEspecialidad_Me --Duplica si varios médicos tienen la misma especialidad.
-		INNER JOIN VistaMedicos ON VistaMedicos.Legajo_Me = TurnosDisponibles.LegajoDoctor
-		INNER JOIN DatosPersonales AS DatosDoctor ON DatosDoctor.Dni_DP = Dni_Me
-        LEFT JOIN DatosPersonales AS DatosPaciente ON DatosPaciente.Dni_DP = TurnosDisponibles.DniPaciente
-    WHERE (@IdEspecialidad IS NULL OR IdEspecialidad_TD = @IdEspecialidad)
-		AND (@DniPaciente IS NULL OR DniPaciente = @DniPaciente)
-		AND (@Fecha IS NULL OR Fecha_TD = @Fecha)
-        AND Estado_TD = 1
-	ORDER BY Semana_TD, IdDia_TD, Horario_TD
-END
-GO
 
 CREATE PROCEDURE SP_RegistrarMedico
 	@Dni VARCHAR(10),
@@ -365,7 +333,6 @@ CREATE PROCEDURE SP_RegistrarPaciente
 
 AS
 BEGIN
-SET NOCOUNT ON
 
 --NO ESTOY SEGURO DE SI TENEMOS QUE REVISAR SI EXISTEN LOS PACIENTES,
 --YA QUE NO SE SI PUEDAN REGISTRARSE MULTIPLES VECES, PERO DEJO EL METODO AQUI IGUAL
@@ -391,6 +358,96 @@ CREATE PROCEDURE SP_ObtenerProxLegajo
 AS
 BEGIN
     SELECT ISNULL(MAX(Legajo_Me), 0) + 1 AS ProximoLegajo FROM Medicos;
+END
+GO
+
+CREATE PROCEDURE SP_LoginUsuario
+    @User VARCHAR(15),
+    @Pass VARCHAR(20)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT  u.IdUsuario, u.NombreUsuario, u.TipoUsuario, u.DniUsuario, u.LegajoDoctor, dp.Nombre_DP, dp.Apellido_DP
+    FROM    Usuarios  AS u INNER JOIN DatosPersonales AS dp ON dp.Dni_DP = u.DniUsuario   
+    WHERE   u.NombreUsuario = @User  AND  u.Contraseña = @Pass 
+END
+GO
+
+CREATE OR ALTER PROCEDURE SP_BajaMedico
+    @Legajo_Me INT
+AS
+BEGIN
+
+    IF NOT EXISTS (SELECT 1 FROM Medicos WHERE Legajo_Me = @Legajo_Me AND Estado_Me = 1)
+    BEGIN
+        RETURN 1
+    END
+
+    UPDATE Medicos
+
+    SET Estado_Me = 0
+    WHERE Legajo_Me = @Legajo_Me
+
+    RETURN 0
+END
+GO
+
+CREATE OR ALTER PROCEDURE SP_RevisionDniPaciente
+@DniPaciente VARCHAR(10)
+AS
+BEGIN
+	IF EXISTS (SELECT 1 FROM DatosPersonales WHERE Dni_DP = @DniPaciente)
+		RETURN 1
+	ELSE
+		RETURN 0
+END
+GO
+
+CREATE OR ALTER PROCEDURE SP_RetornarListaTurnos
+    @IdEspecialidad INT = NULL,
+    @DniPaciente VARCHAR(10) = NULL,
+    @Fecha DATE = NULL
+AS
+BEGIN
+SET NOCOUNT ON
+    SELECT     
+	CAST(Semana_TD AS VARCHAR) +'-'+
+    CAST(IdDia_TD AS VARCHAR) + '-' +
+    CAST(IdEspecialidad_TD AS VARCHAR) +  '-' +
+	CAST(LegajoDoctor AS VARCHAR) AS NumeroTurno, 
+	Especialidades.Nombre_Esp as Especialidad,
+	VistaMedicos.Nombre_DP + ' ' + VistaMedicos.Apellido_DP AS Doctor,
+	DatosDoctor.Telefono_DP AS TelefonoDoctor,
+	Fecha_TD as Fecha, 
+	Horario_TD as Horario,
+	DatosPaciente.Nombre_DP As NombrePaciente,
+	DniPaciente as DNIpaciente
+
+    FROM TurnosDisponibles 
+		INNER JOIN Especialidades ON IdEspecialidad_TD = Id_Esp 
+		--INNER JOIN VistaMedicos ON Id_Esp = IdEspecialidad_Me --Duplica si varios médicos tienen la misma especialidad.
+		INNER JOIN VistaMedicos ON VistaMedicos.Legajo_Me = TurnosDisponibles.LegajoDoctor
+		INNER JOIN DatosPersonales AS DatosDoctor ON DatosDoctor.Dni_DP = Dni_Me
+        LEFT JOIN DatosPersonales AS DatosPaciente ON DatosPaciente.Dni_DP = TurnosDisponibles.DniPaciente
+    WHERE (@IdEspecialidad IS NULL OR IdEspecialidad_TD = @IdEspecialidad)
+		AND (@DniPaciente IS NULL OR DniPaciente = @DniPaciente)
+		AND (@Fecha IS NULL OR Fecha_TD = @Fecha)
+        AND Estado_TD = 1
+	ORDER BY Semana_TD, IdDia_TD, Horario_TD
+END
+GO
+
+CREATE OR ALTER PROCEDURE SP_RetornarFechasTurnos
+    @IdEspecialidad INT = NULL,
+    @Legajo INT = NULL
+AS
+BEGIN
+    SELECT DISTINCT Fecha_TD as Fecha, IdDia_TD as IdDia, Semana_TD as Semana
+    FROM TurnosDisponibles
+    WHERE (@IdEspecialidad IS NULL OR IdEspecialidad_TD = @IdEspecialidad)
+    AND (@Legajo IS NULL OR LegajoDoctor = @Legajo)
+    AND (DniPaciente IS NULL)
+    ORDER BY Semana_TD, IdDia_TD
 END
 GO
 
@@ -430,64 +487,6 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE SP_LoginUsuario
-    @User VARCHAR(15),
-    @Pass VARCHAR(20)
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SELECT  u.IdUsuario, u.NombreUsuario, u.TipoUsuario, u.DniUsuario, u.LegajoDoctor, dp.Nombre_DP, dp.Apellido_DP
-    FROM    Usuarios  AS u INNER JOIN DatosPersonales AS dp ON dp.Dni_DP = u.DniUsuario   
-    WHERE   u.NombreUsuario = @User  AND  u.Contraseña = @Pass 
-END
-GO
-
-CREATE OR ALTER PROCEDURE SP_BajaMedico
-    @Legajo_Me INT
-
-AS
-BEGIN
-
-    IF NOT EXISTS (SELECT 1 FROM Medicos WHERE Legajo_Me = @Legajo_Me AND Estado_Me = 1)
-    BEGIN
-        RETURN 1
-    END
-
-    UPDATE Medicos
-
-    SET Estado_Me = 0
-    WHERE Legajo_Me = @Legajo_Me
-
-    RETURN 0
-END
-GO
-
-CREATE OR ALTER PROCEDURE SP_RetornarFechasTurnos
-    @IdEspecialidad INT = NULL,
-    @Legajo INT = NULL
-AS
-BEGIN
-    SELECT DISTINCT Fecha_TD as Fecha, IdDia_TD as IdDia, Semana_TD as Semana
-    FROM TurnosDisponibles
-    WHERE (@IdEspecialidad IS NULL OR IdEspecialidad_TD = @IdEspecialidad)
-    AND (@Legajo IS NULL OR LegajoDoctor = @Legajo)
-    AND (DniPaciente IS NULL)
-    ORDER BY Semana_TD, IdDia_TD
-END
-GO
-
-CREATE OR ALTER PROCEDURE SP_RevisionDniPaciente
-@DniPaciente VARCHAR(10)
-AS
-BEGIN
-	IF EXISTS (SELECT 1 FROM DatosPersonales WHERE Dni_DP = @DniPaciente)
-		RETURN 1
-	ELSE
-		RETURN 0
-END
-GO
-
-GO
 CREATE OR ALTER PROCEDURE SP_RetornarHorasTurnos
     @IdDia INT = NULL,
     @IdEspecialidad INT = NULL,
@@ -512,7 +511,6 @@ CREATE OR ALTER PROCEDURE SP_AsignarTurno
     @Horario TIME(0)
 AS  
 BEGIN  
-    SET NOCOUNT ON  
 
     IF @DniPaciente IS NULL  
     BEGIN  

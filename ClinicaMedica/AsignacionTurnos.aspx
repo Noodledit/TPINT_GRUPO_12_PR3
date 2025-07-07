@@ -67,7 +67,7 @@
                         <asp:Button ID="btnCancelar" runat="server" Text="No" OnClick="btnCancelar_Click" CssClass="button" />
                     </asp:Panel>
 
-                    <asp:Label ID="lblMensaje" runat="server" Visible="false"></asp:Label>
+                    <asp:Label ID="lblMensaje" runat="server" Visible="False" Font-Bold="True"></asp:Label>
                 </div>
 
 

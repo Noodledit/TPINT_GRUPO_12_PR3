@@ -49,16 +49,7 @@ namespace Datos
             command.Parameters.AddWithValue("@LegajoDoctor", turno.legajoMed);
             command.Parameters.AddWithValue("@Horario", turno.Horas);
 
-            // Agregar parámetro de salida
-            var resultadoParam = new SqlParameter("@Resultado", System.Data.SqlDbType.Int)
-            {
-                Direction = System.Data.ParameterDirection.Output
-            };
-            command.Parameters.Add(resultadoParam);
-
-            ds.EjecutarProcedimientoAlmacenado(command, "SP_AsignarTurno");
-
-            int resultado = (int)command.Parameters["@Resultado"].Value;
+            int resultado = ds.EjecutarProcedimientoAlmacenado(command, "SP_AsignarTurno");
             return resultado;
         }
     }

@@ -1,20 +1,15 @@
 ﻿using Entidades;
 using Servicios;
 using System;
-using System.Drawing;
-
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
-//using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ClinicaMedica
 {
     public partial class RegistrarPaciente : System.Web.UI.Page
     {
-        GestionRegistros registros = new GestionRegistros();
+        private GestionRegistros registros = new GestionRegistros();
         private GestionDdl gestorDdl = new GestionDdl();
+        private string DNI = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,21 +46,17 @@ namespace ClinicaMedica
         }
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            Turno turno = Session["TurnoPendiente"] as Turno;
 
             if (CamposNoComletados())
             {
-                lblMensaje.Text = "Por favor, rellene todos los datos.";
+                lblMensaje.Text = "se deben rellenar todos los datos.";
                 lblMensaje.Visible = true;
                 
                 return;
             }
 
-
-            string DNI = null;
-            if (Session["DniSeleccionado"] != null) {
-
-                DNI = Session["DniSeleccionado"].ToString();
-            }
+            DNI = turno.DniPaciente;
 
             Paciente NuevoPaciente = new Paciente(DNI, txtNombre.Text.Trim(), txtApellido.Text.Trim(), Convert.ToString(ddlSexo.SelectedValue), txtNacionalidad.Text.Trim(), Convert.ToDateTime(txtFechaNacimiento.Text.Trim()), txtDireccion.Text.Trim(), Convert.ToInt32(ddlProvincias.SelectedValue), Convert.ToInt32(ddlLocalidades.SelectedValue), txtCorreoElectronico.Text.Trim(), txtNumeroTelefono.Text.Trim());
             /* Paciente NuevoPaciente = new Paciente(//Datos de prueba
@@ -92,13 +83,8 @@ namespace ClinicaMedica
             else
             {
                 lblMensaje.Text = "Error al registrar el paciente";
-                lblMensaje.Visible = true;
-               
-            }
-
-
-
-            
+                lblMensaje.Visible = true;     
+            }  
         }
 
         private void LimpiarTxtBox()

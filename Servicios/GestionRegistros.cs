@@ -17,7 +17,7 @@ namespace Servicios
         public bool RegistrarPaciente(Paciente paciente)
         {
             int retorno = dpaciente.registroPaciente(paciente);
-            if (retorno == 0)
+            if (retorno == 1)
             {
                 return true;
             }
@@ -38,19 +38,21 @@ namespace Servicios
         public bool VerificarSiExiste(string DNI)
         {
            return dpaciente.verificarSiExistePaciente(DNI);
-
         }
 
-        public bool RegistrarTurno(Turno turno)
-        {
-            
+        public int RegistrarTurno(Turno turno)
+        {   
             int retorno = dTurnos.registrarTurno(turno);
-            if (retorno > 0)
-            {
-                return true;
-            }
-            else { return false; }
 
+            return retorno;
+            //if (retorno == 1)
+            //{
+            //    return true;
+            //}
+            //else 
+            //{ 
+            //    return false; 
+            //}
         }
     }
 }
