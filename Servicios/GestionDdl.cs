@@ -105,6 +105,8 @@ namespace Servicios
                     }
                 }
 
+                //HttpContext.Current.Session["IDSemana"] = tablaFechas;
+
                 ddlFechas.DataSource = tablaFechas;
                 ddlFechas.DataTextField = "FechaTexto";
                 ddlFechas.DataValueField = "IdDia";

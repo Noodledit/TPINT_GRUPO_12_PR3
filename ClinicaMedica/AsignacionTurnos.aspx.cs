@@ -82,7 +82,34 @@ namespace ClinicaMedica
             btnAsignarTurno.Visible = false;
             lblMensaje.Visible = false;
 
+
+            int idSemana = 1;
+            /*DataTable tablaFechas = HttpContext.Current.Session["IDSemana"] as DataTable;
+
+            int idDiaSelect = int.Parse(ddlFechas.SelectedValue);
+
+            if (tablaFechas != null)
+            {
+                foreach (DataRow fila in tablaFechas.Rows)
+                {
+                    if (Convert.ToInt32(fila["IdDia"]) == idDiaSelect)
+                    {
+                        idSemana = Convert.ToInt32(fila["Semana"]);
+                        break;
+                    }
+                }
+            }*/
+
             // Guardar datos en sesión para usarlos en la confirmación
+
+            Session["TurnoPendiente"] = new Turno(
+                dniPaciente,
+                idSemana, 
+                int.Parse(ddlFechas.SelectedValue),
+                int.Parse(ddlEspecialidades.SelectedValue),
+                int.Parse(ddlMedicos.SelectedValue),
+                TimeSpan.Parse(ddlHoras.SelectedValue)
+            );
         }
 
         protected void btnConfirmar_Click(object sender, EventArgs e)
