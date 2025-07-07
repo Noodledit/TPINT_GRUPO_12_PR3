@@ -24,7 +24,7 @@ namespace ClinicaMedica
             gvTurnos.DataBind();
 
             gestionDdl.CargarFechas(ddlFechas);
-           
+
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -141,7 +141,7 @@ namespace ClinicaMedica
 
         protected void gvTurnos_SelectedIndexChanged(object sender, EventArgs e)
         {
-         
+
         }
 
         protected void gvTurnos_RowEditing(object sender, GridViewEditEventArgs e)
@@ -162,6 +162,27 @@ namespace ClinicaMedica
         protected void gvTurnos_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
 
+        }
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string dni = txtBuscador.Text.Trim();
+            if (!string.IsNullOrEmpty(dni))
+            {
+                DataTable tablaFiltrada = gestionTablas.ObtenerTablaTurnosPorDni(dni);
+                gvTurnos.DataSource = tablaFiltrada;
+                gvTurnos.DataBind();
+            }
+            else
+            {
+                lblMensaje.Text = "Por favor, ingrese un DNI para buscar.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos();
+                gvTurnos.DataBind();
+            }
+
+        }
+        protected void btnFiltroFecha_Click(object sender, EventArgs e)
+        {
         }
     }
 }
