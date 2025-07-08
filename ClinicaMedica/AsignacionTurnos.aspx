@@ -13,6 +13,7 @@
     <form id="form1" runat="server">
         <div class="header">
             <section>
+                <asp:HyperLink ID="hlCambiarContrasenia" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cambiar contraseña" ValidationGroup="GrupoInicioSesion" Visible="True" ForeColor="White" Font-Underline="True" NavigateUrl="~/CambiarContraseña.aspx" TabIndex="3" />
                 <asp:Button ID="btnUnlogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cerrar Sesion" CssClass="button" ValidationGroup="GrupoInicioSesion" OnClick="btnUnlogin_Click" />
                 <asp:Label ID="lblBienvenidoUsuario" runat="server" Style="float: right; margin-right: 10px;" Font-Bold="True"></asp:Label>
 </section>
@@ -21,7 +22,7 @@
                 <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica" />
                 <div class="header-links">
                     <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link" NavigateUrl="ListadoTurnos.aspx" Text="Listado de Turnos"></asp:HyperLink>
-                    
+                    <asp:HyperLink ID="hlSeguimientoPaciente" runat="server" CssClass="header-link" Text="Seguimiento Paciente" TabIndex="4" NavigateUrl="~/SeguimientosPacientes.aspx"></asp:HyperLink>
                     <asp:HyperLink ID="hlAgregarMedico" runat="server" CssClass="header-link" NavigateUrl="RegistrarMedico.aspx" Text="Agregar Medico"></asp:HyperLink>
                     <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link-active" NavigateUrl="AsignacionTurnos.aspx" Text="Asignar Turnos"></asp:HyperLink>
                     <asp:HyperLink ID="hListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos"></asp:HyperLink>
@@ -63,11 +64,13 @@
                     <asp:Panel ID="pnlConfirmacion" runat="server" Visible="false" CssClass="panel-confirmacion" style="margin-top:15px;">
                         <asp:Label ID="lblConfirmacion" runat="server" Text="¿Está seguro de que desea asignar este turno?" />
                         <br />
+                        <br />
                         <asp:Button ID="btnConfirmar" runat="server" Text="Sí" OnClick="btnConfirmar_Click" CssClass="button" />
                         <asp:Button ID="btnCancelar" runat="server" Text="No" OnClick="btnCancelar_Click" CssClass="button" />
+                        <br />
                     </asp:Panel>
 
-                    <asp:Label ID="lblMensaje" runat="server" Visible="False" Font-Bold="True"></asp:Label>
+                    <asp:Label ID="lblMensaje" runat="server" Visible="False" Font-Bold="True" ForeColor="#94FF6C"></asp:Label>
                 </div>
 
 

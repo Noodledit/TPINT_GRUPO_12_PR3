@@ -48,6 +48,7 @@ font{
     align-items: center;
     padding-left: 30px;
     justify-content: flex-start;
+    height: 133px;
 }
 
 .header-image {

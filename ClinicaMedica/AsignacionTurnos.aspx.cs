@@ -133,7 +133,7 @@ namespace ClinicaMedica
             {
                 lblMensaje.Text = "Se agregó correctamente en la base de datos";
                 lblMensaje.Font.Bold = true;
-                lblMensaje.ForeColor = System.Drawing.Color.Green;
+                lblMensaje.ForeColor = System.Drawing.ColorTranslator.FromHtml("#94ff6c");
             }
             else
             {
