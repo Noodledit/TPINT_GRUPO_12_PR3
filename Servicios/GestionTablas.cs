@@ -33,6 +33,10 @@ namespace Servicios
         {
             return daoMedicos.ListarMedicosPorNombre(nombre);
         }
+        public DataTable ObtenerTablaTurnosPorDni(string dni)
+        {
+            return daoTurnos.ListarTurnosPorDni(dni);
+        }
         public DataTable ObtenerTablaMedicosPorIdEspecialidad(string idEspecialidad)
         {
             return daoMedicos.ListarMedicosPorIdEspecialidad(idEspecialidad);

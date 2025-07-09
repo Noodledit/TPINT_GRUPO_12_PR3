@@ -52,5 +52,11 @@ namespace Datos
             int resultado = ds.EjecutarProcedimientoAlmacenado(command, "SP_AsignarTurno");
             return resultado;
         }
+        public DataTable ListarTurnosPorDni(string dni)
+        {
+            SqlParameter[] parametros = new SqlParameter[] {
+                new SqlParameter("@DniPaciente", dni) };
+            return ds.EjecutarConsultaSelectDataAdapter("SP_RetornarListaTurnos", parametros);
+        }
     }
 }

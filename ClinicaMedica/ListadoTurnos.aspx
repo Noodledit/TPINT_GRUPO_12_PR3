@@ -43,11 +43,13 @@
                         <div class="caja">
                 <div style="display: flex; align-items: center; gap: 20px; padding-left: 10px;">
                     <asp:TextBox ID="txtBuscador" runat="server" placeholder="Ingrese Dni" CssClass="txtBox-caja" Style=" margin-top: 18px;" TabIndex="8"> </asp:TextBox>
-                    <asp:Button ID="btnBuscar" runat="server"  Text="Consultar Turno" CssClass="button" Width="210px" Height="40" TabIndex="9"/>
+                    <asp:Button ID="btnBuscar" runat="server"  Text="Consultar Turno" CssClass="button" Width="210px" Height="40" TabIndex="9" OnClick="btnBuscar_Click"/>
                     
+                    <asp:Label ID="lblMensaje" runat="server" Font-Bold="True" ForeColor="#CC0000"></asp:Label>
+
                 <div style="display: flex; align-items: center; gap: 20px">
                     <asp:DropDownList ID="ddlFechas" runat="server" CssClass="txtBox-caja" Style=" margin-top: 18px;" Visible="False" TabIndex="10"></asp:DropDownList>
-                    <asp:Button ID="btnFiltroFecha" runat="server" Text="Consultar por Fecha" CssClass="button" Width="210px" Height="40px" Visible="False" TabIndex="11"/>
+                    <asp:Button ID="btnFiltroFecha" runat="server" Text="Consultar por Fecha" CssClass="button" Width="210px" Height="40px" Visible="False" TabIndex="11" OnClick="btnFiltroFecha_Click"/>
                     
                     <br />
                     <br />
