@@ -12,6 +12,7 @@
     <form id="form1" runat="server">
         <div class="header">
             <section>
+                <asp:HyperLink ID="hlCambiarContrasenia" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cambiar contraseña" ValidationGroup="GrupoInicioSesion" Visible="False" ForeColor="White" Font-Underline="True" NavigateUrl="~/CambiarContraseña.aspx" TabIndex="3" />
                 <asp:Button ID="btnUnlogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cerrar Sesion" CssClass="button" OnClick="btnUnlogin_Click" ValidationGroup="GrupoInicioSesion" Visible="False" TabIndex="3" />
                 <asp:Button ID="btnLogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Ingresar" CssClass="button" OnClick="btnLogin_Click" ValidationGroup="GrupoInicioSesion" TabIndex="3"/>
                 <asp:TextBox ID="txtContrasenia" runat="server" CssClass="txtBox-login" Style="float: right; margin-right: 10px; height: 20px;" TextMode="Password" ValidationGroup="GrupoInicioSesion" TabIndex="2"></asp:TextBox>
@@ -19,13 +20,15 @@
                 <asp:TextBox ID="txtUsuario" runat="server" CssClass="txtBox-login" Style="float: right; margin-right: 10px; height: 20px;" ValidationGroup="GrupoInicioSesion" TabIndex="1"></asp:TextBox>
                 <asp:Label ID="lblNombreUsuario" runat="server" Style="float: right; margin-right: 4px; font-size: 15px;" Text="Nombre de usuario:"></asp:Label>
                 <asp:Label ID="lblBienvenidoUsuario" runat="server" Style="float: right; margin-right: 10px;" Font-Bold="True"></asp:Label>
+                <br />
+            
             </section>
             <div class="titulo-header">
                 <h1>Clinica Medica</h1>
                 <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica" />
                 <div class="header-links">
                     <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link-active" NavigateUrl="ListadoTurnos.aspx" Text="Listado de Turnos" Visible="False" TabIndex="-1"></asp:HyperLink>
-                    <asp:HyperLink ID="hlSeguimientoPaciente" runat="server" CssClass="header-link" Text="Seguimiento Paciente" Visible="False" TabIndex="4"></asp:HyperLink>
+                    <asp:HyperLink ID="hlSeguimientoPaciente" runat="server" CssClass="header-link" Text="Seguimiento Paciente" Visible="False" TabIndex="4" NavigateUrl="~/SeguimientosPacientes.aspx"></asp:HyperLink>
                     <asp:HyperLink ID="hlAgregarMedico" runat="server" CssClass="header-link" NavigateUrl="RegistrarMedico.aspx" Text="Agregar Medico" Visible="False" TabIndex="5"></asp:HyperLink>
                     <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="AsignacionTurnos.aspx" Text="Asignar Turnos" Visible="False" TabIndex="6"></asp:HyperLink>
                     <asp:HyperLink ID="hlListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos" Visible="False" TabIndex="7"></asp:HyperLink>

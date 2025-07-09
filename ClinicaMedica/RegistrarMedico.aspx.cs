@@ -81,7 +81,7 @@ namespace ClinicaMedica
             {
                 lblMensaje.Text = "Médico registrado correctamente.";
                 lblMensaje.Visible = true;
-                lblMensaje.ForeColor = Color.LightGreen;
+                lblMensaje.ForeColor = System.Drawing.ColorTranslator.FromHtml("#94ff6c");
             }
             else
             {

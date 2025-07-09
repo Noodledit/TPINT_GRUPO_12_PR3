@@ -61,6 +61,7 @@ namespace ClinicaMedica
                 txtUsuario.Visible = false;
                 lblContrasenia.Visible = false;
                 lblNombreUsuario.Visible = false;
+                hlCambiarContrasenia.Visible = true;
                 lblBienvenidoUsuario.ForeColor = System.Drawing.Color.White;
                 lblBienvenidoUsuario.Text = ((Usuario)Session["UsuarioActivo"]).NombreUsuario + " " + ((Usuario)Session["UsuarioActivo"]).ApellidoUsuario;
                 HabilitacionDeAcceso();

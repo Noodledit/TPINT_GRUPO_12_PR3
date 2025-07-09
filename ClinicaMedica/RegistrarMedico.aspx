@@ -13,6 +13,7 @@
     <form id="form1" runat="server">
         <div class="header">
             <section>
+                <asp:HyperLink ID="hlCambiarContrasenia" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cambiar contraseña" ValidationGroup="GrupoInicioSesion" Visible="True" ForeColor="White" Font-Underline="True" NavigateUrl="~/CambiarContraseña.aspx" TabIndex="3" />
                 <asp:Button ID="btnUnlogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cerrar Sesion" CssClass="button" ValidationGroup="GrupoInicioSesion" OnClick="btnUnlogin_Click" />
                 <asp:Label ID="lblBienvenidoUsuario" runat="server" Style="float: right; margin-right: 10px;" Font-Bold="True"></asp:Label>
             </section>
@@ -21,7 +22,7 @@
                 <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica" />
                 <div class="header-links">
                     <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link" NavigateUrl="ListadoTurnos.aspx" Text="Listado de Turnos"></asp:HyperLink>
-
+                    <asp:HyperLink ID="hlSeguimientoPaciente" runat="server" CssClass="header-link" Text="Seguimiento Paciente" TabIndex="4" NavigateUrl="~/SeguimientosPacientes.aspx"></asp:HyperLink>
                     <asp:HyperLink ID="hlAgregarMedico" runat="server" CssClass="header-link-active" NavigateUrl="RegistrarMedico.aspx" Text="Agregar Medico"></asp:HyperLink>
                     <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="AsignacionTurnos.aspx" Text="Asignar Turnos"></asp:HyperLink>
                     <asp:HyperLink ID="hListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos"></asp:HyperLink>
@@ -88,6 +89,7 @@
                 <div style="display: flex; flex-direction: column; align-items: center;">
                     <label class="form-label">Numero de legajo:</label>
                     <asp:TextBox ID="txtLegajo" runat="server" CssClass="txtBox-caja" Text="0000" ReadOnly="True" Style="color: white; background: transparent; border-width: 2px;"></asp:TextBox>
+                    <br />
                     <asp:Label ID="lblMensaje" runat="server" Style="font-weight: 700; font-size: 15px;" Visible="False"></asp:Label>
                 </div>
                 <div class="form-actions" style="margin-top: 15px;">
