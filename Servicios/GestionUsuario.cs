@@ -22,18 +22,23 @@ namespace Servicios
             DatosDeUsuario = dao.SolicitudLogin(User, Pass);
             
             Usuario usuarioLogueado = null;
+
             if (DatosDeUsuario != null && DatosDeUsuario.Rows.Count != 0)
             {
                 DataRow row = DatosDeUsuario.Rows[0];
-                //Usuario(user, pass, IdUsuario, int tipoUsuario, string nombreUsuario, string apellidoUsuario)
+                //Usuario(user, pass, IdUsuario, int tipoUsuario, string nombreUsuario, string apellidoUsuario, int LegajoDoctor)
                 usuarioLogueado = new Usuario(
                     User, 
                     Pass, 
                     Convert.ToInt32(row["IdUsuario"]), 
-                    Convert.ToInt32(row["TipoUsuario"]), 
+                    Convert.ToInt32(row["TipoUsuario"]),
                     row["Nombre_DP"].ToString(), 
                     row["Apellido_DP"].ToString());
 
+                if (usuarioLogueado.TipoUsuario == 1) // en caso de ser Doctor se asigna el legajo
+                {
+                        usuarioLogueado.LegajoDoctor = Convert.ToInt32(row["LegajoDoctor"]); // si es doctor, el legajo no es nulo
+                }
                 return usuarioLogueado;
             }
             else

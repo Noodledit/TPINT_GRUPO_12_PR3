@@ -1,37 +1,23 @@
 ﻿using Entidades;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+
 
 namespace Datos
 {
     public class DaoTurnos
     {
-        AccesoDatos ds = new AccesoDatos();
+        AccesoDatos accesoDatos = new AccesoDatos();
 
-        public DataTable ListadoTurnos(string ProcedimientoAlmacenado)
+        public DataTable ListadoTurnos(string ProcedimientoAlmacenado, Turno ConfiguracionTurno)
         {
-            //string consulta = @" 
-            //    SELECT
-            //        DatosPersonales.Nombre_DP + ' ' + DatosPersonales.Apellido_DP AS NombreDoctor,
-            //        TurnosDisponibles.Dia AS Fecha,
-            //        Especialidades.Nombre_Esp AS Especialidad,
-            //        TurnosDisponibles.Estado,
-            //        Paciente.Nombre_DP + ' ' + Paciente.Apellido_DP AS Paciente,
-            //        DatosPersonales.Telefono_DP AS ContactoMedico
-            //    FROM
-            //        TurnosDisponibles
-            //    INNER JOIN Medicos ON TurnosDisponibles.LegajoDoctor = Medicos.Legajo_Me
-            //    INNER JOIN DatosPersonales ON Medicos.Dni_Me = DatosPersonales.Dni_DP
-            //    INNER JOIN Especialidades ON Medicos.IdEspecialidad_Me = Especialidades.Id_Esp
-            //    LEFT JOIN DatosPersonales AS Paciente ON TurnosDisponibles.DniPaciente = Paciente.Dni_DP
-            //    ";
-            return ds.EjecutarConsultaSelectDataAdapter(ProcedimientoAlmacenado);
+            SqlParameter[] parametros = new SqlParameter[] {
+                new SqlParameter("@DniPaciente", ConfiguracionTurno.DniPaciente),
+                new SqlParameter("@Fecha", ConfiguracionTurno.Fecha),
+                new SqlParameter("@IDEspecialidad", ConfiguracionTurno.IDEspecialidad),
+                new SqlParameter("@LegajoDoctor", ConfiguracionTurno.LegajoMed)
+                };
+            return accesoDatos.EjecutarConsultaSelectDataAdapter(ProcedimientoAlmacenado, parametros);
         }
 
         public int registrarTurno(Turno turno)
@@ -44,19 +30,18 @@ namespace Datos
 
             command.Parameters.AddWithValue("@DniPaciente", turno.DniPaciente);
             command.Parameters.AddWithValue("@Semana", turno.SemanaID);
-            command.Parameters.AddWithValue("@IdDia", turno.idDia);
+            command.Parameters.AddWithValue("@IdDia", turno.IdDia);
             command.Parameters.AddWithValue("@IDEspecialidad", turno.IDEspecialidad);
-            command.Parameters.AddWithValue("@LegajoDoctor", turno.legajoMed);
+            command.Parameters.AddWithValue("@LegajoDoctor", turno.LegajoMed);
             command.Parameters.AddWithValue("@Horario", turno.Horas);
 
-            int resultado = ds.EjecutarProcedimientoAlmacenado(command, "SP_AsignarTurno");
-            return resultado;
+            return accesoDatos.EjecutarProcedimientoAlmacenado(command, "SP_AsignarTurno");
         }
         public DataTable ListarTurnosPorDni(string dni)
         {
             SqlParameter[] parametros = new SqlParameter[] {
                 new SqlParameter("@DniPaciente", dni) };
-            return ds.EjecutarConsultaSelectDataAdapter("SP_RetornarListaTurnos", parametros);
+            return accesoDatos.EjecutarConsultaSelectDataAdapter("SP_RetornarListaTurnos", parametros);
         }
     }
 }

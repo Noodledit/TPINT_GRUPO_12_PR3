@@ -253,8 +253,6 @@ BEGIN
 END
 GO
 
-
-
 CREATE PROCEDURE SP_RegistrarMedico
 	@Dni VARCHAR(10),
     @Nombre VARCHAR (20),
@@ -404,34 +402,43 @@ END
 GO
 
 CREATE OR ALTER PROCEDURE SP_RetornarListaTurnos  
-    @DniPaciente VARCHAR(20) = NULL
-AS  
-BEGIN  
-    SET NOCOUNT ON;
+    @IdEspecialidad INT = NULL,
+    @DniPaciente VARCHAR(10) = NULL,
+    @Fecha DATE = NULL,
+	@LegajoDoctor INT = NULL
+AS
+BEGIN
+SET NOCOUNT ON
+    SELECT     
+	CAST(Semana_TD AS VARCHAR) +'-'+
+    CAST(IdDia_TD AS VARCHAR) + '-' +
+    CAST(IdEspecialidad_TD AS VARCHAR) +  '-' +
+	CAST(LegajoDoctor AS VARCHAR) AS NumeroTurno, 
+	Especialidades.Nombre_Esp as Especialidad,
+	VistaMedicos.Nombre_DP + ' ' + VistaMedicos.Apellido_DP AS Doctor,
+	DatosDoctor.Telefono_DP AS TelefonoDoctor,
+	Fecha_TD as Fecha, 
+	Horario_TD as Horario,
+	DatosPaciente.Nombre_DP + ' ' + DatosPaciente.Apellido_DP As NombrePaciente,
+	DniPaciente as DNIpaciente
 
-    SELECT       
-        CAST(Semana_TD AS VARCHAR) + '-' +  
-        CAST(IdDia_TD AS VARCHAR) + '-' +  
-        CAST(IdEspecialidad_TD AS VARCHAR) + '-' +  
-        CAST(LegajoDoctor AS VARCHAR) AS NumeroTurno,   
-        Especialidades.Nombre_Esp AS Especialidad,  
-        VistaMedicos.Nombre_DP + ' ' + VistaMedicos.Apellido_DP AS Doctor,  
-        DatosDoctor.Telefono_DP AS TelefonoDoctor,  
-        Fecha_TD AS Fecha,   
-        Horario_TD AS Horario,  
-        DatosPaciente.Nombre_DP AS NombrePaciente,  
-        TurnosDisponibles.DniPaciente AS DNIpaciente
-    FROM 
-        TurnosDisponibles   
-        INNER JOIN Especialidades ON IdEspecialidad_TD = Id_Esp   
-        INNER JOIN VistaMedicos ON VistaMedicos.Legajo_Me = TurnosDisponibles.LegajoDoctor  
-        INNER JOIN DatosPersonales AS DatosDoctor ON DatosDoctor.Dni_DP = Dni_Me  
-        LEFT JOIN DatosPersonales AS DatosPaciente ON DatosPaciente.Dni_DP = TurnosDisponibles.DniPaciente  
-    WHERE 
-        (@DniPaciente IS NULL OR TurnosDisponibles.DniPaciente LIKE '%' + @DniPaciente + '%')
+    FROM TurnosDisponibles 
+		INNER JOIN Especialidades ON IdEspecialidad_TD = Id_Esp 
+		--INNER JOIN VistaMedicos ON Id_Esp = IdEspecialidad_Me --Duplica si varios médicos tienen la misma especialidad.
+		INNER JOIN VistaMedicos ON VistaMedicos.Legajo_Me = TurnosDisponibles.LegajoDoctor
+		INNER JOIN DatosPersonales AS DatosDoctor ON DatosDoctor.Dni_DP = Dni_Me
+        LEFT JOIN DatosPersonales AS DatosPaciente ON DatosPaciente.Dni_DP = TurnosDisponibles.DniPaciente
+    WHERE (@IdEspecialidad IS NULL OR IdEspecialidad_TD = @IdEspecialidad)
+		AND (@DniPaciente IS NULL OR DniPaciente = @DniPaciente)
+		AND (@Fecha IS NULL OR Fecha_TD = @Fecha)
+		AND (@LegajoDoctor IS NULL OR (Legajo_Me = @LegajoDoctor AND DniPaciente IS NOT NULL))
         AND Estado_TD = 1
-    ORDER BY Fecha_TD, Horario_TD;
-END;
+	ORDER BY Fecha_TD
+END
+GO
+
+exec SP_RetornarListaTurnos @LegajoDoctor = 14
+
 GO
 
 CREATE OR ALTER PROCEDURE SP_RetornarFechasTurnos
@@ -444,7 +451,7 @@ BEGIN
     WHERE (@IdEspecialidad IS NULL OR IdEspecialidad_TD = @IdEspecialidad)
     AND (@Legajo IS NULL OR LegajoDoctor = @Legajo)
     AND (DniPaciente IS NULL)
-    ORDER BY Semana_TD, IdDia_TD
+    ORDER BY Semana_TD, Fecha_TD
 END
 GO
 
@@ -3060,16 +3067,15 @@ VALUES
 (1, 1, 1, 1, '25-06-2025', '16:00'),
 (1, 1, 1, 1, '25-06-2025', '17:00'),
 
-(1, 2, 2, 2, '26-06-2025', '8:00'),
-(1, 2, 2, 2, '26-06-2025', '9:00'),
-(1, 2, 2, 2, '26-06-2025', '10:00'),
-(1, 2, 2, 2, '26-06-2025', '11:00'),
-(1, 2, 2, 2, '26-06-2025', '12:00'),
-(1, 2, 2, 2, '26-06-2025', '13:00'),
-(1, 2, 2, 2, '26-06-2025', '14:00'),
-(1, 2, 2, 2, '26-06-2025', '15:00'),
-(1, 2, 2, 2, '26-06-2025', '16:00'),
-(1, 2, 2, 2, '26-06-2025', '17:00'),
+(1, 1, 2, 2, '25-06-2025', '8:00'),
+(1, 1, 2, 2, '25-06-2025', '9:00'),
+(1, 1, 2, 2, '25-06-2025', '11:00'),
+(1, 1, 2, 2, '25-06-2025', '12:00'),
+(1, 1, 2, 2, '25-06-2025', '13:00'),
+(1, 1, 2, 2, '25-06-2025', '14:00'),
+(1, 1, 2, 2, '25-06-2025', '15:00'),
+(1, 1, 2, 2, '25-06-2025', '16:00'),
+(1, 1, 2, 2, '25-06-2025', '17:00'),
 
 (1, 2, 3, 3, '26-06-2025', '8:00'),
 (1, 2, 3, 3, '26-06-2025', '9:00'),
@@ -3082,15 +3088,16 @@ VALUES
 (1, 2, 3, 3, '26-06-2025', '16:00'),
 (1, 2, 3, 3, '26-06-2025', '17:00'),
 
-(1, 1, 4, 4, '25-06-2025', '8:00'),
-(1, 1, 4, 4, '25-06-2025', '9:00'),
-(1, 1, 4, 4, '25-06-2025', '11:00'),
-(1, 1, 4, 4, '25-06-2025', '12:00'),
-(1, 1, 4, 4, '25-06-2025', '13:00'),
-(1, 1, 4, 4, '25-06-2025', '14:00'),
-(1, 1, 4, 4, '25-06-2025', '15:00'),
-(1, 1, 4, 4, '25-06-2025', '16:00'),
-(1, 1, 4, 4, '25-06-2025', '17:00'),
+(1, 2, 4, 4, '26-06-2025', '8:00'),
+(1, 2, 4, 4, '26-06-2025', '9:00'),
+(1, 2, 4, 4, '26-06-2025', '10:00'),
+(1, 2, 4, 4, '26-06-2025', '11:00'),
+(1, 2, 4, 4, '26-06-2025', '12:00'),
+(1, 2, 4, 4, '26-06-2025', '13:00'),
+(1, 2, 4, 4, '26-06-2025', '14:00'),
+(1, 2, 4, 4, '26-06-2025', '15:00'),
+(1, 2, 4, 4, '26-06-2025', '16:00'),
+(1, 2, 4, 4, '26-06-2025', '17:00'),
 
 (1, 3, 5, 5, '27-06-2025', '8:00'),
 (1, 3, 5, 5, '27-06-2025', '9:00'),
@@ -3102,6 +3109,7 @@ VALUES
 (1, 3, 5, 5, '27-06-2025', '15:00'),
 (1, 3, 5, 5, '27-06-2025', '16:00'),
 (1, 3, 5, 5, '27-06-2025', '17:00'),
+
 (1, 3, 6, 6, '27-06-2025', '8:00'),
 (1, 3, 6, 6, '27-06-2025', '9:00'),
 (1, 3, 6, 6, '27-06-2025', '10:00'),
@@ -3123,6 +3131,7 @@ VALUES
 (1, 4, 7, 7, '28-06-2025', '15:00'),
 (1, 4, 7, 7, '28-06-2025', '16:00'),
 (1, 4, 7, 7, '28-06-2025', '17:00'),
+
 (1, 4, 8, 8, '28-06-2025', '8:00'),
 (1, 4, 8, 8, '28-06-2025', '9:00'),
 (1, 4, 8, 8, '28-06-2025', '10:00'),
@@ -3166,7 +3175,8 @@ VALUES
 (1, 2, 1, 11, '26-06-2025', '15:00'),
 (1, 2, 1, 11, '26-06-2025', '16:00'),
 (1, 2, 1, 11, '26-06-2025', '17:00'),
-(1, 2, 2, 12, '25-06-2025', '8:00'),
+
+(1, 1, 2, 12, '25-06-2025', '8:00'),
 (1, 1, 2, 12, '25-06-2025', '9:00'),
 (1, 1, 2, 12, '25-06-2025', '10:00'),
 (1, 1, 2, 12, '25-06-2025', '11:00'),
@@ -3219,6 +3229,7 @@ VALUES
 (1, 3, 6, 16, '27-06-2025', '15:00'),
 (1, 3, 6, 16, '27-06-2025', '16:00'),
 (1, 3, 6, 16, '27-06-2025', '17:00'),
+
 (1, 6, 7, 17, '30-06-2025', '8:00'),
 (1, 6, 7, 17, '30-06-2025', '9:00'),
 (1, 6, 7, 17, '30-06-2025', '10:00'),
@@ -3229,6 +3240,7 @@ VALUES
 (1, 6, 7, 17, '30-06-2025', '15:00'),
 (1, 6, 7, 17, '30-06-2025', '16:00'),
 (1, 6, 7, 17, '30-06-2025', '17:00'),
+
 (1, 5, 8, 18, '29-06-2025', '8:00'),
 (1, 5, 8, 18, '29-06-2025', '9:00'),
 (1, 5, 8, 18, '29-06-2025', '10:00'),
@@ -3239,6 +3251,7 @@ VALUES
 (1, 5, 8, 18, '29-06-2025', '15:00'),
 (1, 5, 8, 18, '29-06-2025', '16:00'),
 (1, 5, 8, 18, '29-06-2025', '17:00'),
+
 (1, 7, 9, 19, '24-06-2025', '8:00'),
 (1, 7, 9, 19, '24-06-2025', '9:00'),
 (1, 7, 9, 19, '24-06-2025', '10:00'),
@@ -3249,6 +3262,7 @@ VALUES
 (1, 7, 9, 19, '24-06-2025', '15:00'),
 (1, 7, 9, 19, '24-06-2025', '16:00'),
 (1, 7, 9, 19, '24-06-2025', '17:00'),
+
 (1, 5, 10, 20, '29-06-2025', '8:00'),
 (1, 5, 10, 20, '29-06-2025', '9:00'),
 (1, 5, 10, 20, '29-06-2025', '10:00'),
@@ -3264,6 +3278,10 @@ GO
 PRINT 'Reinsertando al Administrador'
 INSERT INTO Usuarios (NombreUsuario, Contraseña, TipoUsuario, DniUsuario)
 VALUES 
-	('ClauFer','Aprobados',2,'12345678'),
-	('mussi','mussi',2,'111222333')
+	('ClauFer','Aprobados',2,'12345678')
+GO
+
+INSERT INTO Usuarios (NombreUsuario, Contraseña, TipoUsuario, DniUsuario, LegajoDoctor)
+VALUES 	
+	('mussi','mussi',2,'111222333',11)
 GO

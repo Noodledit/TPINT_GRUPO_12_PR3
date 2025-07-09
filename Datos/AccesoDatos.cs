@@ -73,12 +73,10 @@ namespace Datos
             }
         }
 
-        public int EjecutarProcedimientoAlmacenado(SqlCommand Comando, String Nombre)
+        public int EjecutarProcedimientoAlmacenado(SqlCommand cmd, String Nombre)
         {
             int FilasAfectadas;
             SqlConnection Conexion = connection();
-            SqlCommand cmd = new SqlCommand();
-            cmd = Comando;
             cmd.Connection = Conexion;
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = Nombre;

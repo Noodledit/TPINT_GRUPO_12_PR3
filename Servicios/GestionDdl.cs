@@ -61,13 +61,13 @@ namespace Servicios
             }
         }
 
-        public void CargarMedicos(DropDownList ddlMedicos, int idEspecialidad, int idDia = 0)
+        public void CargarMedicos(DropDownList ddlMedicos, int idEspecialidad, int? idDia = null)
         {
             DataTable tablaMedicos = new DataTable();
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@IdEspecialidad", idEspecialidad),
-                new SqlParameter("@IdDia", idDia != 0 ? idDia : (object)DBNull.Value)
+                new SqlParameter("@IdDia", idDia)
             };
             tablaMedicos = acceso.EjecutarConsultaSelectDataAdapter("SP_RetornarListaMedicos", parametros);
 
@@ -81,13 +81,13 @@ namespace Servicios
             }
         }
 
-        public void CargarFechas(DropDownList ddlFechas, int idEspecialidad = 0, int LegajoMedico = 0)
+        public void CargarFechas(DropDownList ddlFechas, int? idEspecialidad = null, int? LegajoMedico = null)
         {
             acceso = new AccesoDatos();
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@IdEspecialidad", idEspecialidad != 0 ? idEspecialidad : (object)DBNull.Value),
-                new SqlParameter("@Legajo", LegajoMedico != 0 ? LegajoMedico : (object)DBNull.Value)
+                new SqlParameter("@IdEspecialidad", idEspecialidad),
+                new SqlParameter("@Legajo", LegajoMedico)
             };
             DataTable tablaFechas = acceso.EjecutarConsultaSelectDataAdapter("SP_RetornarFechasTurnos", parametros);
             if (tablaFechas != null && tablaFechas.Rows.Count > 0)
@@ -112,20 +112,18 @@ namespace Servicios
                 ddlFechas.DataValueField = "IdDia";
                 ddlFechas.DataBind();
 
-                
-                ddlFechas.Items.Insert(0, new ListItem("Seleccione Fecha", "0"));
-
+               // ddlFechas.Items.Insert(0, new ListItem("Seleccione Fecha", "0"));
             }
         }
 
-        public void CargarHoras(DropDownList ddlHoras, int idEspecialidad, int idDia = 0, int LegajoMedico = 0)
+        public void CargarHoras(DropDownList ddlHoras, int idEspecialidad, int? idDia = null, int? LegajoMedico = null)
         {
             acceso = new AccesoDatos();
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@IdEspecialidad", idEspecialidad),
-                new SqlParameter("@Legajo", LegajoMedico != 0 ? LegajoMedico : (object)DBNull.Value),
-                new SqlParameter("@IdDia", idDia != 0 ? idDia : (object)DBNull.Value)
+                new SqlParameter("@Legajo", LegajoMedico),
+                new SqlParameter("@IdDia", idDia)
             };
             DataTable tablaHoras = acceso.EjecutarConsultaSelectDataAdapter("SP_RetornarHorasTurnos", parametros);
             if (tablaHoras != null && tablaHoras.Rows.Count > 0)

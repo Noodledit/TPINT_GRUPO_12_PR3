@@ -9,21 +9,22 @@ namespace Entidades
     public class Turno
     {
         public string DniPaciente { get; set; }
-        public int SemanaID { get; set; }
-        public int idDia { get; set; }
-        public int IDEspecialidad { get; set; }
-        public int legajoMed { get; set; }
-       // public DateTime Fecha { get; set; }
-        public TimeSpan Horas { get; set; }
+        public int? SemanaID { get; set; }
+        public int? IdDia { get; set; }
+        public int? IDEspecialidad { get; set; }
+        public int? LegajoMed { get; set; }        
+        public DateTime? Fecha { get; set; }
+        public TimeSpan? Horas { get; set; }
 
 
-        public Turno(string dnipaciente,int semanaid,int iddia, int iDEspecialidad, int legajoMed, TimeSpan horas)
+        public Turno(string dnipaciente = null,int? semanaId = null, int? idDia = null, int? iDEspecialidad = null, int? legajoMed = null, DateTime? fecha = null, TimeSpan? horas = null)
         {
             DniPaciente = dnipaciente;
-            SemanaID = semanaid;
-            idDia = iddia;
+            SemanaID = semanaId;
+            IdDia = idDia;
             IDEspecialidad = iDEspecialidad;
-            this.legajoMed = legajoMed;
+            LegajoMed = legajoMed;
+            Fecha = fecha;
             Horas = horas;
         }
     }
