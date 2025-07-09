@@ -1,11 +1,8 @@
 ﻿using Entidades;
 using Servicios;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
+using System.Reflection.Emit;
 using System.Web.UI.WebControls;
 
 
@@ -13,18 +10,19 @@ namespace ClinicaMedica
 {
     public partial class ListadoTurnos : System.Web.UI.Page
     {
-        bool estado = false;
+        //bool estado = false;
         private GestionTablas gestionTablas = new GestionTablas();
         private GestionDdl gestionDdl = new GestionDdl();
+        Turno ConfiguracionTurno = new Turno();
         protected void Page_Load(object sender, EventArgs e)
         {
-            ComprobacionDeSesion();
-            HabilitacionDeAcceso();
-            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos();
-            gvTurnos.DataBind();
-
-            gestionDdl.CargarFechas(ddlFechas);
-
+            if (!IsPostBack)
+            {
+                gestionDdl.CargarFechas(ddlFechas);
+                
+                ComprobacionDeSesion();
+                HabilitacionDeAcceso();
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -36,7 +34,9 @@ namespace ClinicaMedica
 
                 GestionUsuario gestionUsuario = new GestionUsuario();
 
+
                 Usuario usuario = gestionUsuario.Loguear(user, pass);
+                
 
                 if (usuario != null)
                 {
@@ -65,6 +65,7 @@ namespace ClinicaMedica
                 lblBienvenidoUsuario.ForeColor = System.Drawing.Color.White;
                 lblBienvenidoUsuario.Text = ((Usuario)Session["UsuarioActivo"]).NombreUsuario + " " + ((Usuario)Session["UsuarioActivo"]).ApellidoUsuario;
                 HabilitacionDeAcceso();
+                lblMensaje.Text = Convert.ToString(((Usuario)Session["UsuarioActivo"]).TipoUsuario);
             }
             else
             {
@@ -75,6 +76,8 @@ namespace ClinicaMedica
                 lblContrasenia.Visible = true;
                 lblNombreUsuario.Visible = true;
                 lblBienvenidoUsuario.Text = string.Empty;
+                gvTurnos.DataSource = null;
+                gvTurnos.DataBind();
                 HabilitacionDeAcceso();
             }
         }
@@ -100,6 +103,19 @@ namespace ClinicaMedica
                     hlAsignarTurnos.Visible = true;
                     hlInformes.Visible = true;
                     hlListarMedicos.Visible = true;
+
+                    //@IdEspecialidad INT = NULL,
+                    //@DniPaciente VARCHAR(10) = NULL,
+                    //@Fecha DATE = NULL,
+                    //@LegajoDoctor = NULL
+
+                    if (ddlFechas.SelectedItem != null && !string.IsNullOrWhiteSpace(ddlFechas.SelectedItem.Text))
+                    {
+                        ConfiguracionTurno.Fecha = DateTime.Parse(ddlFechas.SelectedItem.Text);
+                    }
+
+                    gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno);
+                    gvTurnos.DataBind();
                 }
                 if (((Usuario)Session["UsuarioActivo"]).TipoUsuario >= 1)
                 {
@@ -107,11 +123,31 @@ namespace ClinicaMedica
 
                     hlListarTurnos.Visible = true;
                     hlSeguimientoPaciente.Visible = true;
-                    btnFiltroFecha.Visible = true;
+                    lblFiltroFecha.Visible = true;
                     ddlFechas.Visible = true;
                     btnMostrarTodo.Visible = true;
                     btnConsultarEstado.Visible = true;
                     ddlEstados.Visible = true;
+
+                    if (((Usuario)Session["UsuarioActivo"]).TipoUsuario == 1)
+                    {
+                    gestionDdl.CargarFechas(ddlFechas,null,((Usuario)Session["UsuarioActivo"]).LegajoDoctor);
+                    }
+                    //@IdEspecialidad INT = NULL,
+                    //@DniPaciente VARCHAR(10) = NULL,
+                    //@Fecha DATE = NULL
+
+                    Turno ConfiguracionTurno = new Turno();
+
+                    if (ddlFechas.SelectedItem != null && !string.IsNullOrWhiteSpace(ddlFechas.SelectedItem.Text))
+                    {
+                        ConfiguracionTurno.Fecha = DateTime.Parse(ddlFechas.SelectedItem.Text);
+                    }
+
+                    ConfiguracionTurno.LegajoMed = ((Usuario)Session["UsuarioActivo"]).LegajoDoctor;
+
+                    gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno);
+                    gvTurnos.DataBind();
                 }
             }
             else
@@ -126,7 +162,7 @@ namespace ClinicaMedica
                 hlListarMedicos.Visible = false;
                 hlListarTurnos.Visible = false;
                 hlSeguimientoPaciente.Visible = false;
-                btnFiltroFecha.Visible = false;
+                lblFiltroFecha.Visible = false;
                 ddlFechas.Visible = false;
                 btnMostrarTodo.Visible = false;
                 btnConsultarEstado.Visible = false;
@@ -147,8 +183,8 @@ namespace ClinicaMedica
 
         protected void gvTurnos_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            gvTurnos.EditIndex = e.NewEditIndex;
-            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos();
+            gvTurnos.EditIndex = e.NewEditIndex;            
+            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno);
             gvTurnos.DataBind();
         }
 
@@ -156,7 +192,7 @@ namespace ClinicaMedica
         {
             //Logico de eliminar va aqui o el llamado a eliminar el turno, se hace a traves del mismo metodo de asignar turno,
             //aunque hay que ver como exactamente, si no me equivoco creo que pasando los datos del turno sin el dni
-            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos();
+            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno);
             gvTurnos.DataBind();
         }
 
@@ -177,13 +213,26 @@ namespace ClinicaMedica
             {
                 lblMensaje.Text = "Por favor, ingrese un DNI para buscar.";
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
-                gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos();
+                gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno);
                 gvTurnos.DataBind();
             }
 
         }
-        protected void btnFiltroFecha_Click(object sender, EventArgs e)
+
+        protected void ddlFechas_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ddlFechas.SelectedItem != null && !string.IsNullOrWhiteSpace(ddlFechas.SelectedItem.Text))
+            {
+                ConfiguracionTurno.Fecha = DateTime.Parse(ddlFechas.SelectedItem.Text);
+            }
+
+            if (((Usuario)Session["UsuarioActivo"]).TipoUsuario >= 1)
+            {
+            ConfiguracionTurno.LegajoMed = ((Usuario)Session["UsuarioActivo"]).LegajoDoctor;
+            }
+
+            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno);
+            gvTurnos.DataBind();
         }
     }
 }

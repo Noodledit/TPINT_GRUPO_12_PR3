@@ -11,7 +11,7 @@ namespace Entidades
     public enum TipoUsuario
     {
         ADMIN = 1,
-        MEDICO= 2
+        Doctor = 2
     }
     public class Usuario
     {
@@ -19,10 +19,11 @@ namespace Entidades
         public string User { get; set; }
         public string Password { get; set; }
         public int TipoUsuario { get; set; }
+        public int? LegajoDoctor { get; set; }
         public string NombreUsuario { get; set; }
         public string ApellidoUsuario { get; set; }
 
-        public Usuario(string user, string pass, int IdUsuario, int tipoUsuario, string nombreUsuario, string apellidoUsuario)
+        public Usuario(string user, string pass, int IdUsuario, int tipoUsuario, string nombreUsuario, string apellidoUsuario, int? legajoDoctor = null)
         {
             User = user;
             Password = pass;
@@ -30,6 +31,7 @@ namespace Entidades
             TipoUsuario = tipoUsuario;
             NombreUsuario = nombreUsuario;
             ApellidoUsuario = apellidoUsuario;
+            LegajoDoctor = legajoDoctor;
         }
     }
 }

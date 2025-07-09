@@ -67,6 +67,7 @@ namespace ClinicaMedica
                 int.Parse(ddlFechas.SelectedValue),
                 int.Parse(ddlEspecialidades.SelectedValue),
                 int.Parse(ddlMedicos.SelectedValue),
+                null,
                 TimeSpan.Parse(ddlHoras.SelectedValue)
                 );
 
@@ -108,6 +109,7 @@ namespace ClinicaMedica
                 int.Parse(ddlFechas.SelectedValue),
                 int.Parse(ddlEspecialidades.SelectedValue),
                 int.Parse(ddlMedicos.SelectedValue),
+                null,
                 TimeSpan.Parse(ddlHoras.SelectedValue)
             );
         }

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using System.Data.SqlClient;
+﻿using System.Data;
 using Datos;
 using System.Web.UI.WebControls;
+using Entidades;
 
 namespace Servicios
 {
@@ -17,8 +12,13 @@ namespace Servicios
         public GestionTablas() { 
 
         }
-        public DataTable ObtenerTablaTurnos() {
-            return daoTurnos.ListadoTurnos("SP_RetornarListaTurnos");
+        public DataTable ObtenerTablaTurnos(Turno ConfiguracionTurno) {
+            return daoTurnos.ListadoTurnos("SP_RetornarListaTurnos", ConfiguracionTurno);
+        }
+
+        public DataTable ObtenerTablaTurnosPorDni(string dni)
+        {
+            return daoTurnos.ListarTurnosPorDni(dni);
         }
 
         public DataTable ObtenerTablaMedicos()
@@ -33,14 +33,12 @@ namespace Servicios
         {
             return daoMedicos.ListarMedicosPorNombre(nombre);
         }
-        public DataTable ObtenerTablaTurnosPorDni(string dni)
-        {
-            return daoTurnos.ListarTurnosPorDni(dni);
-        }
         public DataTable ObtenerTablaMedicosPorIdEspecialidad(string idEspecialidad)
         {
             return daoMedicos.ListarMedicosPorIdEspecialidad(idEspecialidad);
         }
+
+
         public class GestionMedicos 
         {
             DaoMedicos dao = new DaoMedicos();
