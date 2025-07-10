@@ -401,40 +401,52 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROCEDURE SP_RetornarListaTurnos  
-    @IdEspecialidad INT = NULL,
-    @DniPaciente VARCHAR(10) = NULL,
-    @Fecha DATE = NULL,
-	@LegajoDoctor INT = NULL
-AS
-BEGIN
-SET NOCOUNT ON
-    SELECT     
-	CAST(Semana_TD AS VARCHAR) +'-'+
-    CAST(IdDia_TD AS VARCHAR) + '-' +
-    CAST(IdEspecialidad_TD AS VARCHAR) +  '-' +
-	CAST(LegajoDoctor AS VARCHAR) AS NumeroTurno, 
-	Especialidades.Nombre_Esp as Especialidad,
-	VistaMedicos.Nombre_DP + ' ' + VistaMedicos.Apellido_DP AS Doctor,
-	DatosDoctor.Telefono_DP AS TelefonoDoctor,
-	Fecha_TD as Fecha, 
-	Horario_TD as Horario,
-	DatosPaciente.Nombre_DP + ' ' + DatosPaciente.Apellido_DP As NombrePaciente,
-	DniPaciente as DNIpaciente
+CREATE OR ALTER PROCEDURE SP_RetornarListaTurnos
+    @IdEspecialidad INT = NULL,  
+    @DniPaciente VARCHAR(10) = NULL,  
+    @Fecha DATE = NULL,  
+    @LegajoDoctor INT = NULL,
+    @Estado BIT = NULL
+AS  
+BEGIN  
+    SET NOCOUNT ON;
 
-    FROM TurnosDisponibles 
-		INNER JOIN Especialidades ON IdEspecialidad_TD = Id_Esp 
-		--INNER JOIN VistaMedicos ON Id_Esp = IdEspecialidad_Me --Duplica si varios médicos tienen la misma especialidad.
-		INNER JOIN VistaMedicos ON VistaMedicos.Legajo_Me = TurnosDisponibles.LegajoDoctor
-		INNER JOIN DatosPersonales AS DatosDoctor ON DatosDoctor.Dni_DP = Dni_Me
-        LEFT JOIN DatosPersonales AS DatosPaciente ON DatosPaciente.Dni_DP = TurnosDisponibles.DniPaciente
-    WHERE (@IdEspecialidad IS NULL OR IdEspecialidad_TD = @IdEspecialidad)
-		AND (@DniPaciente IS NULL OR DniPaciente = @DniPaciente)
-		AND (@Fecha IS NULL OR Fecha_TD = @Fecha)
-		AND (@LegajoDoctor IS NULL OR (Legajo_Me = @LegajoDoctor AND DniPaciente IS NOT NULL))
-        AND Estado_TD = 1
-	ORDER BY Fecha_TD
-END
+    SELECT       
+        CAST(Semana_TD AS VARCHAR) + '-' +  
+        CAST(IdDia_TD AS VARCHAR) + '-' +  
+        CAST(IdEspecialidad_TD AS VARCHAR) + '-' +  
+        CAST(LegajoDoctor AS VARCHAR) AS NumeroTurno,   
+
+        Especialidades.Nombre_Esp AS Especialidad,  
+        VistaMedicos.Nombre_DP + ' ' + VistaMedicos.Apellido_DP AS Doctor,  
+        DatosDoctor.Telefono_DP AS TelefonoDoctor,  
+        Fecha_TD AS Fecha,   
+        Horario_TD AS Horario,  
+        ISNULL(DatosPaciente.Nombre_DP + ' ' + DatosPaciente.Apellido_DP, '-') AS NombrePaciente,  
+        DniPaciente AS DNIpaciente,
+
+        CASE 
+            WHEN DniPaciente IS NULL THEN 'Libre'
+            WHEN Estado_TD = 1 THEN 'Presente'
+            WHEN Estado_TD = 0 THEN 'Ausente'
+            ELSE 'Sin Estado'
+        END AS EstadoTurno
+
+    FROM TurnosDisponibles   
+        INNER JOIN Especialidades ON IdEspecialidad_TD = Id_Esp   
+        INNER JOIN VistaMedicos ON VistaMedicos.Legajo_Me = TurnosDisponibles.LegajoDoctor  
+        INNER JOIN DatosPersonales AS DatosDoctor ON DatosDoctor.Dni_DP = Dni_Me  
+        LEFT JOIN DatosPersonales AS DatosPaciente ON DatosPaciente.Dni_DP = TurnosDisponibles.DniPaciente  
+
+    WHERE 
+        (@IdEspecialidad IS NULL OR IdEspecialidad_TD = @IdEspecialidad)  
+        AND (@DniPaciente IS NULL OR TurnosDisponibles.DniPaciente = @DniPaciente)  
+        AND (@Fecha IS NULL OR Fecha_TD = @Fecha)  
+        AND (@LegajoDoctor IS NULL OR Legajo_Me = @LegajoDoctor)  
+        AND (@Estado IS NULL OR Estado_TD = @Estado)
+
+    ORDER BY Fecha_TD;
+END;
 GO
 
 exec SP_RetornarListaTurnos @LegajoDoctor = 14
