@@ -74,10 +74,10 @@
                         <asp:TextBox ID="txtNumeroTelefono" runat="server" CssClass="txtBox-caja" placeholder="1512345678" TextMode="Phone"></asp:TextBox>
                     </div>
                     <br />
-                    <asp:Label ID="lblMensaje" runat="server" ForeColor="White" ></asp:Label>
                 </div>
                 <!-- Botones de acción -->
                 <div class="form-actions">
+                    <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" ></asp:Label>
                     <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn-aceptar" OnClick="btnAceptar_Click" />
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn-cancelar" OnClick="btnCancelar_Click" />
                 </div>

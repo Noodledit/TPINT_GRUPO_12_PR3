@@ -211,6 +211,7 @@ namespace ClinicaMedica
             string dni = txtBuscador.Text.Trim();
             if (!string.IsNullOrEmpty(dni))
             {
+                lblMensaje.Text = string.Empty;
                 DataTable tablaFiltrada = gestionTablas.ObtenerTablaTurnosPorDni(dni);
                 gvTurnos.DataSource = tablaFiltrada;
                 gvTurnos.DataBind();
@@ -222,7 +223,6 @@ namespace ClinicaMedica
                 gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno);
                 gvTurnos.DataBind();
             }
-
         }
 
         protected void btnFecha_Click(object sender, EventArgs e)
@@ -259,6 +259,7 @@ namespace ClinicaMedica
             gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno);
             gvTurnos.DataBind();
             txtBuscador.Text = string.Empty;
+            ddlFechas.SelectedIndex = 0;
         }
     }
 }
