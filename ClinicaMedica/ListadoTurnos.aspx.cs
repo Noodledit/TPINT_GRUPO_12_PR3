@@ -65,7 +65,6 @@ namespace ClinicaMedica
                 lblBienvenidoUsuario.ForeColor = System.Drawing.Color.White;
                 lblBienvenidoUsuario.Text = ((Usuario)Session["UsuarioActivo"]).NombreUsuario + " " + ((Usuario)Session["UsuarioActivo"]).ApellidoUsuario;
                 HabilitacionDeAcceso();
-                lblMensaje.Text = Convert.ToString(((Usuario)Session["UsuarioActivo"]).TipoUsuario);
             }
             else
             {

@@ -61,6 +61,41 @@ namespace ClinicaMedica
                 lblMensaje.ForeColor = Color.Red;
                 return;
             }
+
+            DateTime fechaNacimiento;
+            if (!DateTime.TryParse(txtFechaNacimiento.Text, out fechaNacimiento))
+            {
+                lblMensaje.Text = "La fecha de nacimiento no es válida.";
+                lblMensaje.Visible = true;
+                lblMensaje.ForeColor = Color.Red;
+                return;
+            }
+
+            // Validar rango permitido
+            if (fechaNacimiento < new DateTime(1930, 1, 1) || fechaNacimiento > new DateTime(2025, 12, 31))
+            {
+                lblMensaje.Text = "La fecha de nacimiento invalida. Debe estar entre 1930 y 2025.";
+                lblMensaje.Visible = true;
+                lblMensaje.ForeColor = Color.Red;
+                return;
+            }
+            // validar que el DNI no exista y si existe, debe tener como máximo 8 dígitos
+            if (txtDniMedico.Text.Length > 8 || txtDniMedico.Text.Length < 7)
+            {
+                lblMensaje.Text = "El DNI debe tener entre 7 y 8 dígitos.";
+                lblMensaje.Visible = true;
+                lblMensaje.ForeColor = Color.Red;
+                return;
+            }
+            if (registros.VerificarSiExiste(txtDniMedico.Text.Trim()))
+            {
+                lblMensaje.Text = "El DNI ingresado ya está registrado.";
+                lblMensaje.Visible = true;
+                lblMensaje.ForeColor = Color.Red;
+                return;
+            }
+
+
             Medico nuevoMedico = new Medico
             {
                 Dni = txtDniMedico.Text.Trim(),
@@ -68,7 +103,7 @@ namespace ClinicaMedica
                 Apellido = txtApellido.Text.Trim(),
                 Sexo = ddlSexo.SelectedValue,
                 Nacionalidad = txtNacionalidad.Text.Trim(),
-                FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text),
+                FechaNacimiento = fechaNacimiento,
                 IdProvincia = int.Parse(ddlProvincias.SelectedValue),
                 IdLocalidad = int.Parse(ddlLocalidades.SelectedValue),
                 Direccion = txtDireccion.Text.Trim(),
