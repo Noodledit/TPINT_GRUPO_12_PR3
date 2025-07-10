@@ -112,7 +112,7 @@ namespace Servicios
                 ddlFechas.DataValueField = "IdDia";
                 ddlFechas.DataBind();
 
-               // ddlFechas.Items.Insert(0, new ListItem("Seleccione Fecha", "0"));
+                ddlFechas.Items.Insert(0, new ListItem("Seleccione Fecha", "0"));
             }
         }
 

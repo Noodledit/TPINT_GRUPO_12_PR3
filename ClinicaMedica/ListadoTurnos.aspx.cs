@@ -109,7 +109,9 @@ namespace ClinicaMedica
                     //@Fecha DATE = NULL,
                     //@LegajoDoctor = NULL
 
-                    if (ddlFechas.SelectedItem != null && !string.IsNullOrWhiteSpace(ddlFechas.SelectedItem.Text))
+                    if (ddlFechas.SelectedItem != null 
+                        && ddlFechas.SelectedValue != "0" 
+                        && !string.IsNullOrWhiteSpace(ddlFechas.SelectedItem.Text))
                     {
                         ConfiguracionTurno.Fecha = DateTime.Parse(ddlFechas.SelectedItem.Text);
                     }
@@ -123,7 +125,7 @@ namespace ClinicaMedica
 
                     hlListarTurnos.Visible = true;
                     hlSeguimientoPaciente.Visible = true;
-                    lblFiltroFecha.Visible = true;
+                    btnFecha.Visible = true;
                     ddlFechas.Visible = true;
                     btnMostrarTodo.Visible = true;
                     btnConsultarEstado.Visible = true;
@@ -131,7 +133,7 @@ namespace ClinicaMedica
 
                     if (((Usuario)Session["UsuarioActivo"]).TipoUsuario == 1)
                     {
-                    gestionDdl.CargarFechas(ddlFechas,null,((Usuario)Session["UsuarioActivo"]).LegajoDoctor);
+                        gestionDdl.CargarFechas(ddlFechas, null, ((Usuario)Session["UsuarioActivo"]).LegajoDoctor);
                     }
                     //@IdEspecialidad INT = NULL,
                     //@DniPaciente VARCHAR(10) = NULL,
@@ -139,7 +141,9 @@ namespace ClinicaMedica
 
                     Turno ConfiguracionTurno = new Turno();
 
-                    if (ddlFechas.SelectedItem != null && !string.IsNullOrWhiteSpace(ddlFechas.SelectedItem.Text))
+                    if (ddlFechas.SelectedItem != null 
+                        && ddlFechas.SelectedValue != "0" 
+                        && !string.IsNullOrWhiteSpace(ddlFechas.SelectedItem.Text))
                     {
                         ConfiguracionTurno.Fecha = DateTime.Parse(ddlFechas.SelectedItem.Text);
                     }
@@ -162,7 +166,7 @@ namespace ClinicaMedica
                 hlListarMedicos.Visible = false;
                 hlListarTurnos.Visible = false;
                 hlSeguimientoPaciente.Visible = false;
-                lblFiltroFecha.Visible = false;
+                btnFecha.Visible = false;
                 ddlFechas.Visible = false;
                 btnMostrarTodo.Visible = false;
                 btnConsultarEstado.Visible = false;
@@ -173,6 +177,9 @@ namespace ClinicaMedica
         protected void gvTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvTurnos.PageIndex = e.NewPageIndex;
+            // Recupera el filtro de la Session
+            Turno filtro = Session["FiltroTurno"] as Turno ?? new Turno();
+            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(filtro);
             gvTurnos.DataBind();
         }
 
@@ -219,20 +226,40 @@ namespace ClinicaMedica
 
         }
 
-        protected void ddlFechas_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnFecha_Click(object sender, EventArgs e)
         {
-            if (ddlFechas.SelectedItem != null && !string.IsNullOrWhiteSpace(ddlFechas.SelectedItem.Text))
+            if (ddlFechas.SelectedItem != null
+                    && ddlFechas.SelectedValue != "0"
+                    && !string.IsNullOrWhiteSpace(ddlFechas.SelectedItem.Text))
             {
                 ConfiguracionTurno.Fecha = DateTime.Parse(ddlFechas.SelectedItem.Text);
+            }
+            else
+            {
+                ConfiguracionTurno.Fecha = null;
             }
 
             if (((Usuario)Session["UsuarioActivo"]).TipoUsuario >= 1)
             {
-            ConfiguracionTurno.LegajoMed = ((Usuario)Session["UsuarioActivo"]).LegajoDoctor;
+                ConfiguracionTurno.LegajoMed = ((Usuario)Session["UsuarioActivo"]).LegajoDoctor;
             }
+
+            // Guarda el filtro en Session
+            Session["FiltroTurno"] = ConfiguracionTurno;
 
             gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno);
             gvTurnos.DataBind();
+            txtBuscador.Text = string.Empty;
+        }
+
+        protected void btnMostrarTodo_Click(object sender, EventArgs e)
+        {
+            // mostrar todos los turnos
+            ConfiguracionTurno = new Turno(); // Resetea el filtro
+            Session["FiltroTurno"] = ConfiguracionTurno; // Guarda el filtro vacío en Session
+            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno);
+            gvTurnos.DataBind();
+            txtBuscador.Text = string.Empty;
         }
     }
 }

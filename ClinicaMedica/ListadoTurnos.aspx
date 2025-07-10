@@ -48,16 +48,17 @@
                     <asp:Label ID="lblMensaje" runat="server" Font-Bold="True" ForeColor="#CC0000"></asp:Label>
 
                 <div style="display: flex; align-items: center; gap: 20px">
-                    <asp:Label ID="lblFiltroFecha" runat="server" CssClass="button" Text="Fecha" Width="90px" Height="40px" Visible="False" Font-Bold="True"/>
-                    <asp:DropDownList ID="ddlFechas" runat="server" CssClass="txtBox-caja" Style=" margin-top: 18px;" Visible="False" TabIndex="12" AutoPostBack="True" OnSelectedIndexChanged="ddlFechas_SelectedIndexChanged"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlFechas" runat="server" CssClass="txtBox-caja" Style=" margin-top: 18px;" Visible="False" TabIndex="12" AutoPostBack="True"></asp:DropDownList>
                     <br />
                     <br />
+                    <asp:Button ID="btnFecha" runat="server"  Text="Fecha" CssClass="button" Width="210px" Height="40" TabIndex="11" OnClick="btnFecha_Click"/>
+                    
                 </div>
                 </div>
                 <div style="display: flex; align-items: center; gap: 20px; padding-left: 10px;">
                     <asp:DropDownList ID="ddlEstados" runat="server" CssClass="txtBox-caja"  Style="margin-top: 18px; font-size: 14px;" Visible="False" TabIndex="13"></asp:DropDownList>
                     <asp:Button ID="btnConsultarEstado" runat="server" Text="Consultar por Estado" Style=" width: 210px; height: 40px; font-size: 14px" CssClass="button" Visible="False" TabIndex="14"/>
-                    <asp:Button ID="btnMostrarTodo" runat="server" Text="Mostrar Todo" CssClass="button" Style="font-size: 14px; margin-left: auto;" Visible="False" TabIndex="15"/>
+                    <asp:Button ID="btnMostrarTodo" runat="server" Text="Mostrar Todo" CssClass="button" Style="font-size: 14px; margin-left: auto;" Visible="False" TabIndex="15" OnClick="btnMostrarTodo_Click"/>
                     <br />
                     <br />
                 </div>
