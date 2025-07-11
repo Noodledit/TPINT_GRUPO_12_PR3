@@ -76,9 +76,14 @@
                     <br />
                 </div>
                 <!-- Botones de acción -->
-                <div class="form-actions">
-                    <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" ></asp:Label>
-                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn-aceptar" OnClick="btnAceptar_Click" />
+                <div class="form-actions" aria-atomic="False">
+                    <asp:Label ID="lblMensaje" runat="server" Font-Bold="True" ></asp:Label>
+                    <br />
+                    <asp:Label ID="lbl2doMensaje" runat="server" Font-Bold="True"></asp:Label>
+                    <br />
+                    <br />
+                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn-aceptar" OnClick="btnAceptar_Click" Visible="False" />
+                    <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" CssClass="btn-aceptar" OnClick="btnConfirmar_Click" />
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn-cancelar" OnClick="btnCancelar_Click" />
                 </div>
             </div>

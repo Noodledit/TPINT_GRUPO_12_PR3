@@ -17,6 +17,7 @@ namespace ClinicaMedica
             {
                 gestorDdl.CargarProvincias(ddlProvincias);
                 gestorDdl.CargarLocalidades(ddlLocalidades, 0);
+               // HabilitacionDeBotones();
 
                 if (Session["UsuarioActivo"] != null)
                 {
@@ -29,7 +30,23 @@ namespace ClinicaMedica
                 }
             }
         }
+        private void HabilitacionDeBotones()
+        {
+            if (btnConfirmar.Visible)
+            {
+                btnConfirmar.Visible = false;
+                btnCancelar.Visible = false;
 
+                btnAceptar.Visible = true;
+            }
+            else
+            {
+                btnConfirmar.Visible = true;
+                btnCancelar.Visible = true;
+
+                btnAceptar.Visible = false;
+            }
+        }
         protected void ddlProvincias_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             int idProvincia = int.Parse(ddlProvincias.SelectedValue);
@@ -45,7 +62,7 @@ namespace ClinicaMedica
             }
         }
 
-        protected void btnAceptar_Click(object sender, EventArgs e)
+        protected void btnConfirmar_Click(object sender, EventArgs e)
         {
             Turno turno = Session["TurnoPendiente"] as Turno;
 
@@ -64,9 +81,9 @@ namespace ClinicaMedica
                 lblMensaje.Visible = true;
                 return;
             }
-            if (fechaNacimiento < new DateTime(1930, 1, 1) || fechaNacimiento > new DateTime(2025, 12, 31))
+            if (fechaNacimiento < new DateTime(1930, 1, 1) || fechaNacimiento > new DateTime(2025, 12, 31)) // corregir la fecha final trayendo la del sistema.
             {
-                lblMensaje.Text = "La fecha de nacimiento es inválida. Debe estar entre 1930 y 2025.";
+                lblMensaje.Text = "La fecha de nacimiento es inválida. Debe ser de 1930 a la actualidad.";
                 lblMensaje.Visible = true;
                 return;
             }
@@ -84,6 +101,7 @@ namespace ClinicaMedica
                 Convert.ToInt32(ddlLocalidades.SelectedValue), 
                 txtCorreoElectronico.Text.Trim(), 
                 txtNumeroTelefono.Text.Trim());
+
             /* Paciente NuevoPaciente = new Paciente(//Datos de prueba
              "97632321",                     
              "Ramon",                       
@@ -100,10 +118,27 @@ namespace ClinicaMedica
 
             if (registros.RegistrarPaciente(NuevoPaciente)==true)
             {
-                lblMensaje.Text = "Se registro correctamente al paciente";
+                lblMensaje.Text = "Paciente " + txtNombre.Text.Trim() + " " + txtApellido.Text.Trim() + " registrado correctamente" ;
                 lblMensaje.Visible = true;
                 LimpiarTxtBox();
-                Response.Redirect("AsignacionTurnos.aspx");
+
+                HabilitacionDeBotones();
+
+                int resultado = registros.RegistrarTurno(Session["TurnoPendiente"] as Turno);
+
+                if (resultado == 1)
+                {
+                    lbl2doMensaje.Text += "Turno asignado";
+                    lbl2doMensaje.ForeColor = System.Drawing.Color.White;
+                }
+                else
+                {
+                    lbl2doMensaje.Text = "No se pudo asignar el turno";
+                    lbl2doMensaje.ForeColor = System.Drawing.Color.Red;
+                }
+
+                Session.Remove("TurnoPendiente");
+                //
             }
             else
             {
@@ -151,6 +186,11 @@ namespace ClinicaMedica
         {
             Session["UsuarioActivo"] = null;
             Response.Redirect("ListadoTurnos.aspx");
+        }
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AsignacionTurnos.aspx");
         }
     }
 }
