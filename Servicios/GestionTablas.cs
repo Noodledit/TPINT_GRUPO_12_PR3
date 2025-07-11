@@ -16,11 +16,6 @@ namespace Servicios
             return daoTurnos.ListadoTurnos("SP_RetornarListaTurnos", ConfiguracionTurno);
         }
 
-        public DataTable ObtenerTablaTurnosPorDni(string dni)
-        {
-            return daoTurnos.ListarTurnosPorDni(dni);
-        }
-
         public DataTable ObtenerTablaMedicos()
         {
             return daoMedicos.ListarMedicos();

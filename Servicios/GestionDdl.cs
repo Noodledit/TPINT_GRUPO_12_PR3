@@ -80,7 +80,22 @@ namespace Servicios
                 ddlMedicos.Items.Insert(0, new ListItem("Seleccione Medico", "0"));
             }
         }
-
+        public void CargarEstados(DropDownList ddlEstados)
+        {
+            DataTable tablaEstados = new DataTable();
+            tablaEstados.Columns.Add("IdEstado", typeof(int));
+            tablaEstados.Columns.Add("NombreEstado", typeof(string));
+            tablaEstados.Rows.Add(1, "Disponibles");
+            tablaEstados.Rows.Add(2, "Tomados");
+            tablaEstados.Rows.Add(0, "Deshabilitados");
+            if (tablaEstados != null)
+            {
+                ddlEstados.DataSource = tablaEstados;
+                ddlEstados.DataTextField = "NombreEstado";
+                ddlEstados.DataValueField = "IdEstado";
+                ddlEstados.DataBind();
+            }
+        }
         public void CargarFechas(DropDownList ddlFechas, int? idEspecialidad = null, int? LegajoMedico = null)
         {
             acceso = new AccesoDatos();
@@ -115,7 +130,6 @@ namespace Servicios
                 ddlFechas.Items.Insert(0, new ListItem("Seleccione Fecha", "0"));
             }
         }
-
         public void CargarHoras(DropDownList ddlHoras, int idEspecialidad, int? idDia = null, int? LegajoMedico = null)
         {
             acceso = new AccesoDatos();

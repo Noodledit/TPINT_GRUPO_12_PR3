@@ -29,19 +29,12 @@ namespace Datos
             };
 
             command.Parameters.AddWithValue("@DniPaciente", turno.DniPaciente);
-            command.Parameters.AddWithValue("@Semana", turno.SemanaID);
-            command.Parameters.AddWithValue("@IdDia", turno.IdDia);
+            command.Parameters.AddWithValue("@Fecha", turno.Fecha);
             command.Parameters.AddWithValue("@IDEspecialidad", turno.IDEspecialidad);
             command.Parameters.AddWithValue("@LegajoDoctor", turno.LegajoMed);
             command.Parameters.AddWithValue("@Horario", turno.Horas);
 
             return accesoDatos.EjecutarProcedimientoAlmacenado(command, "SP_AsignarTurno");
-        }
-        public DataTable ListarTurnosPorDni(string dni)
-        {
-            SqlParameter[] parametros = new SqlParameter[] {
-                new SqlParameter("@DniPaciente", dni) };
-            return accesoDatos.EjecutarConsultaSelectDataAdapter("SP_RetornarListaTurnos", parametros);
         }
     }
 }

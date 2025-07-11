@@ -31,7 +31,6 @@ namespace ClinicaMedica
                 }
             }
         }
-
         protected void btnUn_Login_Click(object sender, EventArgs e)
         {
             Session["UsuarioActivo"] = null;
@@ -59,15 +58,13 @@ namespace ClinicaMedica
                 lblMensaje.Visible = true;
                 return;
             }
-
             // Verificar existencia del paciente
+
             Session["TurnoPendiente"] = new Turno(
                 dniPaciente,
-                1, // Numero de Semana, hay que modificar
-                int.Parse(ddlFechas.SelectedValue),
                 int.Parse(ddlEspecialidades.SelectedValue),
                 int.Parse(ddlMedicos.SelectedValue),
-                null,
+                DateTime.Parse((ddlFechas.SelectedItem.Text)),
                 TimeSpan.Parse(ddlHoras.SelectedValue)
                 );
 
@@ -82,43 +79,12 @@ namespace ClinicaMedica
             pnlConfirmacion.Visible = true;
             btnAsignarTurno.Visible = false;
             lblMensaje.Visible = false;
-
-
-            int idSemana = 1;
-            /*DataTable tablaFechas = HttpContext.Current.Session["IDSemana"] as DataTable;
-
-            int idDiaSelect = int.Parse(ddlFechas.SelectedValue);
-
-            if (tablaFechas != null)
-            {
-                foreach (DataRow fila in tablaFechas.Rows)
-                {
-                    if (Convert.ToInt32(fila["IdDia"]) == idDiaSelect)
-                    {
-                        idSemana = Convert.ToInt32(fila["Semana"]);
-                        break;
-                    }
-                }
-            }*/
-
-            // Guardar datos en sesión para usarlos en la confirmación
-
-            Session["TurnoPendiente"] = new Turno(
-                dniPaciente,
-                idSemana, 
-                int.Parse(ddlFechas.SelectedValue),
-                int.Parse(ddlEspecialidades.SelectedValue),
-                int.Parse(ddlMedicos.SelectedValue),
-                null,
-                TimeSpan.Parse(ddlHoras.SelectedValue)
-            );
         }
 
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
             // Recuperar el turno pendiente de la sesión
-            Turno nuevoTurno = Session["TurnoPendiente"] as Turno;
-            if (nuevoTurno == null)
+            if (Session["TurnoPendiente"] as Turno == null)
             {
                 lblMensaje.Text = "Error interno. Vuelva a intentarlo.";
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
@@ -128,7 +94,7 @@ namespace ClinicaMedica
                 return;
             }
 
-            int resultado = GestorReg.RegistrarTurno(nuevoTurno);
+            int resultado = GestorReg.RegistrarTurno(Session["TurnoPendiente"] as Turno);
 
             lblMensaje.Visible = true;
             if (resultado == 1)
@@ -145,6 +111,15 @@ namespace ClinicaMedica
             pnlConfirmacion.Visible = false;
             btnAsignarTurno.Visible = true;
             Session.Remove("TurnoPendiente");
+
+            txtDni.Text = string.Empty;
+            ddlEspecialidades.SelectedIndex = 0;
+            ddlFechas.Items.Clear();
+            ddlFechas.Enabled = false;
+            ddlMedicos.Items.Clear();
+            ddlMedicos.Enabled = false;
+            ddlHoras.Items.Clear();
+            ddlHoras.Enabled = false;
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -221,7 +196,6 @@ namespace ClinicaMedica
                 gestorDdl.CargarHoras(ddlHoras, idEspecialidadSeleccionada, idFechaSeleccionada, LegajoSeleccionado);
             }
         }
-
         protected void btnUnlogin_Click(object sender, EventArgs e)
         {
             Session["UsuarioActivo"] = null;

@@ -2,7 +2,7 @@ CREATE DATABASE ClinicaMedica
 GO
 USE ClinicaMedica
 GO
-SET DATEFORMAT dmy;
+SET DATEFORMAT dmy
 GO
 -- Eliminar tablas en orden correcto (de dependientes a independientes)
 DROP TABLE IF EXISTS TurnosDisponibles
@@ -208,7 +208,7 @@ AS
 BEGIN
     SELECT IdProvincia, NombreProvincia
     FROM Provincias
-    ORDER BY NombreProvincia;
+    ORDER BY NombreProvincia
 END
 
 GO
@@ -220,7 +220,7 @@ BEGIN
     SELECT IdLocalidad, NombreLocalidad
     FROM Localidades
     WHERE IdProvincia = @IdProvincia
-    ORDER BY NombreLocalidad;
+    ORDER BY NombreLocalidad
 END
 GO
 
@@ -297,7 +297,7 @@ BEGIN
 			@IdProvincia,
 			@Correo,
 			@Telefono
-		);
+		)
 	END
 
 	IF NOT EXISTS (SELECT 1 FROM Medicos WHERE Dni_Me = @Dni)
@@ -311,7 +311,7 @@ BEGIN
 		(
 			@Dni,
 			@IdEspecialidad
-		);
+		)
 	END
 END
 GO
@@ -355,7 +355,7 @@ GO
 CREATE PROCEDURE SP_ObtenerProxLegajo
 AS
 BEGIN
-    SELECT ISNULL(MAX(Legajo_Me), 0) + 1 AS ProximoLegajo FROM Medicos;
+    SELECT ISNULL(MAX(Legajo_Me), 0) + 1 AS ProximoLegajo FROM Medicos
 END
 GO
 
@@ -364,7 +364,7 @@ CREATE PROCEDURE SP_LoginUsuario
     @Pass VARCHAR(20)
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT ON
     SELECT  u.IdUsuario, u.NombreUsuario, u.TipoUsuario, u.DniUsuario, u.LegajoDoctor, dp.Nombre_DP, dp.Apellido_DP
     FROM    Usuarios  AS u INNER JOIN DatosPersonales AS dp ON dp.Dni_DP = u.DniUsuario   
     WHERE   u.NombreUsuario = @User  AND  u.Contraseña = @Pass 
@@ -409,7 +409,7 @@ CREATE OR ALTER PROCEDURE SP_RetornarListaTurnos
     @Estado BIT = NULL
 AS  
 BEGIN  
-    SET NOCOUNT ON;
+    SET NOCOUNT ON
 
     SELECT       
         CAST(Semana_TD AS VARCHAR) + '-' +  
@@ -423,14 +423,7 @@ BEGIN
         Fecha_TD AS Fecha,   
         Horario_TD AS Horario,  
         ISNULL(DatosPaciente.Nombre_DP + ' ' + DatosPaciente.Apellido_DP, '-') AS NombrePaciente,  
-        DniPaciente AS DNIpaciente,
-
-        CASE 
-            WHEN DniPaciente IS NULL THEN 'Libre'
-            WHEN Estado_TD = 1 THEN 'Presente'
-            WHEN Estado_TD = 0 THEN 'Ausente'
-            ELSE 'Sin Estado'
-        END AS EstadoTurno
+        DniPaciente AS DNIpaciente
 
     FROM TurnosDisponibles   
         INNER JOIN Especialidades ON IdEspecialidad_TD = Id_Esp   
@@ -442,11 +435,11 @@ BEGIN
         (@IdEspecialidad IS NULL OR IdEspecialidad_TD = @IdEspecialidad)  
         AND (@DniPaciente IS NULL OR TurnosDisponibles.DniPaciente = @DniPaciente)  
         AND (@Fecha IS NULL OR Fecha_TD = @Fecha)  
-        AND (@LegajoDoctor IS NULL OR Legajo_Me = @LegajoDoctor)  
+        AND (@LegajoDoctor IS NULL OR TurnosDisponibles.LegajoDoctor = @LegajoDoctor)  
         AND (@Estado IS NULL OR Estado_TD = @Estado)
 
-    ORDER BY Fecha_TD;
-END;
+    ORDER BY Fecha_TD
+END
 GO
 
 exec SP_RetornarListaTurnos @LegajoDoctor = 14
@@ -474,7 +467,7 @@ CREATE OR ALTER PROCEDURE SP_RetornarListaMedicos
     @BusquedaGeneral VARCHAR(50) = NULL
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT ON
 
     SELECT DISTINCT
         m.Legajo_Me AS Legajo,
@@ -499,8 +492,8 @@ BEGIN
             @BusquedaGeneral IS NULL 
             OR dp.Nombre_DP LIKE '%' + @BusquedaGeneral + '%'
         )
-    ORDER BY m.Legajo_Me ASC;
-END;
+    ORDER BY m.Legajo_Me ASC
+END
 GO
 
 CREATE OR ALTER PROCEDURE SP_RetornarHorasTurnos
@@ -519,11 +512,10 @@ END
 GO
 
 CREATE OR ALTER PROCEDURE SP_AsignarTurno  
-    @DniPaciente VARCHAR(10) = NULL,  
-    @Semana INT,  
-    @IdDia INT,  
-    @IDEspecialidad INT,  
-    @LegajoDoctor INT,  
+    @DniPaciente VARCHAR(10) = NULL,
+    @Fecha Date,
+    @IDEspecialidad INT,
+    @LegajoDoctor INT,
     @Horario TIME(0)
 AS  
 BEGIN  
@@ -532,7 +524,7 @@ BEGIN
     BEGIN  
         UPDATE TurnosDisponibles  
         SET DniPaciente = NULL 
-        WHERE Semana_TD = @Semana AND IdDia_TD = @IdDia  AND IdEspecialidad_TD = @IDEspecialidad   
+        WHERE Fecha_TD = @Fecha AND IdEspecialidad_TD = @IDEspecialidad   
         AND LegajoDoctor = @LegajoDoctor AND Horario_TD = @Horario  
     END  
 
@@ -540,7 +532,7 @@ BEGIN
     BEGIN  
         UPDATE TurnosDisponibles  
         SET DniPaciente = @DniPaciente 
-        WHERE Semana_TD = @Semana AND IdDia_TD = @IdDia AND IdEspecialidad_TD = @IDEspecialidad   
+        WHERE Fecha_TD = @Fecha AND IdEspecialidad_TD = @IDEspecialidad   
         AND LegajoDoctor = @LegajoDoctor AND Horario_TD = @Horario
     END  
 END    
@@ -575,7 +567,7 @@ VALUES
 ('Santa Fe'),
 ('Santiago del Estero'),
 ('Tierra del Fuego'),
-('Tucumán');
+('Tucumán')
 GO
 
 PRINT 'Reinsertando Localidades...'
@@ -1018,7 +1010,8 @@ VALUES
 ('Tres Isletas', 5),
 ('Villa Ángela', 5),
 ('Villa Berthet', 5),
-('Villa R. Bermejito', 5);
+('Villa R. Bermejito', 5)
+
 INSERT INTO Localidades (NombreLocalidad, IdProvincia)
 VALUES
 ('Aldea Apeleg', 6),
@@ -1861,7 +1854,8 @@ VALUES
 ('Tres Lagunas', 10),
 ('Villa Dos Trece', 10),
 ('Villa Escolar', 10),
-('Villa Gral. Güemes', 10);
+('Villa Gral. Güemes', 10)
+
 INSERT INTO Localidades (NombreLocalidad, IdProvincia)
 VALUES
 ('Abdon Castro Tolay', 11),
@@ -2122,7 +2116,8 @@ VALUES
 ('Sta. María', 15),
 ('Tres Capones', 15),
 ('Veinticinco de Mayo', 15),
-('Wanda', 15);
+('Wanda', 15)
+
 INSERT INTO Localidades (NombreLocalidad, IdProvincia)
 VALUES
 ('Aguada San Roque', 16),
@@ -2402,7 +2397,8 @@ VALUES
 ('Villa Gral. Roca', 20),
 ('Villa Larca', 20),
 ('Villa Mercedes', 20),
-('Zanjitas', 20);
+('Zanjitas', 20)
+
 INSERT INTO Localidades (NombreLocalidad, IdProvincia)
 VALUES
 ('Calafate', 21),
@@ -2970,7 +2966,8 @@ VALUES
 ('Villa Quinteros', 25),
 ('Yánima', 25),
 ('Yerba Buena', 25),
-('Yerba Buena (S)', 25);
+('Yerba Buena (S)', 25)
+
 -- DatosPersonales
 GO
 
