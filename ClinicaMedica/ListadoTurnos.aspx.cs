@@ -14,6 +14,8 @@ namespace ClinicaMedica
         private GestionTablas gestionTablas = new GestionTablas();
         private GestionDdl gestionDdl = new GestionDdl();
         Turno ConfiguracionTurno = new Turno();
+        private GestionRegistros GestorRegistros = new GestionRegistros();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -183,14 +185,62 @@ namespace ClinicaMedica
 
         protected void gvTurnos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            //Aqui se desglosa Numero de turno, y se pueden sacar varios datos desde ahi
+
+            string NumeroTurno = gvTurnos.DataKeys[e.RowIndex].Value.ToString();
+            string[] Division = NumeroTurno.Split('-');
+            int semana = int.Parse(Division[0]);
+            int idDia = int.Parse(Division[1]);
+            int idEspecialidad = int.Parse(Division[2]);
+            int legajo = int.Parse(Division[3]);
+
+
+            GridViewRow fila = gvTurnos.Rows[e.RowIndex];
             //Logico de eliminar va aqui o el llamado a eliminar el turno, se hace a traves del mismo metodo de asignar turno,
-            //aunque hay que ver como exactamente, si no me equivoco creo que pasando los datos del turno sin el dni
+            //pasando los datos del turno sin el dni(dni null)
+            ConfiguracionTurno = new Turno(
+             null,idEspecialidad, legajo, Convert.ToDateTime(((System.Web.UI.WebControls.Label)fila.FindControl("lbl_it_Fecha")).Text),
+             TimeSpan.Parse(((System.Web.UI.WebControls.Label)fila.FindControl("lbl_it_Horario")).Text)
+             );
+
+            int Retorno = GestorRegistros.RegistrarTurno(ConfiguracionTurno);
+
+            ConfiguracionTurno = new Turno();
+            Session["FiltroTurno"] = ConfiguracionTurno; 
+
             gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno);
             gvTurnos.DataBind();
         }
 
         protected void gvTurnos_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            //No estoy completamente seguro de que mas se deberia poder subir o actualizar desde aqui, asi que por el momento solo esta el DNI,
+            //aunque hay un txt para el nombre del paciente es temporal ya que depende del dni asi que no tiene mucho sentido
+            string NumeroTurno = gvTurnos.DataKeys[e.RowIndex].Value.ToString();
+            string[] Division = NumeroTurno.Split('-');
+            int semana = int.Parse(Division[0]);
+            int idDia = int.Parse(Division[1]);
+            int idEspecialidad = int.Parse(Division[2]);
+            int legajo = int.Parse(Division[3]);
+
+            GridViewRow fila = gvTurnos.Rows[e.RowIndex];
+
+            ConfiguracionTurno = new Turno(
+                ((TextBox)fila.FindControl("txt_it_DniPaciente")).Text, idEspecialidad, legajo, Convert.ToDateTime(((System.Web.UI.WebControls.Label)fila.FindControl("lbl_it_Fecha")).Text), 
+                TimeSpan.Parse(((System.Web.UI.WebControls.Label)fila.FindControl("lbl_it_Horario")).Text)
+                );
+
+            int Retorno = GestorRegistros.RegistrarTurno(ConfiguracionTurno);
+
+            gvTurnos.EditIndex = -1;//Salir del Edit
+
+            ConfiguracionTurno = new Turno(); 
+            Session["FiltroTurno"] = ConfiguracionTurno;
+            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno);
+            gvTurnos.DataBind();
+
+
+
 
         }
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -253,6 +303,13 @@ namespace ClinicaMedica
         protected void ddlEstados_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void gvTurnos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            gvTurnos.EditIndex = -1;//Salir del Edit
+            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno);
+            gvTurnos.DataBind();
         }
     }
 }
