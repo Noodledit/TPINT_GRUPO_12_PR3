@@ -12,8 +12,27 @@ namespace Servicios
         public GestionTablas() { 
 
         }
-        public DataTable ObtenerTablaTurnos(Turno ConfiguracionTurno) {
-            return daoTurnos.ListadoTurnos("SP_RetornarListaTurnos", ConfiguracionTurno);
+        public DataTable ObtenerTablaTurnos(Turno ConfiguracionTurno, int? ValorEstado = 1) {
+
+            bool? Estado;
+
+            switch (ValorEstado)
+            {
+                case 1:
+                    Estado = true; // Disponibles
+                    break;
+                case 0:
+                    Estado = false; // Tomados
+                    break;
+                case 2:
+                    Estado = null; // Deshabilitados
+                    break;
+                default:
+                    Estado = true; // Por si llega un valor inesperado
+                    break;
+            }
+
+            return daoTurnos.ListadoTurnos("SP_RetornarListaTurnos", ConfiguracionTurno, Estado);
         }
 
         public DataTable ObtenerTablaMedicos()
