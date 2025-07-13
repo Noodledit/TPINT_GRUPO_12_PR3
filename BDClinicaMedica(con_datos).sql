@@ -436,13 +436,15 @@ BEGIN
         AND (@DniPaciente IS NULL OR TurnosDisponibles.DniPaciente = @DniPaciente)  
         AND (@Fecha IS NULL OR Fecha_TD = @Fecha)  
         AND (@LegajoDoctor IS NULL OR TurnosDisponibles.LegajoDoctor = @LegajoDoctor)  
-        AND (@Estado IS NULL OR Estado_TD = @Estado)
+        AND (@Estado IS NULL AND TurnosDisponibles.DniPaciente IS NOT NULL)
+        OR (Estado_TD = @Estado AND @Estado = 1 AND DniPaciente IS NULL)
+        OR (Estado_TD = @Estado AND @Estado = 0)
 
     ORDER BY Fecha_TD
 END
 GO
 
-exec SP_RetornarListaTurnos @LegajoDoctor = 14
+exec SP_RetornarListaTurnos
 
 GO
 
