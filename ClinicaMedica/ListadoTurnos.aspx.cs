@@ -307,13 +307,16 @@ namespace ClinicaMedica
 
             int Resulado = GestorRegistros.RegistrarTurno(ConfiguracionTurno);
 
+            ConfiguracionTurno = new Turno();
+
             Session.Remove("FiltroTurno");
+
+            gvTurnos.EditIndex = -1;//Salir del Edit
             gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
             gvTurnos.DataBind();
 
-            gvTurnos.EditIndex = -1;//Salir del Edit
         }
-        //////////////////////////////////////////////////////////////////////////////////////
+
         protected void gvTurnos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             int idTurno = Convert.ToInt32(gvTurnos.Rows[e.NewSelectedIndex].FindControl("lbl_it_NumeroTurno"));
@@ -329,7 +332,5 @@ namespace ClinicaMedica
             };
             Response.Redirect("SeguimientosPacientes.aspx");
         }
-
-
     }
 }
