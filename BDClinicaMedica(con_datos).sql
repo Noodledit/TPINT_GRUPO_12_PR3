@@ -2985,7 +2985,8 @@ VALUES
 (1, 7, 'Domingo')
 GO
 
-PRINT 'Reinsertando Datos Personales...'
+PRINT 'Reinsertando Datos Personales...' 
+
 INSERT INTO DatosPersonales (Dni_DP, Nombre_DP, Apellido_DP, Sexo_DP, Nacionalidad_DP, FechaNacimiento_DP, Direccion_DP, IdLocalidad_DP, IdProvincia_DP, CorreoElectronico_DP, Telefono_DP)
 VALUES
 	('12345678', 'Claudio', 'Fernandez', 'Masculino', 'Argentina', '20-05-1990', 'Calle Falsa 123', 42, 15, 'claudio.fernandez@gmail.com', '3511234567'),
@@ -3011,7 +3012,7 @@ VALUES
 	('46048605', 'Florencia', 'Ojeda', 'Femenino', 'Argentina', '07-07-1968', 'San Martín 100', 28, 21, 'luciana.abbondanzieri@xeneize.ar', '1156781234'),
 	('30648453', 'Gabriel', 'Batistuta', 'Masculino', 'Argentina', '07-07-1970', 'Calle Falsa 123', 41, 10, 'martín.figal@xeneize.ar', '1156781234'),
 	('66666666', 'Javier Gerardo', 'Milei', 'Otro', 'Argentina', '22-10-1970', 'Alberdi 2023', 24, 2, 'bobotonto@gmai.co', '1131424397'),
-    ('99999999', 'Juan', 'Grabois', 'Masculino', 'Argentina', '31-12-1980', 'Roque sans peña 2547', 24, 2, 'JuanpiGrabois@gmail.com', '1136547894')
+    ('99999999', 'Juan', 'Grabois', 'Masculino', 'Argentina', '22-12-1978', 'Roquepeña 2547', 24, 2, 'bobotonto@gmai.co', '1136547894')
 GO
 
 PRINT 'Reinsertando Especialidades...'

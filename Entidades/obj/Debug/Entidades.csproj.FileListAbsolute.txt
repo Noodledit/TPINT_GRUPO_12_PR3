@@ -52,3 +52,9 @@ C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Entidades\o
 C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.dll
 C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.pdb
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (3)\TPINT_GRUPO_12_PR3\Entidades\bin\Debug\Entidades.dll
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (3)\TPINT_GRUPO_12_PR3\Entidades\bin\Debug\Entidades.pdb
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (3)\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (3)\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (3)\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.dll
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (3)\TPINT_GRUPO_12_PR3\Entidades\obj\Debug\Entidades.pdb
