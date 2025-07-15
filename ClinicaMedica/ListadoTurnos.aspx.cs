@@ -113,7 +113,7 @@ namespace ClinicaMedica
                     {
                         ConfiguracionTurno.Fecha = DateTime.ParseExact(ddlFechas.SelectedItem.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     }
-
+                    
                     ColumnaOpciones.ShowSelectButton = false;
                     ColumnaOpciones.ShowEditButton = true;
                     ColumnaOpciones.ShowDeleteButton = true;
