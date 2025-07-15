@@ -434,17 +434,17 @@ BEGIN
     WHERE 
         (@IdEspecialidad IS NULL OR IdEspecialidad_TD = @IdEspecialidad)  
         AND (@DniPaciente IS NULL OR TurnosDisponibles.DniPaciente = @DniPaciente)  
-        AND (@Fecha IS NULL OR Fecha_TD = @Fecha)  
+        AND (@Fecha IS NULL OR Fecha_TD = @Fecha)
         AND (@LegajoDoctor IS NULL OR TurnosDisponibles.LegajoDoctor = @LegajoDoctor)  
-        AND (@Estado IS NULL AND TurnosDisponibles.DniPaciente IS NOT NULL)
-        OR (Estado_TD = @Estado AND @Estado = 1 AND DniPaciente IS NULL)
-        OR (Estado_TD = @Estado AND @Estado = 0)
+        AND ((@Estado IS NULL AND TurnosDisponibles.DniPaciente IS NOT NULL)
+            OR (Estado_TD = @Estado AND Estado_TD = 1 AND DniPaciente IS NULL)
+            OR (Estado_TD = @Estado AND @Estado = 0))
 
     ORDER BY Fecha_TD
 END
 GO
 
-exec SP_RetornarListaTurnos
+--exec SP_RetornarListaTurnos @LegajoDoctor = 11, @Estado = 1
 
 GO
 
@@ -3010,7 +3010,8 @@ VALUES
 	('46412949', 'Daniela', 'Caniggia', 'Femenino', 'Argentina', '30-06-1996', 'Calle Falsa 123', 16, 6, 'daniela.battaglia@hotmail.com', '2234567890'),
 	('46048605', 'Florencia', 'Ojeda', 'Femenino', 'Argentina', '07-07-1968', 'San Martín 100', 28, 21, 'luciana.abbondanzieri@xeneize.ar', '1156781234'),
 	('30648453', 'Gabriel', 'Batistuta', 'Masculino', 'Argentina', '07-07-1970', 'Calle Falsa 123', 41, 10, 'martín.figal@xeneize.ar', '1156781234'),
-	('66666666', 'Javier Gerardo', 'Milei', 'Masculino', 'Argentina', '22-10-1970', 'Alberdi 2023', 24, 2, 'bobotonto@gmai.co', '1131424397')
+	('66666666', 'Javier Gerardo', 'Milei', 'Otro', 'Argentina', '22-10-1970', 'Alberdi 2023', 24, 2, 'bobotonto@gmai.co', '1131424397'),
+    ('99999999', 'Juan', 'Grabois', 'Masculino', 'Argentina', '31-12-1980', 'Roque sans peña 2547', 24, 2, 'JuanpiGrabois@gmail.com', '1136547894')
 GO
 
 PRINT 'Reinsertando Especialidades...'
@@ -3030,7 +3031,7 @@ GO
 PRINT 'Reinsertando Medicos...'
 INSERT INTO Medicos(Dni_Me, IdEspecialidad_Me)
 VALUES 
-	('12345678', 1),
+	('99999999', 1),
 	('49232449', 2),
 	('40766760', 3),
 	('30648453', 4),
@@ -3294,5 +3295,5 @@ GO
 
 INSERT INTO Usuarios (NombreUsuario, Contraseña, TipoUsuario, DniUsuario, LegajoDoctor)
 VALUES 	
-	('mussi','mussi',2,'111222333',11)
+	('mussi','mussi',1,'111222333',11)
 GO
