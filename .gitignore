@@ -2,11 +2,6 @@
 bin/
 obj/
 
-# Archivos de Visual Studio
-.vs/
-*.suo
-*.user
-
 # Archivos de paquetes
 packages/
 *.nupkg

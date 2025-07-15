@@ -97,3 +97,14 @@ C:\Users\hblan\OneDrive\Desktop\Nueva carpeta\TPINT_GRUPO_12_PR3\Servicios\obj\D
 C:\Users\hblan\OneDrive\Desktop\Nueva carpeta\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.csproj.Up2Date
 C:\Users\hblan\OneDrive\Desktop\Nueva carpeta\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.dll
 C:\Users\hblan\OneDrive\Desktop\Nueva carpeta\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.pdb
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Servicios.dll
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Servicios.pdb
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Datos.dll
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Entidades.dll
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Datos.pdb
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\bin\Debug\Entidades.pdb
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.csproj.AssemblyReference.cache
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.csproj.CoreCompileInputs.cache
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.csproj.Up2Date
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.dll
+C:\Users\hblan\OneDrive\Desktop\Nueva carpeta (2)\TPINT_GRUPO_12_PR3\Servicios\obj\Debug\Servicios.pdb
