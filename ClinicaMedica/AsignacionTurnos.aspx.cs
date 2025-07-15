@@ -3,6 +3,7 @@ using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -64,7 +65,7 @@ namespace ClinicaMedica
                 dniPaciente,
                 int.Parse(ddlEspecialidades.SelectedValue),
                 int.Parse(ddlMedicos.SelectedValue),
-                DateTime.Parse((ddlFechas.SelectedItem.Text)),
+                DateTime.ParseExact(ddlFechas.SelectedItem.Text,"dd/MM/yyyy",CultureInfo.InvariantCulture),
                 TimeSpan.Parse(ddlHoras.SelectedValue)
                 );
 

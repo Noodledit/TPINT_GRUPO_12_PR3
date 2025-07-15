@@ -3294,5 +3294,5 @@ GO
 
 INSERT INTO Usuarios (NombreUsuario, Contraseña, TipoUsuario, DniUsuario, LegajoDoctor)
 VALUES 	
-	('mussi','mussi',2,'111222333',11)
+	('mussi','mussi',1,'111222333',11)
 GO

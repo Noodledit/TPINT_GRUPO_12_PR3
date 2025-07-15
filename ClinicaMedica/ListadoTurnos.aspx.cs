@@ -2,8 +2,10 @@
 using Servicios;
 using System;
 using System.Data;
+using System.Globalization;
 using System.Reflection.Emit;
 using System.Web.UI.WebControls;
+using WebLabel = System.Web.UI.WebControls.Label;
 
 
 namespace ClinicaMedica
@@ -118,7 +120,7 @@ namespace ClinicaMedica
                         && ddlFechas.SelectedValue != "0" 
                         && !string.IsNullOrWhiteSpace(ddlFechas.SelectedItem.Text))
                     {
-                        ConfiguracionTurno.Fecha = DateTime.Parse(ddlFechas.SelectedItem.Text);
+                        ConfiguracionTurno.Fecha = DateTime.ParseExact(ddlFechas.SelectedItem.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     }
 
                     ShowButton = new CommandField
@@ -209,7 +211,7 @@ namespace ClinicaMedica
                     && ddlFechas.SelectedValue != "0"
                     && !string.IsNullOrWhiteSpace(ddlFechas.SelectedItem.Text))
             {
-                ConfiguracionTurno.Fecha = DateTime.Parse(ddlFechas.SelectedItem.Text);
+                ConfiguracionTurno.Fecha = DateTime.ParseExact(ddlFechas.SelectedItem.Text,"dd/MM/yyyy",CultureInfo.InvariantCulture);
             }
             else
             {
@@ -338,5 +340,23 @@ namespace ClinicaMedica
 
             gvTurnos.EditIndex = -1;//Salir del Edit
         }
+        //////////////////////////////////////////////////////////////////////////////////////
+        protected void gvTurnos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            int idTurno = Convert.ToInt32(gvTurnos.Rows[e.NewSelectedIndex].FindControl("lbl_it_NumeroTurno"));
+            string paciente = ((WebLabel)gvTurnos.Rows[e.NewSelectedIndex].FindControl("lbl_it_NombrePaciente")).Text;
+            string fecha = ((WebLabel)gvTurnos.Rows[e.NewSelectedIndex].FindControl("lbl_it_Fecha")).Text;
+
+            // guardo en una session
+            Session["TurnoSeleccionado"] = new
+            {
+                ID = idTurno,
+                Paciente = paciente,
+                Fecha = fecha
+            };
+            Response.Redirect("SeguimientosPacientes.aspx");
+        }
+
+
     }
 }
