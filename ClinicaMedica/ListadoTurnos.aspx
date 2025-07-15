@@ -66,32 +66,36 @@
                 <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="tabla-turnos" AllowPaging="True" OnPageIndexChanging="gvTurnos_PageIndexChanging" PageSize="15" DataKeyNames="NumeroTurno" OnRowDeleting="gvTurnos_RowDeleting" OnRowEditing="gvTurnos_RowEditing" OnRowUpdating="gvTurnos_RowUpdating" OnRowCancelingEdit="gvTurnos_RowCancelingEdit">
                     <Columns>
                         
-
                         <asp:TemplateField HeaderText=" Numero de turno">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_it_NumeroTurno" runat="server" Text='<%# Bind("NumeroTurno") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+
                         <asp:TemplateField HeaderText="Especialidad">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_it_Especialidad" runat="server" Text='<%# Bind("Especialidad") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+
                         <asp:TemplateField HeaderText="Doctor(a)">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_it_DoctorNombre" runat="server" Text='<%# Bind("Doctor") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+
                         <asp:TemplateField HeaderText="Fecha">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_it_Fecha" runat="server" Text='<%# Bind("Fecha") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+
                         <asp:TemplateField HeaderText="Horario">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_it_Horario" runat="server" Text='<%# Bind("Horario") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+
                         <asp:TemplateField HeaderText="Paciente">
                             <EditItemTemplate>
                                 <asp:Label ID="lbl_et_NombrePaciente" runat="server" Text='<%# Bind("NombrePaciente") %>'></asp:Label>
@@ -100,6 +104,7 @@
                                 <asp:Label ID="lbl_it_NombrePaciente" runat="server" Text='<%# Bind("NombrePaciente") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+
                         <asp:TemplateField HeaderText="DNI">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_it_DniPaciente" runat="server" Text='<%# Bind("DNIpaciente") %>'></asp:Label>
@@ -109,6 +114,18 @@
                                 <br />
                             </EditItemTemplate>
                         </asp:TemplateField>
+
+                            <asp:CommandField 
+                                HeaderText="Opciones"
+                                ShowEditButton="true" 
+                                ShowDeleteButton="true" 
+                                ShowSelectButton="true"
+                                EditText="Liberar Turno"
+                                UpdateText="Desvincular"
+                                CancelText="Cancelar"
+                                DeleteText="Deshabilitar"
+                                SelectText="Iniciar Turno" />
+
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

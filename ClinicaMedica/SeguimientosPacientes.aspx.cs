@@ -30,10 +30,10 @@ namespace ClinicaMedica
             if (Session["TurnoSeleccionado"] != null)
             {
                 Turno turno = (Turno)Session["TurnoSeleccionado"];
-                int idTurno = turno;
+                //int idTurno = turno;
                 string comentario = txtComentario.Value;
 
-                GuardarComentarioEnBD(idTurno, comentario); // Tu método que guarda en base de datos
+                //GuardarConsultaEnBD(idTurno, comentario); // Tu método que guarda en base de datos
 
                 Session["TurnoSeleccionado"] = null;
 
