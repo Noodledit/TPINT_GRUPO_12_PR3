@@ -133,8 +133,6 @@ namespace ClinicaMedica
                         DeleteText = "Deshabilitar",
                         SelectText = "Iniciar Turno"
                     };
-                    //gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno);
-                    //gvTurnos.DataBind();
                 }
 
                 if (((Usuario)Session["UsuarioActivo"]).TipoUsuario >= 1)
@@ -197,8 +195,8 @@ namespace ClinicaMedica
 
         protected void ddlEstados_SelectedIndexChanged(object sender, EventArgs e)
         {
-            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
-            gvTurnos.DataBind();
+            //gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
+            //gvTurnos.DataBind();
 
             lblMensaje.Text = ddlEstados.SelectedValue;
         }
@@ -207,7 +205,7 @@ namespace ClinicaMedica
         {
             if (ddlFechas.SelectedItem != null
                     && ddlFechas.SelectedValue != "0"
-                    && !string.IsNullOrWhiteSpace(ddlFechas.SelectedItem.Text))
+                    )
             {
                 ConfiguracionTurno.Fecha = DateTime.Parse(ddlFechas.SelectedItem.Text);
             }
