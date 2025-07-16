@@ -63,6 +63,7 @@ namespace ClinicaMedica
 
             Session["TurnoPendiente"] = new Turno(
                 dniPaciente,
+                ddlEspecialidades.SelectedValue,
                 int.Parse(ddlEspecialidades.SelectedValue),
                 int.Parse(ddlMedicos.SelectedValue),
                 DateTime.ParseExact(ddlFechas.SelectedItem.Text,"dd/MM/yyyy",CultureInfo.InvariantCulture),

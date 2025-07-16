@@ -1,12 +1,122 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\hblan\\OneDrive\\Desktop\\Nueva carpeta (3)\\TPINT_GRUPO_12_PR3\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6C1A773E-AC40-4F4E-9869-7EA0B16E6CB5}|Datos\\Datos.csproj|c:\\users\\camim\\onedrive\\escritorio\\new folder\\tpint_grupo_12_pr3\\datos\\daopacientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C1A773E-AC40-4F4E-9869-7EA0B16E6CB5}|Datos\\Datos.csproj|solutionrelative:datos\\daopacientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\clinicamedica\\listadoturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\listadoturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\camim\\onedrive\\escritorio\\new folder\\tpint_grupo_12_pr3\\clinicamedica\\asignacionturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\asignacionturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\camim\\onedrive\\escritorio\\new folder\\tpint_grupo_12_pr3\\clinicamedica\\seguimientospacientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\seguimientospacientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6718E2A5-31DD-481F-A243-E06B91172D27}|Entidades\\Entidades.csproj|c:\\users\\camim\\onedrive\\escritorio\\new folder\\tpint_grupo_12_pr3\\entidades\\turno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6718E2A5-31DD-481F-A243-E06B91172D27}|Entidades\\Entidades.csproj|solutionrelative:entidades\\turno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|c:\\users\\camim\\onedrive\\escritorio\\new folder\\tpint_grupo_12_pr3\\servicios\\gestionregistros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|solutionrelative:servicios\\gestionregistros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DaoPacientes.cs",
+              "DocumentMoniker": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\Datos\\DaoPacientes.cs",
+              "RelativeDocumentMoniker": "Datos\\DaoPacientes.cs",
+              "ToolTip": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\Datos\\DaoPacientes.cs",
+              "RelativeToolTip": "Datos\\DaoPacientes.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAIwEQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-16T00:03:46.52Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AsignacionTurnos.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\AsignacionTurnos.aspx.cs",
+              "RelativeDocumentMoniker": "ClinicaMedica\\AsignacionTurnos.aspx.cs",
+              "ToolTip": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\AsignacionTurnos.aspx.cs",
+              "RelativeToolTip": "ClinicaMedica\\AsignacionTurnos.aspx.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAcwEIAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-15T23:54:38.191Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Turno.cs",
+              "DocumentMoniker": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\Entidades\\Turno.cs",
+              "RelativeDocumentMoniker": "Entidades\\Turno.cs",
+              "ToolTip": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\Entidades\\Turno.cs",
+              "RelativeToolTip": "Entidades\\Turno.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAQwA0AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-15T22:55:04.354Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ListadoTurnos.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoTurnos.aspx.cs",
+              "RelativeDocumentMoniker": "ClinicaMedica\\ListadoTurnos.aspx.cs",
+              "ToolTip": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoTurnos.aspx.cs",
+              "RelativeToolTip": "ClinicaMedica\\ListadoTurnos.aspx.cs",
+              "ViewState": "AgIAAK8AAAAAAAAAAAAIwLkAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-15T13:43:24.916Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SeguimientosPacientes.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\SeguimientosPacientes.aspx.cs",
+              "RelativeDocumentMoniker": "ClinicaMedica\\SeguimientosPacientes.aspx.cs",
+              "ToolTip": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\SeguimientosPacientes.aspx.cs",
+              "RelativeToolTip": "ClinicaMedica\\SeguimientosPacientes.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-15T22:55:53.17Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GestionRegistros.cs",
+              "DocumentMoniker": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\Servicios\\GestionRegistros.cs",
+              "RelativeDocumentMoniker": "Servicios\\GestionRegistros.cs",
+              "ToolTip": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\Servicios\\GestionRegistros.cs",
+              "RelativeToolTip": "Servicios\\GestionRegistros.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAkwDkAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-15T22:30:47.848Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

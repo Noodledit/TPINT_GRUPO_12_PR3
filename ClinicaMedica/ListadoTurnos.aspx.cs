@@ -174,7 +174,25 @@ namespace ClinicaMedica
                 ddlEstados.Visible = false;
             }
         }
+        
+        protected void gvTurnos_SelectedIndexChanged(object sender, EventArgs e)
 
+        {
+            string paciente = ((WebLabel)gvTurnos.Rows[gvTurnos.SelectedIndex].FindControl("lbl_it_NombrePaciente")).Text;
+            //  string fecha = ((WebLabel)gvTurnos.Rows[gvTurnos.SelectedIndex].FindControl("lbl_it_Fecha")).Text;
+            string dniPaciente = ((WebLabel)gvTurnos.Rows[gvTurnos.SelectedIndex].FindControl("lbl_it_DniPaciente")).Text;
+
+
+            Entidades.Turno llamoTurno = new Entidades.Turno
+            {
+                NombrePaciente = paciente,
+                DniPaciente = dniPaciente
+               // ,Fecha = fecha
+            };
+
+            Session["TurnoSeleccionado"] = llamoTurno;
+            Response.Redirect("SeguimientosPacientes.aspx");
+        }
         protected void ddlEstados_SelectedIndexChanged(object sender, EventArgs e)
         {
             ConfiguracionTurno.LegajoMed = ((Usuario)Session["UsuarioActivo"]).LegajoDoctor;
@@ -234,9 +252,15 @@ namespace ClinicaMedica
             //Logico de eliminar va aqui o el llamado a eliminar el turno, se hace a traves del mismo metodo de asignar turno,
             //pasando los datos del turno sin el dni(dni null)
             ConfiguracionTurno = new Turno(
-             null,idEspecialidad, legajo, Convert.ToDateTime(((System.Web.UI.WebControls.Label)fila.FindControl("lbl_it_Fecha")).Text),
-             TimeSpan.Parse(((System.Web.UI.WebControls.Label)fila.FindControl("lbl_it_Horario")).Text)
-             );
+                dnipaciente: null,
+                nombrePaciente: null,
+                iDEspecialidad: idEspecialidad,
+                legajoMed: legajo,
+                fecha: Convert.ToDateTime(((System.Web.UI.WebControls.Label)fila.FindControl("lbl_it_Fecha")).Text),
+                hora: TimeSpan.Parse(((System.Web.UI.WebControls.Label)fila.FindControl("lbl_it_Horario")).Text)
+            );
+
+           
 
             int Retorno = GestorRegistros.RegistrarTurno(ConfiguracionTurno);
 
@@ -317,20 +341,6 @@ namespace ClinicaMedica
 
         }
 
-        protected void gvTurnos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
-            int idTurno = Convert.ToInt32(gvTurnos.Rows[e.NewSelectedIndex].FindControl("lbl_it_NumeroTurno"));
-            string paciente = ((WebLabel)gvTurnos.Rows[e.NewSelectedIndex].FindControl("lbl_it_NombrePaciente")).Text;
-            string fecha = ((WebLabel)gvTurnos.Rows[e.NewSelectedIndex].FindControl("lbl_it_Fecha")).Text;
-
-            // guardo en una session
-            Session["TurnoSeleccionado"] = new
-            {
-                ID = idTurno,
-                Paciente = paciente,
-                Fecha = fecha
-            };
-            Response.Redirect("SeguimientosPacientes.aspx");
-        }
+       
     }
 }

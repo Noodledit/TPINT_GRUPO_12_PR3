@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static ClinicaMedica.ListadoTurnos;
 
 namespace ClinicaMedica
 {
@@ -17,33 +18,58 @@ namespace ClinicaMedica
         {
             if (!IsPostBack && Session["TurnoSeleccionado"] != null)
             {
-                dynamic turno = Session["TurnoSeleccionado"];
-                lblIdTurno.Text = turno.Id;
-                lblNombrePaciente.Text = turno.Paciente;
-                lblFechaTurno.Text = turno.Fecha;
-               
+                if (Session["UsuarioActivo"] != null)
+                {
+                    Usuario usuario = (Usuario)Session["UsuarioActivo"];
+                    lblBienvenidoUsuario.Text = usuario.NombreUsuario + " " + usuario.ApellidoUsuario;
+                }
+                else
+                {
+                    Response.Redirect("ListadoTurnos.aspx");
+                }
+                var turno = (Turno)Session["TurnoSeleccionado"];
+                lblNombrePaciente1.Text = turno.NombrePaciente;
+               // lblFechaTurno.Text = turno.Fecha;
             }
+
         }
 
         protected void btnFinalizarComentario_Click(object sender, EventArgs e)
         {
-            if (Session["TurnoSeleccionado"] != null)
-            {
                 Turno turno = (Turno)Session["TurnoSeleccionado"];
-                //int idTurno = turno;
                 string comentario = txtComentario.Value;
 
-                //GuardarConsultaEnBD(idTurno, comentario); // Tu método que guarda en base de datos
+                // Obtener DNI del paciente desde el turno
+                string dniPaciente = turno.DniPaciente;
+
+                // Obtener legajo del doctor desde sesión (si existe)
+                int? legajoDoctor = null;
+                if (Session["LegajoDoctor"] != null)
+                {
+                    legajoDoctor = Convert.ToInt32(Session["LegajoDoctor"]);
+                }
+
+                GestionRegistros gestion = new GestionRegistros();
+                bool comentarioRegistrado = gestion.RegistrarSeguimiento(dniPaciente, comentario, legajoDoctor);
 
                 Session["TurnoSeleccionado"] = null;
 
-                lblMensaje.Text = "Comentario guardado correctamente.";
-            }
-            else
-            {
-                lblMensaje.Text = "Error: no hay turno seleccionado.";
-                lblMensaje.ForeColor = System.Drawing.Color.Red;
-            }
+                if (comentarioRegistrado)
+                {
+                    lblMensaje.Text = "Comentario registrado correctamente.";
+                    lblMensaje.ForeColor = System.Drawing.Color.Green;
+                }
+                else
+                {
+                    lblMensaje.Text = "Error al guardar el comentario.";
+                    lblMensaje.ForeColor = System.Drawing.Color.Red;
+                }
+        }
+
+        protected void btnUnlogin_Click(object sender, EventArgs e)
+        {
+            Session["UsuarioActivo"] = null;
+            Response.Redirect("ListadoTurnos.aspx");
         }
     }
 }

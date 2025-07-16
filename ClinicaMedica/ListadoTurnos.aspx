@@ -63,7 +63,19 @@
                     <br />
                     <br />
                 </div>
-                <asp:GridView ID="gvTurnos" runat="server" AutoGenerateColumns="False" CssClass="tabla-turnos" AllowPaging="True" OnPageIndexChanging="gvTurnos_PageIndexChanging" PageSize="15" DataKeyNames="NumeroTurno" OnRowDeleting="gvTurnos_RowDeleting" OnRowEditing="gvTurnos_RowEditing" OnRowUpdating="gvTurnos_RowUpdating" OnRowCancelingEdit="gvTurnos_RowCancelingEdit">
+<asp:GridView ID="gvTurnos" runat="server"
+    AutoGenerateColumns="False"
+    CssClass="tabla-turnos"
+    AllowPaging="True"
+    PageSize="15"
+    DataKeyNames="NumeroTurno"
+    AutoPostBack="True"
+    OnSelectedIndexChanged="gvTurnos_SelectedIndexChanged"
+    OnPageIndexChanging="gvTurnos_PageIndexChanging"
+    OnRowDeleting="gvTurnos_RowDeleting"
+    OnRowEditing="gvTurnos_RowEditing"
+    OnRowUpdating="gvTurnos_RowUpdating"
+    OnRowCancelingEdit="gvTurnos_RowCancelingEdit">                    
                     <Columns>
                         
                         <asp:TemplateField HeaderText=" Numero de turno">

@@ -57,6 +57,27 @@ namespace Datos
             }
         }
 
+        public int RegistrarSeguimiento(string dniPaciente, string observacion, int? legajoDoctor)
+        {
+            using (SqlConnection conexion = ds.connection())
+            {
+                SqlCommand cmd = new SqlCommand("SP_RegistrarConsulta", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@DniPaciente", dniPaciente);
+                cmd.Parameters.AddWithValue("@Observacion", observacion);
+
+
+                if (legajoDoctor.HasValue)
+                    cmd.Parameters.AddWithValue("@LegajoDoctor", legajoDoctor.Value);
+                else
+                    cmd.Parameters.AddWithValue("@LegajoDoctor", DBNull.Value);
+
+                //conexion.Open();
+                return cmd.ExecuteNonQuery(); 
+            }
+        }
+
 
     }
 }

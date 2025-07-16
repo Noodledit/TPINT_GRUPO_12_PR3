@@ -62,7 +62,8 @@ DROP PROCEDURE IF EXISTS  SP_RevisionDniPaciente
 GO
 DROP PROCEDURE IF EXISTS  SP_AsignarTurno
 GO
-
+DROP PROCEDURE IF EXISTS  SP_RegistrarConsulta
+GO
 
 --TABLAS
 
@@ -181,7 +182,7 @@ GO
 -- Seguimiento Paciente
 
 CREATE TABLE SeguimientoPaciente (
-    NumeroSeguimiento INT,
+    NumeroSeguimiento INT IDENTITY(1,1),
     DniPaciente VARCHAR (10),
     LegajoDoctor INT,
     FechaYHora DATETIME DEFAULT GETDATE(),
@@ -539,6 +540,19 @@ BEGIN
     END  
 END    
 GO
+
+
+CREATE PROCEDURE SP_RegistrarConsulta
+    @DniPaciente VARCHAR(10),
+    @LegajoDoctor INT = NULL,
+    @Observacion NVARCHAR(MAX)
+AS
+BEGIN
+    INSERT INTO SeguimientoPaciente (DniPaciente, LegajoDoctor, FechaYHora, Observacion)
+    VALUES (@DniPaciente, @LegajoDoctor, GETDATE(), @Observacion )
+END
+GO
+
 
 --INGRESO DATOS
 

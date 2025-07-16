@@ -54,5 +54,12 @@ namespace Servicios
             //    return false; 
             //}
         }
+
+        public bool RegistrarSeguimiento(string dniPaciente, string observacion, int? legajoDoctor = null)
+        {
+            int filas = dpaciente.RegistrarSeguimiento(dniPaciente, observacion, legajoDoctor);
+            return filas > 0;
+        }
+
     }
 }
