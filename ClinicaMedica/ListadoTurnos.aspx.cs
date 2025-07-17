@@ -121,7 +121,7 @@ namespace ClinicaMedica
                 if (((Usuario)Session["UsuarioActivo"]).TipoUsuario >= 1)
                 {          
                     hlListarTurnos.Visible = true;
-                    hlSeguimientoPaciente.Visible = true;
+                    hlSeguimientoPaciente.Visible = false; //
                     lblFecha.Visible = true;
                     ddlFechas.Visible = true;
                     btnMostrarTodo.Visible = true;

@@ -1,26 +1,34 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\",
+  "WorkspaceRootPath": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\hblan\\onedrive\\desktop\\integrador\\tpint_grupo_12_pr3\\clinicamedica\\asignacionturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\asignacionturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\camim\\onedrive\\escritorio\\new folder\\tpint_grupo_12_pr3\\clinicamedica\\listadoturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\listadoturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6C1A773E-AC40-4F4E-9869-7EA0B16E6CB5}|Datos\\Datos.csproj|c:\\users\\hblan\\onedrive\\desktop\\integrador\\tpint_grupo_12_pr3\\datos\\daoturnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C1A773E-AC40-4F4E-9869-7EA0B16E6CB5}|Datos\\Datos.csproj|solutionrelative:datos\\daoturnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\camim\\onedrive\\escritorio\\new folder\\tpint_grupo_12_pr3\\clinicamedica\\listadoturnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\listadoturnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\hblan\\onedrive\\desktop\\integrador\\tpint_grupo_12_pr3\\clinicamedica\\seguimientospacientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\seguimientospacientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\hblan\\onedrive\\desktop\\integrador\\tpint_grupo_12_pr3\\clinicamedica\\seguimientospacientes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\camim\\onedrive\\escritorio\\new folder\\tpint_grupo_12_pr3\\clinicamedica\\seguimientospacientes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\seguimientospacientes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|c:\\users\\hblan\\onedrive\\desktop\\integrador\\tpint_grupo_12_pr3\\servicios\\gestionregistros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\clinicamedica\\asignacionturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\asignacionturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\camim\\onedrive\\escritorio\\new folder\\tpint_grupo_12_pr3\\clinicamedica\\estilo\\estiloclinica.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\estilo\\estiloclinica.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\servicios\\gestionregistros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|solutionrelative:servicios\\gestionregistros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\clinicamedica\\seguimientospacientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\seguimientospacientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,64 +43,90 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ListadoTurnos.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoTurnos.aspx.cs",
+              "RelativeDocumentMoniker": "ClinicaMedica\\ListadoTurnos.aspx.cs",
+              "ToolTip": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoTurnos.aspx.cs",
+              "RelativeToolTip": "ClinicaMedica\\ListadoTurnos.aspx.cs",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAcwHsAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T20:44:29.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EstiloClinica.css",
+              "DocumentMoniker": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\Estilo\\EstiloClinica.css",
+              "RelativeDocumentMoniker": "ClinicaMedica\\Estilo\\EstiloClinica.css",
+              "ToolTip": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\Estilo\\EstiloClinica.css",
+              "RelativeToolTip": "ClinicaMedica\\Estilo\\EstiloClinica.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-07-17T20:39:40.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ListadoTurnos.aspx",
+              "DocumentMoniker": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoTurnos.aspx",
+              "RelativeDocumentMoniker": "ClinicaMedica\\ListadoTurnos.aspx",
+              "ToolTip": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoTurnos.aspx",
+              "RelativeToolTip": "ClinicaMedica\\ListadoTurnos.aspx",
+              "LogicalView": "7651a702-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-07-17T20:27:05.205Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "AsignacionTurnos.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\AsignacionTurnos.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\AsignacionTurnos.aspx.cs",
               "RelativeDocumentMoniker": "ClinicaMedica\\AsignacionTurnos.aspx.cs",
-              "ToolTip": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\AsignacionTurnos.aspx.cs",
+              "ToolTip": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\AsignacionTurnos.aspx.cs",
               "RelativeToolTip": "ClinicaMedica\\AsignacionTurnos.aspx.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAQwJAAAABOAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAuwKUAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-17T01:42:19.753Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DaoTurnos.cs",
-              "DocumentMoniker": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\Datos\\DaoTurnos.cs",
-              "RelativeDocumentMoniker": "Datos\\DaoTurnos.cs",
-              "ToolTip": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\Datos\\DaoTurnos.cs",
-              "RelativeToolTip": "Datos\\DaoTurnos.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB0AAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T01:13:31.85Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "GestionRegistros.cs",
-              "DocumentMoniker": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\Servicios\\GestionRegistros.cs",
+              "DocumentMoniker": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\Servicios\\GestionRegistros.cs",
               "RelativeDocumentMoniker": "Servicios\\GestionRegistros.cs",
-              "ToolTip": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\Servicios\\GestionRegistros.cs",
+              "ToolTip": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\Servicios\\GestionRegistros.cs",
               "RelativeToolTip": "Servicios\\GestionRegistros.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwC0AAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAmwDwAAABvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-17T01:11:30.877Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "SeguimientosPacientes.aspx",
-              "DocumentMoniker": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\SeguimientosPacientes.aspx",
+              "DocumentMoniker": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\SeguimientosPacientes.aspx",
               "RelativeDocumentMoniker": "ClinicaMedica\\SeguimientosPacientes.aspx",
-              "ToolTip": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\SeguimientosPacientes.aspx",
+              "ToolTip": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\SeguimientosPacientes.aspx",
               "RelativeToolTip": "ClinicaMedica\\SeguimientosPacientes.aspx",
-              "LogicalView": "7651a702-06e5-11d1-8ebd-00a0c90f26ea",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2025-07-17T00:49:23.745Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "SeguimientosPacientes.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\SeguimientosPacientes.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\SeguimientosPacientes.aspx.cs",
               "RelativeDocumentMoniker": "ClinicaMedica\\SeguimientosPacientes.aspx.cs",
-              "ToolTip": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\SeguimientosPacientes.aspx.cs",
+              "ToolTip": "C:\\Users\\camim\\OneDrive\\Escritorio\\New folder\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\SeguimientosPacientes.aspx.cs",
               "RelativeToolTip": "ClinicaMedica\\SeguimientosPacientes.aspx.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAwwEEAAABSAAAAAAAAAA==",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAiwHQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-17T00:48:43.329Z",
               "EditorCaption": ""
