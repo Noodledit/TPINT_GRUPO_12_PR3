@@ -13,29 +13,16 @@ namespace Datos
     {
         AccesoDatos ds = new AccesoDatos();
 
-        public DataTable ListarMedicos()
+        public DataTable ListarMedicos(string legajo = null, string nombre = null, int? idEspecialidad = null)
         {
-            return ds.EjecutarConsultaSelectDataAdapter("SP_RetornarListaMedicos");
+            SqlParameter[] parametros = new SqlParameter[] {
+                new SqlParameter("@Legajo", legajo),
+                new SqlParameter("@BusquedaGeneral", nombre),
+                new SqlParameter("@IdEspecialidad", idEspecialidad)
+            };
+            return ds.EjecutarConsultaSelectDataAdapter("SP_RetornarListaMedicos", parametros);
         }
 
-        public DataTable ListarMedicosPorLegajo(string legajo)
-        {
-            SqlParameter[] parametros = new SqlParameter[] {
-                new SqlParameter("@Legajo", legajo) };
-            return ds.EjecutarConsultaSelectDataAdapter("SP_RetornarListaMedicos", parametros);
-        }
-        public DataTable ListarMedicosPorNombre(string nombre)
-        {
-            SqlParameter[] parametros = new SqlParameter[] {
-                new SqlParameter("@BusquedaGeneral", nombre) };
-            return ds.EjecutarConsultaSelectDataAdapter("SP_RetornarListaMedicos", parametros);
-        }
-        public DataTable ListarMedicosPorIdEspecialidad(string idEspecialidad)
-        {
-            SqlParameter[] parametros = new SqlParameter[] { new SqlParameter(
-                "@IdEspecialidad", idEspecialidad) };
-            return ds.EjecutarConsultaSelectDataAdapter("SP_RetornarListaMedicos", parametros);
-        }
         public int registroMedico(Medico medico)
         {
             SqlCommand command = new SqlCommand();
@@ -53,9 +40,7 @@ namespace Datos
             command.Parameters.AddWithValue("@Telefono", medico.Telefono);
             command.Parameters.AddWithValue("@IdEspecialidad", medico.IdEspecialidad);
 
-
             return ds.EjecutarProcedimientoAlmacenado(command, "SP_RegistrarMedico");
-
         }
         public string ObtenerProxLegajo()
         {

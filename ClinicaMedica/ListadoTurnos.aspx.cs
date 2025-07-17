@@ -3,9 +3,8 @@ using Servicios;
 using System;
 using System.Data;
 using System.Globalization;
-using System.Reflection.Emit;
 using System.Web.UI.WebControls;
-using WebLabel = System.Web.UI.WebControls.Label;
+
 
 
 namespace ClinicaMedica
@@ -16,7 +15,7 @@ namespace ClinicaMedica
         private GestionDdl gestionDdl = new GestionDdl();
         private Turno ConfiguracionTurno = new Turno();
         private GestionRegistros GestorRegistros = new GestionRegistros();
-        private CommandField ShowButton = new CommandField();
+        private CommandField ColumnaOpciones = new CommandField();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -96,7 +95,7 @@ namespace ClinicaMedica
         {
             if (Session["UsuarioActivo"] != null)
             {
-                CommandField ColumnaOpciones = (CommandField)gvTurnos.Columns[7];
+                ColumnaOpciones = (CommandField)gvTurnos.Columns[7];
 
 
                 if (((Usuario)Session["UsuarioActivo"]).TipoUsuario > 1)
@@ -115,7 +114,7 @@ namespace ClinicaMedica
                     }
                     
                     ColumnaOpciones.ShowSelectButton = false;
-                    ColumnaOpciones.ShowEditButton = true;
+                    ColumnaOpciones.ShowEditButton = false;
                     ColumnaOpciones.ShowDeleteButton = true;
                 }
 
@@ -142,7 +141,13 @@ namespace ClinicaMedica
                         ColumnaOpciones.ShowEditButton = false;
                         ColumnaOpciones.ShowDeleteButton = false;
 
+                        ddlEstados.SelectedValue = "2"; // visualisacion de estado en 'Tomados'
+
                         ConfiguracionTurno.LegajoMed = Convert.ToInt32(((Usuario)Session["UsuarioActivo"]).LegajoDoctor);
+                    }
+                    else
+                    {
+                        ddlEstados.SelectedValue = "1";
                     }
 
 
@@ -153,7 +158,7 @@ namespace ClinicaMedica
                         ConfiguracionTurno.Fecha = DateTime.Parse(ddlFechas.SelectedItem.Text);
                     }
 
-                    gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno);
+                    gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
                     gvTurnos.DataBind();
                 }
             }
@@ -175,27 +180,66 @@ namespace ClinicaMedica
             }
         }
         
-        protected void gvTurnos_SelectedIndexChanged(object sender, EventArgs e)
-
+        protected void gvTurnos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            string paciente = ((WebLabel)gvTurnos.Rows[gvTurnos.SelectedIndex].FindControl("lbl_it_NombrePaciente")).Text;
-            //  string fecha = ((WebLabel)gvTurnos.Rows[gvTurnos.SelectedIndex].FindControl("lbl_it_Fecha")).Text;
-            string dniPaciente = ((WebLabel)gvTurnos.Rows[gvTurnos.SelectedIndex].FindControl("lbl_it_DniPaciente")).Text;
+            string lblNumeroTurno = ((Label)gvTurnos.Rows[e.NewSelectedIndex].FindControl("lbl_it_NumeroTurno")).Text;
+            string lblDniPaciente = ((Label)gvTurnos.Rows[e.NewSelectedIndex].FindControl("lbl_it_DniPaciente")).Text;
+            string lblNombrePaciente = ((Label)gvTurnos.Rows[e.NewSelectedIndex].FindControl("lbl_it_NombrePaciente")).Text;
+            string lblFecha = ((Label)gvTurnos.Rows[e.NewSelectedIndex].FindControl("lbl_it_Fecha")).Text;
+            string lblHora = ((Label)gvTurnos.Rows[e.NewSelectedIndex].FindControl("lbl_it_Horario")).Text;
 
+            string[] Division = lblNumeroTurno.Split('-');
+            int idEspecialidad = int.Parse(Division[2]);
 
-            Entidades.Turno llamoTurno = new Entidades.Turno
-            {
-                NombrePaciente = paciente,
-                DniPaciente = dniPaciente
-               // ,Fecha = fecha
-            };
+            ConfiguracionTurno = new Turno();
 
-            Session["TurnoSeleccionado"] = llamoTurno;
+            ConfiguracionTurno.LegajoMed = ((Usuario)Session["UsuarioActivo"]).LegajoDoctor;
+            ConfiguracionTurno.DniPaciente = lblDniPaciente;
+            ConfiguracionTurno.IDEspecialidad = idEspecialidad;
+            ConfiguracionTurno.NombrePaciente = lblNombrePaciente;
+            ConfiguracionTurno.Fecha = Convert.ToDateTime(lblFecha);
+            ConfiguracionTurno.Hora = TimeSpan.Parse(lblHora);
+
+            Session["TurnoSeleccionado"] = ConfiguracionTurno;
+
             Response.Redirect("SeguimientosPacientes.aspx");
         }
+
         protected void ddlEstados_SelectedIndexChanged(object sender, EventArgs e)
         {
             ConfiguracionTurno.LegajoMed = ((Usuario)Session["UsuarioActivo"]).LegajoDoctor;
+
+            gestionDdl.CargarFechas(ddlFechas, null, ConfiguracionTurno.LegajoMed, ddlEstados.SelectedValue);
+
+            if (((Usuario)Session["UsuarioActivo"]).TipoUsuario == 1)
+            {
+                    gestionDdl.CargarFechas(ddlFechas, null, ((Usuario)Session["UsuarioActivo"]).LegajoDoctor);
+                    ConfiguracionTurno.LegajoMed = Convert.ToInt32(((Usuario)Session["UsuarioActivo"]).LegajoDoctor);
+
+                if (ddlEstados.SelectedValue == "2")
+                {
+                    gvTurnos.Columns[7].Visible = true;
+                }
+                else
+                {
+                    gvTurnos.Columns[7].Visible = false;
+                }
+
+            }
+
+            if (((Usuario)Session["UsuarioActivo"]).TipoUsuario == 2)
+            {
+                ColumnaOpciones = gvTurnos.Columns[7] as CommandField;
+
+                if (ddlEstados.SelectedValue == "2")
+                {
+                    ColumnaOpciones.ShowEditButton = true;
+                }
+                else
+                {
+                    ColumnaOpciones.ShowEditButton = false;
+                }
+            }
 
             gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
             gvTurnos.DataBind();
@@ -208,7 +252,7 @@ namespace ClinicaMedica
                 ConfiguracionTurno.Fecha = DateTime.ParseExact(ddlFechas.SelectedItem.Text,"dd/MM/yyyy",CultureInfo.InvariantCulture);
             }
 
-            if (((Usuario)Session["UsuarioActivo"]).TipoUsuario >= 1)
+            if (((Usuario)Session["UsuarioActivo"]).TipoUsuario == 1)
             {
                 ConfiguracionTurno.LegajoMed = ((Usuario)Session["UsuarioActivo"]).LegajoDoctor;
             }
@@ -338,9 +382,6 @@ namespace ClinicaMedica
             gvTurnos.EditIndex = -1;//Salir del Edit
             gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
             gvTurnos.DataBind();
-
         }
-
-       
     }
 }

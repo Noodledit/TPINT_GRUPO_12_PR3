@@ -45,8 +45,6 @@
                     <asp:TextBox ID="txtBuscador" runat="server" placeholder="Ingrese Dni" CssClass="txtBox-caja" Style=" margin-top: 18px;" TabIndex="10"> </asp:TextBox>
                     <asp:Button ID="btnBuscar" runat="server"  Text="Consultar Turno" CssClass="button" Width="210px" Height="40" TabIndex="11" OnClick="btnBuscar_Click"/>
                     
-                    <asp:Label ID="lblMensaje" runat="server" Font-Bold="True" ForeColor="#CC0000"></asp:Label>
-
                 <div style="display: flex; align-items: center; gap: 20px">
                     <br />
                     <br />
@@ -61,6 +59,10 @@
                     <asp:Label ID="btnConsultarEstado" runat="server" Text="Estado de Turnos" Style=" width: 210px; height: 40px; font-size: 14px" CssClass="button" Visible="False" TabIndex="14" Height="40px"/>
                     <asp:Button ID="btnMostrarTodo" runat="server" Text="Mostrar Todo" CssClass="button" Style="font-size: 14px; margin-left: auto;" Visible="False" TabIndex="15" OnClick="btnMostrarTodo_Click"/>
                     <br />
+                    
+                    <asp:Label ID="lblMensaje" runat="server" Font-Bold="True" ForeColor="#CC0000"></asp:Label>
+
+                    <br />
                     <br />
                 </div>
 <asp:GridView ID="gvTurnos" runat="server"
@@ -70,12 +72,11 @@
     PageSize="15"
     DataKeyNames="NumeroTurno"
     AutoPostBack="True"
-    OnSelectedIndexChanged="gvTurnos_SelectedIndexChanged"
     OnPageIndexChanging="gvTurnos_PageIndexChanging"
     OnRowDeleting="gvTurnos_RowDeleting"
     OnRowEditing="gvTurnos_RowEditing"
     OnRowUpdating="gvTurnos_RowUpdating"
-    OnRowCancelingEdit="gvTurnos_RowCancelingEdit">                    
+    OnRowCancelingEdit="gvTurnos_RowCancelingEdit" OnSelectedIndexChanging="gvTurnos_SelectedIndexChanging">                    
                     <Columns>
                         
                         <asp:TemplateField HeaderText=" Numero de turno">

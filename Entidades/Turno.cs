@@ -11,7 +11,7 @@ namespace Entidades
         public string DniPaciente { get; set; }
         public string NombrePaciente { get; set; }
         public int? IDEspecialidad { get; set; }
-        public int? LegajoMed { get; set; }        
+        public int? LegajoMed { get; set; }
         public DateTime? Fecha { get; set; }
         public TimeSpan? Hora { get; set; }
 

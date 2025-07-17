@@ -118,6 +118,18 @@ namespace ClinicaMedica
 
             if (registros.RegistrarPaciente(NuevoPaciente)==true)
             {
+                txtNombre.Enabled = false;
+                txtApellido.Enabled = false;
+                ddlSexo.Enabled = false;
+                txtNacionalidad.Enabled = false;
+                txtFechaNacimiento.Enabled = false;
+
+                txtDireccion.Enabled = false;
+                ddlProvincias.Enabled = false;
+                ddlLocalidades.Enabled = false;
+                txtCorreoElectronico.Enabled = false;
+                txtNumeroTelefono.Enabled = false;
+
                 lblMensaje.Text = "Paciente " + txtNombre.Text.Trim() + " " + txtApellido.Text.Trim() + " registrado correctamente" ;
                 lblMensaje.Visible = true;
                 LimpiarTxtBox();

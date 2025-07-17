@@ -180,20 +180,20 @@ CREATE TABLE TurnosDisponibles (
 GO
 
 -- Seguimiento Paciente
-
 CREATE TABLE SeguimientoPaciente (
     NumeroSeguimiento INT IDENTITY(1,1),
     DniPaciente VARCHAR (10),
     LegajoDoctor INT,
+    IdEspecialidad INT,
     FechaYHora DATETIME DEFAULT GETDATE(),
     Observacion VARCHAR(200),
 
     CONSTRAINT PK_NumeroSegxDniPaciente_SeguimientoPaciente PRIMARY KEY (NumeroSeguimiento, DniPaciente),
     CONSTRAINT FK_Dni_SeguimientoPaciente FOREIGN KEY (DniPaciente) REFERENCES DatosPersonales (Dni_DP),
-    CONSTRAINT FK_LegajoDoctor_SeguimientoPaciente FOREIGN KEY (LegajoDoctor) REFERENCES Medicos (Legajo_Me)
+    CONSTRAINT FK_LegajoDoctor_SeguimientoPaciente FOREIGN KEY (LegajoDoctor) REFERENCES Medicos (Legajo_Me),
+    CONSTRAINT FK_IdEspecialidad_SeguimientoPaciente FOREIGN KEY (IdEspecialidad) REFERENCES Especialidades (Id_Esp)
 )
 GO
-
 
 --VISTAS
 
@@ -445,23 +445,31 @@ BEGIN
 END
 GO
 
---exec SP_RetornarListaTurnos @LegajoDoctor = 11, @Estado = 1
+exec SP_RetornarListaTurnos @LegajoDoctor = 11
 
 GO
 
 CREATE OR ALTER PROCEDURE SP_RetornarFechasTurnos
     @IdEspecialidad INT = NULL,
-    @Legajo INT = NULL
+    @Legajo INT = NULL,
+    @Estado BIT = NULL
 AS
 BEGIN
     SELECT DISTINCT Fecha_TD as Fecha, IdDia_TD as IdDia, Semana_TD as Semana
     FROM TurnosDisponibles
     WHERE (@IdEspecialidad IS NULL OR IdEspecialidad_TD = @IdEspecialidad)
     AND (@Legajo IS NULL OR LegajoDoctor = @Legajo)
-    AND (DniPaciente IS NULL)
+    AND ((@Estado IS NULL AND DniPaciente IS NOT NULL)
+    OR (@Estado = TurnosDisponibles.Estado_TD 
+        AND TurnosDisponibles.Estado_TD = 1 
+        AND TurnosDisponibles.DniPaciente IS NULL) 
+    OR (@Estado = TurnosDisponibles.Estado_TD))
+
     ORDER BY Semana_TD, Fecha_TD
 END
 GO
+
+--exec SP_RetornarFechasTurnos @IdEspecialidad = 1, @Estado = 1
 
 CREATE OR ALTER PROCEDURE SP_RetornarListaMedicos
     @Legajo INT = NULL,
@@ -519,37 +527,47 @@ CREATE OR ALTER PROCEDURE SP_AsignarTurno
     @Fecha Date,
     @IDEspecialidad INT,
     @LegajoDoctor INT,
-    @Horario TIME(0)
+    @Horario TIME(0),
+    @Estado BIT = 1
+
 AS  
 BEGIN  
 
     IF @DniPaciente IS NULL  
     BEGIN  
         UPDATE TurnosDisponibles  
-        SET DniPaciente = NULL 
+        SET DniPaciente = NULL
         WHERE Fecha_TD = @Fecha AND IdEspecialidad_TD = @IDEspecialidad   
         AND LegajoDoctor = @LegajoDoctor AND Horario_TD = @Horario  
     END  
 
-    ELSE  
+    IF @DniPaciente IS NOT NULL
     BEGIN  
         UPDATE TurnosDisponibles  
         SET DniPaciente = @DniPaciente 
         WHERE Fecha_TD = @Fecha AND IdEspecialidad_TD = @IDEspecialidad   
         AND LegajoDoctor = @LegajoDoctor AND Horario_TD = @Horario
     END  
+
+    IF @Estado = 0
+    BEGIN  
+        UPDATE TurnosDisponibles
+        SET Estado_TD = 0
+        WHERE Fecha_TD = @Fecha AND IdEspecialidad_TD = @IDEspecialidad   
+        AND LegajoDoctor = @LegajoDoctor AND Horario_TD = @Horario
+    END  
 END    
 GO
 
-
 CREATE PROCEDURE SP_RegistrarConsulta
     @DniPaciente VARCHAR(10),
-    @LegajoDoctor INT = NULL,
+    @LegajoDoctor INT,
+    @IdEspecialidad INT,
     @Observacion NVARCHAR(MAX)
 AS
 BEGIN
-    INSERT INTO SeguimientoPaciente (DniPaciente, LegajoDoctor, FechaYHora, Observacion)
-    VALUES (@DniPaciente, @LegajoDoctor, GETDATE(), @Observacion )
+    INSERT INTO SeguimientoPaciente (DniPaciente, LegajoDoctor, Observacion)
+    VALUES (@DniPaciente, @LegajoDoctor, @Observacion )
 END
 GO
 

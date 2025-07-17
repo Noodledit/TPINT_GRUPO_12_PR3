@@ -35,10 +35,9 @@
                     <div style="background-color: #f1f7ff; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 300px;">
                         <h2 class="titulo-informe" style="text-align: center; color: black;">Historial</h2>
                         <ul style="list-style-type: disc; padding-left: 20px; color: black;">
-                            <li>-</li>
-                            <li>-</li>
-                            <li>-</li>
-                            <li>-</li>
+                            <li>-<asp:ListView ID="lvHistorial" runat="server">
+                                </asp:ListView>
+                            </li>
                         </ul>
                     </div>
 
@@ -50,25 +49,35 @@
             <div class="caja-informe" style="background: #f1f7ff; margin-bottom: 20px;">
                 <!-- aca -->
                 <div style="text-align: center; margin-bottom: 10px;">
-    <asp:Label ID="lblIdTurno" runat="server" Font-Bold="True" Style="margin-right: 15px;" />
-    <asp:Label ID="lblNombrePaciente" runat="server" Text="Paciente: " Font-Bold="True" Style="margin-right: 15px;" />
-    <asp:Label ID="lblNombrePaciente1" runat="server"  Font-Bold="true" Style="margin-right: 15px;" />
+    <asp:Label ID="lblNombre" runat="server" Text="Paciente: " Font-Bold="True" />
+    <asp:Label ID="lblNombrePaciente" runat="server"  Font-Bold="True" Style="margin-right: 15px;" />
+
+    <asp:Label ID="lblDNI" runat="server" Text="DNI: " Font-Bold="True" />
+    <asp:Label ID="lblDniPaciente" runat="server"  Font-Bold="True" Style="margin-right: 15px;" />
+
+    <asp:Label ID="lblFecha" runat="server" Text="Fecha: " Font-Bold="True" />
 
     <asp:Label ID="lblFechaTurno" runat="server" Font-Bold="True" />
 </div>
               <div style="text-align: center;">
-                <textarea id="txtComentario" runat="server" name="S1" rows="2" style="width: 750px;"></textarea>
+                <textarea id="txtComentario" runat="server" name="S1" rows="2" style="width: 750px;" enableviewstate="True"></textarea>
               </div>
               
               <div style="text-align: right; margin-top: 10px;">
-                <asp:Button ID="Button1" runat="server" 
+                  <br />
+                 <asp:Label ID="lblMensaje" runat="server" Font-Bold="true" />
+                  <br />
+                  <br />
+                  <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" Visible="False" OnClick="btnAceptar_Click" />
+                  <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" Visible="False" Style="margin-right: 15px;" OnClick="btnConfirmar_Click" />
+                  <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" Visible="False" OnClick="btnCancelar_Click" />
+                <asp:Button ID="btnFinalizarConsulta" runat="server" 
                     Style="margin-right: 5px; height: 28px;" 
-                    Text="Finalizar comentario" 
-                    OnClick="btnFinalizarComentario_Click" />
+                    Text="Finalizar consulta" 
+                    OnClick="btnFinalizarConsulta_Click" />
               </div>
 
               <div style="text-align: right; margin-top: 5px;">
-                 <asp:Label ID="lblMensaje" runat="server" Font-Bold="true" />
               </div>
 
 

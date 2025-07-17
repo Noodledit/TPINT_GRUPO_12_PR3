@@ -60,7 +60,6 @@ namespace Servicios
                 ddlEspecialidades.Items.Insert(0, new ListItem("Seleccione Especialidad", "0"));
             }
         }
-
         public void CargarMedicos(DropDownList ddlMedicos, int idEspecialidad, int? idDia = null)
         {
             DataTable tablaMedicos = new DataTable();
@@ -96,13 +95,24 @@ namespace Servicios
                 ddlEstados.DataBind();
             }
         }
-        public void CargarFechas(DropDownList ddlFechas, int? idEspecialidad = null, int? LegajoMedico = null)
+        public void CargarFechas(DropDownList ddlFechas, int? idEspecialidad = null, int? LegajoMedico = null, string Estado = "1")
         {
+            int? estadoInterpretado;
+
+            switch (Estado)
+            {
+                case "1": estadoInterpretado = 1; break;
+                case "2": estadoInterpretado = null; break;
+                case "0": estadoInterpretado = 0; break;
+                default : estadoInterpretado = 1; break;
+            }
+
             acceso = new AccesoDatos();
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@IdEspecialidad", idEspecialidad),
-                new SqlParameter("@Legajo", LegajoMedico)
+                new SqlParameter("@Legajo", LegajoMedico),
+                new SqlParameter("@Estado", estadoInterpretado)
             };
             DataTable tablaFechas = acceso.EjecutarConsultaSelectDataAdapter("SP_RetornarFechasTurnos", parametros);
             if (tablaFechas != null && tablaFechas.Rows.Count > 0)

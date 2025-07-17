@@ -30,8 +30,6 @@ namespace Datos
             comand.Parameters.AddWithValue("@CorreoElectronicoPaciente", paciente.GetCorreo());
             comand.Parameters.AddWithValue("@TelefonoPaciente", paciente.GetTelefono());
 
-            
-            //deberia devolver las filas cambiadas
             return ds.EjecutarProcedimientoAlmacenado(comand, "SP_RegistrarPaciente");
         }
 
@@ -57,27 +55,20 @@ namespace Datos
             }
         }
 
-        public int RegistrarSeguimiento(string dniPaciente, string observacion, int? legajoDoctor)
+        public int RegistrarSeguimiento(Turno TurnoConcluido, string observacion)
         {
             using (SqlConnection conexion = ds.connection())
             {
                 SqlCommand cmd = new SqlCommand("SP_RegistrarConsulta", conexion);
-                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandType = CommandType.StoredProcedure;               
 
-                cmd.Parameters.AddWithValue("@DniPaciente", dniPaciente);
+                cmd.Parameters.AddWithValue("@DniPaciente", TurnoConcluido.DniPaciente);
+                cmd.Parameters.AddWithValue("@LegajoDoctor", TurnoConcluido.LegajoMed);
+                cmd.Parameters.AddWithValue("@IdEspecialidad", TurnoConcluido.IDEspecialidad);
                 cmd.Parameters.AddWithValue("@Observacion", observacion);
 
-
-                if (legajoDoctor.HasValue)
-                    cmd.Parameters.AddWithValue("@LegajoDoctor", legajoDoctor.Value);
-                else
-                    cmd.Parameters.AddWithValue("@LegajoDoctor", DBNull.Value);
-
-                //conexion.Open();
-                return cmd.ExecuteNonQuery(); 
+                return cmd.ExecuteNonQuery();
             }
         }
-
-
     }
 }

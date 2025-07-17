@@ -2,6 +2,7 @@
 using Servicios;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -13,62 +14,87 @@ namespace ClinicaMedica
 {
     public partial class SeguimientosPacientes : System.Web.UI.Page
     {
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack && Session["TurnoSeleccionado"] != null)
             {
                 if (Session["UsuarioActivo"] != null)
                 {
+                    var turno = (Turno)Session["TurnoSeleccionado"];
                     Usuario usuario = (Usuario)Session["UsuarioActivo"];
+
                     lblBienvenidoUsuario.Text = usuario.NombreUsuario + " " + usuario.ApellidoUsuario;
+
+                    DateTime Fecha = DateTime.Now;
+
+                    lblDniPaciente.Text = turno.DniPaciente;
+                    lblFechaTurno.Text = Fecha.ToString("dd/MM/yyyy");
+                    lblNombrePaciente.Text = turno.NombrePaciente;
                 }
                 else
                 {
                     Response.Redirect("ListadoTurnos.aspx");
                 }
-                var turno = (Turno)Session["TurnoSeleccionado"];
-                lblNombrePaciente1.Text = turno.NombrePaciente;
-               // lblFechaTurno.Text = turno.Fecha;
             }
-
         }
 
-        protected void btnFinalizarComentario_Click(object sender, EventArgs e)
+        protected void btnFinalizarConsulta_Click(object sender, EventArgs e)
         {
-                Turno turno = (Turno)Session["TurnoSeleccionado"];
-                string comentario = txtComentario.Value;
+            btnFinalizarConsulta.Enabled = false;
 
-                // Obtener DNI del paciente desde el turno
-                string dniPaciente = turno.DniPaciente;
+            btnConfirmar.Visible = true;
+            btnCancelar.Visible = true;
 
-                // Obtener legajo del doctor desde sesión (si existe)
-                int? legajoDoctor = null;
-                if (Session["LegajoDoctor"] != null)
-                {
-                    legajoDoctor = Convert.ToInt32(Session["LegajoDoctor"]);
-                }
+            txtComentario.EnableViewState = false;
 
-                GestionRegistros gestion = new GestionRegistros();
-                bool comentarioRegistrado = gestion.RegistrarSeguimiento(dniPaciente, comentario, legajoDoctor);
-
-                Session["TurnoSeleccionado"] = null;
-
-                if (comentarioRegistrado)
-                {
-                    lblMensaje.Text = "Comentario registrado correctamente.";
-                    lblMensaje.ForeColor = System.Drawing.Color.Green;
-                }
-                else
-                {
-                    lblMensaje.Text = "Error al guardar el comentario.";
-                    lblMensaje.ForeColor = System.Drawing.Color.Red;
-                }
+            lblMensaje.Text = "Esta seguro de terminar la consulta?";
         }
 
         protected void btnUnlogin_Click(object sender, EventArgs e)
         {
             Session["UsuarioActivo"] = null;
+            Response.Redirect("ListadoTurnos.aspx");
+        }
+
+        protected void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            Turno turnoIniciado = (Turno)Session["TurnoSeleccionado"];
+
+            string comentario = txtComentario.Value;
+
+            GestionRegistros gestion = new GestionRegistros();
+            bool comentarioRegistrado = gestion.RegistrarSeguimiento(turnoIniciado, comentario);
+
+            if (comentarioRegistrado)
+            {
+                lblMensaje.Text = "Comentario registrado correctamente.";
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
+            }
+            else
+            {
+                lblMensaje.Text = "Error al guardar el comentario.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+            }
+
+            btnConfirmar.Visible = false;
+            btnCancelar.Visible = false;
+
+            btnAceptar.Visible = true;
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            btnFinalizarConsulta.Enabled = true;
+
+            btnConfirmar.Visible = false;
+            btnCancelar.Visible = false;
+
+            txtComentario.EnableViewState = true;
+        }
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            Session["TurnoSeleccionado"] = null;
             Response.Redirect("ListadoTurnos.aspx");
         }
     }

@@ -1,10 +1,5 @@
 ﻿using Datos;
 using Entidades;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Servicios
 {
@@ -16,18 +11,14 @@ namespace Servicios
 
         public bool RegistrarPaciente(Paciente paciente)
         {
-            int retorno = dpaciente.registroPaciente(paciente);
-            if (retorno == 1)
-            {
-                return true;
-            }
-            else { return false; }
+            int pacientesRegistrados = dpaciente.registroPaciente(paciente);
+            return pacientesRegistrados > 0;
         }
 
         public bool RegistarMedico(Medico medico)
         {
-            int filas = dmedico.registroMedico(medico);
-            return filas > 0;
+            int medicosRegistrados = dmedico.registroMedico(medico);
+            return medicosRegistrados > 0;
         }
 
         public string ObtenerProxLegajo()
@@ -41,25 +32,21 @@ namespace Servicios
         }
 
         public int RegistrarTurno(Turno turno)
-        {   
-            int retorno = dTurnos.registrarTurno(turno);
-
-            return retorno;
-            //if (retorno == 1)
-            //{
-            //    return true;
-            //}
-            //else 
-            //{ 
-            //    return false; 
-            //}
-        }
-
-        public bool RegistrarSeguimiento(string dniPaciente, string observacion, int? legajoDoctor = null)
         {
-            int filas = dpaciente.RegistrarSeguimiento(dniPaciente, observacion, legajoDoctor);
-            return filas > 0;
+            int turnosRegistrados = dTurnos.registrarTurno(turno);
+            return turnosRegistrados;
         }
 
+        public bool RegistrarSeguimiento(Turno TurnoACerrar, string observacion)
+        {
+            int seguimientosIngresados = dpaciente.RegistrarSeguimiento(TurnoACerrar, observacion);
+
+            if (seguimientosIngresados > 0)
+            {
+                dTurnos.registrarTurno(TurnoACerrar, true);
+            }
+
+            return seguimientosIngresados > 0;
+        }
     }
 }

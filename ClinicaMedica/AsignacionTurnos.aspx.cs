@@ -36,7 +36,6 @@ namespace ClinicaMedica
         {
             Session["UsuarioActivo"] = null;
         }
-
         protected void btnAsignarTurno_Click(object sender, EventArgs e)
         {
             // Validaciones previas
@@ -82,7 +81,6 @@ namespace ClinicaMedica
             btnAsignarTurno.Visible = false;
             lblMensaje.Visible = false;
         }
-
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
             // Recuperar el turno pendiente de la sesión
@@ -123,7 +121,6 @@ namespace ClinicaMedica
             ddlHoras.Items.Clear();
             ddlHoras.Enabled = false;
         }
-
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             pnlConfirmacion.Visible = false;

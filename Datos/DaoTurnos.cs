@@ -8,10 +8,8 @@ namespace Datos
     public class DaoTurnos
     {
         AccesoDatos accesoDatos = new AccesoDatos();
-            //tablaEstados.Rows.Add(1, "Disponibles");
-            //tablaEstados.Rows.Add(2, "Tomados");
-            //tablaEstados.Rows.Add(0, "Deshabilitados");
-        public DataTable ListadoTurnos(string ProcedimientoAlmacenado, Turno ConfiguracionTurno, bool? Estado = true)
+
+        public DataTable ListadoTurnos(Turno ConfiguracionTurno, bool? Estado = true)
         {
                 SqlParameter[] parametros = new SqlParameter[] {
                 new SqlParameter("@DniPaciente", ConfiguracionTurno.DniPaciente),
@@ -20,10 +18,11 @@ namespace Datos
                 new SqlParameter("@LegajoDoctor", ConfiguracionTurno.LegajoMed),
                 new SqlParameter("@Estado", Estado)
                 };
-                return accesoDatos.EjecutarConsultaSelectDataAdapter(ProcedimientoAlmacenado, parametros);
+
+                return accesoDatos.EjecutarConsultaSelectDataAdapter("SP_RetornarListaTurnos", parametros);
         }
 
-        public int registrarTurno(Turno turno)
+        public int registrarTurno(Turno turno, bool FinalizarTurno = false)
         {
             SqlCommand command = new SqlCommand
             {
@@ -31,11 +30,24 @@ namespace Datos
                 CommandText = "SP_AsignarTurno"
             };
 
-            command.Parameters.AddWithValue("@DniPaciente", turno.DniPaciente);
-            command.Parameters.AddWithValue("@Fecha", turno.Fecha);
-            command.Parameters.AddWithValue("@IDEspecialidad", turno.IDEspecialidad);
-            command.Parameters.AddWithValue("@LegajoDoctor", turno.LegajoMed);
-            command.Parameters.AddWithValue("@Horario", turno.Hora);
+            if (!FinalizarTurno)
+            {
+                command.Parameters.AddWithValue("@DniPaciente", turno.DniPaciente);
+                command.Parameters.AddWithValue("@Fecha", turno.Fecha);
+                command.Parameters.AddWithValue("@IDEspecialidad", turno.IDEspecialidad);
+                command.Parameters.AddWithValue("@LegajoDoctor", turno.LegajoMed);
+                command.Parameters.AddWithValue("@Horario", turno.Hora);
+            }
+            else 
+            {
+                command.Parameters.AddWithValue("@DniPaciente", turno.DniPaciente);
+                command.Parameters.AddWithValue("@Fecha", turno.Fecha);
+                command.Parameters.AddWithValue("@IDEspecialidad", turno.IDEspecialidad);
+                command.Parameters.AddWithValue("@LegajoDoctor", turno.LegajoMed);
+                command.Parameters.AddWithValue("@Horario", turno.Hora);
+                command.Parameters.AddWithValue("@Estado", 0);
+
+            }
 
             return accesoDatos.EjecutarProcedimientoAlmacenado(command, "SP_AsignarTurno");
         }
