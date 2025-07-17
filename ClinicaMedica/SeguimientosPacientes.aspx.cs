@@ -18,11 +18,12 @@ namespace ClinicaMedica
         {
             if (!IsPostBack && Session["TurnoSeleccionado"] != null)
             {
+               
                 if (Session["UsuarioActivo"] != null)
                 {
                     var turno = (Turno)Session["TurnoSeleccionado"];
                     Usuario usuario = (Usuario)Session["UsuarioActivo"];
-
+                    CargarHistorialPorPaciente(turno.DniPaciente);
                     lblBienvenidoUsuario.Text = usuario.NombreUsuario + " " + usuario.ApellidoUsuario;
 
                     DateTime Fecha = DateTime.Now;
@@ -46,6 +47,7 @@ namespace ClinicaMedica
             btnCancelar.Visible = true;
 
             txtComentario.EnableViewState = false;
+          
 
             lblMensaje.Text = "Esta seguro de terminar la consulta?";
         }
@@ -69,6 +71,7 @@ namespace ClinicaMedica
             {
                 lblMensaje.Text = "Comentario registrado correctamente.";
                 lblMensaje.ForeColor = System.Drawing.Color.Green;
+                CargarHistorialPorPaciente(turnoIniciado.DniPaciente);
             }
             else
             {
@@ -96,6 +99,19 @@ namespace ClinicaMedica
         {
             Session["TurnoSeleccionado"] = null;
             Response.Redirect("ListadoTurnos.aspx");
+        }
+
+        protected void CargarHistorialPorPaciente(string dni)
+        {
+            GestionRegistros gestionRegistros = new GestionRegistros();
+            DataTable HistorialPorPersona = gestionRegistros.ObtenerHistorialPorPaciente(dni);
+           
+            if (HistorialPorPersona != null && HistorialPorPersona.Rows.Count > 0)//veo que hay registros 
+            {
+                lvHistorial.DataSource = HistorialPorPersona;
+                lvHistorial.DataBind();
+            }
+           
         }
     }
 }

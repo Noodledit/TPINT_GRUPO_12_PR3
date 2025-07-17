@@ -64,6 +64,8 @@ DROP PROCEDURE IF EXISTS  SP_AsignarTurno
 GO
 DROP PROCEDURE IF EXISTS  SP_RegistrarConsulta
 GO
+DROP PROCEDURE IF EXISTS  sp_ObtenerHistorialPorPaciente
+GO
 
 --TABLAS
 
@@ -568,6 +570,23 @@ AS
 BEGIN
     INSERT INTO SeguimientoPaciente (DniPaciente, LegajoDoctor, Observacion)
     VALUES (@DniPaciente, @LegajoDoctor, @Observacion )
+END
+GO
+
+CREATE PROCEDURE sp_ObtenerHistorialPorPaciente
+    @DniPaciente VARCHAR(20)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        NumeroSeguimiento,
+        DniPaciente,
+        FechaYHora,
+        Observacion
+    FROM SeguimientoPaciente
+    WHERE DniPaciente = @DniPaciente
+    ORDER BY FechaYHora DESC
 END
 GO
 

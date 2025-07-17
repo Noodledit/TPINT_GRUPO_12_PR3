@@ -14,13 +14,17 @@
     <form id="form2" runat="server">
         <div class="header">
             <section>
-                 <asp:HyperLink ID="hlCambiarContrasenia" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cambiar contraseña" ValidationGroup="GrupoInicioSesion" Visible="False" ForeColor="White" Font-Underline="True" NavigateUrl="~/CambiarContraseña.aspx" TabIndex="3" />
-                 <asp:Button ID="btnUnlogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cerrar Sesion" CssClass="button" OnClick="btnUnlogin_Click" ValidationGroup="GrupoInicioSesion" Visible="False" TabIndex="3" />
+                 <asp:HyperLink ID="hlCambiarContrasenia" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cambiar contraseña" ValidationGroup="GrupoInicioSesion" Visible="True" ForeColor="White" Font-Underline="True" NavigateUrl="~/CambiarContraseña.aspx" TabIndex="3" />
+                 <asp:Button ID="btnUnlogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cerrar Sesion" CssClass="button" OnClick="btnUnlogin_Click" ValidationGroup="GrupoInicioSesion" Visible="True" TabIndex="3" />
                 <asp:Label ID="lblBienvenidoUsuario" runat="server" Style="float: right; margin-right: 10px;" Font-Bold="True"></asp:Label>
 </section>
             <div class="titulo-header">
                 <h1>Clinica Medica</h1>
                 <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica"/>
+                <div class="header-links">
+                    <asp:HyperLink ID="hlSeguimientoPaciente" runat="server" CssClass="header-link" Text="Listado de Turnos" Visible="True" TabIndex="5" NavigateUrl="~/ListadoTurnos.aspx"></asp:HyperLink>
+                    <asp:HyperLink ID="hlListarTurnos0" runat="server" CssClass="header-link-active" Text="Seguimiento Paciente" Visible="True" TabIndex="4" NavigateUrl="~/SeguimientosPacientes.aspx" Height="16px"></asp:HyperLink>
+                </div>
             </div>
         </div>
         <div class="contenido">
@@ -35,8 +39,56 @@
                     <div style="background-color: #f1f7ff; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 300px;">
                         <h2 class="titulo-informe" style="text-align: center; color: black;">Historial</h2>
                         <ul style="list-style-type: disc; padding-left: 20px; color: black;">
-                            <li>-<asp:ListView ID="lvHistorial" runat="server">
+                            <li><asp:ListView ID="lvHistorial" runat="server">
+                                <AlternatingItemTemplate>
+                                    <li style="">Observacion:
+                                        <asp:Label ID="ObservacionLabel" runat="server" Text='<%# Eval("Observacion") %>' />
+                                        <br />
+                                    </li>
+                                </AlternatingItemTemplate>
+                                <EditItemTemplate>
+                                    <li style="">Observacion:
+                                        <asp:TextBox ID="ObservacionTextBox" runat="server" Text='<%# Bind("Observacion") %>' />
+                                        <br />
+                                        <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="Update" />
+                                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" />
+                                    </li>
+                                </EditItemTemplate>
+                                <EmptyDataTemplate>
+                                    No data was returned.
+                                </EmptyDataTemplate>
+                                <InsertItemTemplate>
+                                    <li style="">Observacion:
+                                        <asp:TextBox ID="ObservacionTextBox" runat="server" Text='<%# Bind("Observacion") %>' />
+                                        <br />
+                                        <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" />
+                                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Clear" />
+                                    </li>
+                                </InsertItemTemplate>
+                                <ItemSeparatorTemplate>
+<br />
+                                </ItemSeparatorTemplate>
+                                <ItemTemplate>
+                                    <li style="">Observacion:
+                                        <asp:Label ID="ObservacionLabel" runat="server" Text='<%# Eval("Observacion") %>' />
+                                        <br />
+                                    </li>
+                                </ItemTemplate>
+                                <LayoutTemplate>
+                                    <ul id="itemPlaceholderContainer" runat="server" style="">
+                                        <li runat="server" id="itemPlaceholder" />
+                                    </ul>
+                                    <div style="">
+                                    </div>
+                                </LayoutTemplate>
+                                <SelectedItemTemplate>
+                                    <li style="">Observacion:
+                                        <asp:Label ID="ObservacionLabel" runat="server" Text='<%# Eval("Observacion") %>' />
+                                        <br />
+                                    </li>
+                                </SelectedItemTemplate>
                                 </asp:ListView>
+                                <asp:SqlDataSource ID="ClinicaMedica" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaMedicaConnectionString2 %>" ProviderName="<%$ ConnectionStrings:ClinicaMedicaConnectionString2.ProviderName %>" SelectCommand="SELECT [Observacion] FROM [SeguimientoPaciente]"></asp:SqlDataSource>
                             </li>
                         </ul>
                     </div>
@@ -65,6 +117,7 @@
               
               <div style="text-align: right; margin-top: 10px;">
                   <br />
+                  <asp:RequiredFieldValidator ID="validarQueHayaComentario" runat="server" ControlToValidate="txtComentario" ErrorMessage="Debe ingresar un comentario" ForeColor="Red"></asp:RequiredFieldValidator>
                  <asp:Label ID="lblMensaje" runat="server" Font-Bold="true" />
                   <br />
                   <br />

@@ -1,5 +1,7 @@
 ﻿using Datos;
 using Entidades;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Servicios
 {
@@ -8,6 +10,7 @@ namespace Servicios
         DaoPacientes dpaciente = new DaoPacientes();
         DaoMedicos dmedico = new DaoMedicos();
         DaoTurnos dTurnos = new DaoTurnos();
+        AccesoDatos AccesoDatos = new AccesoDatos();
 
         public bool RegistrarPaciente(Paciente paciente)
         {
@@ -47,6 +50,16 @@ namespace Servicios
             }
 
             return seguimientosIngresados > 0;
+        }
+
+        public DataTable ObtenerHistorialPorPaciente(string DniPaciente)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@DniPaciente", DniPaciente)
+            };
+            return AccesoDatos.EjecutarConsultaSelectDataAdapter("SP_ObtenerHistorialPorPaciente", parametros);
+
         }
     }
 }
