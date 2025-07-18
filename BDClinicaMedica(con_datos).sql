@@ -66,6 +66,8 @@ DROP PROCEDURE IF EXISTS  SP_RegistrarConsulta
 GO
 DROP PROCEDURE IF EXISTS  sp_ObtenerHistorialPorPaciente
 GO
+DROP PROCEDURE IF EXISTS  SP_InformeAsistencia
+GO
 
 --TABLAS
 
@@ -589,6 +591,28 @@ BEGIN
     ORDER BY FechaYHora DESC
 END
 GO
+
+CREATE OR ALTER PROCEDURE SP_InformeAsistencia
+    @Desde DATE,
+    @Hasta DATE
+AS
+BEGIN
+    
+    SELECT
+        CAST(SUM(CASE WHEN DniPaciente IS NOT NULL THEN 1 ELSE 0 END) * 100.0 / COUNT(*) AS DECIMAL(5,2)) AS PorcPresentes,
+        CAST(SUM(CASE WHEN DniPaciente IS NULL THEN 1 ELSE 0 END) * 100.0 / COUNT(*) AS DECIMAL(5,2)) AS PorcAusentes
+    FROM TurnosDisponibles
+    WHERE Fecha_TD BETWEEN @Desde AND @Hasta AND Estado_TD = 1
+	--Porcentaje
+
+    SELECT * FROM TurnosDisponibles
+    WHERE DniPaciente IS NOT NULL AND Fecha_TD BETWEEN @Desde AND @Hasta AND Estado_TD = 1
+	 --Presentes
+   
+    SELECT * FROM TurnosDisponibles
+    WHERE DniPaciente IS NULL AND Fecha_TD BETWEEN @Desde AND @Hasta AND Estado_TD = 1
+	--Ausentes
+END
 
 
 --INGRESO DATOS

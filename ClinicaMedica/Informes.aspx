@@ -34,14 +34,18 @@
                     <asp:TextBox ID="txtFechaDesde" runat="server" CssClass="input-fecha" TextMode="Date" />
                     <asp:Label ID="lblFechaHasta" runat="server" Text="Hasta:" CssClass="label-fecha" style="margin-left: 20px;" />
                     <asp:TextBox ID="txtFechaHasta" runat="server" CssClass="input-fecha" TextMode="Date" />
-                    <asp:Button ID="btnGenerarInforme" runat="server" Text="Generar Informe" CssClass="boton-hover" style="margin-left: 30px;" />
+                    <asp:Button ID="btnGenerarInforme" runat="server" Text="Generar Informe" CssClass="boton-hover" style="margin-left: 30px;" OnClick="btnGenerarInforme_Click" />
                 </div>
 
             <!-- Estadísticas generales -->
             <div class="caja-informe" style="background: #f1f7ff; margin-bottom: 20px;">
                 <h3>Resumen Estadístico</h3>
-                Los presentes este mes alcanzan el porcentaje de:<asp:Label ID="lblInformePresentismo" runat="server" CssClass="form-label" />
-                Los ausentes este mes alcanzan el porcentaje de:<asp:Label ID="lblInformeAusentismo" runat="server" CssClass="form-label" />
+                Los presentes este mes alcanzan el porcentaje de:
+                <asp:Label ID="lblPresentes" runat="server"></asp:Label>
+                <asp:Label ID="lblInformePresentismo" runat="server" CssClass="form-label" />
+                Los ausentes este mes alcanzan el porcentaje de:
+                <asp:Label ID="lblAusentes" runat="server"></asp:Label>
+                <asp:Label ID="lblInformeAusentismo" runat="server" CssClass="form-label" />
                 con respecto al mes anterior se ve una diferencia en atencion del: <asp:Label ID="lblInformeComparacionMesAnterior" runat="server" CssClass="form-label" />
                 </div>
 

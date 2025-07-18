@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace ClinicaMedica
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        private GestionRegistros GestorRegistros = new GestionRegistros();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
@@ -30,6 +33,17 @@ namespace ClinicaMedica
             Session["UsuarioActivo"] = null;
             Response.Redirect("ListadoTurnos.aspx");
 
+        }
+
+        protected void btnGenerarInforme_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtFechaDesde.Text) && !string.IsNullOrWhiteSpace(txtFechaHasta.Text))
+            {
+                DateTime Desde = Convert.ToDateTime(txtFechaDesde.Text);
+                DateTime Hasta = Convert.ToDateTime(txtFechaHasta.Text);
+                bool Informa = GestorRegistros.InformeDeAsistencia(Desde, Hasta);
+
+            }
         }
     }
 }

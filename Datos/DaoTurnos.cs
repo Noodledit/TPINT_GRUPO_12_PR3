@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -51,5 +52,19 @@ namespace Datos
 
             return accesoDatos.EjecutarProcedimientoAlmacenado(command, "SP_AsignarTurno");
         }
+
+
+
+        public int InformeAsistencia(DateTime Desde, DateTime Hasta )
+        {
+            SqlCommand command = new SqlCommand();
+
+            command.Parameters.AddWithValue("@FechaInicial",Desde);
+            command.Parameters.AddWithValue("@FechaFinal",Hasta);
+
+            return accesoDatos.EjecutarProcedimientoAlmacenado(command, "SP_InformeAsistencia");
+        }
+
+
     }
 }

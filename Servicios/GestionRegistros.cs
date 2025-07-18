@@ -1,5 +1,6 @@
 ﻿using Datos;
 using Entidades;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -40,6 +41,12 @@ namespace Servicios
             return turnosRegistrados;
         }
 
+        public bool InformeDeAsistencia(DateTime Desde, DateTime Hasta)
+        {
+            int InformeFunciona = dTurnos.InformeAsistencia(Desde,Hasta);
+            return InformeFunciona > 0;
+        }
+
         public bool RegistrarSeguimiento(Turno TurnoACerrar, string observacion)
         {
             int seguimientosIngresados = dpaciente.RegistrarSeguimiento(TurnoACerrar, observacion);
@@ -61,5 +68,7 @@ namespace Servicios
             return AccesoDatos.EjecutarConsultaSelectDataAdapter("SP_ObtenerHistorialPorPaciente", parametros);
 
         }
+
+
     }
 }
