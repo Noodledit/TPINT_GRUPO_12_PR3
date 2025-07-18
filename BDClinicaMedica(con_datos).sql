@@ -592,28 +592,29 @@ BEGIN
 END
 GO
 
+
 CREATE OR ALTER PROCEDURE SP_InformeAsistencia
     @Desde DATE,
-    @Hasta DATE
+    @Hasta DATE,
+    @Tipo CHAR(1)
 AS
 BEGIN
-    
-    SELECT
-        CAST(SUM(CASE WHEN DniPaciente IS NOT NULL THEN 1 ELSE 0 END) * 100.0 / COUNT(*) AS DECIMAL(5,2)) AS PorcPresentes,
-        CAST(SUM(CASE WHEN DniPaciente IS NULL THEN 1 ELSE 0 END) * 100.0 / COUNT(*) AS DECIMAL(5,2)) AS PorcAusentes
-    FROM TurnosDisponibles
-    WHERE Fecha_TD BETWEEN @Desde AND @Hasta AND Estado_TD = 1
-	--Porcentaje
+    SET NOCOUNT ON
 
-    SELECT * FROM TurnosDisponibles
-    WHERE DniPaciente IS NOT NULL AND Fecha_TD BETWEEN @Desde AND @Hasta AND Estado_TD = 1
-	 --Presentes
-   
-    SELECT * FROM TurnosDisponibles
-    WHERE DniPaciente IS NULL AND Fecha_TD BETWEEN @Desde AND @Hasta AND Estado_TD = 1
-	--Ausentes
+    IF @Tipo = 'p'
+    BEGIN
+        SELECT Fecha_TD, DniPaciente, Estado_TD FROM TurnosDisponibles WHERE DniPaciente IS NOT NULL AND Fecha_TD BETWEEN @Desde AND @Hasta AND Estado_TD = 1
+    END
+    ELSE IF @Tipo = 'a'
+    BEGIN
+        SELECT Fecha_TD, DniPaciente, Estado_TD FROM TurnosDisponibles WHERE DniPaciente IS NULL AND Fecha_TD BETWEEN @Desde AND @Hasta AND Estado_TD = 0
+    END
+	ELSE IF @Tipo = 't'
+	BEGIN
+		SELECT Fecha_TD, DniPaciente, Estado_TD FROM TurnosDisponibles WHERE Fecha_TD BETWEEN @Desde AND @Hasta
+	END
 END
-
+GO
 
 --INGRESO DATOS
 

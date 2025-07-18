@@ -55,14 +55,18 @@ namespace Datos
 
 
 
-        public int InformeAsistencia(DateTime Desde, DateTime Hasta )
+        public DataTable InformeAsistencia(DateTime Desde, DateTime Hasta, string Tipo)
         {
-            SqlCommand command = new SqlCommand();
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@Desde",Desde),
+                new SqlParameter("@Hasta", Hasta),
+                new SqlParameter("@Tipo", Tipo)
+            };
 
-            command.Parameters.AddWithValue("@FechaInicial",Desde);
-            command.Parameters.AddWithValue("@FechaFinal",Hasta);
+            
 
-            return accesoDatos.EjecutarProcedimientoAlmacenado(command, "SP_InformeAsistencia");
+            return accesoDatos.EjecutarConsultaSelectDataAdapter( "SP_InformeAsistencia", parametros);
         }
 
 

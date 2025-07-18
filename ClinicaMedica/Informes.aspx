@@ -46,7 +46,8 @@
                 Los ausentes este mes alcanzan el porcentaje de:
                 <asp:Label ID="lblAusentes" runat="server"></asp:Label>
                 <asp:Label ID="lblInformeAusentismo" runat="server" CssClass="form-label" />
-                con respecto al mes anterior se ve una diferencia en atencion del: <asp:Label ID="lblInformeComparacionMesAnterior" runat="server" CssClass="form-label" />
+                con respecto al mes anterior se ve una diferencia en atencion del:<asp:Label ID="lblMensaje" runat="server"></asp:Label>
+&nbsp;<asp:Label ID="lblInformeComparacionMesAnterior" runat="server" CssClass="form-label" />
                 </div>
 
             </div>

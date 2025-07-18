@@ -41,10 +41,10 @@ namespace Servicios
             return turnosRegistrados;
         }
 
-        public bool InformeDeAsistencia(DateTime Desde, DateTime Hasta)
+        public DataTable InformeDeAsistencia(DateTime Desde, DateTime Hasta, string tipo)
         {
-            int InformeFunciona = dTurnos.InformeAsistencia(Desde,Hasta);
-            return InformeFunciona > 0;
+            DataTable InformeFunciona = dTurnos.InformeAsistencia(Desde,Hasta, tipo);
+            return InformeFunciona;
         }
 
         public bool RegistrarSeguimiento(Turno TurnoACerrar, string observacion)
