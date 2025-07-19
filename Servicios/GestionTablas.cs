@@ -62,6 +62,18 @@ namespace Servicios
             {
                 return dao.DarDeBajaMedicoPorLegajo(legajo);
             }
+            public bool ActualizarMedico(string dni, string nombre, string apellido, string telefono, string correo)
+            {
+                Medico medico = new Medico
+                {
+                    Dni = dni,
+                    Nombre = nombre,
+                    Apellido = apellido,
+                    Telefono = telefono,
+                    Correo = correo
+                };
+                return dao.ActualizarMedico(medico);
+            }
         }
 
     }

@@ -27,12 +27,15 @@ namespace Datos
         {
             SqlCommand command = new SqlCommand();
 
-            command.Parameters.AddWithValue("@Dni", medico.Dni);
+            command.Parameters.AddWithValue("@Dni", medico.Dni); // Asegúrate de que medico.Dni tenga valor
             command.Parameters.AddWithValue("@Nombre", medico.Nombre);
             command.Parameters.AddWithValue("@Apellido", medico.Apellido);
             command.Parameters.AddWithValue("@Sexo", medico.Sexo);
             command.Parameters.AddWithValue("@Nacionalidad", medico.Nacionalidad);
-            command.Parameters.AddWithValue("@FechaNacimiento", medico.FechaNacimiento);
+            if (medico.FechaNacimiento == null || medico.FechaNacimiento < new DateTime(1753, 1, 1))
+                command.Parameters.AddWithValue("@FechaNacimiento", DBNull.Value);
+            else
+                command.Parameters.AddWithValue("@FechaNacimiento", medico.FechaNacimiento);
             command.Parameters.AddWithValue("@Direccion", medico.Direccion);
             command.Parameters.AddWithValue("@IdLocalidad", medico.IdLocalidad);
             command.Parameters.AddWithValue("@IdProvincia", medico.IdProvincia);
@@ -79,5 +82,17 @@ namespace Datos
             }
         }
 
+        public bool ActualizarMedico(Medico medico)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Parameters.AddWithValue("@Dni", medico.Dni);
+            command.Parameters.AddWithValue("@Nombre", medico.Nombre);
+            command.Parameters.AddWithValue("@Apellido", medico.Apellido);
+            command.Parameters.AddWithValue("@Telefono", medico.Telefono);
+            command.Parameters.AddWithValue("@Correo", medico.Correo);
+
+            int filasAfectadas = ds.EjecutarProcedimientoAlmacenado(command, "SP_ActualizarMedico");
+            return filasAfectadas > 0;
+        }
     }
 }

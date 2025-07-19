@@ -48,56 +48,76 @@
                     </asp:DropDownList>
                 </div>
 
-                <asp:GridView ID="gvMedicos" runat="server" AutoGenerateColumns="False" CssClass="tabla-turnos" OnRowCommand="gvMedicos_RowCommand" AllowPaging="True" OnPageIndexChanging="gvMedicos_PageIndexChanging" PageSize="5">
-                        <Columns>
-                            <asp:TemplateField HeaderText="Legajo">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblLegajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Nombre">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblNombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Apellido">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblApellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="DNI">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblDni" runat="server" Text='<%# Bind("DNI") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Especialidad">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblEspecialidad" runat="server" Text='<%# Bind("Especialidad") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Telefono">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblTelefono" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Correo Electronico">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblCorreo" runat="server" Text='<%# Bind("Correo") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Estado">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblEstado" runat="server" Text='<%# Bind("Estado") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Dar de Baja">
-                        <ItemTemplate>
-                            <asp:LinkButton ID="lnkEliminar" runat="server" CommandName="Eliminar" CommandArgument='<%# Eval("Legajo") %>' 
+                <asp:GridView ID="gvMedicos" runat="server" AutoGenerateColumns="False" CssClass="tabla-turnos"
+                            OnRowCommand="gvMedicos_RowCommand"
+                            AllowPaging="True"
+                            OnPageIndexChanging="gvMedicos_PageIndexChanging"
+                            PageSize="5"
+                            OnRowEditing="gvMedicos_RowEditing"
+                            OnRowUpdating="gvMedicos_RowUpdating"
+                            OnRowCancelingEdit="gvMedicos_RowCancelingEdit">
+                            <Columns>
+                                <asp:TemplateField HeaderText="Legajo">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblLegajo" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Nombre">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblNombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtNombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Apellido">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblApellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtApellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="DNI">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblDni" runat="server" Text='<%# Bind("DNI") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Especialidad">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblEspecialidad" runat="server" Text='<%# Bind("Especialidad") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Telefono">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblTelefono" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtTelefono" runat="server" Text='<%# Bind("Telefono") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Correo Electronico">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblCorreo" runat="server" Text='<%# Bind("Correo") %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtCorreo" runat="server" Text='<%# Bind("Correo") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Estado">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblEstado" runat="server" Text='<%# Bind("Estado") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Dar de Baja">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lnkEliminar" runat="server" CommandName="Eliminar" CommandArgument='<%# Eval("Legajo") %>' 
                                             Text="Eliminar" OnClientClick="return confirm('¿Seguro que desea eliminar el médico?');" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:CommandField ShowEditButton="True" />
+                            </Columns>
+                        </asp:GridView>
                     <div style="margin: 25px 10px 5px 0px;">
                         <asp:Button ID="btnMostrarTodo" runat="server" CssClass="button" Text="Mostrar Todo" Width="202px" OnClick="btnMostrarTodo_Click" />
                 </div>

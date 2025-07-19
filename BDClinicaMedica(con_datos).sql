@@ -68,6 +68,8 @@ DROP PROCEDURE IF EXISTS  sp_ObtenerHistorialPorPaciente
 GO
 DROP PROCEDURE IF EXISTS  SP_InformeAsistencia
 GO
+DROP PROCEDURE IF EXISTS  SP_ActualizarMedico
+GO
 
 --TABLAS
 
@@ -613,6 +615,24 @@ BEGIN
 	BEGIN
 		SELECT Fecha_TD, DniPaciente, Estado_TD FROM TurnosDisponibles WHERE Fecha_TD BETWEEN @Desde AND @Hasta
 	END
+END
+GO
+
+CREATE OR ALTER PROCEDURE SP_ActualizarMedico
+    @Dni VARCHAR(10),
+    @Nombre VARCHAR(20),
+    @Apellido VARCHAR(20),
+    @Telefono VARCHAR(16),
+    @Correo VARCHAR(50)
+AS
+BEGIN
+    UPDATE DatosPersonales
+    SET
+        Nombre_DP = @Nombre,
+        Apellido_DP = @Apellido,
+        Telefono_DP = @Telefono,
+        CorreoElectronico_DP = @Correo
+    WHERE Dni_DP = @Dni
 END
 GO
 

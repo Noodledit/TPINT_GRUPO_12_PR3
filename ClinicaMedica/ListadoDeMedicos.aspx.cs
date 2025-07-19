@@ -130,5 +130,50 @@ namespace ClinicaMedica
             gvMedicos.PageIndex = e.NewPageIndex;
             llenarGrillaMedicos();
         }
+
+        // Permite poner la fila en modo edición
+        protected void gvMedicos_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            gvMedicos.EditIndex = e.NewEditIndex;
+            llenarGrillaMedicos();
+        }
+
+        // Cancela la edición
+        protected void gvMedicos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            gvMedicos.EditIndex = -1;
+            llenarGrillaMedicos();
+        }
+
+        // Actualiza los datos editados
+        protected void gvMedicos_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            // Obtiene la fila que se está editando
+            GridViewRow row = gvMedicos.Rows[e.RowIndex];
+            // Obtiene los valores de los controles dentro de la fila
+            string dni = ((Label)row.FindControl("lblDni")).Text;
+            string nombre = ((TextBox)row.FindControl("txtNombre")).Text.Trim();
+            string apellido = ((TextBox)row.FindControl("txtApellido")).Text.Trim();
+            string telefono = ((TextBox)row.FindControl("txtTelefono")).Text.Trim();
+            string correo = ((TextBox)row.FindControl("txtCorreo")).Text.Trim();
+            // aca creamos una instancia del gestor de médicos
+            var gestorMedicos = new GestionTablas.GestionMedicos();
+            // Llama al método para actualizar el médico
+            bool exito = gestorMedicos.ActualizarMedico(dni, nombre, apellido, telefono, correo);
+
+            if (exito)
+            {
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
+                lblMensaje.Text = "Médico actualizado correctamente.";
+            }
+            else
+            {
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "No se pudo actualizar el médico.";
+            }
+            // Vuelve a cargar la grilla de médicos
+            gvMedicos.EditIndex = -1;
+            llenarGrillaMedicos();
+        }
     }
 }
