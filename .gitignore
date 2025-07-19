@@ -25,3 +25,4 @@ Release/
 # Archivos de proyecto ignorados
 *.csproj.user
 *.sln.docstates
+/.vs

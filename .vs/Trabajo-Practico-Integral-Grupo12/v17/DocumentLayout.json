@@ -1,30 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\",
+  "WorkspaceRootPath": "C:\\Users\\Valen\\Desktop\\Valen\\Universidad\\Programacion 3\\tp-final\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\servicios\\gestionregistros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|solutionrelative:servicios\\gestionregistros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\valen\\desktop\\valen\\universidad\\programacion 3\\tp-final\\clinicamedica\\listadodemedicos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\listadodemedicos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|c:\\repositorios github\\tpint_grupo_12_pr3\\servicios\\gestionddl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|solutionrelative:servicios\\gestionddl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|C:\\Users\\Valen\\Desktop\\Valen\\Universidad\\Programacion 3\\tp-final\\servicios\\gestiontablas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|solutionrelative:servicios\\gestiontablas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6C1A773E-AC40-4F4E-9869-7EA0B16E6CB5}|Datos\\Datos.csproj|C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\datos\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6C1A773E-AC40-4F4E-9869-7EA0B16E6CB5}|Datos\\Datos.csproj|C:\\Users\\Valen\\Desktop\\Valen\\Universidad\\Programacion 3\\tp-final\\datos\\daomedicos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C1A773E-AC40-4F4E-9869-7EA0B16E6CB5}|Datos\\Datos.csproj|solutionrelative:datos\\daomedicos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C1A773E-AC40-4F4E-9869-7EA0B16E6CB5}|Datos\\Datos.csproj|C:\\Users\\Valen\\Desktop\\Valen\\Universidad\\Programacion 3\\tp-final\\datos\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6C1A773E-AC40-4F4E-9869-7EA0B16E6CB5}|Datos\\Datos.csproj|solutionrelative:datos\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6C1A773E-AC40-4F4E-9869-7EA0B16E6CB5}|Datos\\Datos.csproj|c:\\repositorios github\\tpint_grupo_12_pr3\\datos\\daoturnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C1A773E-AC40-4F4E-9869-7EA0B16E6CB5}|Datos\\Datos.csproj|solutionrelative:datos\\daoturnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\clinicamedica\\informes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\informes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\clinicamedica\\informes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\informes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|C:\\Users\\Valen\\Desktop\\Valen\\Universidad\\Programacion 3\\tp-final\\clinicamedica\\listadodemedicos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\listadodemedicos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,84 +30,103 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 11,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GestionDdl.cs",
-              "DocumentMoniker": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\Servicios\\GestionDdl.cs",
-              "RelativeDocumentMoniker": "Servicios\\GestionDdl.cs",
-              "ToolTip": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\Servicios\\GestionDdl.cs",
-              "RelativeToolTip": "Servicios\\GestionDdl.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAowCgAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T18:53:59.154Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GestionRegistros.cs",
-              "DocumentMoniker": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\Servicios\\GestionRegistros.cs",
-              "RelativeDocumentMoniker": "Servicios\\GestionRegistros.cs",
-              "ToolTip": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\Servicios\\GestionRegistros.cs",
-              "RelativeToolTip": "Servicios\\GestionRegistros.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAowC8AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T01:11:30.877Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "AccesoDatos.cs",
-              "DocumentMoniker": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\Datos\\AccesoDatos.cs",
-              "RelativeDocumentMoniker": "Datos\\AccesoDatos.cs",
-              "ToolTip": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\Datos\\AccesoDatos.cs",
-              "RelativeToolTip": "Datos\\AccesoDatos.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAowEoAAAAAAAAAAAAAAA==",
+              "Title": "DaoMedicos.cs",
+              "DocumentMoniker": "C:\\Users\\Valen\\Desktop\\Valen\\Universidad\\Programacion 3\\tp-final\\Datos\\DaoMedicos.cs",
+              "RelativeDocumentMoniker": "Datos\\DaoMedicos.cs",
+              "ToolTip": "C:\\Users\\Valen\\Desktop\\Valen\\Universidad\\Programacion 3\\tp-final\\Datos\\DaoMedicos.cs*",
+              "RelativeToolTip": "Datos\\DaoMedicos.cs*",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAlwFcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T06:51:14.02Z",
+              "WhenOpened": "2025-07-19T17:25:56.917Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "DaoTurnos.cs",
-              "DocumentMoniker": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\Datos\\DaoTurnos.cs",
-              "RelativeDocumentMoniker": "Datos\\DaoTurnos.cs",
-              "ToolTip": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\Datos\\DaoTurnos.cs",
-              "RelativeToolTip": "Datos\\DaoTurnos.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAowDoAAAAJAAAAAAAAAA==",
+              "Title": "AccesoDatos.cs",
+              "DocumentMoniker": "C:\\Users\\Valen\\Desktop\\Valen\\Universidad\\Programacion 3\\tp-final\\Datos\\AccesoDatos.cs",
+              "RelativeDocumentMoniker": "Datos\\AccesoDatos.cs",
+              "ToolTip": "C:\\Users\\Valen\\Desktop\\Valen\\Universidad\\Programacion 3\\tp-final\\Datos\\AccesoDatos.cs",
+              "RelativeToolTip": "Datos\\AccesoDatos.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAWwFEAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T06:05:51.167Z",
+              "WhenOpened": "2025-07-19T17:20:51.534Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GestionTablas.cs",
+              "DocumentMoniker": "C:\\Users\\Valen\\Desktop\\Valen\\Universidad\\Programacion 3\\tp-final\\Servicios\\GestionTablas.cs",
+              "RelativeDocumentMoniker": "Servicios\\GestionTablas.cs",
+              "ToolTip": "C:\\Users\\Valen\\Desktop\\Valen\\Universidad\\Programacion 3\\tp-final\\Servicios\\GestionTablas.cs*",
+              "RelativeToolTip": "Servicios\\GestionTablas.cs*",
+              "ViewState": "AgIAADMAAAAAAAAAAAAEwEoAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-19T17:14:53.689Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ListadoDeMedicos.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Valen\\Desktop\\Valen\\Universidad\\Programacion 3\\tp-final\\ClinicaMedica\\ListadoDeMedicos.aspx.cs",
+              "RelativeDocumentMoniker": "ClinicaMedica\\ListadoDeMedicos.aspx.cs",
+              "ToolTip": "C:\\Users\\Valen\\Desktop\\Valen\\Universidad\\Programacion 3\\tp-final\\ClinicaMedica\\ListadoDeMedicos.aspx.cs*",
+              "RelativeToolTip": "ClinicaMedica\\ListadoDeMedicos.aspx.cs*",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAhwKUAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-19T17:13:57.681Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Informes.aspx.cs",
-              "DocumentMoniker": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\Informes.aspx.cs",
-              "RelativeDocumentMoniker": "ClinicaMedica\\Informes.aspx.cs",
-              "ToolTip": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\Informes.aspx.cs",
-              "RelativeToolTip": "ClinicaMedica\\Informes.aspx.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAgwC4AAABRAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T05:47:59.283Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Informes.aspx",
-              "DocumentMoniker": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\Informes.aspx",
-              "RelativeDocumentMoniker": "ClinicaMedica\\Informes.aspx",
-              "ToolTip": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\Informes.aspx",
-              "RelativeToolTip": "ClinicaMedica\\Informes.aspx",
+              "Title": "ListadoDeMedicos.aspx",
+              "DocumentMoniker": "C:\\Users\\Valen\\Desktop\\Valen\\Universidad\\Programacion 3\\tp-final\\ClinicaMedica\\ListadoDeMedicos.aspx",
+              "RelativeDocumentMoniker": "ClinicaMedica\\ListadoDeMedicos.aspx",
+              "ToolTip": "C:\\Users\\Valen\\Desktop\\Valen\\Universidad\\Programacion 3\\tp-final\\ClinicaMedica\\ListadoDeMedicos.aspx",
+              "RelativeToolTip": "ClinicaMedica\\ListadoDeMedicos.aspx",
               "LogicalView": "7651a702-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-07-18T05:48:50.471Z",
+              "WhenOpened": "2025-07-19T17:08:13.486Z",
               "EditorCaption": ""
             }
           ]
