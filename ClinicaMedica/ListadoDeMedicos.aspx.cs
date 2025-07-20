@@ -175,5 +175,10 @@ namespace ClinicaMedica
             gvMedicos.EditIndex = -1;
             llenarGrillaMedicos();
         }
+
+        protected void btnUserImg_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("~/CambiarContraseña.aspx");
+        }
     }
 }

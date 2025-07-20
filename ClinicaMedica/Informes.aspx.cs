@@ -77,5 +77,10 @@ namespace ClinicaMedica
 
             }
         }
+
+        protected void btnUserImg_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("~/CambiarContraseña.aspx");
+        }
     }
 }

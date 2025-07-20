@@ -17,6 +17,14 @@ namespace ClinicaMedica
                 if (Session["UsuarioActivo"] != null)
                 {
                     Usuario usuario = (Usuario)Session["UsuarioActivo"];
+                    if(usuario.TipoUsuario == 2)
+                    {
+                        crearAdmin.Visible = true;
+                    }
+                    else
+                    {
+                        crearAdmin.Visible = false;
+                    }
                     lblBienvenidoUsuario.Text = usuario.NombreUsuario + " " + usuario.ApellidoUsuario;
                 }
                 else
@@ -30,6 +38,11 @@ namespace ClinicaMedica
         {
             Session["UsuarioActivo"] = null;
             Response.Redirect("ListadoTurnos.aspx");
+
+        }
+
+        protected void btnCrearCuentaAdmin_Click(object sender, EventArgs e)
+        {
 
         }
     }
