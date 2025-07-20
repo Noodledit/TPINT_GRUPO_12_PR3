@@ -70,5 +70,14 @@ namespace Datos
                 return cmd.ExecuteNonQuery();
             }
         }
+
+        public DataTable ListarHistorialDelPaciente(string DniPaciente)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@DniPaciente", DniPaciente)
+            };
+            return ds.EjecutarConsultaSelectDataAdapter("sp_ListarHistorialDePaciente", parametros);
+        }
     }
 }

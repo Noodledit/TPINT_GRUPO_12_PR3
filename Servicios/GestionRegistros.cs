@@ -55,20 +55,12 @@ namespace Servicios
             {
                 dTurnos.registrarTurno(TurnoACerrar, true);
             }
-
             return seguimientosIngresados > 0;
         }
 
-        public DataTable ObtenerHistorialPorPaciente(string DniPaciente)
+        public DataTable ListarHistorialDelPaciente(string DniPaciente)
         {
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                new SqlParameter("@DniPaciente", DniPaciente)
-            };
-            return AccesoDatos.EjecutarConsultaSelectDataAdapter("SP_ObtenerHistorialPorPaciente", parametros);
-
+            return AccesoDatos.EjecutarConsultaSelectDataAdapter(DniPaciente);
         }
-
-
     }
 }
