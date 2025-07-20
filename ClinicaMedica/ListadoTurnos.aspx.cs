@@ -29,6 +29,15 @@ namespace ClinicaMedica
             }
         }
 
+        protected void MenuUsuario_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            if (e.Item.Value == "cerrarSesion")
+            {
+                Session["UsuarioActivo"] = null;
+                ComprobacionDeSesion();
+            }
+        }
+
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             if (Session["UsuarioActivo"] == null)
@@ -59,13 +68,12 @@ namespace ClinicaMedica
         {
             if (Session["UsuarioActivo"] != null)
             {
+                MenuUsuario.Visible = true;
                 btnLogin.Visible = false;
-                btnUnlogin.Visible = true;
                 txtContrasenia.Visible = false;
                 txtUsuario.Visible = false;
                 lblContrasenia.Visible = false;
                 lblNombreUsuario.Visible = false;
-                hlCambiarContrasenia.Visible = true;
                 lblBienvenidoUsuario.ForeColor = System.Drawing.Color.White;
                 lblBienvenidoUsuario.Text = ((Usuario)Session["UsuarioActivo"]).NombreUsuario + " " + ((Usuario)Session["UsuarioActivo"]).ApellidoUsuario;
                 HabilitacionDeAcceso();
@@ -73,7 +81,7 @@ namespace ClinicaMedica
             else
             {
                 btnLogin.Visible = true;
-                btnUnlogin.Visible = false;
+                MenuUsuario.Visible = false;
                 txtContrasenia.Visible = true;
                 txtUsuario.Visible = true;
                 lblContrasenia.Visible = true;

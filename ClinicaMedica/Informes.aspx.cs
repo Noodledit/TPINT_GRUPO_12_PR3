@@ -28,14 +28,15 @@ namespace ClinicaMedica
                 }
             }
         }
-
-        protected void btnUnlogin_Click(object sender, EventArgs e)
+        protected void MenuUsuario_MenuItemClick(object sender, MenuEventArgs e)
         {
-            Session["UsuarioActivo"] = null;
-            Response.Redirect("ListadoTurnos.aspx");
-
+            if (e.Item.Value == "cerrarSesion")
+            {
+                Session["UsuarioActivo"] = null;
+                Response.Redirect("ListadoTurnos.aspx");
+                return;
+            }
         }
-
         protected void btnGenerarInforme_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(txtFechaDesde.Text) && !string.IsNullOrWhiteSpace(txtFechaHasta.Text))

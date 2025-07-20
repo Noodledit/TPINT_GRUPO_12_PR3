@@ -36,7 +36,15 @@ namespace ClinicaMedica
                 }
             }
         }
-
+        protected void MenuUsuario_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            if (e.Item.Value == "cerrarSesion")
+            {
+                Session["UsuarioActivo"] = null;
+                Response.Redirect("ListadoTurnos.aspx");
+                return;
+            }
+        }
         protected void ddlProvincias_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             int idProvincia = int.Parse(ddlProvincias.SelectedValue);
@@ -51,7 +59,6 @@ namespace ClinicaMedica
                 ddlLocalidades.Items.Insert(0, new ListItem("-- Seleccione una provincia primero --", "0"));
             }
         }
-
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             if (CamposIncompletos())
@@ -171,13 +178,6 @@ namespace ClinicaMedica
             ddlSexo.SelectedIndex = 0;
 
             //lblMensaje.Text = string.Empty;
-        }
-
-        protected void btnUnlogin_Click(object sender, EventArgs e)
-        {
-            Session["UsuarioActivo"] = null;
-            Response.Redirect("ListadoTurnos.aspx");
-
         }
     }
 }

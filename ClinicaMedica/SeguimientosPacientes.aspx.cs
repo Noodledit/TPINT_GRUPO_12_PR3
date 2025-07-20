@@ -23,7 +23,7 @@ namespace ClinicaMedica
                 {
                     var turno = (Turno)Session["TurnoSeleccionado"];
                     Usuario usuario = (Usuario)Session["UsuarioActivo"];
-                    CargarHistorialPorPaciente(turno.DniPaciente);
+                    ListarHistorialDelPaciente(turno.DniPaciente);
                     lblBienvenidoUsuario.Text = usuario.NombreUsuario + " " + usuario.ApellidoUsuario;
 
                     DateTime Fecha = DateTime.Now;
@@ -39,25 +39,23 @@ namespace ClinicaMedica
             }
         }
 
+        protected void MenuUsuario_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            if (e.Item.Value == "cerrarSesion")
+            {
+                Session["UsuarioActivo"] = null;
+                Response.Redirect("ListadoTurnos.aspx");
+                return;
+            }
+        }
         protected void btnFinalizarConsulta_Click(object sender, EventArgs e)
         {
-            btnFinalizarConsulta.Enabled = false;
-
+            btnFinalizarConsulta.Visible = false;
             btnConfirmar.Visible = true;
             btnCancelar.Visible = true;
 
-            txtComentario.EnableViewState = false;
-          
-
             lblMensaje.Text = "Esta seguro de terminar la consulta?";
         }
-
-        protected void btnUnlogin_Click(object sender, EventArgs e)
-        {
-            Session["UsuarioActivo"] = null;
-            Response.Redirect("ListadoTurnos.aspx");
-        }
-
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
             Turno turnoIniciado = (Turno)Session["TurnoSeleccionado"];
@@ -71,7 +69,7 @@ namespace ClinicaMedica
             {
                 lblMensaje.Text = "Comentario registrado correctamente.";
                 lblMensaje.ForeColor = System.Drawing.Color.Green;
-                CargarHistorialPorPaciente(turnoIniciado.DniPaciente);
+                ListarHistorialDelPaciente(turnoIniciado.DniPaciente);
             }
             else
             {
@@ -84,23 +82,19 @@ namespace ClinicaMedica
 
             btnAceptar.Visible = true;
         }
-
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            btnFinalizarConsulta.Enabled = true;
-
+            btnFinalizarConsulta.Visible = true;
             btnConfirmar.Visible = false;
             btnCancelar.Visible = false;
 
             txtComentario.EnableViewState = true;
         }
-
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             Session["TurnoSeleccionado"] = null;
             Response.Redirect("ListadoTurnos.aspx");
         }
-
         protected void ListarHistorialDelPaciente(string dni)
         {
             GestionRegistros gestionRegistros = new GestionRegistros();
@@ -111,7 +105,6 @@ namespace ClinicaMedica
                 lvHistorial.DataSource = HistorialPorPersona;
                 lvHistorial.DataBind();
             }
-           
         }
     }
 }

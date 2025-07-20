@@ -32,9 +32,14 @@ namespace ClinicaMedica
                 }
             }
         }
-        protected void btnUn_Login_Click(object sender, EventArgs e)
+        protected void MenuUsuario_MenuItemClick(object sender, MenuEventArgs e)
         {
-            Session["UsuarioActivo"] = null;
+            if (e.Item.Value == "cerrarSesion")
+            {
+                Session["UsuarioActivo"] = null;
+                Response.Redirect("ListadoTurnos.aspx");
+                return;
+            }
         }
         protected void btnAsignarTurno_Click(object sender, EventArgs e)
         {
@@ -128,7 +133,6 @@ namespace ClinicaMedica
             lblMensaje.Visible = false;
             Session.Remove("TurnoPendiente");
         }
-
         protected void ddlEspecilidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             // si no hay Doctor marcado se cargan todas las especialidades
@@ -162,7 +166,6 @@ namespace ClinicaMedica
                 ddlMedicos.Items.Clear();
             }
         }
-
         protected void ddlFecha_SelectedIndexChanged(object sender, EventArgs e)
         {
             // si no hay especialidad marcada no deberia saltar nada
@@ -179,7 +182,6 @@ namespace ClinicaMedica
                 }
             }
         }
-
         protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
         {
             int LegajoSeleccionado = int.Parse(ddlMedicos.SelectedValue);
@@ -194,11 +196,6 @@ namespace ClinicaMedica
                 }
                 gestorDdl.CargarHoras(ddlHoras, idEspecialidadSeleccionada, idFechaSeleccionada, LegajoSeleccionado);
             }
-        }
-        protected void btnUnlogin_Click(object sender, EventArgs e)
-        {
-            Session["UsuarioActivo"] = null;
-            Response.Redirect("ListadoTurnos.aspx");
         }
     }
 }

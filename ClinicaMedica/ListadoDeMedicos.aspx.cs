@@ -33,6 +33,15 @@ namespace ClinicaMedica
                 }
             }
         }
+        protected void MenuUsuario_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            if (e.Item.Value == "cerrarSesion")
+            {
+                Session["UsuarioActivo"] = null;
+                Response.Redirect("ListadoTurnos.aspx");
+                return;
+            }
+        }
         private void llenarGrillaMedicos(DataTable tabla = null)
         {
             if (tabla == null)
@@ -119,11 +128,6 @@ namespace ClinicaMedica
                     lblMensaje.Text = "No se pudo dar de baja al médico.";
                 }
             }
-        }
-        protected void btnUnlogin_Click(object sender, EventArgs e)
-        {
-            Session["UsuarioActivo"] = null;
-            Response.Redirect("ListadoTurnos.aspx");
         }
         protected void gvMedicos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {

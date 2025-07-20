@@ -30,6 +30,15 @@ namespace ClinicaMedica
                 }
             }
         }
+        protected void MenuUsuario_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            if (e.Item.Value == "cerrarSesion")
+            {
+                Session["UsuarioActivo"] = null;
+                Response.Redirect("ListadoTurnos.aspx");
+                return;
+            }
+        }
         private void HabilitacionDeBotones()
         {
             if (btnConfirmar.Visible)
@@ -61,7 +70,6 @@ namespace ClinicaMedica
                 ddlLocalidades.Items.Insert(0, new ListItem("-- Seleccione una provincia primero --", "0"));
             }
         }
-
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
             Turno turno = Session["TurnoPendiente"] as Turno;
@@ -158,7 +166,6 @@ namespace ClinicaMedica
                 lblMensaje.Visible = true;
             }
         }
-
         private void LimpiarTxtBox()
         {
             txtNombre.Text = string.Empty;
@@ -173,7 +180,6 @@ namespace ClinicaMedica
             ddlLocalidades.SelectedIndex = 0;
             ddlSexo.SelectedIndex = 0;
         }
-
         private bool CamposNoComletados()
         {
             return string.IsNullOrWhiteSpace(txtNombre.Text) ||
@@ -186,20 +192,12 @@ namespace ClinicaMedica
                    string.IsNullOrWhiteSpace(txtCorreoElectronico.Text) ||
                    string.IsNullOrWhiteSpace(txtNumeroTelefono.Text);
         }
-
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             lblMensaje.Text = string.Empty;
             LimpiarTxtBox();
             Response.Redirect("AsignacionTurnos.aspx");
         }
-
-        protected void btnUnlogin_Click(object sender, EventArgs e)
-        {
-            Session["UsuarioActivo"] = null;
-            Response.Redirect("ListadoTurnos.aspx");
-        }
-
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             Response.Redirect("AsignacionTurnos.aspx");

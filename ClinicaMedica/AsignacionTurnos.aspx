@@ -13,10 +13,33 @@
     <form id="form1" runat="server">
         <div class="header">
             <section>
-                <asp:HyperLink ID="hlCambiarContrasenia" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cambiar contraseña" ValidationGroup="GrupoInicioSesion" Visible="True" ForeColor="White" Font-Underline="True" NavigateUrl="~/CambiarContraseña.aspx" TabIndex="3" />
-                <asp:Button ID="btnUnlogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cerrar Sesion" CssClass="button" ValidationGroup="GrupoInicioSesion" OnClick="btnUnlogin_Click" />
-                <asp:Label ID="lblBienvenidoUsuario" runat="server" Style="float: right; margin-right: 10px;" Font-Bold="True"></asp:Label>
-</section>
+                <asp:Label ID="lblBienvenidoUsuario" runat="server"
+                    Style="float: right; margin-right: 10px;" Font-Bold="True"></asp:Label>
+            </section>
+            <section style="float: right; margin-right: 10px;">
+                <asp:Menu ID="MenuUsuario" runat="server" CssClass="menu-derecha"
+                    Orientation="Horizontal"
+                    StaticDisplayLevels="1"
+                    DynamicHorizontalOffset="0"
+                    Font-Names="Verdana" Font-Size="0.8em"
+                    ForeColor="#7C6F57"
+                    BackColor="#F7F6F3"
+                    StaticSubMenuIndent="10px"
+                    OnMenuItemClick="MenuUsuario_MenuItemClick" StaticEnableDefaultPopOutImage="False">
+                    <Items>
+                        <asp:MenuItem Text="Menú" Value="cuenta">
+                            <asp:MenuItem Text="Cambiar contraseña" NavigateUrl="~/CambiarContraseña.aspx" />
+                            <asp:MenuItem Text="Cerrar sesión" Value="cerrarSesion" />
+                        </asp:MenuItem>
+                    </Items>
+
+                    <StaticMenuItemStyle HorizontalPadding="10px" VerticalPadding="5px" />
+                    <StaticHoverStyle BackColor="#7C6F57" ForeColor="White" />
+                    <DynamicMenuStyle BackColor="#F7F6F3" />
+                    <DynamicHoverStyle BackColor="#7C6F57" ForeColor="White" />
+                    <DynamicMenuItemStyle HorizontalPadding="10px" VerticalPadding="5px" />
+                </asp:Menu>
+            </section>
             <div class="titulo-header">
                 <h1>Clinica Medica</h1>
                 <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica" />
@@ -46,22 +69,22 @@
 
                 <div style="margin: 15px 10px 20px 20px;" id="ddlEspecialidad">
                     <span style="color: white; font-size: 20px;">Especialidad:</span>
-                    <asp:DropDownList ID="ddlEspecialidades" autopostback="true" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlEspecilidad_SelectedIndexChanged" >
+                    <asp:DropDownList ID="ddlEspecialidades" AutoPostBack="true" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlEspecilidad_SelectedIndexChanged">
                     </asp:DropDownList>
                     <br />
                     <span style="color: white; font-size: 20px;">Médico:</span>
-                    <asp:DropDownList ID="ddlMedicos" autopostback="true" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged" Enabled="False" ></asp:DropDownList>
+                    <asp:DropDownList ID="ddlMedicos" AutoPostBack="true" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged" Enabled="False"></asp:DropDownList>
                     <br />
                     <span style="color: white; font-size: 20px;">Fecha:</span>
-                    <asp:DropDownList ID="ddlFechas" AutoPostBack="true" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlFecha_SelectedIndexChanged" Enabled="False" ></asp:DropDownList>
+                    <asp:DropDownList ID="ddlFechas" AutoPostBack="true" runat="server" CssClass="txtBox-caja" OnSelectedIndexChanged="ddlFecha_SelectedIndexChanged" Enabled="False"></asp:DropDownList>
                     <br />
                     <span style="color: white; font-size: 20px;">Hora:</span>
-                    <asp:DropDownList ID="ddlHoras" AutoPostBack="true" runat="server" CssClass="txtBox-caja" Enabled="False" ></asp:DropDownList>                    
+                    <asp:DropDownList ID="ddlHoras" AutoPostBack="true" runat="server" CssClass="txtBox-caja" Enabled="False"></asp:DropDownList>
                 </div>
                 <div style="margin: 25px 10px 5px 20px;">
                     <asp:Button ID="btnAsignarTurno" runat="server" CssClass="button" Text="Asignar Turno" Width="210px" Height="40" OnClick="btnAsignarTurno_Click" />
 
-                    <asp:Panel ID="pnlConfirmacion" runat="server" Visible="false" CssClass="panel-confirmacion" style="margin-top:15px;">
+                    <asp:Panel ID="pnlConfirmacion" runat="server" Visible="false" CssClass="panel-confirmacion" Style="margin-top: 15px;">
                         <asp:Label ID="lblConfirmacion" runat="server" Text="¿Está seguro de que desea asignar este turno?" />
                         <br />
                         <br />

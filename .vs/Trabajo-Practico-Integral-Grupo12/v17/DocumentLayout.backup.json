@@ -1,88 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|c:\\users\\hblan\\onedrive\\desktop\\integrador\\tpint_grupo_12_pr3\\servicios\\gestionregistros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|solutionrelative:servicios\\gestionregistros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6C1A773E-AC40-4F4E-9869-7EA0B16E6CB5}|Datos\\Datos.csproj|c:\\users\\hblan\\onedrive\\desktop\\integrador\\tpint_grupo_12_pr3\\datos\\daopacientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C1A773E-AC40-4F4E-9869-7EA0B16E6CB5}|Datos\\Datos.csproj|solutionrelative:datos\\daopacientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\hblan\\onedrive\\desktop\\integrador\\tpint_grupo_12_pr3\\clinicamedica\\seguimientospacientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\seguimientospacientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\servicios\\gestiontablas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|solutionrelative:servicios\\gestiontablas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GestionRegistros.cs",
-              "DocumentMoniker": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\Servicios\\GestionRegistros.cs",
-              "RelativeDocumentMoniker": "Servicios\\GestionRegistros.cs",
-              "ToolTip": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\Servicios\\GestionRegistros.cs",
-              "RelativeToolTip": "Servicios\\GestionRegistros.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAcwD8AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T14:33:48.881Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DaoPacientes.cs",
-              "DocumentMoniker": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\Datos\\DaoPacientes.cs",
-              "RelativeDocumentMoniker": "Datos\\DaoPacientes.cs",
-              "ToolTip": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\Datos\\DaoPacientes.cs",
-              "RelativeToolTip": "Datos\\DaoPacientes.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAE0AAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T14:32:09.365Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SeguimientosPacientes.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\SeguimientosPacientes.aspx.cs",
-              "RelativeDocumentMoniker": "ClinicaMedica\\SeguimientosPacientes.aspx.cs",
-              "ToolTip": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\SeguimientosPacientes.aspx.cs",
-              "RelativeToolTip": "ClinicaMedica\\SeguimientosPacientes.aspx.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAIwGoAAABXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T14:30:53.755Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GestionTablas.cs",
-              "DocumentMoniker": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\Servicios\\GestionTablas.cs",
-              "RelativeDocumentMoniker": "Servicios\\GestionTablas.cs",
-              "ToolTip": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\Servicios\\GestionTablas.cs",
-              "RelativeToolTip": "Servicios\\GestionTablas.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAEwEoAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T17:14:53.689Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

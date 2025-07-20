@@ -14,7 +14,6 @@ font{
     font-family: 'Open Sans', sans-serif;
 }
 
-
 .header {
     height: 150px;
     height: 100%;
@@ -439,4 +438,10 @@ font{
     color: #333333 !important; 
     text-align: center;
     background-color: white;
+}
+
+/* Asegura que el menú esté a la derecha */
+.menu-derecha {
+    float: right !important;
+    position: relative !important;
 }
