@@ -71,6 +71,7 @@ namespace Datos
             }
         }
 
+<<<<<<< HEAD
         public DataTable ListarPacientes()
         { 
            return ds.EjecutarConsultaSelectDataAdapter("SP_RetornarListaPacientes");
@@ -81,7 +82,6 @@ namespace Datos
             SqlParameter[] parametro = new SqlParameter[] {
                 new SqlParameter("@Nombre", nombre)
             };
-
             return ds.EjecutarConsultaSelectDataAdapter("SP_BuscarPacientes", parametro);
         }
 
@@ -90,10 +90,16 @@ namespace Datos
             SqlParameter[] parametro = new SqlParameter[] {
                 new SqlParameter("@Dni", dni)
             };
-
             return ds.EjecutarConsultaSelectDataAdapter("SP_BuscarPacientes", parametro);
         }
 
-
+        public DataTable ListarHistorialDelPaciente(string DniPaciente)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@DniPaciente", DniPaciente)
+            };
+            return ds.EjecutarConsultaSelectDataAdapter("sp_ListarHistorialDePaciente", parametros);
+        }
     }
 }

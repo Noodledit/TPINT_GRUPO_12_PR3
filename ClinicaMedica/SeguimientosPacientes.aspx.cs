@@ -101,10 +101,10 @@ namespace ClinicaMedica
             Response.Redirect("ListadoTurnos.aspx");
         }
 
-        protected void CargarHistorialPorPaciente(string dni)
+        protected void ListarHistorialDelPaciente(string dni)
         {
             GestionRegistros gestionRegistros = new GestionRegistros();
-            DataTable HistorialPorPersona = gestionRegistros.ObtenerHistorialPorPaciente(dni);
+            DataTable HistorialPorPersona = gestionRegistros.ListarHistorialDelPaciente(dni);
            
             if (HistorialPorPersona != null && HistorialPorPersona.Rows.Count > 0)//veo que hay registros 
             {
