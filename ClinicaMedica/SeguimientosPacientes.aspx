@@ -23,7 +23,6 @@
                 <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica"/>
                 <div class="header-links">
                     <asp:HyperLink ID="hlSeguimientoPaciente" runat="server" CssClass="header-link" Text="Listado de Turnos" Visible="True" TabIndex="5" NavigateUrl="~/ListadoTurnos.aspx"></asp:HyperLink>
-                    <asp:HyperLink ID="hlListarTurnos0" runat="server" CssClass="header-link-active" Text="Seguimiento Paciente" Visible="True" TabIndex="4" NavigateUrl="~/SeguimientosPacientes.aspx" Height="16px"></asp:HyperLink>
                 </div>
             </div>
         </div>

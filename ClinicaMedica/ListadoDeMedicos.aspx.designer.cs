@@ -60,16 +60,7 @@ namespace ClinicaMedica
         protected global::System.Web.UI.WebControls.HyperLink hlListarTurnos;
 
         /// <summary>
-        /// hlSeguimientoPaciente control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlSeguimientoPaciente;
-
-        /// <summary>
-        /// hlAgregarMedico control.
+        /// Control hlAgregarMedico.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
