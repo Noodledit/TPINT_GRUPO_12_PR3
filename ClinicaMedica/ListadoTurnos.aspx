@@ -12,7 +12,7 @@
     <form id="form1" runat="server">
         <div class="header">
             <section>
-                <asp:HyperLink ID="hlCambiarContrasenia" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cambiar contraseña" ValidationGroup="GrupoInicioSesion" Visible="False" ForeColor="White" Font-Underline="True" NavigateUrl="~/CambiarContraseña.aspx" TabIndex="3" />
+                <asp:ImageButton ID="btnUserImg" runat="server" ImageUrl="Estilo/user.png" CssClass="user-image" OnClick="btnUserImg_Click" Visible="False" Style="transform: translateY(-3px); margin-left: 2px" />           
                 <asp:Button ID="btnUnlogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cerrar Sesion" CssClass="button" OnClick="btnUnlogin_Click" ValidationGroup="GrupoInicioSesion" Visible="False" TabIndex="3" />
                 <asp:Button ID="btnLogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Ingresar" CssClass="button" OnClick="btnLogin_Click" ValidationGroup="GrupoInicioSesion" TabIndex="3"/>
                 <asp:TextBox ID="txtContrasenia" runat="server" CssClass="txtBox-login" Style="float: right; margin-right: 10px; height: 20px;" TextMode="Password" ValidationGroup="GrupoInicioSesion" TabIndex="2"></asp:TextBox>

@@ -179,5 +179,10 @@ namespace ClinicaMedica
             Response.Redirect("ListadoTurnos.aspx");
 
         }
+
+        protected void btnUserImg_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        {
+            Response.Redirect("~/CambiarContraseña.aspx");
+        }
     }
 }

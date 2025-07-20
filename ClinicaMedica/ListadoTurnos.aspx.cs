@@ -65,7 +65,7 @@ namespace ClinicaMedica
                 txtUsuario.Visible = false;
                 lblContrasenia.Visible = false;
                 lblNombreUsuario.Visible = false;
-                hlCambiarContrasenia.Visible = true;
+                btnUserImg.Visible = true;
                 lblBienvenidoUsuario.ForeColor = System.Drawing.Color.White;
                 lblBienvenidoUsuario.Text = ((Usuario)Session["UsuarioActivo"]).NombreUsuario + " " + ((Usuario)Session["UsuarioActivo"]).ApellidoUsuario;
                 HabilitacionDeAcceso();
@@ -121,7 +121,7 @@ namespace ClinicaMedica
                 if (((Usuario)Session["UsuarioActivo"]).TipoUsuario >= 1)
                 {          
                     hlListarTurnos.Visible = true;
-                    hlSeguimientoPaciente.Visible = false; //
+                    hlSeguimientoPaciente.Visible = true;
                     lblFecha.Visible = true;
                     ddlFechas.Visible = true;
                     btnMostrarTodo.Visible = true;
@@ -382,6 +382,11 @@ namespace ClinicaMedica
             gvTurnos.EditIndex = -1;//Salir del Edit
             gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
             gvTurnos.DataBind();
+        }
+
+        protected void btnUserImg_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        {
+            Response.Redirect("~/CambiarContraseña.aspx");
         }
     }
 }
