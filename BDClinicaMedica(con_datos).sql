@@ -636,6 +636,61 @@ BEGIN
 END
 GO
 
+CREATE OR ALTER PROCEDURE SP_RetornarListaPacientes
+AS
+BEGIN
+    SET NOCOUNT ON
+
+    SELECT DISTINCT
+        DatosPersonales.Dni_DP AS DNI,
+        DatosPersonales.Nombre_DP AS Nombre,
+        DatosPersonales.Apellido_DP AS Apellido,
+        DatosPersonales.Sexo_DP AS Sexo,
+        DatosPersonales.Nacionalidad_DP AS Nacionalidad,
+        DatosPersonales.FechaNacimiento_DP AS FechaNacimiento,
+        DatosPersonales.Direccion_DP AS Direccion,
+        Localidades.NombreLocalidad AS Localidad,
+        Provincias.NombreProvincia AS Provincia,
+        DatosPersonales.CorreoElectronico_DP AS Correo,
+        DatosPersonales.Telefono_DP AS Telefono
+    FROM DatosPersonales
+    INNER JOIN Provincias ON DatosPersonales.IdProvincia_DP = Provincias.IdProvincia
+    INNER JOIN Localidades ON DatosPersonales.IdLocalidad_DP = Localidades.IdLocalidad
+    INNER JOIN SeguimientoPaciente ON DatosPersonales.Dni_DP = SeguimientoPaciente.DniPaciente
+    ORDER BY DatosPersonales.Apellido_DP, DatosPersonales.Nombre_DP
+END
+GO
+
+CREATE OR ALTER PROCEDURE SP_BuscarPacientes
+    @Nombre VARCHAR(20) = NULL,
+    @Dni VARCHAR(10) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON
+
+    SELECT DISTINCT
+        DatosPersonales.Dni_DP AS DNI,
+        DatosPersonales.Nombre_DP AS Nombre,
+        DatosPersonales.Apellido_DP AS Apellido,
+        DatosPersonales.Sexo_DP AS Sexo,
+        DatosPersonales.Nacionalidad_DP AS Nacionalidad,
+        DatosPersonales.FechaNacimiento_DP AS FechaNacimiento,
+        DatosPersonales.Direccion_DP AS Direccion,
+        Localidades.NombreLocalidad AS Localidad,
+        Provincias.NombreProvincia AS Provincia,
+        DatosPersonales.CorreoElectronico_DP AS Correo,
+        DatosPersonales.Telefono_DP AS Telefono
+    FROM DatosPersonales
+    INNER JOIN Localidades ON DatosPersonales.IdLocalidad_DP = Localidades.IdLocalidad
+    INNER JOIN Provincias ON DatosPersonales.IdProvincia_DP = Provincias.IdProvincia
+	INNER JOIN SeguimientoPaciente ON DatosPersonales.Dni_DP = SeguimientoPaciente.DniPaciente
+    WHERE (@Nombre IS NULL OR DatosPersonales.Nombre_DP LIKE '%' + @Nombre + '%') AND (@Dni IS NULL OR DatosPersonales.Dni_DP = @Dni)
+    ORDER BY DatosPersonales.Apellido_DP, DatosPersonales.Nombre_DP
+END
+GO
+
+
+
 --INGRESO DATOS
 
 PRINT 'Reinsertando Provincias...'

@@ -73,6 +73,7 @@
     <Content Include="Estilo\logoClinica.png" />
     <Content Include="Estilo\user.png" />
     <Content Include="Informes.aspx" />
+    <Content Include="ListadoPacientes.aspx" />
     <Content Include="ListadoTurnos.aspx" />
     <Content Include="ListadoDeMedicos.aspx" />
     <Content Include="RegistrarMedico.aspx" />
@@ -101,6 +102,13 @@
     </Compile>
     <Compile Include="Informes.aspx.designer.cs">
       <DependentUpon>Informes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoPacientes.aspx.cs">
+      <DependentUpon>ListadoPacientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoPacientes.aspx.designer.cs">
+      <DependentUpon>ListadoPacientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListadoTurnos.aspx.cs">
       <DependentUpon>ListadoTurnos.aspx</DependentUpon>

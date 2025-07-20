@@ -70,5 +70,30 @@ namespace Datos
                 return cmd.ExecuteNonQuery();
             }
         }
+
+        public DataTable ListarPacientes()
+        { 
+           return ds.EjecutarConsultaSelectDataAdapter("SP_RetornarListaPacientes");
+        }
+
+        public DataTable BuscarPorNombre(string nombre)
+        {
+            SqlParameter[] parametro = new SqlParameter[] {
+                new SqlParameter("@Nombre", nombre)
+            };
+
+            return ds.EjecutarConsultaSelectDataAdapter("SP_BuscarPacientes", parametro);
+        }
+
+        public DataTable BuscarPorDni(string dni)
+        {
+            SqlParameter[] parametro = new SqlParameter[] {
+                new SqlParameter("@Dni", dni)
+            };
+
+            return ds.EjecutarConsultaSelectDataAdapter("SP_BuscarPacientes", parametro);
+        }
+
+
     }
 }

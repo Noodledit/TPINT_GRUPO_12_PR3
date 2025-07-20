@@ -1,26 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Nacho\\Documents\\git\\TPINT-Grupo12\\TPINT_GRUPO_12_PR3\\",
+  "WorkspaceRootPath": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\nacho\\documents\\git\\tpint-grupo12\\tpint_grupo_12_pr3\\clinicamedica\\registrarmedico.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\registrarmedico.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\repositorios github\\tpint_grupo_12_pr3\\clinicamedica\\listadopacientes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\listadopacientes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\nacho\\documents\\git\\tpint-grupo12\\tpint_grupo_12_pr3\\clinicamedica\\listadoturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\listadoturnos.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\repositorios github\\tpint_grupo_12_pr3\\clinicamedica\\listadopacientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\listadopacientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\nacho\\documents\\git\\tpint-grupo12\\tpint_grupo_12_pr3\\clinicamedica\\listadoturnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\listadoturnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|c:\\repositorios github\\tpint_grupo_12_pr3\\servicios\\gestiontablas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|solutionrelative:servicios\\gestiontablas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\nacho\\documents\\git\\tpint-grupo12\\tpint_grupo_12_pr3\\clinicamedica\\cambiarcontrase\u00F1a.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\cambiarcontrase\u00F1a.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\nacho\\documents\\git\\tpint-grupo12\\tpint_grupo_12_pr3\\clinicamedica\\cambiarcontrase\u00F1a.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\cambiarcontrase\u00F1a.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{6C1A773E-AC40-4F4E-9869-7EA0B16E6CB5}|Datos\\Datos.csproj|c:\\repositorios github\\tpint_grupo_12_pr3\\datos\\daopacientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C1A773E-AC40-4F4E-9869-7EA0B16E6CB5}|Datos\\Datos.csproj|solutionrelative:datos\\daopacientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,75 +26,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ListadoTurnos.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Nacho\\Documents\\git\\TPINT-Grupo12\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoTurnos.aspx.cs",
-              "RelativeDocumentMoniker": "ClinicaMedica\\ListadoTurnos.aspx.cs",
-              "ToolTip": "C:\\Users\\Nacho\\Documents\\git\\TPINT-Grupo12\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoTurnos.aspx.cs",
-              "RelativeToolTip": "ClinicaMedica\\ListadoTurnos.aspx.cs",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAmwHsAAAA5AAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "DaoPacientes.cs",
+              "DocumentMoniker": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\Datos\\DaoPacientes.cs",
+              "RelativeDocumentMoniker": "Datos\\DaoPacientes.cs",
+              "ToolTip": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\Datos\\DaoPacientes.cs",
+              "RelativeToolTip": "Datos\\DaoPacientes.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAQwE4AAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T09:06:56.747Z",
+              "WhenOpened": "2025-07-20T21:21:33.97Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GestionTablas.cs",
+              "DocumentMoniker": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\Servicios\\GestionTablas.cs",
+              "RelativeDocumentMoniker": "Servicios\\GestionTablas.cs",
+              "ToolTip": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\Servicios\\GestionTablas.cs",
+              "RelativeToolTip": "Servicios\\GestionTablas.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAcwEUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-20T20:20:55.795Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "RegistrarMedico.aspx",
-              "DocumentMoniker": "C:\\Users\\Nacho\\Documents\\git\\TPINT-Grupo12\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\RegistrarMedico.aspx",
-              "RelativeDocumentMoniker": "ClinicaMedica\\RegistrarMedico.aspx",
-              "ToolTip": "C:\\Users\\Nacho\\Documents\\git\\TPINT-Grupo12\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\RegistrarMedico.aspx",
-              "RelativeToolTip": "ClinicaMedica\\RegistrarMedico.aspx",
+              "Title": "ListadoPacientes.aspx",
+              "DocumentMoniker": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoPacientes.aspx",
+              "RelativeDocumentMoniker": "ClinicaMedica\\ListadoPacientes.aspx",
+              "ToolTip": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoPacientes.aspx*",
+              "RelativeToolTip": "ClinicaMedica\\ListadoPacientes.aspx*",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-07-20T09:06:33.846Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ListadoTurnos.aspx",
-              "DocumentMoniker": "C:\\Users\\Nacho\\Documents\\git\\TPINT-Grupo12\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoTurnos.aspx",
-              "RelativeDocumentMoniker": "ClinicaMedica\\ListadoTurnos.aspx",
-              "ToolTip": "C:\\Users\\Nacho\\Documents\\git\\TPINT-Grupo12\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoTurnos.aspx",
-              "RelativeToolTip": "ClinicaMedica\\ListadoTurnos.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-07-20T09:06:14.816Z",
+              "WhenOpened": "2025-07-20T19:04:01.928Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CambiarContrase\u00F1a.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Nacho\\Documents\\git\\TPINT-Grupo12\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\CambiarContrase\u00F1a.aspx.cs",
-              "RelativeDocumentMoniker": "ClinicaMedica\\CambiarContrase\u00F1a.aspx.cs",
-              "ToolTip": "C:\\Users\\Nacho\\Documents\\git\\TPINT-Grupo12\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\CambiarContrase\u00F1a.aspx.cs",
-              "RelativeToolTip": "ClinicaMedica\\CambiarContrase\u00F1a.aspx.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAUAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ListadoPacientes.aspx.cs",
+              "DocumentMoniker": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoPacientes.aspx.cs",
+              "RelativeDocumentMoniker": "ClinicaMedica\\ListadoPacientes.aspx.cs",
+              "ToolTip": "C:\\Repositorios GitHub\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoPacientes.aspx.cs",
+              "RelativeToolTip": "ClinicaMedica\\ListadoPacientes.aspx.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAwwEEAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T08:53:01.166Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CambiarContrase\u00F1a.aspx",
-              "DocumentMoniker": "C:\\Users\\Nacho\\Documents\\git\\TPINT-Grupo12\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\CambiarContrase\u00F1a.aspx",
-              "RelativeDocumentMoniker": "ClinicaMedica\\CambiarContrase\u00F1a.aspx",
-              "ToolTip": "C:\\Users\\Nacho\\Documents\\git\\TPINT-Grupo12\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\CambiarContrase\u00F1a.aspx",
-              "RelativeToolTip": "ClinicaMedica\\CambiarContrase\u00F1a.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-07-20T08:47:15.545Z",
+              "WhenOpened": "2025-07-20T19:04:40.531Z",
               "EditorCaption": ""
             }
           ]

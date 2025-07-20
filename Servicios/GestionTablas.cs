@@ -10,6 +10,7 @@ namespace Servicios
     {
         private DaoTurnos daoTurnos = new DaoTurnos();
         private DaoMedicos daoMedicos = new DaoMedicos();
+        private DaoPacientes daoPacientes = new DaoPacientes();
         public GestionTablas() { 
 
         }
@@ -51,6 +52,20 @@ namespace Servicios
         public DataTable ObtenerTablaMedicosPorIdEspecialidad(string idEspecialidad)
         {
             return daoMedicos.ListarMedicos(null, null, Convert.ToInt32(idEspecialidad));
+        }
+        public DataTable ObtenerTablaPacientes()
+        {
+            return daoPacientes.ListarPacientes();
+        }
+
+        public DataTable ObtenerTablaPacientesPorNombre(string nombre)
+        {
+            return daoPacientes.BuscarPorNombre(nombre);
+        }
+
+        public DataTable ObtenerTablaPacientesPorDni(string dni)
+        {
+            return daoPacientes.BuscarPorDni(dni);
         }
 
 
