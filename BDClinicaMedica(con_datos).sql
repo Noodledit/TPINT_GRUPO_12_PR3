@@ -74,6 +74,8 @@ DROP PROCEDURE IF EXISTS  SP_RetornarListaPacientes
 GO
 DROP PROCEDURE IF EXISTS  SP_BuscarPacientes
 GO
+DROP PROCEDURE IF EXISTS  SP_CambiarContraseñaUsuario
+GO 
 
 --TABLAS
 
@@ -685,18 +687,33 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROCEDURE SP_CambiarContrasenia
-@NombreUsuario VARCHAR (15),
-@NuevaContrasenia VARCHAR (20)
+
+CREATE PROCEDURE SP_CambiarContraseñaUsuario
+    @IdUsuario INT,
+    @NuevaContraseña VARCHAR(20)
 AS
+BEGIN
+    -- si el usuario existe y esta activo.....
+    IF EXISTS (
+        SELECT 1
+        FROM Usuarios
+        WHERE IdUsuario = @IdUsuario
+          AND Estado_Us = 1
+    )
     BEGIN
+        -- actiualizo la contraseña
         UPDATE Usuarios
-        SET Contraseña = @NuevaContrasenia
-        WHERE NombreUsuario = @NombreUsuario
+        SET Contraseña = @NuevaContraseña
+        WHERE IdUsuario = @IdUsuario
+
+        PRINT 'Contraseña cambiada correctamente.'
     END
+    ELSE
+    BEGIN
+        PRINT 'Error'
+    END
+END
 GO
-
-
 
 --INGRESO DATOS
 

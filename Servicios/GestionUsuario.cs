@@ -46,5 +46,14 @@ namespace Servicios
                 return null;
             }
         }
+        public bool CambiarContrasenia(Usuario usuario, string nuevaClave)
+        {
+            if (usuario != null && !string.IsNullOrEmpty(nuevaClave))
+            {
+                dao = new DaoUsuario();
+                return dao.CambiarContrasenia(usuario.Id, nuevaClave);
+            }
+            return false;
+        }
     }
 }

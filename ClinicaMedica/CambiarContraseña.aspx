@@ -71,10 +71,11 @@
                 <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:CompareValidator ID="cvContrasenias" runat="server" ControlToCompare="txtContraseniaNueva" ControlToValidate="txtConfirmarContraseniaNueva" ErrorMessage="Las contraseñas no coinciden"></asp:CompareValidator>
+                &nbsp;<asp:Label ID="lblMensaje" runat="server"></asp:Label>
                 </div>
 
                 <div style="margin-bottom: 25px; display: flex; justify-content: flex-end;">
-                    <asp:Button ID="Button2" runat="server" Text="Cambiar contraseña" CssClass="boton-hover" />
+                    <asp:Button ID="btnCambiarContrasenia" runat="server" Text="Cambiar contraseña" CssClass="boton-hover" OnClick="btnCambiarContrasenia_Click" />
                 </div>
             </div>
             <asp:Panel ID="crearAdmin" runat="server" Visible="false">
