@@ -40,11 +40,11 @@
                 <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica" />
                 <div class="header-links">
                     <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link" NavigateUrl="ListadoTurnos.aspx" Text="Listado de Turnos"></asp:HyperLink>
-
-                    <asp:HyperLink ID="hlAgregarMedico" runat="server" CssClass="header-link" NavigateUrl="RegistrarMedico.aspx" Text="Agregar Medico"></asp:HyperLink>
+                    <asp:HyperLink ID="hlCrearCuentaAdmin" runat="server" CssClass="header-link-active" NavigateUrl="~/CreacionCuentaAdmin.aspx" Text="Crear Cuenta Admin"></asp:HyperLink>
                     <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="AsignacionTurnos.aspx" Text="Asignar Turnos"></asp:HyperLink>
-                    <asp:HyperLink ID="hListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos"></asp:HyperLink>
                     <asp:HyperLink ID="HlListarPacientes" runat="server" CssClass="header-link" NavigateUrl="ListadoPacientes.aspx" Text="Listar Pacientes"></asp:HyperLink>
+                    <asp:HyperLink ID="hlListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos"></asp:HyperLink>
+                    <asp:HyperLink ID="hlAgregarMedico" runat="server" CssClass="header-link-active" NavigateUrl="RegistrarMedico.aspx" Text="Agregar Medico"></asp:HyperLink>
                     <asp:HyperLink ID="hlInformes" runat="server" CssClass="header-link" NavigateUrl="Informes.aspx" Text="Informes"></asp:HyperLink>
                 </div>
             </div>
@@ -79,40 +79,15 @@
                 <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:CompareValidator ID="cvContrasenias" runat="server" ControlToCompare="txtContraseniaNueva" ControlToValidate="txtConfirmarContraseniaNueva" ErrorMessage="Las contraseñas no coinciden" ValidationGroup="Grupo1"></asp:CompareValidator>
-                &nbsp;<asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                    &nbsp;<asp:Label ID="lblMensaje" runat="server"></asp:Label>
                     <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
 
                 <div style="margin-bottom: 25px; display: flex; justify-content: flex-end;">
                     <asp:Button ID="btnCambiarContrasenia" runat="server" Text="Cambiar contraseña" CssClass="boton-hover" OnClick="btnCambiarContrasenia_Click" ValidationGroup="Grupo1" />
                 </div>
             </div>
-            <asp:Panel ID="crearAdmin" runat="server" Visible="false">
-                <div class="caja-informe" style="margin-top: 10px;" visible="false">
-                    <h2 class="titulo-informe">Crear Cuenta Administrador</h2>
-
-                    <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
-                        <asp:TextBox ID="txtUsuarioAdmin" runat="server" CssClass="input-fecha" Width="500px" placeholder="Nombre de usuario" ValidationGroup="Grupo2" />
-                        <br />
-                        <asp:RequiredFieldValidator ID="rfvAdmin" runat="server" ControlToValidate="txtUsuarioAdmin" ValidationGroup="Grupo2">Por favor rellene el campo</asp:RequiredFieldValidator>
-                    </div>
-
-                    <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
-                        <asp:TextBox ID="txtDniAdmin" runat="server" CssClass="input-fecha" Width="500px" placeholder="DNI" ValidationGroup="Grupo2" />
-                        <br />
-                        <asp:RequiredFieldValidator ID="rfvAdmin2" runat="server" ControlToValidate="txtDniAdmin" ValidationGroup="Grupo2">Por favor rellene el campo</asp:RequiredFieldValidator>
-                    </div>
-
-                    <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
-                        <asp:Label ID="lblAdmin" runat="server"></asp:Label>
-                    </div>
-
-                    <div style="margin-bottom: 25px; display: flex; justify-content: flex-end;">
-                        <asp:Button ID="btnCrearCuentaAdmin" runat="server" Text="Crear Cuenta" CssClass="boton-hover" OnClick="btnCrearCuentaAdmin_Click" ValidationGroup="Grupo2" />
-                    </div>
-                </div>
-            </asp:Panel>
         </div>
     </form>
 </body>

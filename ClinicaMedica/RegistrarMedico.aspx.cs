@@ -1,11 +1,7 @@
 ﻿using Entidades;
 using Servicios;
 using System;
-//using System.Collections.Generic;
 using System.Drawing;
-//using System.Linq;
-//using System.Web;
-//using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ClinicaMedica
@@ -118,6 +114,15 @@ namespace ClinicaMedica
                 lblMensaje.Text = "Médico registrado correctamente.";
                 lblMensaje.Visible = true;
                 lblMensaje.ForeColor = System.Drawing.ColorTranslator.FromHtml("#94ff6c");
+
+                if (gestionUsuario.CrearNuevaCuenta(nuevoMedico.Nombre, nuevoMedico.Apellido, nuevoMedico.Dni))
+                {
+                    lblMensaje.Text += " - Usuario: " + gestionUsuario.ObtenerNombreUsuario(nuevoMedico.Dni);
+                }
+                else
+                {
+                    lblMensaje.Text = "Error al crear cuenta";
+                }
             }
             else
             {
@@ -127,8 +132,6 @@ namespace ClinicaMedica
                 return;
             }
             CargarProxLegajo();
-            
-            lblMensaje.Text += " - Usuario: " + gestionUsuario.ObtenerNombreUsuario(nuevoMedico.Dni);
 
             LimpiarCasillas();
         }
