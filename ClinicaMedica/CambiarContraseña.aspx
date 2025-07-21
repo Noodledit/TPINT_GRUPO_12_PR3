@@ -55,6 +55,10 @@
                 <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
                     <asp:TextBox ID="txtContraseniaNueva" runat="server" CssClass="input-fecha" TextMode="Password" Width="500px" placeholder="Contraseña nueva" />
                     <br />
+                    <asp:RequiredFieldValidator ID="rfvContraseniaNueva1" runat="server" ControlToValidate="txtContraseniaNueva">Por favor rellene el campo</asp:RequiredFieldValidator>
+                    <br />
+                    <asp:RegularExpressionValidator ID="revContraseniaNueva1" runat="server" ControlToValidate="txtContraseniaNueva" ValidationExpression="^(?=.*[A-Z]).{8,20}$">Se ingreso una contraseña muy larga o muy corta(8 a 20) Debe tener al menos una Mayuscula</asp:RegularExpressionValidator>
+                    <br />
                 </div>
 
                 <div style="margin-bottom: 25px; display: flex; flex-direction: column; justify-content: flex-start;">
@@ -66,13 +70,19 @@
 
                 <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
                     <asp:TextBox ID="txtConfirmarContraseniaNueva" runat="server" CssClass="input-fecha" TextMode="Password" Width="500px" placeholder="Confirma la nueva contraseña" />
+                    <br />
+                    <asp:RequiredFieldValidator ID="rfvContraseniaNueva2" runat="server" ControlToValidate="txtConfirmarContraseniaNueva">Por favor rellene el campo</asp:RequiredFieldValidator>
+                    <br />
+                    <asp:RegularExpressionValidator ID="revContraseniaNueva2" runat="server" ControlToValidate="txtConfirmarContraseniaNueva" ValidationExpression="^(?=.*[A-Z]).{8,20}$">Se ingreso una contraseña muy larga o muy corta(8 a 20)Debe tener al menos una Mayuscula</asp:RegularExpressionValidator>
                 </div>
 
                 <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:CompareValidator ID="cvContrasenias" runat="server" ControlToCompare="txtContraseniaNueva" ControlToValidate="txtConfirmarContraseniaNueva" ErrorMessage="Las contraseñas no coinciden"></asp:CompareValidator>
                 &nbsp;<asp:Label ID="lblMensaje" runat="server"></asp:Label>
-                </div>
+                    <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
 
                 <div style="margin-bottom: 25px; display: flex; justify-content: flex-end;">
                     <asp:Button ID="btnCambiarContrasenia" runat="server" Text="Cambiar contraseña" CssClass="boton-hover" OnClick="btnCambiarContrasenia_Click" />

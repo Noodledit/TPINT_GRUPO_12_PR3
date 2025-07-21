@@ -538,7 +538,7 @@ BEGIN
 END    
 GO
 
-CREATE PROCEDURE SP_RegistrarConsulta
+CREATE OR ALTER PROCEDURE SP_RegistrarConsulta
     @DniPaciente VARCHAR(10),
     @LegajoDoctor INT,
     @IdEspecialidad INT,
@@ -550,7 +550,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE sp_ListarHistorialDelPaciente
+CREATE OR ALTER PROCEDURE sp_ListarHistorialDelPaciente
     @DniPaciente VARCHAR(20)
 AS
 BEGIN
