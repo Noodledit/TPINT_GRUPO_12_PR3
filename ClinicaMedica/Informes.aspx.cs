@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace ClinicaMedica
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Informes : System.Web.UI.Page
     {
         private GestionRegistros GestorRegistros = new GestionRegistros();
 
