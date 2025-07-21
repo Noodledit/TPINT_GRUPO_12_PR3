@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace ClinicaMedica
 {
-    public partial class CambiarContraseña : System.Web.UI.Page
+    public partial class CambiarContrasenia : System.Web.UI.Page
     {
         private GestionUsuario GestorUsuario = new GestionUsuario();
 

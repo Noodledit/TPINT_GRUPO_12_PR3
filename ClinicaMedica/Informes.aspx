@@ -51,6 +51,12 @@
         <div class="contenido">
             <div class="caja-informe">
                 <h2 class="titulo-informe">Informe de Asistencia</h2>
+
+                <p class="titulo-informe">Se tienen registros desde
+                    <asp:Label ID="lblPrimerRegitro" runat="server"></asp:Label>
+&nbsp;Hasta
+                    <asp:Label ID="lblUltimoRegitro" runat="server"></asp:Label>
+                </p>
                 <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
                     <asp:Label ID="lblFechaDesde" runat="server" Text="Desde:" CssClass="label-fecha" />
                     <asp:TextBox ID="txtFechaDesde" runat="server" CssClass="input-fecha" TextMode="Date" />
@@ -62,14 +68,22 @@
                 <!-- Estadísticas generales -->
                 <div class="caja-informe" style="background: #f1f7ff; margin-bottom: 20px;">
                     <h3>Resumen Estadístico</h3>
-                    Los presentes este mes alcanzan el porcentaje de:
+                    Los presentes desde
+                    <asp:Label ID="lblDesde" runat="server"></asp:Label>
+&nbsp;hasta
+                    <asp:Label ID="lblHasta" runat="server"></asp:Label>
+&nbsp;alcanzan el porcentaje de:
                 <asp:Label ID="lblPresentes" runat="server"></asp:Label>
                     <asp:Label ID="lblInformePresentismo" runat="server" CssClass="form-label" />
-                    Los ausentes este mes alcanzan el porcentaje de:
+                      Los ausentes desde
+                    <asp:Label ID="lblDesde2" runat="server"></asp:Label>
+&nbsp;hasta
+                    <asp:Label ID="lblHasta2" runat="server"></asp:Label>
+&nbsp;alcanzan el porcentaje de:
                 <asp:Label ID="lblAusentes" runat="server"></asp:Label>
                     <asp:Label ID="lblInformeAusentismo" runat="server" CssClass="form-label" />
-                    con respecto al mes anterior se ve una diferencia en atencion del:<asp:Label ID="lblMensaje" runat="server"></asp:Label>
-                    &nbsp;<asp:Label ID="lblInformeComparacionMesAnterior" runat="server" CssClass="form-label" />
+                    <%--con respecto al mes anterior se ve una diferencia en atencion del:--%><asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                    &nbsp;<%--<asp:Label ID="lblInformeComparacionMesAnterior" runat="server" CssClass="form-label" />--%>
                 </div>
 
             </div>

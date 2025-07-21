@@ -11,7 +11,7 @@ namespace ClinicaMedica
 {
 
 
-    public partial class CambiarContraseña
+    public partial class CambiarContrasenia
     {
 
         /// <summary>
