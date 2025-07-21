@@ -1,7 +1,5 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
-using System.Net;
-using Entidades;
 
 namespace Datos
 {

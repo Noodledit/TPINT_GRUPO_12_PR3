@@ -1,10 +1,7 @@
 ﻿using Entidades;
 using Servicios;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using static Servicios.GestionTablas;
@@ -21,7 +18,6 @@ namespace ClinicaMedica
                 btnUserImg.Visible = true;
 
                 llenarGrillaPacientes();
-                //gestorDdl.CargarEspecialidades(ddlEspecialidades);
 
                 if (Session["UsuarioActivo"] != null)
                 {

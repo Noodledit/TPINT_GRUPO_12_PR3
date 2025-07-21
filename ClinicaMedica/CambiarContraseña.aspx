@@ -40,11 +40,11 @@
                 <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica" />
                 <div class="header-links">
                     <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link" NavigateUrl="ListadoTurnos.aspx" Text="Listado de Turnos"></asp:HyperLink>
-
-                    <asp:HyperLink ID="hlAgregarMedico" runat="server" CssClass="header-link" NavigateUrl="RegistrarMedico.aspx" Text="Agregar Medico"></asp:HyperLink>
+                    <asp:HyperLink ID="hlCrearCuentaAdmin" runat="server" CssClass="header-link-active" NavigateUrl="~/CreacionCuentaAdmin.aspx" Text="Crear Cuenta Admin"></asp:HyperLink>
                     <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="AsignacionTurnos.aspx" Text="Asignar Turnos"></asp:HyperLink>
-                    <asp:HyperLink ID="hListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos"></asp:HyperLink>
                     <asp:HyperLink ID="HlListarPacientes" runat="server" CssClass="header-link" NavigateUrl="ListadoPacientes.aspx" Text="Listar Pacientes"></asp:HyperLink>
+                    <asp:HyperLink ID="hlListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos"></asp:HyperLink>
+                    <asp:HyperLink ID="hlAgregarMedico" runat="server" CssClass="header-link-active" NavigateUrl="RegistrarMedico.aspx" Text="Agregar Medico"></asp:HyperLink>
                     <asp:HyperLink ID="hlInformes" runat="server" CssClass="header-link" NavigateUrl="Informes.aspx" Text="Informes"></asp:HyperLink>
                 </div>
             </div>
@@ -79,10 +79,10 @@
                 <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:CompareValidator ID="cvContrasenias" runat="server" ControlToCompare="txtContraseniaNueva" ControlToValidate="txtConfirmarContraseniaNueva" ErrorMessage="Las contraseñas no coinciden" ValidationGroup="Grupo1"></asp:CompareValidator>
-                &nbsp;<asp:Label ID="lblMensaje" runat="server"></asp:Label>
+                    &nbsp;<asp:Label ID="lblMensaje" runat="server"></asp:Label>
                     <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
 
                 <div style="margin-bottom: 25px; display: flex; justify-content: flex-end;">
                     <asp:Button ID="btnCambiarContrasenia" runat="server" Text="Cambiar contraseña" CssClass="boton-hover" OnClick="btnCambiarContrasenia_Click" ValidationGroup="Grupo1" />
