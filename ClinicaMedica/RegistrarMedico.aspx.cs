@@ -118,6 +118,15 @@ namespace ClinicaMedica
                 lblMensaje.Text = "Médico registrado correctamente.";
                 lblMensaje.Visible = true;
                 lblMensaje.ForeColor = System.Drawing.ColorTranslator.FromHtml("#94ff6c");
+
+                if (gestionUsuario.CrearNuevaCuenta(nuevoMedico.Nombre, nuevoMedico.Apellido, nuevoMedico.Dni))
+                {
+                    lblMensaje.Text += " - Usuario: " + gestionUsuario.ObtenerNombreUsuario(nuevoMedico.Dni);
+                }
+                else
+                {
+                    lblMensaje.Text = "Error al crear cuenta";
+                }
             }
             else
             {
@@ -127,8 +136,6 @@ namespace ClinicaMedica
                 return;
             }
             CargarProxLegajo();
-            
-            lblMensaje.Text += " - Usuario: " + gestionUsuario.ObtenerNombreUsuario(nuevoMedico.Dni);
 
             LimpiarCasillas();
         }
