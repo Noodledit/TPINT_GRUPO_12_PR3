@@ -1,0 +1,34 @@
+# Manejo universal de finales de línea
+* text=auto
+
+# Archivos específicos de Windows con CRLF
+*.sln text eol=crlf
+*.csproj text eol=crlf
+*.vbproj text eol=crlf
+*.vcxproj text eol=crlf
+*.config text eol=crlf
+*.resx text eol=crlf
+
+# Archivos que deben tratarse como binarios
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.exe binary
+*.dll binary
+*.pdb binary
+*.suo binary
+*.db binary
+
+# Evita conflictos de merge en estos archivos
+*.suo merge=union
+*.user merge=union
+*.json merge=union
+*.db merge=union
+*.sqlite merge=union
+
+# Archivos de backup o temporales
+*~ text
+*.bak binary
+*.tmp binary
