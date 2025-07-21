@@ -1,14 +1,9 @@
 ﻿using Entidades;
 using Servicios;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using static ClinicaMedica.ListadoTurnos;
+
 
 namespace ClinicaMedica
 {
@@ -21,9 +16,11 @@ namespace ClinicaMedica
                
                 if (Session["UsuarioActivo"] != null)
                 {
+                    btnUserImg.Visible = true;
+
                     var turno = (Turno)Session["TurnoSeleccionado"];
                     Usuario usuario = (Usuario)Session["UsuarioActivo"];
-                    CargarHistorialPorPaciente(turno.DniPaciente);
+                    ListarHistorialDelPaciente(turno.DniPaciente);
                     lblBienvenidoUsuario.Text = usuario.NombreUsuario + " " + usuario.ApellidoUsuario;
 
                     DateTime Fecha = DateTime.Now;
@@ -71,7 +68,7 @@ namespace ClinicaMedica
             {
                 lblMensaje.Text = "Comentario registrado correctamente.";
                 lblMensaje.ForeColor = System.Drawing.Color.Green;
-                CargarHistorialPorPaciente(turnoIniciado.DniPaciente);
+                ListarHistorialDelPaciente(turnoIniciado.DniPaciente);
             }
             else
             {

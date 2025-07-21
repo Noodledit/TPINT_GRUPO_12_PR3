@@ -70,8 +70,6 @@ namespace Datos
                 return cmd.ExecuteNonQuery();
             }
         }
-
-<<<<<<< HEAD
         public DataTable ListarPacientes()
         { 
            return ds.EjecutarConsultaSelectDataAdapter("SP_RetornarListaPacientes");

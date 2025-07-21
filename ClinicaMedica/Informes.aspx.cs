@@ -17,6 +17,8 @@ namespace ClinicaMedica
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
+                btnUserImg.Visible = true;
+
                 if (Session["UsuarioActivo"] != null)
                 {
                     Usuario usuario = (Usuario)Session["UsuarioActivo"];

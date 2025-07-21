@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|c:\\users\\hblan\\onedrive\\desktop\\integrador\\tpint_grupo_12_pr3\\servicios\\gestiontablas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB79DF64-59C7-43D8-9840-21C60F8871F4}|Servicios\\Servicios.csproj|solutionrelative:servicios\\gestiontablas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\hblan\\onedrive\\desktop\\integrador\\tpint_grupo_12_pr3\\clinicamedica\\informes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\informes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\clinicamedica\\listadopacientes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\listadopacientes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\clinicamedica\\listadopacientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\listadopacientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|c:\\users\\hblan\\onedrive\\desktop\\integrador\\tpint_grupo_12_pr3\\clinicamedica\\asignacionturnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8E0DAF8E-C8C4-4845-81DF-D182E93170CF}|ClinicaMedica\\ClinicaMedica.csproj|solutionrelative:clinicamedica\\asignacionturnos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,39 +23,28 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GestionTablas.cs",
-              "DocumentMoniker": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\Servicios\\GestionTablas.cs",
-              "RelativeDocumentMoniker": "Servicios\\GestionTablas.cs",
-              "ToolTip": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\Servicios\\GestionTablas.cs",
-              "RelativeToolTip": "Servicios\\GestionTablas.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAuwEUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T22:26:45.998Z",
+              "Title": "Informes.aspx",
+              "DocumentMoniker": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\Informes.aspx",
+              "RelativeDocumentMoniker": "ClinicaMedica\\Informes.aspx",
+              "ToolTip": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\Informes.aspx",
+              "RelativeToolTip": "ClinicaMedica\\Informes.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-07-21T00:00:27.502Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ListadoPacientes.aspx",
-              "DocumentMoniker": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoPacientes.aspx",
-              "RelativeDocumentMoniker": "ClinicaMedica\\ListadoPacientes.aspx",
-              "ToolTip": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoPacientes.aspx",
-              "RelativeToolTip": "ClinicaMedica\\ListadoPacientes.aspx",
+              "Title": "AsignacionTurnos.aspx",
+              "DocumentMoniker": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\AsignacionTurnos.aspx",
+              "RelativeDocumentMoniker": "ClinicaMedica\\AsignacionTurnos.aspx",
+              "ToolTip": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\AsignacionTurnos.aspx",
+              "RelativeToolTip": "ClinicaMedica\\AsignacionTurnos.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000192|",
-              "WhenOpened": "2025-07-20T22:26:46.069Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ListadoPacientes.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoPacientes.aspx.cs",
-              "RelativeDocumentMoniker": "ClinicaMedica\\ListadoPacientes.aspx.cs",
-              "ToolTip": "C:\\Users\\hblan\\OneDrive\\Desktop\\integrador\\TPINT_GRUPO_12_PR3\\ClinicaMedica\\ListadoPacientes.aspx.cs",
-              "RelativeToolTip": "ClinicaMedica\\ListadoPacientes.aspx.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAwwEEAAABUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001384|",
-              "WhenOpened": "2025-07-20T22:26:46.071Z"
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-07-20T23:55:20.859Z",
+              "EditorCaption": ""
             }
           ]
         }

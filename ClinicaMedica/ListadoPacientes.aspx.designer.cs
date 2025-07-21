@@ -24,22 +24,13 @@ namespace ClinicaMedica
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control btnUserImg.
+        /// Control MenuUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnUserImg;
-
-        /// <summary>
-        /// Control btnUnlogin.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUnlogin;
+        protected global::System.Web.UI.WebControls.Menu MenuUsuario;
 
         /// <summary>
         /// Control lblBienvenidoUsuario.
@@ -49,6 +40,15 @@ namespace ClinicaMedica
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblBienvenidoUsuario;
+
+        /// <summary>
+        /// Control btnUserImg.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnUserImg;
 
         /// <summary>
         /// Control hlListarTurnos.

@@ -441,3 +441,8 @@ font{
     background-color: white;
 }
 
+.menu-derecha {
+    float: right;
+    position: relative;
+    z-index: 100;
+}

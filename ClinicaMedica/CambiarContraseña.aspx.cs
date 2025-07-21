@@ -16,6 +16,7 @@ namespace ClinicaMedica
             {
                 if (Session["UsuarioActivo"] != null)
                 {
+                    btnUserImg.Visible = true;
                     Usuario usuario = (Usuario)Session["UsuarioActivo"];
                     if(usuario.TipoUsuario == 2)
                     {

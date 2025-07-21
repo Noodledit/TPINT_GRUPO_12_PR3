@@ -20,6 +20,7 @@ namespace ClinicaMedica
             if (!IsPostBack)
             {
                 gestorDdl.CargarEspecialidades(ddlEspecialidades);
+                btnUserImg.Visible = true;
 
                 if (Session["UsuarioActivo"] != null)
                 {
@@ -128,7 +129,6 @@ namespace ClinicaMedica
             lblMensaje.Visible = false;
             Session.Remove("TurnoPendiente");
         }
-
         protected void ddlEspecilidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             // si no hay Doctor marcado se cargan todas las especialidades

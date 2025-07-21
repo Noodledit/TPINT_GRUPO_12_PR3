@@ -64,7 +64,7 @@ DROP PROCEDURE IF EXISTS  SP_AsignarTurno
 GO
 DROP PROCEDURE IF EXISTS  SP_RegistrarConsulta
 GO
-DROP PROCEDURE IF EXISTS  sp_ObtenerHistorialPorPaciente
+DROP PROCEDURE IF EXISTS  sp_ListarHistorialDelPaciente
 GO
 DROP PROCEDURE IF EXISTS  SP_InformeAsistencia
 GO
@@ -77,7 +77,6 @@ GO
 
 --TABLAS
 
--- Provincias
 
 CREATE TABLE Provincias (
     IdProvincia INT IDENTITY(1,1),
@@ -85,8 +84,6 @@ CREATE TABLE Provincias (
     CONSTRAINT PK_IdProvincia_Pr PRIMARY KEY (IdProvincia)
 )
 GO
-
--- Localidades
 
 CREATE TABLE Localidades (
     IdLocalidad INT IDENTITY(1,1),
@@ -97,8 +94,6 @@ CREATE TABLE Localidades (
 )
 GO
 
--- Especialidades
-
 CREATE TABLE Especialidades (
     Id_Esp INT IDENTITY (1,1),
     Nombre_Esp VARCHAR (20) NOT NULL,
@@ -106,7 +101,6 @@ CREATE TABLE Especialidades (
 )
 GO
 
--- DiaSemana
 GO
 CREATE TABLE DiaSemana (
     Semana_DS INT NOT NULL,
@@ -115,8 +109,6 @@ CREATE TABLE DiaSemana (
     CONSTRAINT PK_IdxSemana_DiaSemana PRIMARY KEY (Semana_DS, IdDia_DS)
 )
 GO
-
--- DatosPersonales
 
 CREATE TABLE DatosPersonales (
     Dni_DP VARCHAR (10) NOT NULL,
@@ -136,8 +128,6 @@ CREATE TABLE DatosPersonales (
 )
 GO
 
--- Medicos
-
 CREATE TABLE Medicos (
     Legajo_Me INT IDENTITY (1,1),
     Dni_Me VARCHAR (10) NOT NULL,
@@ -149,8 +139,6 @@ CREATE TABLE Medicos (
     CONSTRAINT FK_Dni_Medicos FOREIGN KEY (Dni_Me) REFERENCES DatosPersonales (Dni_DP)
 )
 GO
-
--- Usuarios
 
 CREATE TABLE Usuarios (
     IdUsuario INT IDENTITY (1,1),
@@ -166,8 +154,6 @@ CREATE TABLE Usuarios (
 	CONSTRAINT FK_Dni_Us FOREIGN KEY (DniUsuario) REFERENCES DatosPersonales (Dni_DP)
 )
 GO
-
--- Turnos Disponibles
 
 CREATE TABLE TurnosDisponibles (
     Semana_TD INT NOT NULL,
@@ -189,7 +175,6 @@ CREATE TABLE TurnosDisponibles (
 )
 GO
 
--- Seguimiento Paciente
 CREATE TABLE SeguimientoPaciente (
     NumeroSeguimiento INT IDENTITY(1,1),
     DniPaciente VARCHAR (10),
@@ -204,8 +189,6 @@ CREATE TABLE SeguimientoPaciente (
     CONSTRAINT FK_IdEspecialidad_SeguimientoPaciente FOREIGN KEY (IdEspecialidad) REFERENCES Especialidades (Id_Esp)
 )
 GO
-
---VISTAS
 
 CREATE VIEW VistaMedicos AS
 SELECT Legajo_Me, Dni_Me, IdEspecialidad_Me, Nombre_DP, Apellido_DP
@@ -264,66 +247,50 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE SP_RegistrarMedico
-	@Dni VARCHAR(10),
-    @Nombre VARCHAR (20),
-    @Apellido VARCHAR (20),
-    @Sexo VARCHAR (9),
-    @Nacionalidad VARCHAR (10),
+CREATE OR ALTER PROCEDURE SP_RegistrarMedico
+    @Dni VARCHAR(10),
+    @Nombre VARCHAR(20),
+    @Apellido VARCHAR(20),
+    @Sexo VARCHAR(9),
+    @Nacionalidad VARCHAR(10),
     @FechaNacimiento DATETIME,
-    @Direccion VARCHAR (40),
-	@IdLocalidad INT,
+    @Direccion VARCHAR(40),
+    @IdLocalidad INT,
     @IdProvincia INT,
-    @Correo VARCHAR (50),
-    @Telefono VARCHAR (16),
-	@IdEspecialidad INT
+    @Correo VARCHAR(50),
+    @Telefono VARCHAR(16),
+    @IdEspecialidad INT,
+    @NombreUsuarioGenerado VARCHAR(15) OUTPUT
+
 AS
 BEGIN
-	IF NOT EXISTS (SELECT 1 FROM DatosPersonales WHERE Dni_DP = @Dni)
-	BEGIN
-		INSERT INTO DatosPersonales 
-		(
-			Dni_DP,
-			Nombre_DP,
-			Apellido_DP,
-			Sexo_DP,
-			Nacionalidad_DP,
-			FechaNacimiento_DP,
-			Direccion_DP,
-			IdLocalidad_DP,
-			IdProvincia_DP,
-			CorreoElectronico_DP,
-			Telefono_DP
-		)
-		VALUES
-		(
-			@Dni,
-			@Nombre,
-			@Apellido,
-			@Sexo,
-			@Nacionalidad,
-			@FechaNacimiento,
-			@Direccion,
-			@IdLocalidad,
-			@IdProvincia,
-			@Correo,
-			@Telefono
-		)
-	END
+    DECLARE @NombreUsuario VARCHAR(15)
 
-	IF NOT EXISTS (SELECT 1 FROM Medicos WHERE Dni_Me = @Dni)
-	BEGIN
-		INSERT INTO Medicos
-		(
-			Dni_Me,
-			IdEspecialidad_Me
-		)
-		VALUES
-		(
-			@Dni,
-			@IdEspecialidad
-		)
-	END
+    -- Seguridad: Limitar a máximo 3 caracteres si hay menos
+    SET @NombreUsuario = 
+        LEFT(@Nombre + '', 3) + LEFT(@Apellido + '', 3)
+
+    -- Si no existe, se registra en DatosPersonales
+    IF NOT EXISTS (SELECT 1 FROM DatosPersonales WHERE Dni_DP = @Dni)
+    BEGIN
+        INSERT INTO DatosPersonales 
+        (Dni_DP, Nombre_DP, Apellido_DP, Sexo_DP, Nacionalidad_DP, FechaNacimiento_DP,
+         Direccion_DP, IdLocalidad_DP, IdProvincia_DP, CorreoElectronico_DP, Telefono_DP)
+        VALUES
+        (@Dni, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento,
+         @Direccion, @IdLocalidad, @IdProvincia, @Correo, @Telefono)
+    END
+
+    -- Si no existe, se registra en Medicos
+    IF NOT EXISTS (SELECT 1 FROM Medicos WHERE Dni_Me = @Dni)
+    BEGIN
+        INSERT INTO Medicos (Dni_Me, IdEspecialidad_Me)
+        VALUES (@Dni, @IdEspecialidad)
+    END
+
+    EXEC SP_RegistrarCuenta @NombreUsuario, @Dni
+
+    SET @NombreUsuarioGenerado = @NombreUsuario 
 END
 GO
 
@@ -455,7 +422,7 @@ BEGIN
 END
 GO
 
-exec SP_RetornarListaTurnos @LegajoDoctor = 11
+--exec SP_RetornarListaTurnos @LegajoDoctor = 11
 
 GO
 
@@ -581,7 +548,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE sp_ObtenerHistorialPorPaciente
+CREATE PROCEDURE sp_ListarHistorialDelPaciente
     @DniPaciente VARCHAR(20)
 AS
 BEGIN
@@ -597,7 +564,6 @@ BEGIN
     ORDER BY FechaYHora DESC
 END
 GO
-
 
 CREATE OR ALTER PROCEDURE SP_InformeAsistencia
     @Desde DATE,
@@ -691,6 +657,43 @@ BEGIN
     WHERE (@Nombre IS NULL OR DatosPersonales.Nombre_DP LIKE '%' + @Nombre + '%') AND (@Dni IS NULL OR DatosPersonales.Dni_DP = @Dni)
     ORDER BY DatosPersonales.Apellido_DP, DatosPersonales.Nombre_DP
 END
+GO
+
+CREATE OR ALTER PROCEDURE SP_RegistrarCuenta
+    @NombreUsuario VARCHAR(15),
+    @DniUsuario VARCHAR(10)
+AS
+BEGIN
+    DECLARE @LegajoDoctor INT;
+
+    -- Buscar el legajo en la tabla Medicos
+    SELECT @LegajoDoctor = Legajo_Me
+    FROM Medicos
+    WHERE Dni_Me = @DniUsuario;
+
+    -- Si existe, es un médico
+    IF @LegajoDoctor IS NOT NULL
+    BEGIN
+        INSERT INTO Usuarios (NombreUsuario, Contraseña, TipoUsuario, DniUsuario, LegajoDoctor)
+        VALUES (@NombreUsuario, @NombreUsuario, 1, @DniUsuario, @LegajoDoctor);
+    END
+    ELSE
+    BEGIN
+        INSERT INTO Usuarios (NombreUsuario, Contraseña, TipoUsuario, DniUsuario)
+        VALUES (@NombreUsuario, @NombreUsuario, 2, @DniUsuario);
+    END
+END
+GO
+
+CREATE OR ALTER PROCEDURE SP_CambiarContrasenia
+@NombreUsuario VARCHAR (15),
+@NuevaContrasenia VARCHAR (20)
+AS
+    BEGIN
+        UPDATE Usuarios
+        SET Contraseña = @NuevaContrasenia
+        WHERE NombreUsuario = @NombreUsuario
+    END
 GO
 
 

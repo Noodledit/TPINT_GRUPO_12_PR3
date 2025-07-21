@@ -19,6 +19,8 @@ namespace ClinicaMedica
         {
             if (!IsPostBack)
             {
+                btnUserImg.Visible = true;
+
                 gestorDdl.CargarProvincias(ddlProvincias);
                 gestorDdl.CargarLocalidades(ddlLocalidades, 0);
                 gestorDdl.CargarEspecialidades(ddlEspecialidades);

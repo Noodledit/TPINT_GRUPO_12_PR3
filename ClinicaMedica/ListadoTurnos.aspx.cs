@@ -60,7 +60,6 @@ namespace ClinicaMedica
             if (Session["UsuarioActivo"] != null)
             {
                 btnLogin.Visible = false;
-                btnUnlogin.Visible = true;
                 txtContrasenia.Visible = false;
                 txtUsuario.Visible = false;
                 lblContrasenia.Visible = false;
@@ -73,7 +72,6 @@ namespace ClinicaMedica
             else
             {
                 btnLogin.Visible = true;
-                btnUnlogin.Visible = false;
                 txtContrasenia.Visible = true;
                 txtUsuario.Visible = true;
                 lblContrasenia.Visible = true;
@@ -119,9 +117,10 @@ namespace ClinicaMedica
                 }
 
                 if (((Usuario)Session["UsuarioActivo"]).TipoUsuario >= 1)
-                {          
+                {
+                    btnUserImg.Visible = true;
+                    MenuUsuario.Visible = true;
                     hlListarTurnos.Visible = true;
-                    hlSeguimientoPaciente.Visible = true;
                     lblFecha.Visible = true;
                     ddlFechas.Visible = true;
                     btnMostrarTodo.Visible = true;
@@ -164,14 +163,14 @@ namespace ClinicaMedica
             }
             else
             {
+                btnUserImg.Visible = false;
+                MenuUsuario.Visible = false;
                 gvTurnos.Columns[7].Visible = false;
                 hlAgregarMedico.Visible = false;
-
                 hlAsignarTurnos.Visible = false;
                 hlInformes.Visible = false;
                 hlListarMedicos.Visible = false;
                 hlListarTurnos.Visible = false;
-                hlSeguimientoPaciente.Visible = false;
                 lblFecha.Visible = false;
                 ddlFechas.Visible = false;
                 btnMostrarTodo.Visible = false;

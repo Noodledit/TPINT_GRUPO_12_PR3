@@ -18,6 +18,8 @@ namespace ClinicaMedica
         {
             if (!IsPostBack)
             {
+                btnUserImg.Visible = true;
+
                 llenarGrillaPacientes();
                 //gestorDdl.CargarEspecialidades(ddlEspecialidades);
 

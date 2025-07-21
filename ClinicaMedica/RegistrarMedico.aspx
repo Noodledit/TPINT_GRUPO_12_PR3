@@ -12,10 +12,31 @@
 <body>
     <form id="form1" runat="server">
         <div class="header">
-            <section>
-                <asp:ImageButton ID="btnUserImg" runat="server" ImageUrl="Estilo/user.png" CssClass="user-image" OnClick="btnUserImg_Click" Visible="True" Style="transform: translateY(-3px); margin-left: 2px" />           
-                <asp:Button ID="btnUnlogin" runat="server" Style="float: right; margin-right: 5px; height: 28px; transform: translateY(-2px)" Text="Cerrar Sesion" CssClass="button" ValidationGroup="GrupoInicioSesion" OnClick="btnUnlogin_Click" />
+            <section style="display: flex; justify-content: flex-end; padding: 10px;">
+                <asp:Menu ID="MenuUsuario" runat="server" CssClass="menu-derecha"
+                    Orientation="Horizontal"
+                    StaticDisplayLevels="1"
+                    DynamicHorizontalOffset="0"
+                    Font-Names="Verdana" Font-Size="0.8em"
+                    ForeColor="#7C6F57"
+                    BackColor="#F7F6F3"
+                    StaticSubMenuIndent="10px"
+                    OnMenuItemClick="btnUnlogin_Click">
+                    <Items>
+                        <asp:MenuItem Text="Menú" Value="cuenta">
+                            <asp:MenuItem Text="Cambiar contraseña" NavigateUrl="~/CambiarContraseña.aspx" />
+                            <asp:MenuItem Text="Cerrar sesión" Value="cerrarSesion" />
+                        </asp:MenuItem>
+                    </Items>
+
+                    <StaticMenuItemStyle HorizontalPadding="10px" VerticalPadding="5px" />
+                    <StaticHoverStyle BackColor="#7C6F57" ForeColor="White" />
+                    <DynamicMenuStyle BackColor="#F7F6F3" />
+                    <DynamicHoverStyle BackColor="#7C6F57" ForeColor="White" />
+                    <DynamicMenuItemStyle HorizontalPadding="10px" VerticalPadding="5px" />
+                </asp:Menu>
                 <asp:Label ID="lblBienvenidoUsuario" runat="server" Style="float: right; margin-right: 10px;" Font-Bold="True"></asp:Label>
+                <asp:ImageButton ID="btnUserImg" runat="server" ImageUrl="Estilo/user.png" CssClass="user-image" Visible="False" Style="transform: translateY(-3px); margin-left: 2px" />
             </section>
             <div class="titulo-header">
                 <h1>Clinica Medica</h1>
