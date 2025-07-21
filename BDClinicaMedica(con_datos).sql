@@ -76,6 +76,9 @@ DROP PROCEDURE IF EXISTS  SP_BuscarPacientes
 GO
 DROP PROCEDURE IF EXISTS  SP_CambiarContraseñaUsuario
 GO 
+DROP PROCEDURE IF EXISTS  SP_BajaLogicaPacientes
+GO 
+
 
 --TABLAS
 
@@ -124,11 +127,15 @@ CREATE TABLE DatosPersonales (
     IdProvincia_DP INT NOT NULL,
     CorreoElectronico_DP VARCHAR (50) NOT NULL,
     Telefono_DP VARCHAR (16) NOT NULL,
+	Estado BIT NOT NULL DEFAULT 0,
     CONSTRAINT PK_DNI_DP PRIMARY KEY (Dni_DP),
     CONSTRAINT FK_IdProvincia_DP FOREIGN KEY (IdProvincia_DP) REFERENCES Provincias(IdProvincia),
 	CONSTRAINT FK_IdLocalidad_DP FOREIGN KEY (IdLocalidad_DP) REFERENCES Localidades(IdLocalidad)
 )
 GO
+
+--ALTER TABLE DatosPersonales
+--ADD Estado BIT NOT NULL DEFAULT 0
 
 CREATE TABLE Medicos (
     Legajo_Me INT IDENTITY (1,1),
@@ -321,11 +328,11 @@ BEGIN
 END
 
 INSERT INTO DatosPersonales (Dni_DP, Nombre_DP, Apellido_DP, Sexo_DP, Nacionalidad_DP, 
-FechaNacimiento_DP, Direccion_DP, IdLocalidad_DP, IdProvincia_DP, CorreoElectronico_DP, Telefono_DP)
+FechaNacimiento_DP, Direccion_DP, IdLocalidad_DP, IdProvincia_DP, CorreoElectronico_DP, Telefono_DP, Estado)
 
 VALUES( @DniPaciente, @NombrePaciente, @ApellidoPaciente, @SexoPaciente, @NacionalidadPaciente,
 @FechaNacimientoPaciente, @DireccionPaciente,@IdLocalidadPaciente, @IdProvinciaPaciente,
-@CorreoElectronicoPaciente, @TelefonoPaciente)
+@CorreoElectronicoPaciente, @TelefonoPaciente, 1)
 	RETURN 0
 END
 GO
@@ -471,11 +478,11 @@ BEGIN
         Medicos m
         INNER JOIN DatosPersonales dp ON m.Dni_Me = dp.Dni_DP
         INNER JOIN Especialidades e ON m.IdEspecialidad_Me = e.Id_Esp
-        INNER JOIN TurnosDisponibles td ON m.IdEspecialidad_Me = td.IdEspecialidad_TD
+        --INNER JOIN TurnosDisponibles td ON m.IdEspecialidad_Me = td.IdEspecialidad_TD
     WHERE 
         (@IdEspecialidad IS NULL OR m.IdEspecialidad_Me = @IdEspecialidad)
         AND (@Legajo IS NULL OR m.Legajo_Me = @Legajo)
-        AND (@IdDia IS NULL OR td.IdDia_TD = @IdDia)
+        --AND (@IdDia IS NULL OR td.IdDia_TD = @IdDia)
         AND (
             @BusquedaGeneral IS NULL 
             OR dp.Nombre_DP LIKE '%' + @BusquedaGeneral + '%'
@@ -627,6 +634,7 @@ BEGIN
     INNER JOIN Provincias ON DatosPersonales.IdProvincia_DP = Provincias.IdProvincia
     INNER JOIN Localidades ON DatosPersonales.IdLocalidad_DP = Localidades.IdLocalidad
     INNER JOIN SeguimientoPaciente ON DatosPersonales.Dni_DP = SeguimientoPaciente.DniPaciente
+	WHERE DatosPersonales.Estado = 1
     ORDER BY DatosPersonales.Apellido_DP, DatosPersonales.Nombre_DP
 END
 GO
@@ -654,7 +662,7 @@ BEGIN
     INNER JOIN Localidades ON DatosPersonales.IdLocalidad_DP = Localidades.IdLocalidad
     INNER JOIN Provincias ON DatosPersonales.IdProvincia_DP = Provincias.IdProvincia
 	INNER JOIN SeguimientoPaciente ON DatosPersonales.Dni_DP = SeguimientoPaciente.DniPaciente
-    WHERE (@Nombre IS NULL OR DatosPersonales.Nombre_DP LIKE '%' + @Nombre + '%') AND (@Dni IS NULL OR DatosPersonales.Dni_DP = @Dni)
+    WHERE (@Nombre IS NULL OR DatosPersonales.Nombre_DP LIKE '%' + @Nombre + '%') AND (@Dni IS NULL OR DatosPersonales.Dni_DP = @Dni) AND DatosPersonales.Estado = 1
     ORDER BY DatosPersonales.Apellido_DP, DatosPersonales.Nombre_DP
 END
 GO
@@ -717,6 +725,16 @@ BEGIN
     BEGIN
         PRINT 'Error'
     END
+END
+GO
+
+CREATE OR ALTER PROCEDURE SP_BajaLogicaPacientes
+    @Dni VARCHAR(10)
+AS
+BEGIN
+    UPDATE DatosPersonales
+    SET Estado = 0
+    WHERE Dni_DP = @Dni
 END
 GO
 

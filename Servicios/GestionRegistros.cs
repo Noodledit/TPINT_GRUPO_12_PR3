@@ -3,6 +3,7 @@ using Entidades;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net.Http.Headers;
 
 namespace Servicios
 {
@@ -32,7 +33,7 @@ namespace Servicios
 
         public bool VerificarSiExiste(string DNI)
         {
-           return dpaciente.verificarSiExistePaciente(DNI);
+            return dpaciente.verificarSiExistePaciente(DNI);
         }
 
         public int RegistrarTurno(Turno turno)
@@ -43,7 +44,7 @@ namespace Servicios
 
         public DataTable InformeDeAsistencia(DateTime Desde, DateTime Hasta, string tipo)
         {
-            DataTable InformeFunciona = dTurnos.InformeAsistencia(Desde,Hasta, tipo);
+            DataTable InformeFunciona = dTurnos.InformeAsistencia(Desde, Hasta, tipo);
             return InformeFunciona;
         }
 
@@ -62,5 +63,18 @@ namespace Servicios
         {
             return AccesoDatos.EjecutarConsultaSelectDataAdapter(DniPaciente);
         }
-    }
+
+        public bool ActualizarPaciente(string dni, string nombre, string apellido, string telefono, string correo) {
+
+
+
+            return dpaciente.ActualizarPacienteEdit(dni, nombre, apellido, telefono, correo);
+        }
+
+        public bool BajaPaciente(string dni) {
+
+
+            return dpaciente.BajaPaciente(dni);
+        }
+    } 
 }
