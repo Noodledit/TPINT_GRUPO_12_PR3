@@ -104,6 +104,7 @@ namespace ClinicaMedica
                     hlInformes.Visible = true;
                     hlListarMedicos.Visible = true;
                     HlListarPacientes.Visible = true;
+                    hlCrearCuentaAdmin.Visible = true;
 
                     if (ddlFechas.SelectedItem != null 
                         && ddlFechas.SelectedValue != "0" 
@@ -172,6 +173,7 @@ namespace ClinicaMedica
                 hlInformes.Visible = false;
                 hlListarMedicos.Visible = false;
                 HlListarPacientes.Visible = false;
+                hlCrearCuentaAdmin.Visible = false;
                 hlListarTurnos.Visible = false;
                 lblFecha.Visible = false;
                 ddlFechas.Visible = false;
