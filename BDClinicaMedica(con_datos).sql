@@ -727,9 +727,11 @@ BEGIN
     SELECT NombreUsuario
     FROM Usuarios
     WHERE @DniUsuario = DniUsuario
+END
+GO
 
 CREATE OR ALTER PROCEDURE SP_BajaLogicaPacientes
-    @Dni VARCHAR(10)
+@Dni VARCHAR(10)
 AS
 BEGIN
     UPDATE DatosPersonales
@@ -3489,7 +3491,7 @@ PRINT 'Reinsertando Turnos Disponibles...'
 PRINT 'Reinsertando al Administrador'
 INSERT INTO Usuarios (NombreUsuario, Contraseña, TipoUsuario, DniUsuario)
 VALUES 
-	('ClauFer','Aprobados',2,'12345678')
+	('ClauFer','Aprobados',2,'11111111')
 GO
 
 --INSERT INTO Usuarios (NombreUsuario, Contraseña, TipoUsuario, DniUsuario, LegajoDoctor)
