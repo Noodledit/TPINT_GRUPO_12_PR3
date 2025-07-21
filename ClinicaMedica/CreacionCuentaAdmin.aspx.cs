@@ -70,9 +70,10 @@ namespace ClinicaMedica
                     exito = creacionUsuario.CrearNuevaCuenta(txtNombre.Text, txtApellido.Text, txtDni.Text);
                 }
                     
+                string nombreCuenta = creacionUsuario.ObtenerNombreUsuario(txtDni.Text);
                 if (exito)
                 {
-                    lblMensaje.Text = "Se ha creado con exito";
+                    lblMensaje.Text = "Nombre de cuenta: " + nombreCuenta;
                 }else
                 {
                     lblMensaje.Text = "Ha ocurrido un error";

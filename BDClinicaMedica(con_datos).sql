@@ -44,10 +44,6 @@ DROP PROCEDURE IF EXISTS SP_ObtenerProxLegajo
 GO
 DROP PROCEDURE IF EXISTS SP_RetornarListaMedicos
 GO
-DROP PROCEDURE IF EXISTS SP_RetornarListaMedicosPorLegajo
-GO
-DROP PROCEDURE IF EXISTS SP_RetornarListaMedicosPorEspecialidad
-GO
 DROP PROCEDURE IF EXISTS SP_LoginUsuario
 GO
 DROP PROCEDURE IF EXISTS SP_BajaMedico
@@ -471,11 +467,9 @@ BEGIN
         Medicos m
         INNER JOIN DatosPersonales dp ON m.Dni_Me = dp.Dni_DP
         INNER JOIN Especialidades e ON m.IdEspecialidad_Me = e.Id_Esp
-        INNER JOIN TurnosDisponibles td ON m.IdEspecialidad_Me = td.IdEspecialidad_TD
     WHERE 
         (@IdEspecialidad IS NULL OR m.IdEspecialidad_Me = @IdEspecialidad)
         AND (@Legajo IS NULL OR m.Legajo_Me = @Legajo)
-        AND (@IdDia IS NULL OR td.IdDia_TD = @IdDia)
         AND (
             @BusquedaGeneral IS NULL 
             OR dp.Nombre_DP LIKE '%' + @BusquedaGeneral + '%'
@@ -691,8 +685,6 @@ BEGIN
 END
 GO
 
-
-
 CREATE OR ALTER PROCEDURE SP_CambiarContraseñaUsuario
     @IdUsuario INT,
     @NuevaContraseña VARCHAR(20)
@@ -717,6 +709,16 @@ BEGIN
     BEGIN
         PRINT 'Error'
     END
+END
+GO
+
+CREATE OR ALTER PROCEDURE SP_ObtenerNombreUsuario
+@DniUsuario VARCHAR(10)
+AS
+BEGIN
+    SELECT NombreUsuario
+    FROM Usuarios
+    WHERE @DniUsuario = DniUsuario
 END
 GO
 
@@ -3169,30 +3171,30 @@ PRINT 'Reinsertando Datos Personales...'
 
 INSERT INTO DatosPersonales (Dni_DP, Nombre_DP, Apellido_DP, Sexo_DP, Nacionalidad_DP, FechaNacimiento_DP, Direccion_DP, IdLocalidad_DP, IdProvincia_DP, CorreoElectronico_DP, Telefono_DP)
 VALUES
-	('12345678', 'Claudio', 'Fernandez', 'Masculino', 'Argentina', '20-05-1990', 'Calle Falsa 123', 42, 15, 'claudio.fernandez@gmail.com', '3511234567')
---	('111222333', 'Benito', 'Mussolini', 'Masculino', 'Argentina', '20-05-1990', 'Calle Falsa 123', 19, 7, 'ElBeniDeBaires@gmail.com', '114514414'),
---	('45723267', 'Luciana', 'Abbondanzieri', 'Femenino', 'Argentina', '03-07-1984', 'Calle Falsa 123', 33, 22, 'luciana.abbondanzieri@hotmail.com', '1123456789'),
---	('31132928', 'Sebastián', 'Battaglia', 'Masculino', 'Argentina', '06-07-1975', 'San Martín 100', 8, 3, 'sebastián.battaglia@gmail.com', '1123456789'),
---	('45885108', 'Yamila', 'Burdisso', 'Femenino', 'Argentina', '08-07-1967', 'San Martín 100', 27, 12, 'luciana.burdisso@hotmail.com', '3498654321'),
---	('38385872', 'Antonella', 'Quiñones', 'Femenino', 'Argentina', '07-07-1969', 'San Martín 100', 14, 9, 'antonella.abbondanzieri@gmail.com', '3412345678'),
---	('46645296', 'Martín', 'Figal', 'Masculino', 'Argentina', '29-06-2000', 'Av. Siempre Viva 742', 45, 18, 'martín.figal@hotmail.com', '3498654321'),
---	('33329213', 'Carlos', 'Tevez', 'Masculino', 'Argentina', '03-07-1985', 'Belgrano 200', 36, 5, 'martín.tevez@hotmail.com', '1156781234'),
---	('40766760', 'Juan Roman', 'Riquelme', 'Masculino', 'Argentina', '03-07-1986', 'Calle Falsa 123', 22, 14, 'hugo.figal@hotmail.com', '3412345678'),
---	('44983535', 'Claudio', 'Gago', 'Masculino', 'Argentina', '04-07-1982', 'Av. Siempre Viva 742', 50, 20, 'hugo.gago@xeneize.ar', '3498654321'),
---	('36611746', 'Darío', 'Mayorga', 'Masculino', 'Argentina', '03-07-1986', 'San Martín 100', 11, 1, 'darío.abbondanzieri@xeneize.ar', '2234567890'),
---	('49232449', 'Romina', 'Romero', 'Femenino', 'Argentina', '04-07-1982', 'Calle Falsa 123', 29, 16, 'romina.gago@boca.com', '3498654321'),
---	('30905510', 'Ángel', 'Palermo', 'Masculino', 'Argentina', '01-07-1993', 'Rivadavia 456', 17, 11, 'hugo.palermo@gmail.com', '1123456789'),
---	('44145634', 'Diego', 'Schelotto', 'Masculino', 'Argentina', '29-06-2002', 'Calle Falsa 123', 39, 23, 'diego.schelotto@xeneize.ar', '1156781234'),
---	('35852988', 'Miriam', 'Bregman', 'Femenino', 'Argentina', '06-07-1975', 'Rivadavia 456', 25, 8, 'antonella.palermo@gmail.com', '3412345678'),
---	('49231607', 'Estefanía', 'Latorre', 'Femenino', 'Argentina', '05-07-1977', 'Belgrano 200', 31, 19, 'romina.palermo@hotmail.com', '3498654321'),
---	('47999953', 'Edinson', 'Cavani', 'Masculino', 'Argentina', '03-07-1985', 'Calle Falsa 123', 47, 4, 'juan.schelotto@hotmail.com', '1156781234'),
---	('34026835', 'Julieta', 'Palomar', 'Femenino', 'Argentina', '05-07-1977', 'Rivadavia 456', 20, 13, 'julieta.abbondanzieri@boca.com', '2234567890'),
---	('33734151', 'Micaela', 'Maradona', 'Femenino', 'Argentina', '06-07-1975', 'Av. Siempre Viva 742', 34, 17, 'micaela.battaglia@xeneize.ar', '3412345678'),
---	('46412949', 'Daniela', 'Caniggia', 'Femenino', 'Argentina', '30-06-1996', 'Calle Falsa 123', 16, 6, 'daniela.battaglia@hotmail.com', '2234567890'),
---	('46048605', 'Florencia', 'Ojeda', 'Femenino', 'Argentina', '07-07-1968', 'San Martín 100', 28, 21, 'luciana.abbondanzieri@xeneize.ar', '1156781234'),
---	('30648453', 'Gabriel', 'Batistuta', 'Masculino', 'Argentina', '07-07-1970', 'Calle Falsa 123', 41, 10, 'martín.figal@xeneize.ar', '1156781234'),
---	('66666666', 'Javier Gerardo', 'Milei', 'Otro', 'Argentina', '22-10-1970', 'Alberdi 2023', 24, 2, 'bobotonto@gmai.co', '1131424397'),
---    ('99999999', 'Juan', 'Grabois', 'Masculino', 'Argentina', '22-12-1978', 'Roquepeña 2547', 24, 2, 'bobotonto@gmai.co', '1136547894')
+    ('11111111', 'Claudio', 'Fernandez', 'Masculino', 'Argentina', '20-05-1990', 'Calle Falsa 123', 42, 15, 'claudio.fernandez@gmail.com', '3511234567'),
+	('11111112', 'Benito', 'Mussolini', 'Masculino', 'Argentina', '20-05-1990', 'Calle Falsa 123', 19, 7, 'ElBeniDeBaires@gmail.com', '114514414'),
+	('11111113', 'Luciana', 'Abbondanzieri', 'Femenino', 'Argentina', '03-07-1984', 'Calle Falsa 123', 33, 22, 'luciana.abbondanzieri@hotmail.com', '1123456789'),
+	('11111114', 'Sebastián', 'Battaglia', 'Masculino', 'Argentina', '06-07-1975', 'San Martín 100', 8, 3, 'sebastián.battaglia@gmail.com', '1123456789'),
+	('11111115', 'Yamila', 'Burdisso', 'Femenino', 'Argentina', '08-07-1967', 'San Martín 100', 27, 12, 'luciana.burdisso@hotmail.com', '3498654321'),
+	('11111116', 'Antonella', 'Quiñones', 'Femenino', 'Argentina', '07-07-1969', 'San Martín 100', 14, 9, 'antonella.abbondanzieri@gmail.com', '3412345678'),
+	('11111117', 'Martín', 'Figal', 'Masculino', 'Argentina', '29-06-2000', 'Av. Siempre Viva 742', 45, 18, 'martín.figal@hotmail.com', '3498654321'),
+	('11111118', 'Carlos', 'Tevez', 'Masculino', 'Argentina', '03-07-1985', 'Belgrano 200', 36, 5, 'martín.tevez@hotmail.com', '1156781234'),
+	('11111119', 'Juan Roman', 'Riquelme', 'Masculino', 'Argentina', '03-07-1986', 'Calle Falsa 123', 22, 14, 'hugo.figal@hotmail.com', '3412345678'),
+	('11111110', 'Claudio', 'Gago', 'Masculino', 'Argentina', '04-07-1982', 'Av. Siempre Viva 742', 50, 20, 'hugo.gago@xeneize.ar', '3498654321'),
+	('11111120', 'Darío', 'Mayorga', 'Masculino', 'Argentina', '03-07-1986', 'San Martín 100', 11, 1, 'darío.abbondanzieri@xeneize.ar', '2234567890'),
+	('11111121', 'Romina', 'Romero', 'Femenino', 'Argentina', '04-07-1982', 'Calle Falsa 123', 29, 16, 'romina.gago@boca.com', '3498654321'),
+	('11111122', 'Ángel', 'Palermo', 'Masculino', 'Argentina', '01-07-1993', 'Rivadavia 456', 17, 11, 'hugo.palermo@gmail.com', '1123456789'),
+	('11111123', 'Diego', 'Schelotto', 'Masculino', 'Argentina', '29-06-2002', 'Calle Falsa 123', 39, 23, 'diego.schelotto@xeneize.ar', '1156781234'),
+	('11111124', 'Miriam', 'Bregman', 'Femenino', 'Argentina', '06-07-1975', 'Rivadavia 456', 25, 8, 'antonella.palermo@gmail.com', '3412345678'),
+	('11111125', 'Estefanía', 'Latorre', 'Femenino', 'Argentina', '05-07-1977', 'Belgrano 200', 31, 19, 'romina.palermo@hotmail.com', '3498654321'),
+	('11111126', 'Edinson', 'Cavani', 'Masculino', 'Argentina', '03-07-1985', 'Calle Falsa 123', 47, 4, 'juan.schelotto@hotmail.com', '1156781234'),
+	('11111127', 'Julieta', 'Palomar', 'Femenino', 'Argentina', '05-07-1977', 'Rivadavia 456', 20, 13, 'julieta.abbondanzieri@boca.com', '2234567890'),
+	('11111128', 'Micaela', 'Maradona', 'Femenino', 'Argentina', '06-07-1975', 'Av. Siempre Viva 742', 34, 17, 'micaela.battaglia@xeneize.ar', '3412345678'),
+	('11111129', 'Daniela', 'Caniggia', 'Femenino', 'Argentina', '30-06-1996', 'Calle Falsa 123', 16, 6, 'daniela.battaglia@hotmail.com', '2234567890'),
+	('11111130', 'Florencia', 'Ojeda', 'Femenino', 'Argentina', '07-07-1968', 'San Martín 100', 28, 21, 'luciana.abbondanzieri@xeneize.ar', '1156781234'),
+	('11111131', 'Gabriel', 'Batistuta', 'Masculino', 'Argentina', '07-07-1970', 'Calle Falsa 123', 41, 10, 'martín.figal@xeneize.ar', '1156781234'),
+	('11111132', 'Javier Gerardo', 'Milei', 'Otro', 'Argentina', '22-10-1970', 'Alberdi 2023', 24, 2, 'bobotonto@gmai.co', '1131424397'),
+    ('11111133', 'Juan', 'Grabois', 'Masculino', 'Argentina', '22-12-1978', 'Roquepeña 2547', 24, 2, 'JuanG@gmai.com', '1136547894')
 GO
 
 PRINT 'Reinsertando Especialidades...'
