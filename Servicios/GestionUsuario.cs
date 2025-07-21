@@ -55,5 +55,12 @@ namespace Servicios
             }
             return false;
         }
+
+        public bool CrearNuevaCuentaAdmin(string nombre, string dni)
+        {
+            dao = new DaoUsuario();
+
+            return dao.CrearCuentaAdmin(nombre,dni);
+        }
     }
 }

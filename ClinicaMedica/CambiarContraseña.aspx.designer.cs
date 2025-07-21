@@ -240,6 +240,15 @@ namespace ClinicaMedica
         protected global::System.Web.UI.WebControls.TextBox txtUsuarioAdmin;
 
         /// <summary>
+        /// Control rfvAdmin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAdmin;
+
+        /// <summary>
         /// Control txtDniAdmin.
         /// </summary>
         /// <remarks>
@@ -249,13 +258,22 @@ namespace ClinicaMedica
         protected global::System.Web.UI.WebControls.TextBox txtDniAdmin;
 
         /// <summary>
-        /// Control txtContraseniaAdmin.
+        /// Control rfvAdmin2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContraseniaAdmin;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAdmin2;
+
+        /// <summary>
+        /// Control lblAdmin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAdmin;
 
         /// <summary>
         /// Control btnCrearCuentaAdmin.

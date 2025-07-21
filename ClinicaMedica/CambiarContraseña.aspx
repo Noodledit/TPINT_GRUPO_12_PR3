@@ -53,11 +53,11 @@
             <div class="caja-informe">
                 <h2 class="titulo-informe">Cambiar Contraseña</h2>
                 <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
-                    <asp:TextBox ID="txtContraseniaNueva" runat="server" CssClass="input-fecha" TextMode="Password" Width="500px" placeholder="Contraseña nueva" />
+                    <asp:TextBox ID="txtContraseniaNueva" runat="server" CssClass="input-fecha" TextMode="Password" Width="500px" placeholder="Contraseña nueva" ValidationGroup="Grupo1" />
                     <br />
-                    <asp:RequiredFieldValidator ID="rfvContraseniaNueva1" runat="server" ControlToValidate="txtContraseniaNueva">Por favor rellene el campo</asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvContraseniaNueva1" runat="server" ControlToValidate="txtContraseniaNueva" ValidationGroup="Grupo1">Por favor rellene el campo</asp:RequiredFieldValidator>
                     <br />
-                    <asp:RegularExpressionValidator ID="revContraseniaNueva1" runat="server" ControlToValidate="txtContraseniaNueva" ValidationExpression="^(?=.*[A-Z]).{8,20}$">Se ingreso una contraseña muy larga o muy corta(8 a 20) Debe tener al menos una Mayuscula</asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="revContraseniaNueva1" runat="server" ControlToValidate="txtContraseniaNueva" ValidationExpression="^(?=.*[A-Z]).{8,20}$" ValidationGroup="Grupo1">Se ingreso una contraseña muy larga o muy corta(8 a 20) Debe tener al menos una Mayuscula</asp:RegularExpressionValidator>
                     <br />
                 </div>
 
@@ -69,23 +69,23 @@
                 </div>
 
                 <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
-                    <asp:TextBox ID="txtConfirmarContraseniaNueva" runat="server" CssClass="input-fecha" TextMode="Password" Width="500px" placeholder="Confirma la nueva contraseña" />
+                    <asp:TextBox ID="txtConfirmarContraseniaNueva" runat="server" CssClass="input-fecha" TextMode="Password" Width="500px" placeholder="Confirma la nueva contraseña" ValidationGroup="Grupo1" />
                     <br />
-                    <asp:RequiredFieldValidator ID="rfvContraseniaNueva2" runat="server" ControlToValidate="txtConfirmarContraseniaNueva">Por favor rellene el campo</asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvContraseniaNueva2" runat="server" ControlToValidate="txtConfirmarContraseniaNueva" ValidationGroup="Grupo1">Por favor rellene el campo</asp:RequiredFieldValidator>
                     <br />
-                    <asp:RegularExpressionValidator ID="revContraseniaNueva2" runat="server" ControlToValidate="txtConfirmarContraseniaNueva" ValidationExpression="^(?=.*[A-Z]).{8,20}$">Se ingreso una contraseña muy larga o muy corta(8 a 20)Debe tener al menos una Mayuscula</asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="revContraseniaNueva2" runat="server" ControlToValidate="txtConfirmarContraseniaNueva" ValidationExpression="^(?=.*[A-Z]).{8,20}$" ValidationGroup="Grupo1">Se ingreso una contraseña muy larga o muy corta(8 a 20)Debe tener al menos una Mayuscula</asp:RegularExpressionValidator>
                 </div>
 
                 <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:CompareValidator ID="cvContrasenias" runat="server" ControlToCompare="txtContraseniaNueva" ControlToValidate="txtConfirmarContraseniaNueva" ErrorMessage="Las contraseñas no coinciden"></asp:CompareValidator>
+                    <asp:CompareValidator ID="cvContrasenias" runat="server" ControlToCompare="txtContraseniaNueva" ControlToValidate="txtConfirmarContraseniaNueva" ErrorMessage="Las contraseñas no coinciden" ValidationGroup="Grupo1"></asp:CompareValidator>
                 &nbsp;<asp:Label ID="lblMensaje" runat="server"></asp:Label>
                     <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
 
                 <div style="margin-bottom: 25px; display: flex; justify-content: flex-end;">
-                    <asp:Button ID="btnCambiarContrasenia" runat="server" Text="Cambiar contraseña" CssClass="boton-hover" OnClick="btnCambiarContrasenia_Click" />
+                    <asp:Button ID="btnCambiarContrasenia" runat="server" Text="Cambiar contraseña" CssClass="boton-hover" OnClick="btnCambiarContrasenia_Click" ValidationGroup="Grupo1" />
                 </div>
             </div>
             <asp:Panel ID="crearAdmin" runat="server" Visible="false">
@@ -93,22 +93,23 @@
                     <h2 class="titulo-informe">Crear Cuenta Administrador</h2>
 
                     <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
-                        <asp:TextBox ID="txtUsuarioAdmin" runat="server" CssClass="input-fecha" Width="500px" placeholder="Nombre de usuario" />
+                        <asp:TextBox ID="txtUsuarioAdmin" runat="server" CssClass="input-fecha" Width="500px" placeholder="Nombre de usuario" ValidationGroup="Grupo2" />
+                        <br />
+                        <asp:RequiredFieldValidator ID="rfvAdmin" runat="server" ControlToValidate="txtUsuarioAdmin" ValidationGroup="Grupo2">Por favor rellene el campo</asp:RequiredFieldValidator>
                     </div>
 
                     <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
-                        <asp:TextBox ID="txtDniAdmin" runat="server" CssClass="input-fecha" Width="500px" placeholder="DNI" />
+                        <asp:TextBox ID="txtDniAdmin" runat="server" CssClass="input-fecha" Width="500px" placeholder="DNI" ValidationGroup="Grupo2" />
+                        <br />
+                        <asp:RequiredFieldValidator ID="rfvAdmin2" runat="server" ControlToValidate="txtDniAdmin" ValidationGroup="Grupo2">Por favor rellene el campo</asp:RequiredFieldValidator>
                     </div>
 
                     <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
-                        <asp:TextBox ID="txtContraseniaAdmin" runat="server" CssClass="input-fecha" TextMode="Password" Width="500px" placeholder="Contraseña" />
-                    </div>
-
-                    <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
+                        <asp:Label ID="lblAdmin" runat="server"></asp:Label>
                     </div>
 
                     <div style="margin-bottom: 25px; display: flex; justify-content: flex-end;">
-                        <asp:Button ID="btnCrearCuentaAdmin" runat="server" Text="Crear Cuenta" CssClass="boton-hover" OnClick="btnCrearCuentaAdmin_Click" />
+                        <asp:Button ID="btnCrearCuentaAdmin" runat="server" Text="Crear Cuenta" CssClass="boton-hover" OnClick="btnCrearCuentaAdmin_Click" ValidationGroup="Grupo2" />
                     </div>
                 </div>
             </asp:Panel>

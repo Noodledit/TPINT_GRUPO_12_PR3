@@ -13,6 +13,8 @@ namespace ClinicaMedica
 {
     public partial class CambiarContraseña : System.Web.UI.Page
     {
+        private GestionUsuario GestorUsuario = new GestionUsuario();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -47,6 +49,20 @@ namespace ClinicaMedica
 
         protected void btnCrearCuentaAdmin_Click(object sender, EventArgs e)
         {
+
+            string User = txtUsuarioAdmin.Text;
+            string UserDni = txtDniAdmin.Text;
+
+            bool exito = GestorUsuario.CrearNuevaCuentaAdmin(User,UserDni);
+
+            if (exito) {
+                lblAdmin.Text = "Se ha creado con exito";
+            }
+            {
+                lblAdmin.Text = "Ha ocurrido un error";
+            }
+
+
 
         }
 

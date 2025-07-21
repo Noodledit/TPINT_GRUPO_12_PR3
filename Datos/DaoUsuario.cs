@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using System.Net;
 using Entidades;
 
 namespace Datos
@@ -21,7 +22,7 @@ namespace Datos
             return DatosDeUsuario;
         }
     
-    public bool CambiarContrasenia(int idUsuario, string nuevaClave)
+        public bool CambiarContrasenia(int idUsuario, string nuevaClave)
         {
             SqlCommand command = new SqlCommand
             {
@@ -31,6 +32,17 @@ namespace Datos
             command.Parameters.AddWithValue("@IdUsuario", idUsuario);
             command.Parameters.AddWithValue("@NuevaContraseña", nuevaClave);
             return accesoDatos.EjecutarProcedimientoAlmacenado(command, "SP_CambiarContraseñaUsuario") > 0;
+        }
+
+        public bool CrearCuentaAdmin(string Nombre, string Dni)
+        {
+            SqlCommand command = new SqlCommand();
+
+            command.Parameters.AddWithValue("@NombreUsuario", Nombre);
+            command.Parameters.AddWithValue("@DniUsuario", Dni);
+
+
+            return accesoDatos.EjecutarProcedimientoAlmacenado(command, "SP_RegistrarCuenta") > 0;
         }
     }
 } 
