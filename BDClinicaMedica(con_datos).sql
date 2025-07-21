@@ -261,16 +261,9 @@ CREATE OR ALTER PROCEDURE SP_RegistrarMedico
     @IdProvincia INT,
     @Correo VARCHAR(50),
     @Telefono VARCHAR(16),
-    @IdEspecialidad INT,
-    @NombreUsuarioGenerado VARCHAR(15) OUTPUT
-
+    @IdEspecialidad INT
 AS
 BEGIN
-    DECLARE @NombreUsuario VARCHAR(15)
-
-    -- Seguridad: Limitar a máximo 3 caracteres si hay menos
-    SET @NombreUsuario = 
-        LEFT(@Nombre + '', 3) + LEFT(@Apellido + '', 3)
 
     -- Si no existe, se registra en DatosPersonales
     IF NOT EXISTS (SELECT 1 FROM DatosPersonales WHERE Dni_DP = @Dni)
@@ -289,10 +282,6 @@ BEGIN
         INSERT INTO Medicos (Dni_Me, IdEspecialidad_Me)
         VALUES (@Dni, @IdEspecialidad)
     END
-
-    EXEC SP_RegistrarCuenta @NombreUsuario, @Dni
-
-    SET @NombreUsuarioGenerado = @NombreUsuario 
 END
 GO
 
@@ -662,30 +651,37 @@ END
 GO
 
 CREATE OR ALTER PROCEDURE SP_RegistrarCuenta
-    @NombreUsuario VARCHAR(15),
+    @Nombre VARCHAR(15),
+    @Apellido VARCHAR(15),
     @DniUsuario VARCHAR(10)
 AS
 BEGIN
-    DECLARE @LegajoDoctor INT;
+    DECLARE @LegajoDoctor INT,
+            @NumeroDeCuenta INT,
+            @NombreUsuario VARCHAR(15)
 
-    -- Buscar el legajo en la tabla Medicos
-    SELECT @LegajoDoctor = Legajo_Me
+    SELECT @NumeroDeCuenta = ISNULL(MAX(IdUsuario), 0) + 1 -- se obtiene el nuevo ID
+    FROM Usuarios
+
+    SET @NombreUsuario = -- se genera el nombre de usuario 
+        LEFT(@Nombre + '___', 3) + -- primeras 3 letras del nombre
+        LEFT(@Apellido + '___', 3) + -- primeras 3 letras del apellido
+        RIGHT('000' + CAST(@NumeroDeCuenta AS VARCHAR), 3) -- se acopla id de cuenta para evitar duplicados
+
+    SELECT @LegajoDoctor = Legajo_Me-- se busca coinsidencia de dni en Medicos
     FROM Medicos
-    WHERE Dni_Me = @DniUsuario;
+    WHERE Dni_Me = @DniUsuario
 
-    -- Si existe, es un médico
-    IF @LegajoDoctor IS NOT NULL
-    BEGIN
-        INSERT INTO Usuarios (NombreUsuario, Contraseña, TipoUsuario, DniUsuario, LegajoDoctor)
-        VALUES (@NombreUsuario, @NombreUsuario, 1, @DniUsuario, @LegajoDoctor);
-    END
-    ELSE
-    BEGIN
-        INSERT INTO Usuarios (NombreUsuario, Contraseña, TipoUsuario, DniUsuario)
-        VALUES (@NombreUsuario, @NombreUsuario, 2, @DniUsuario);
-    END
+    INSERT INTO Usuarios (NombreUsuario, Contraseña, TipoUsuario, DniUsuario, LegajoDoctor)-- se incerta el nuevo usuario
+    VALUES 
+        (@NombreUsuario,
+        @NombreUsuario,
+        CASE WHEN @LegajoDoctor IS NOT NULL THEN 1 ELSE 2 END,
+        @DniUsuario,
+        @LegajoDoctor)
 END
 GO
+
 
 
 CREATE PROCEDURE SP_CambiarContraseñaUsuario
