@@ -1,13 +1,6 @@
 ﻿using Entidades;
 using Servicios;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace ClinicaMedica
 {
@@ -19,10 +12,10 @@ namespace ClinicaMedica
         {
             if (!IsPostBack)
             {
+                HabilitacionDeAcceso();
+
                 if (Session["UsuarioActivo"] != null)
                 {
-                    btnUserImg.Visible = true;
-
                     Usuario usuario = (Usuario)Session["UsuarioActivo"];
 
                     lblBienvenidoUsuario.Text = usuario.NombreUsuario + " " + usuario.ApellidoUsuario;
@@ -30,6 +23,30 @@ namespace ClinicaMedica
                 else
                 {
                     Response.Redirect("ListadoTurnos.aspx");
+                }
+            }
+        }
+
+        protected void HabilitacionDeAcceso()
+        {
+            if (Session["UsuarioActivo"] != null)
+            {
+                if (((Usuario)Session["UsuarioActivo"]).TipoUsuario > 1)
+                {
+                    hlAgregarMedico.Visible = true;
+
+                    hlAsignarTurnos.Visible = true;
+                    hlInformes.Visible = true;
+                    hlListarMedicos.Visible = true;
+                    HlListarPacientes.Visible = true;
+                    hlCrearCuentaAdmin.Visible = true;
+                }
+
+                if (((Usuario)Session["UsuarioActivo"]).TipoUsuario >= 1)
+                {
+                    btnUserImg.Visible = true;
+                    MenuUsuario.Visible = true;
+                    hlListarTurnos.Visible = true;
                 }
             }
         }

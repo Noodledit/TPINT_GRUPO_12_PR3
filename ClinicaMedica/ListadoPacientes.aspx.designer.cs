@@ -60,13 +60,13 @@ namespace ClinicaMedica
         protected global::System.Web.UI.WebControls.HyperLink hlListarTurnos;
 
         /// <summary>
-        /// Control hlAgregarMedico.
+        /// Control hlCrearCuentaAdmin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlAgregarMedico;
+        protected global::System.Web.UI.WebControls.HyperLink hlCrearCuentaAdmin;
 
         /// <summary>
         /// Control hlAsignarTurnos.
@@ -78,15 +78,6 @@ namespace ClinicaMedica
         protected global::System.Web.UI.WebControls.HyperLink hlAsignarTurnos;
 
         /// <summary>
-        /// Control hListarMedicos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hListarMedicos;
-
-        /// <summary>
         /// Control HlListarPacientes.
         /// </summary>
         /// <remarks>
@@ -94,6 +85,24 @@ namespace ClinicaMedica
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HlListarPacientes;
+
+        /// <summary>
+        /// Control hlListarMedicos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlListarMedicos;
+
+        /// <summary>
+        /// Control hlAgregarMedico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlAgregarMedico;
 
         /// <summary>
         /// Control hlInformes.

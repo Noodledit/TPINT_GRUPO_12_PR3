@@ -42,10 +42,11 @@
             <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica" />
             <div class="header-links">
                 <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link" NavigateUrl="ListadoTurnos.aspx" Text="Listado de Turnos"></asp:HyperLink>
-                <asp:HyperLink ID="hlAgregarMedico" runat="server" CssClass="header-link-active" NavigateUrl="RegistrarMedico.aspx" Text="Agregar Medico"></asp:HyperLink>
+                <asp:HyperLink ID="hlCrearCuentaAdmin" runat="server" CssClass="header-link-active" NavigateUrl="~/CreacionCuentaAdmin.aspx" Text="Crear Cuenta Admin"></asp:HyperLink>
                 <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="AsignacionTurnos.aspx" Text="Asignar Turnos"></asp:HyperLink>
-                <asp:HyperLink ID="hListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos"></asp:HyperLink>
                 <asp:HyperLink ID="HlListarPacientes" runat="server" CssClass="header-link" NavigateUrl="ListadoPacientes.aspx" Text="Listar Pacientes"></asp:HyperLink>
+                <asp:HyperLink ID="hlListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos"></asp:HyperLink>
+                <asp:HyperLink ID="hlAgregarMedico" runat="server" CssClass="header-link-active" NavigateUrl="RegistrarMedico.aspx" Text="Agregar Medico"></asp:HyperLink>
                 <asp:HyperLink ID="hlInformes" runat="server" CssClass="header-link" NavigateUrl="Informes.aspx" Text="Informes"></asp:HyperLink>
             </div>
         </div>
@@ -103,7 +104,7 @@
             </div>
             <div style="display: flex; flex-direction: column; align-items: center;">
                 <br />
-                <asp:Label ID="lblMensaje" runat="server" Style="font-weight: 700; font-size: 15px;" Visible="False"></asp:Label>
+                <asp:Label ID="lblMensaje" runat="server" Style="font-weight: 700; font-size: 15px;"></asp:Label>
             </div>
             <div class="form-actions" style="margin-top: 15px;">
                 <asp:Button ID="btnCrear" runat="server" Text="Crear" CssClass="btn-aceptar" OnClick="btnCrearCuenta_Click" />

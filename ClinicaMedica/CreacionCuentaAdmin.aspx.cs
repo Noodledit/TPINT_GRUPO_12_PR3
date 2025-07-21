@@ -1,10 +1,6 @@
 ﻿using Entidades;
 using Servicios;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ClinicaMedica
@@ -17,17 +13,20 @@ namespace ClinicaMedica
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            gestorDdl.CargarProvincias(ddlProvincias);
-            gestorDdl.CargarLocalidades(ddlLocalidades, 0);
+            if (!IsPostBack)
+            {
+                gestorDdl.CargarProvincias(ddlProvincias);
+                gestorDdl.CargarLocalidades(ddlLocalidades, 0);
 
-            if (Session["UsuarioActivo"] != null)
-            {
-                Usuario usuario = (Usuario)Session["UsuarioActivo"];
-                lblBienvenidoUsuario.Text = usuario.NombreUsuario + " " + usuario.ApellidoUsuario;
-            }
-            else
-            {
-                Response.Redirect("ListadoTurnos.aspx");
+                if (Session["UsuarioActivo"] != null)
+                {
+                    Usuario usuario = (Usuario)Session["UsuarioActivo"];
+                    lblBienvenidoUsuario.Text = usuario.NombreUsuario + " " + usuario.ApellidoUsuario;
+                }
+                else
+                {
+                    Response.Redirect("ListadoTurnos.aspx");
+                }
             }
         }
         protected void btnUnlogin_Click(object sender, EventArgs e)
@@ -35,6 +34,20 @@ namespace ClinicaMedica
             Session["UsuarioActivo"] = null;
             Response.Redirect("ListadoTurnos.aspx");
 
+        }
+        protected void ddlProvincias_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idProvincia = int.Parse(ddlProvincias.SelectedValue);
+
+            if (idProvincia != 0)
+            {
+                gestorDdl.CargarLocalidades(ddlLocalidades, idProvincia);
+            }
+            else
+            {
+                ddlLocalidades.Items.Clear();
+                ddlLocalidades.Items.Insert(0, new ListItem("-- Seleccione una provincia primero --", "0"));
+            }
         }
         protected void btnCrearCuenta_Click(object sender, EventArgs e)
         {
@@ -65,15 +78,11 @@ namespace ClinicaMedica
                     lblMensaje.Text = "Ha ocurrido un error";
                 }
             }
-
-            
-
-            
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("ListadoTurnos.aspx");
         }
     }
 }
