@@ -22,15 +22,9 @@ namespace ClinicaMedica
                 if (Session["UsuarioActivo"] != null)
                 {
                     btnUserImg.Visible = true;
+
                     Usuario usuario = (Usuario)Session["UsuarioActivo"];
-                    if(usuario.TipoUsuario == 2)
-                    {
-                        crearAdmin.Visible = true;
-                    }
-                    else
-                    {
-                        crearAdmin.Visible = false;
-                    }
+
                     lblBienvenidoUsuario.Text = usuario.NombreUsuario + " " + usuario.ApellidoUsuario;
                 }
                 else
@@ -39,30 +33,12 @@ namespace ClinicaMedica
                 }
             }
         }
-
         protected void btnUnlogin_Click(object sender, EventArgs e)
         {
             Session["UsuarioActivo"] = null;
             Response.Redirect("ListadoTurnos.aspx");
 
         }
-
-        protected void btnCrearCuentaAdmin_Click(object sender, EventArgs e)
-        {
-            string Nombre = txtNombreAdmin.Text;
-            string User = txtUsuarioAdmin.Text;
-            string UserDni = txtDniAdmin.Text;
-
-            bool exito = GestorUsuario.CrearNuevaCuenta(Nombre, Apellido, UserDni);
-
-            if (exito) {
-                lblAdmin.Text = "Se ha creado con exito";
-            }
-            {
-                lblAdmin.Text = "Ha ocurrido un error";
-            }
-        }
-
         protected void btnCambiarContrasenia_Click(object sender, EventArgs e)
         {
             string nuevaClave = txtContraseniaNueva.Text;

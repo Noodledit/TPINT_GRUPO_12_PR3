@@ -88,31 +88,6 @@
                     <asp:Button ID="btnCambiarContrasenia" runat="server" Text="Cambiar contraseña" CssClass="boton-hover" OnClick="btnCambiarContrasenia_Click" ValidationGroup="Grupo1" />
                 </div>
             </div>
-            <asp:Panel ID="crearAdmin" runat="server" Visible="false">
-                <div class="caja-informe" style="margin-top: 10px;" visible="false">
-                    <h2 class="titulo-informe">Crear Cuenta Administrador</h2>
-
-                    <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
-                        <asp:TextBox ID="txtUsuarioAdmin" runat="server" CssClass="input-fecha" Width="500px" placeholder="Nombre de usuario" ValidationGroup="Grupo2" />
-                        <br />
-                        <asp:RequiredFieldValidator ID="rfvAdmin" runat="server" ControlToValidate="txtUsuarioAdmin" ValidationGroup="Grupo2">Por favor rellene el campo</asp:RequiredFieldValidator>
-                    </div>
-
-                    <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
-                        <asp:TextBox ID="txtDniAdmin" runat="server" CssClass="input-fecha" Width="500px" placeholder="DNI" ValidationGroup="Grupo2" />
-                        <br />
-                        <asp:RequiredFieldValidator ID="rfvAdmin2" runat="server" ControlToValidate="txtDniAdmin" ValidationGroup="Grupo2">Por favor rellene el campo</asp:RequiredFieldValidator>
-                    </div>
-
-                    <div style="margin-bottom: 25px; display: flex; align-items: center; justify-content: center;">
-                        <asp:Label ID="lblAdmin" runat="server"></asp:Label>
-                    </div>
-
-                    <div style="margin-bottom: 25px; display: flex; justify-content: flex-end;">
-                        <asp:Button ID="btnCrearCuentaAdmin" runat="server" Text="Crear Cuenta" CssClass="boton-hover" OnClick="btnCrearCuentaAdmin_Click" ValidationGroup="Grupo2" />
-                    </div>
-                </div>
-            </asp:Panel>
         </div>
     </form>
 </body>
