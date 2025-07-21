@@ -198,6 +198,15 @@ FROM Medicos Inner join DatosPersonales ON Dni_Me = Dni_DP
 GO
 
 -- PROCEDIMIENTOS ALMACENADOS
+CREATE OR ALTER PROCEDURE SP_ObtenerCuentaUsuario
+@DniUsuario VARCHAR (10)
+AS
+BEGIN
+    SELECT NombreUsuario
+    FROM Usuarios
+    WHERE DniUsuario = @DniUsuario
+END
+GO
 
 CREATE OR ALTER PROCEDURE SP_ObtenerProvincias
 AS

@@ -14,6 +14,7 @@ namespace ClinicaMedica
     {
         private GestionDdl gestorDdl = new GestionDdl();
         GestionRegistros registros = new GestionRegistros();
+        GestionUsuario gestionUsuario = new GestionUsuario();
         private string legajo;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,7 +26,6 @@ namespace ClinicaMedica
                 gestorDdl.CargarLocalidades(ddlLocalidades, 0);
                 gestorDdl.CargarEspecialidades(ddlEspecialidades);
                 CargarProxLegajo();
-
 
                 if (Session["UsuarioActivo"] != null)
                 {
@@ -97,7 +97,6 @@ namespace ClinicaMedica
                 return;
             }
 
-
             Medico nuevoMedico = new Medico
             {
                 Dni = txtDniMedico.Text.Trim(),
@@ -125,8 +124,12 @@ namespace ClinicaMedica
                 lblMensaje.Text = "Error al registrar médico";
                 lblMensaje.Visible = true;
                 lblMensaje.ForeColor = Color.Red;
+                return;
             }
             CargarProxLegajo();
+            
+            lblMensaje.Text += " - Usuario: " + gestionUsuario.ObtenerNombreUsuario(nuevoMedico.Dni);
+
             LimpiarCasillas();
         }
 
