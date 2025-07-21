@@ -49,11 +49,11 @@ namespace ClinicaMedica
 
         protected void btnCrearCuentaAdmin_Click(object sender, EventArgs e)
         {
-
+            string Nombre = txtNombreAdmin.Text;
             string User = txtUsuarioAdmin.Text;
             string UserDni = txtDniAdmin.Text;
 
-            bool exito = GestorUsuario.CrearNuevaCuentaAdmin(User,UserDni);
+            bool exito = GestorUsuario.CrearNuevaCuenta(Nombre, Apellido, UserDni);
 
             if (exito) {
                 lblAdmin.Text = "Se ha creado con exito";
@@ -61,9 +61,6 @@ namespace ClinicaMedica
             {
                 lblAdmin.Text = "Ha ocurrido un error";
             }
-
-
-
         }
 
         protected void btnCambiarContrasenia_Click(object sender, EventArgs e)
