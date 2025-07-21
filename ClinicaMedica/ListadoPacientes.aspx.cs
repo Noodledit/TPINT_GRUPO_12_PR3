@@ -11,6 +11,7 @@ namespace ClinicaMedica
     public partial class ListadoPacientes : System.Web.UI.Page
     {
         private GestionTablas gestorTablas = new GestionTablas();
+        private GestionRegistros gestorRegistros = new GestionRegistros();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -85,10 +86,10 @@ namespace ClinicaMedica
         {
             if (e.CommandName == "Eliminar")
             {
-                int dni = Convert.ToInt32(e.CommandArgument);
+                string dni = Convert.ToString(e.CommandArgument);
 
-                var gestorPacientes = new GestionTablas.GestionMedicos();
-                bool exito = gestorPacientes.DarDeBajaMedico(dni);//Hay que cambiar esto
+                
+                bool exito = gestorRegistros.BajaPaciente(dni);
 
                 if (exito)
                 {
@@ -133,19 +134,20 @@ namespace ClinicaMedica
         {
             // Obtiene la fila que se está editando
             GridViewRow row = gvPacientes.Rows[e.RowIndex];
+
+            string dni = gvPacientes.DataKeys[e.RowIndex].Value.ToString();
             // Obtiene los valores de los controles dentro de la fila
-            string dni = ((Label)row.FindControl("lblDni")).Text;
-            string nombre = ((TextBox)row.FindControl("txtNombre")).Text.Trim();
-            string apellido = ((TextBox)row.FindControl("txtApellido")).Text.Trim();
-            string telefono = ((TextBox)row.FindControl("txtTelefono")).Text.Trim();
-            string correo = ((TextBox)row.FindControl("txtCorreo")).Text.Trim();
+            string nombre = ((TextBox)row.FindControl("txt_et_Nombre")).Text.Trim();
+            string apellido = ((TextBox)row.FindControl("txt_et_Apellido")).Text.Trim();
+            string telefono = ((TextBox)row.FindControl("txt_et_Telefono")).Text.Trim();
+            string correo = ((TextBox)row.FindControl("txt_et_Correo")).Text.Trim();
             // aca creamos una instancia del gestor de Paciente
 
-            //Paciente 
 
-            var gestorMedicos = new GestionTablas.GestionMedicos();
+
+            //var gestorMedicos = new GestionTablas.GestionMedicos();
             // Llama al método para actualizar el Paciente
-            bool exito = gestorMedicos.ActualizarMedico(dni, nombre, apellido, telefono, correo);
+            bool exito = gestorRegistros.ActualizarPaciente(dni, nombre, apellido, telefono, correo);
 
             if (exito)
             {
