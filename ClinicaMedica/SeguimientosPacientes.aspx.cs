@@ -108,7 +108,6 @@ namespace ClinicaMedica
                 lvHistorial.DataSource = HistorialPorPersona;
                 lvHistorial.DataBind();
             }
-           
         }
 
         protected void btnUserImg_Click(object sender, ImageClickEventArgs e)

@@ -22,8 +22,7 @@
                     Font-Names="Verdana" Font-Size="0.8em"
                     ForeColor="#7C6F57"
                     BackColor="#F7F6F3"
-                    StaticSubMenuIndent="10px"
-                    OnMenuItemClick="btnUnlogin_Click">
+                    StaticSubMenuIndent="10px">
                     <Items>
                         <asp:MenuItem Text="Menú" Value="cuenta">
                             <asp:MenuItem Text="Cambiar contraseña" NavigateUrl="~/CambiarContraseña.aspx" />
@@ -140,13 +139,14 @@
                                 <asp:Label ID="lblMensaje" runat="server" Font-Bold="true" />
                                 <br />
                                 <br />
-                                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" Visible="False" OnClick="btnAceptar_Click" />
-                                <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" Visible="False" Style="margin-right: 15px;" OnClick="btnConfirmar_Click" />
-                                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" Visible="False" OnClick="btnCancelar_Click" />
+                                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" Visible="False" OnClick="btnAceptar_Click" CssClass="btn-aceptar"/>
+                                <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" Visible="False" Style="margin-right: 15px;" OnClick="btnConfirmar_Click" CssClass="btn-aceptar"/>
+                                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" Visible="False" OnClick="btnCancelar_Click" CssClass="btn-cancelar"/>
                                 <asp:Button ID="btnFinalizarConsulta" runat="server"
                                     Style="margin-right: 5px; height: 28px;"
                                     Text="Finalizar consulta"
-                                    OnClick="btnFinalizarConsulta_Click" />
+                                    OnClick="btnFinalizarConsulta_Click" 
+                                    CssClass="button"/>
                             </div>
 
                             <div style="text-align: right; margin-top: 5px;">

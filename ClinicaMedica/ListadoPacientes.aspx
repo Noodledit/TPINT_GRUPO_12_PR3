@@ -20,8 +20,7 @@
                     Font-Names="Verdana" Font-Size="0.8em"
                     ForeColor="#7C6F57"
                     BackColor="#F7F6F3"
-                    StaticSubMenuIndent="10px"
-                    OnMenuItemClick="btnUnlogin_Click">
+                    StaticSubMenuIndent="10px">
                     <Items>
                         <asp:MenuItem Text="Menú" Value="cuenta">
                             <asp:MenuItem Text="Cambiar contraseña" NavigateUrl="~/CambiarContraseña.aspx" />
@@ -43,7 +42,6 @@
                 <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica" />
                 <div class="header-links">
                     <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link" NavigateUrl="ListadoTurnos.aspx" Text="Listado de Turnos"></asp:HyperLink>
-                    <%--<asp:HyperLink ID="hlSeguimientoPaciente" runat="server" CssClass="header-link" Text="Seguimiento Paciente" TabIndex="4" NavigateUrl="~/SeguimientosPacientes.aspx"></asp:HyperLink>--%>
                     <asp:HyperLink ID="hlCrearCuentaAdmin" runat="server" CssClass="header-link" NavigateUrl="~/CreacionCuentaAdmin.aspx" Text="Crear Cuenta Admin"></asp:HyperLink>
                     <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="AsignacionTurnos.aspx" Text="Asignar Turnos"></asp:HyperLink>
                     <asp:HyperLink ID="HlListarPacientes" runat="server" CssClass="header-link-active" NavigateUrl="ListadoPacientes.aspx" Text="Listar Pacientes"></asp:HyperLink>

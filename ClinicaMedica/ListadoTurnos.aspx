@@ -14,17 +14,15 @@
             <section style="display: flex; justify-content: flex-end; padding: 10px;">
                 <asp:Menu ID="MenuUsuario" runat="server" CssClass="menu-derecha"
                     Orientation="Horizontal"
-                    StaticDisplayLevels="1"
                     DynamicHorizontalOffset="0"
                     Font-Names="Verdana" Font-Size="0.8em"
                     ForeColor="#7C6F57"
                     BackColor="#F7F6F3"
-                    StaticSubMenuIndent="10px"
-                    OnMenuItemClick="btnUnlogin_Click">
+                    StaticSubMenuIndent="10px" OnMenuItemClick="Menu_MenuItemClick" Visible="False">
                     <Items>
-                        <asp:MenuItem Text="Menú" Value="cuenta">
-                            <asp:MenuItem Text="Cambiar contraseña" NavigateUrl="~/CambiarContraseña.aspx" />
-                            <asp:MenuItem Text="Cerrar sesión" Value="cerrarSesion" />
+                        <asp:MenuItem Text="Menú" Value="cuenta" >
+                            <asp:MenuItem Text="Cambiar contraseña" NavigateUrl="~/CambiarContraseña.aspx"/>
+                            <asp:MenuItem Text="Cerrar sesión" Value="cerrarSesion"/>
                         </asp:MenuItem>
                     </Items>
 

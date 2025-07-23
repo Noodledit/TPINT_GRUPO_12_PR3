@@ -19,8 +19,7 @@
                 Font-Names="Verdana" Font-Size="0.8em"
                 ForeColor="#7C6F57"
                 BackColor="#F7F6F3"
-                StaticSubMenuIndent="10px"
-                OnMenuItemClick="btnUnlogin_Click">
+                StaticSubMenuIndent="10px">
                 <Items>
                     <asp:MenuItem Text="Menú" Value="cuenta">
                         <asp:MenuItem Text="Cambiar contraseña" NavigateUrl="~/CambiarContraseña.aspx" />

@@ -20,12 +20,12 @@
                     Font-Names="Verdana" Font-Size="0.8em"
                     ForeColor="#7C6F57"
                     BackColor="#F7F6F3"
-                    StaticSubMenuIndent="10px"
-                    OnMenuItemClick="btnUnlogin_Click">
+                    StaticSubMenuIndent="10px">
                     <Items>
                         <asp:MenuItem Text="Menú" Value="cuenta">
-                            <asp:MenuItem Text="Cambiar contraseña" NavigateUrl="~/CambiarContraseña.aspx" />
-                            <asp:MenuItem Text="Cerrar sesión" Value="cerrarSesion" />
+                            <asp:MenuItem Text="Crear cuenta de administrador" NavigateUrl="~/CreacionCuentaAdmin.aspx"/>
+                            <asp:MenuItem Text="Cambiar contraseña" NavigateUrl="~/CambiarContraseña.aspx"/>
+                            <asp:MenuItem Text="Cerrar sesión" Value="cerrarSesion"/>
                         </asp:MenuItem>
                     </Items>
 
@@ -85,11 +85,11 @@
                     <asp:Button ID="btnAsignarTurno" runat="server" CssClass="button" Text="Asignar Turno" Width="210px" Height="40" OnClick="btnAsignarTurno_Click" />
 
                     <asp:Panel ID="pnlConfirmacion" runat="server" Visible="false" CssClass="panel-confirmacion" Style="margin-top: 15px;">
-                        <asp:Label ID="lblConfirmacion" runat="server" Text="¿Está seguro de que desea asignar este turno?" />
+                        <asp:Label ID="lblConfirmacion" runat="server" Text="¿Está seguro de que desea asignar este turno?" Font-Bold="True" ForeColor="#CCFFCC" />
                         <br />
                         <br />
-                        <asp:Button ID="btnConfirmar" runat="server" Text="Sí" OnClick="btnConfirmar_Click" CssClass="button" />
-                        <asp:Button ID="btnCancelar" runat="server" Text="No" OnClick="btnCancelar_Click" CssClass="button" />
+                        <asp:Button ID="btnConfirmar" runat="server" Text="Sí" OnClick="btnConfirmar_Click" CssClass="btn-aceptar" />
+                        <asp:Button ID="btnCancelar" runat="server" Text="No" OnClick="btnCancelar_Click" CssClass="btn-cancelar" />
                         <br />
                     </asp:Panel>
 
