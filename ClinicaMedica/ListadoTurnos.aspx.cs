@@ -3,6 +3,7 @@ using Servicios;
 using System;
 using System.Data;
 using System.Globalization;
+using System.Linq;
 using System.Web.UI.WebControls;
 
 
@@ -27,6 +28,44 @@ namespace ClinicaMedica
                 ComprobacionDeSesion();
                 HabilitacionDeAcceso();
             }
+        }
+
+        protected void Menu_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            switch (e.Item.Value)
+            {
+                case "cerrarSesion":
+                    Session["UsuarioActivo"] = null;
+                    ComprobacionDeSesion();
+                    break;
+
+            }
+        }
+        protected void HabilitacionControlCrearCuentasAdmin()
+        {
+            MenuItem menuUsuario = MenuUsuario.Items[0];
+
+            bool ExistenciaDeOpcion = menuUsuario.ChildItems
+                .Cast<MenuItem>()
+                .Any(item => item.Value == "CreacionCuentaAdmin");
+
+            if (!ExistenciaDeOpcion && ((Session["UsuarioActivo"])as Usuario).TipoUsuario == 2)
+            {
+                MenuItem OpcionCrearCuenta = new MenuItem("Crear cuenta de administrador", "CreacionCuentaAdmin");
+                OpcionCrearCuenta.NavigateUrl = "~/CreacionCuentaAdmin.aspx"; // Opcional
+
+                menuUsuario.ChildItems.Add(OpcionCrearCuenta);
+            }
+            else
+            {
+                MenuItem OpcionCrearCuenta = menuUsuario.ChildItems
+                    .Cast<MenuItem>()
+                    .FirstOrDefault(mi => mi.Value == "CreacionCuentaAdmin");
+                if (ExistenciaDeOpcion && OpcionCrearCuenta != null)
+                {
+                    menuUsuario.ChildItems.Remove(OpcionCrearCuenta);
+                }
+            } 
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -82,24 +121,17 @@ namespace ClinicaMedica
                 HabilitacionDeAcceso();
             }
         }
-
-        protected void btnUnlogin_Click(object sender, EventArgs e)
-        {
-            Session["UsuarioActivo"] = null;
-            ComprobacionDeSesion();
-        }
-
         protected void HabilitacionDeAcceso()
         {
             if (Session["UsuarioActivo"] != null)
             {
                 ColumnaOpciones = (CommandField)gvTurnos.Columns[7];
 
+                HabilitacionControlCrearCuentasAdmin();
 
                 if (((Usuario)Session["UsuarioActivo"]).TipoUsuario > 1)
                 {
                     hlAgregarMedico.Visible = true;
-
                     hlAsignarTurnos.Visible = true;
                     hlInformes.Visible = true;
                     hlListarMedicos.Visible = true;
@@ -211,7 +243,6 @@ namespace ClinicaMedica
         protected void ddlEstados_SelectedIndexChanged(object sender, EventArgs e)
         {
             ConfiguracionTurno.LegajoMed = ((Usuario)Session["UsuarioActivo"]).LegajoDoctor;
-
             gestionDdl.CargarFechas(ddlFechas, null, ConfiguracionTurno.LegajoMed, ddlEstados.SelectedValue);
 
             if (((Usuario)Session["UsuarioActivo"]).TipoUsuario == 1)
@@ -220,30 +251,19 @@ namespace ClinicaMedica
                     ConfiguracionTurno.LegajoMed = Convert.ToInt32(((Usuario)Session["UsuarioActivo"]).LegajoDoctor);
 
                 if (ddlEstados.SelectedValue == "2")
-                {
-                    gvTurnos.Columns[7].Visible = true;
-                }
+                {gvTurnos.Columns[7].Visible = true;}
                 else
-                {
-                    gvTurnos.Columns[7].Visible = false;
-                }
-
+                {gvTurnos.Columns[7].Visible = false;}
             }
-
             if (((Usuario)Session["UsuarioActivo"]).TipoUsuario == 2)
             {
                 ColumnaOpciones = gvTurnos.Columns[7] as CommandField;
 
                 if (ddlEstados.SelectedValue == "2")
-                {
-                    ColumnaOpciones.ShowEditButton = true;
-                }
+                {ColumnaOpciones.ShowEditButton = true;}
                 else
-                {
-                    ColumnaOpciones.ShowEditButton = false;
-                }
+                {ColumnaOpciones.ShowEditButton = false;}
             }
-
             gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
             gvTurnos.DataBind();
         }
@@ -285,8 +305,6 @@ namespace ClinicaMedica
 
         protected void gvTurnos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            //Aqui se desglosa Numero de turno, y se pueden sacar varios datos desde ahi
-
             string NumeroTurno = gvTurnos.DataKeys[e.RowIndex].Value.ToString();
             string[] Division = NumeroTurno.Split('-');
             int semana = int.Parse(Division[0]);
@@ -296,8 +314,6 @@ namespace ClinicaMedica
 
 
             GridViewRow fila = gvTurnos.Rows[e.RowIndex];
-            //Logico de eliminar va aqui o el llamado a eliminar el turno, se hace a traves del mismo metodo de asignar turno,
-            //pasando los datos del turno sin el dni(dni null)
             ConfiguracionTurno = new Turno(
                 dnipaciente: null,
                 nombrePaciente: null,
@@ -306,8 +322,6 @@ namespace ClinicaMedica
                 fecha: Convert.ToDateTime(((System.Web.UI.WebControls.Label)fila.FindControl("lbl_it_Fecha")).Text),
                 hora: TimeSpan.Parse(((System.Web.UI.WebControls.Label)fila.FindControl("lbl_it_Horario")).Text)
             );
-
-           
 
             int Retorno = GestorRegistros.RegistrarTurno(ConfiguracionTurno);
 
@@ -360,11 +374,8 @@ namespace ClinicaMedica
 
         protected void gvTurnos_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            //No estoy completamente seguro de que mas se deberia poder subir o actualizar desde aqui, asi que por el momento solo esta el DNI,
-            //aunque hay un txt para el nombre del paciente es temporal ya que depende del dni asi que no tiene mucho sentido
             string NumeroTurno = gvTurnos.DataKeys[e.RowIndex].Value.ToString();
             string[] Division = NumeroTurno.Split('-');
-
             int idEspecialidad = int.Parse(Division[2]);
             int legajo = int.Parse(Division[3]);
 
