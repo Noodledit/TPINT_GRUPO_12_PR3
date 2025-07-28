@@ -122,32 +122,29 @@ namespace ClinicaMedica
                 }
             }
         }
-        protected void btnUnlogin_Click(object sender, EventArgs e)
+        protected void Menu_MenuItemClick(object sender, MenuEventArgs e)
         {
-            Session["UsuarioActivo"] = null;
-            Response.Redirect("ListadoTurnos.aspx");
+            if (e.Item.Value == "cerrarSesion")
+            {
+                Session["UsuarioActivo"] = null;
+                Response.Redirect("ListadoTurnos.aspx");
+            }
         }
         protected void gvMedicos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvMedicos.PageIndex = e.NewPageIndex;
             llenarGrillaMedicos();
         }
-
-        // Permite poner la fila en modo edición
         protected void gvMedicos_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvMedicos.EditIndex = e.NewEditIndex;
             llenarGrillaMedicos();
         }
-
-        // Cancela la edición
         protected void gvMedicos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             gvMedicos.EditIndex = -1;
             llenarGrillaMedicos();
         }
-
-        // Actualiza los datos editados
         protected void gvMedicos_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             // Obtiene la fila que se está editando
@@ -176,11 +173,6 @@ namespace ClinicaMedica
             // Vuelve a cargar la grilla de médicos
             gvMedicos.EditIndex = -1;
             llenarGrillaMedicos();
-        }
-
-        protected void btnUserImg_Click(object sender, ImageClickEventArgs e)
-        {
-            Response.Redirect("~/CambiarContraseña.aspx");
         }
     }
 }

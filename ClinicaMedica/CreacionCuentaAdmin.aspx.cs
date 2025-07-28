@@ -29,11 +29,13 @@ namespace ClinicaMedica
                 }
             }
         }
-        protected void btnUnlogin_Click(object sender, EventArgs e)
+        protected void Menu_MenuItemClick(object sender, MenuEventArgs e)
         {
-            Session["UsuarioActivo"] = null;
-            Response.Redirect("ListadoTurnos.aspx");
-
+            if (e.Item.Value == "cerrarSesion")
+            {
+                Session["UsuarioActivo"] = null;
+                Response.Redirect("ListadoTurnos.aspx");
+            }
         }
         protected void ddlProvincias_OnSelectedIndexChanged(object sender, EventArgs e)
         {
@@ -80,7 +82,6 @@ namespace ClinicaMedica
                 }
             }
         }
-
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("ListadoTurnos.aspx");

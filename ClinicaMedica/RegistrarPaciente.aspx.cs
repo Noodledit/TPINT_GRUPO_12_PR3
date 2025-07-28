@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using Servicios;
 using System;
+using System.Linq;
 using System.Web.UI.WebControls;
 
 namespace ClinicaMedica
@@ -9,7 +10,6 @@ namespace ClinicaMedica
     {
         private GestionRegistros registros = new GestionRegistros();
         private GestionDdl gestorDdl = new GestionDdl();
-        private string DNI = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,7 +19,6 @@ namespace ClinicaMedica
 
                 gestorDdl.CargarProvincias(ddlProvincias);
                 gestorDdl.CargarLocalidades(ddlLocalidades, 0);
-               // HabilitacionDeBotones();
 
                 if (Session["UsuarioActivo"] != null)
                 {
@@ -30,6 +29,14 @@ namespace ClinicaMedica
                 {
                     Response.Redirect("ListadoTurnos.aspx");
                 }
+            }
+        }
+        protected void Menu_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            if (e.Item.Value == "cerrarSesion")
+            {
+                Session["UsuarioActivo"] = null;
+                Response.Redirect("ListadoTurnos.aspx");
             }
         }
         private void HabilitacionDeBotones()
@@ -63,7 +70,18 @@ namespace ClinicaMedica
                 ddlLocalidades.Items.Insert(0, new ListItem("-- Seleccione una provincia primero --", "0"));
             }
         }
-
+        private bool CamposNoComletados()
+        {
+            return string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                   string.IsNullOrWhiteSpace(txtApellido.Text) ||
+                   string.IsNullOrWhiteSpace(txtDireccion.Text) ||
+                   string.IsNullOrWhiteSpace(txtFechaNacimiento.Text) ||
+                   string.IsNullOrWhiteSpace(txtNacionalidad.Text) ||
+                   ddlProvincias.SelectedValue == "0" ||
+                   ddlLocalidades.SelectedValue == "0" ||
+                   string.IsNullOrWhiteSpace(txtCorreoElectronico.Text) ||
+                   string.IsNullOrWhiteSpace(txtNumeroTelefono.Text);
+        }
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
             Turno turno = Session["TurnoPendiente"] as Turno;
@@ -74,25 +92,23 @@ namespace ClinicaMedica
                 lblMensaje.Visible = true;
                 return;
             }
-
             // Validación de fecha de nacimiento
             DateTime fechaNacimiento;
             if (!DateTime.TryParse(txtFechaNacimiento.Text, out fechaNacimiento))
             {
-                lblMensaje.Text = "La fecha de nacimiento no es válida.";
+                lblMensaje.Text = "La fecha ingresada no es válida.";
                 lblMensaje.Visible = true;
                 return;
             }
-            if (fechaNacimiento < new DateTime(1930, 1, 1) || fechaNacimiento > new DateTime(2025, 12, 31)) // corregir la fecha final trayendo la del sistema.
+            DateTime fechaActual = DateTime.Now;
+            if (fechaNacimiento < new DateTime(1930, 1, 1) || fechaNacimiento > fechaActual)
             {
                 lblMensaje.Text = "La fecha de nacimiento es inválida. Debe ser de 1930 a la actualidad.";
                 lblMensaje.Visible = true;
                 return;
             }
 
-            DNI = turno.DniPaciente;
-
-            Paciente NuevoPaciente = new Paciente(DNI, 
+            Paciente NuevoPaciente = new Paciente(turno.DniPaciente, 
                 txtNombre.Text.Trim(), 
                 txtApellido.Text.Trim(), 
                 Convert.ToString(ddlSexo.SelectedValue), 
@@ -103,20 +119,6 @@ namespace ClinicaMedica
                 Convert.ToInt32(ddlLocalidades.SelectedValue), 
                 txtCorreoElectronico.Text.Trim(), 
                 txtNumeroTelefono.Text.Trim());
-
-            /* Paciente NuevoPaciente = new Paciente(//Datos de prueba
-             "97632321",                     
-             "Ramon",                       
-             "Valdez",                
-             "Maculino",                   
-             "Mexicano",                  
-             Convert.ToDateTime("1985-11-10"), 
-             "La Vecindad", 
-             2,         
-             1,                     
-             "ramon.valdez@mail.com",         
-             "1134567890"                   
-             );*/
 
             if (registros.RegistrarPaciente(NuevoPaciente)==true)
             {
@@ -150,9 +152,7 @@ namespace ClinicaMedica
                     lbl2doMensaje.Text = "No se pudo asignar el turno";
                     lbl2doMensaje.ForeColor = System.Drawing.Color.Red;
                 }
-
                 Session.Remove("TurnoPendiente");
-                //
             }
             else
             {
@@ -160,7 +160,16 @@ namespace ClinicaMedica
                 lblMensaje.Visible = true;
             }
         }
-
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            lblMensaje.Text = string.Empty;
+            LimpiarTxtBox();
+            Response.Redirect("AsignacionTurnos.aspx");
+        }
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AsignacionTurnos.aspx");
+        }
         private void LimpiarTxtBox()
         {
             txtNombre.Text = string.Empty;
@@ -174,37 +183,6 @@ namespace ClinicaMedica
             ddlProvincias.SelectedIndex = 0;
             ddlLocalidades.SelectedIndex = 0;
             ddlSexo.SelectedIndex = 0;
-        }
-
-        private bool CamposNoComletados()
-        {
-            return string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                   string.IsNullOrWhiteSpace(txtApellido.Text) ||
-                   string.IsNullOrWhiteSpace(txtDireccion.Text) ||
-                   string.IsNullOrWhiteSpace(txtFechaNacimiento.Text) ||
-                   string.IsNullOrWhiteSpace(txtNacionalidad.Text) ||
-                   ddlProvincias.SelectedValue == "0" ||
-                   ddlLocalidades.SelectedValue == "0" ||
-                   string.IsNullOrWhiteSpace(txtCorreoElectronico.Text) ||
-                   string.IsNullOrWhiteSpace(txtNumeroTelefono.Text);
-        }
-
-        protected void btnCancelar_Click(object sender, EventArgs e)
-        {
-            lblMensaje.Text = string.Empty;
-            LimpiarTxtBox();
-            Response.Redirect("AsignacionTurnos.aspx");
-        }
-
-        protected void btnUnlogin_Click(object sender, EventArgs e)
-        {
-            Session["UsuarioActivo"] = null;
-            Response.Redirect("ListadoTurnos.aspx");
-        }
-
-        protected void btnAceptar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("AsignacionTurnos.aspx");
         }
     }
 }

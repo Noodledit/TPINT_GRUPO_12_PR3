@@ -2,6 +2,7 @@
 using Servicios;
 using System;
 using System.Data;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using static Servicios.GestionTablas;
@@ -77,7 +78,6 @@ namespace ClinicaMedica
                 llenarGrillaPacientes();
             }
         }
-        
         protected void btnMostrarTodo_Click(object sender, EventArgs e)
         {
             llenarGrillaPacientes(null);
@@ -104,32 +104,29 @@ namespace ClinicaMedica
                 }
             }
         }
-        protected void btnUnlogin_Click(object sender, EventArgs e)
+        protected void Menu_MenuItemClick(object sender, MenuEventArgs e)
         {
-            Session["UsuarioActivo"] = null;
-            Response.Redirect("ListadoTurnos.aspx");
+            if (e.Item.Value == "cerrarSesion")
+            {
+                Session["UsuarioActivo"] = null;
+                Response.Redirect("ListadoTurnos.aspx");
+            }
         }
         protected void gvPacientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvPacientes.PageIndex = e.NewPageIndex;
             llenarGrillaPacientes();
         }
-
-        // Permite poner la fila en modo edición
         protected void gvPacientes_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvPacientes.EditIndex = e.NewEditIndex;
             llenarGrillaPacientes();
         }
-
-        // Cancela la edición
         protected void gvPacientes_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             gvPacientes.EditIndex = -1;
             llenarGrillaPacientes();
         }
-
-        // Actualiza los datos editados
         protected void gvPacientes_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             // Obtiene la fila que se está editando
@@ -162,16 +159,6 @@ namespace ClinicaMedica
             // Vuelve a cargar la grilla de Pacientes
             gvPacientes.EditIndex = -1;
             llenarGrillaPacientes();
-        }
-
-        protected void btnUserImg_Click(object sender, ImageClickEventArgs e)
-        {
-            Response.Redirect("~/CambiarContraseña.aspx");
-        }
-
-        protected void gvPacientes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

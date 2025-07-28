@@ -47,7 +47,6 @@
                 <div class="header-links">
                    
                    <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link-active" NavigateUrl="ListadoTurnos.aspx" Text="Listado de Turnos" Visible="False" TabIndex="4" Height="16px"></asp:HyperLink>
-                   <asp:HyperLink ID="hlCrearCuentaAdmin" runat="server" CssClass="header-link" NavigateUrl="~/CreacionCuentaAdmin.aspx" Text="Crear Cuenta Admin" Visible="False" TabIndex="6"></asp:HyperLink>
                     <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link" NavigateUrl="AsignacionTurnos.aspx" Text="Asignar Turnos" Visible="False" TabIndex="7"></asp:HyperLink>
                     <asp:HyperLink ID="hlListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos" Visible="False" TabIndex="8"></asp:HyperLink>
                     <asp:HyperLink ID="HlListarPacientes" runat="server" CssClass="header-link" NavigateUrl="ListadoPacientes.aspx" Text="Listar Pacientes" Visible="False" TabIndex="9"></asp:HyperLink>
@@ -122,7 +121,7 @@
 
                         <asp:TemplateField HeaderText="Fecha">
                             <ItemTemplate>
-                                <asp:Label ID="lbl_it_Fecha" runat="server" Text='<%# Bind("Fecha") %>'></asp:Label>
+                                <asp:Label ID="lbl_it_Fecha" runat="server" Text='<%# Eval("Fecha", "{0:dd/MM/yyyy}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 

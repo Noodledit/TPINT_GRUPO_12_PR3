@@ -28,7 +28,6 @@ namespace ClinicaMedica
                 }
             }
         }
-
         protected void HabilitacionControlCrearCuentasAdmin()
         {
             MenuItem menuUsuario = MenuUsuario.Items[0];
@@ -69,7 +68,6 @@ namespace ClinicaMedica
                     hlInformes.Visible = true;
                     hlListarMedicos.Visible = true;
                     HlListarPacientes.Visible = true;
-                    hlCrearCuentaAdmin.Visible = true;
                 }
 
                 if (((Usuario)Session["UsuarioActivo"]).TipoUsuario >= 1)
@@ -80,11 +78,13 @@ namespace ClinicaMedica
                 }
             }
         }
-        protected void btnUnlogin_Click(object sender, EventArgs e)
+        protected void Menu_MenuItemClick(object sender, MenuEventArgs e)
         {
-            Session["UsuarioActivo"] = null;
-            Response.Redirect("ListadoTurnos.aspx");
-
+            if (e.Item.Value == "cerrarSesion")
+            {
+                Session["UsuarioActivo"] = null;
+                Response.Redirect("ListadoTurnos.aspx");
+            }
         }
         protected void btnCambiarContrasenia_Click(object sender, EventArgs e)
         {
