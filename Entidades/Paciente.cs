@@ -8,9 +8,6 @@ namespace Entidades
 {
     public class Paciente
     {
-
-       
-
         private string Dni;
         private string Nombre;
         private string Apellido;

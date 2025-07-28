@@ -2,6 +2,7 @@
 using Servicios;
 using System;
 using System.Drawing;
+using System.Linq;
 using System.Web.UI.WebControls;
 
 namespace ClinicaMedica
@@ -21,6 +22,7 @@ namespace ClinicaMedica
                 gestorDdl.CargarProvincias(ddlProvincias);
                 gestorDdl.CargarLocalidades(ddlLocalidades, 0);
                 gestorDdl.CargarEspecialidades(ddlEspecialidades);
+                HabilitacionControlCrearCuentasAdmin();
                 CargarProxLegajo();
 
                 if (Session["UsuarioActivo"] != null)
@@ -34,7 +36,40 @@ namespace ClinicaMedica
                 }
             }
         }
+        protected void Menu_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            if (e.Item.Value == "cerrarSesion")
+            {
+                Session["UsuarioActivo"] = null;
+                Response.Redirect("ListadoTurnos.aspx");
+            }
+        }
+        protected void HabilitacionControlCrearCuentasAdmin()
+        {
+            MenuItem menuUsuario = MenuUsuario.Items[0];
 
+            bool ExistenciaDeOpcion = menuUsuario.ChildItems
+                .Cast<MenuItem>()
+                .Any(item => item.Value == "CreacionCuentaAdmin");
+            Usuario usuarioLogeado = (Session["UsuarioActivo"]) as Usuario;
+            if (!ExistenciaDeOpcion && usuarioLogeado != null && (usuarioLogeado.TipoUsuario == 2))
+            {
+                MenuItem OpcionCrearCuenta = new MenuItem("Crear cuenta de administrador", "CreacionCuentaAdmin");
+                OpcionCrearCuenta.NavigateUrl = "~/CreacionCuentaAdmin.aspx"; // Opcional
+
+                menuUsuario.ChildItems.Add(OpcionCrearCuenta);
+            }
+            else
+            {
+                MenuItem OpcionCrearCuenta = menuUsuario.ChildItems
+                    .Cast<MenuItem>()
+                    .FirstOrDefault(mi => mi.Value == "CreacionCuentaAdmin");
+                if (ExistenciaDeOpcion && OpcionCrearCuenta != null)
+                {
+                    menuUsuario.ChildItems.Remove(OpcionCrearCuenta);
+                }
+            }
+        }
         protected void ddlProvincias_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             int idProvincia = int.Parse(ddlProvincias.SelectedValue);
@@ -49,7 +84,6 @@ namespace ClinicaMedica
                 ddlLocalidades.Items.Insert(0, new ListItem("-- Seleccione una provincia primero --", "0"));
             }
         }
-
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             if (CamposIncompletos())
@@ -135,7 +169,11 @@ namespace ClinicaMedica
 
             LimpiarCasillas();
         }
-
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            lblMensaje.Text = string.Empty;
+            LimpiarCasillas();
+        }
         private void CargarProxLegajo()
         {
             legajo = registros.ObtenerProxLegajo();
@@ -155,13 +193,6 @@ namespace ClinicaMedica
                    string.IsNullOrWhiteSpace(txtCorreoElectronico.Text) ||
                    string.IsNullOrWhiteSpace(txtNumeroTelefono.Text);
         }
-
-        protected void btnCancelar_Click(object sender, EventArgs e)
-        {
-            lblMensaje.Text = string.Empty;
-            LimpiarCasillas();
-        }
-
         private void LimpiarCasillas()
         {
             txtNombre.Text = string.Empty;
@@ -179,17 +210,6 @@ namespace ClinicaMedica
             ddlSexo.SelectedIndex = 0;
 
             //lblMensaje.Text = string.Empty;
-        }
-
-        protected void btnUnlogin_Click(object sender, EventArgs e)
-        {
-            Session["UsuarioActivo"] = null;
-            Response.Redirect("ListadoTurnos.aspx");
-        }
-
-        protected void btnUserImg_Click(object sender, System.Web.UI.ImageClickEventArgs e)
-        {
-            Response.Redirect("~/CambiarContraseña.aspx");
         }
     }
 }

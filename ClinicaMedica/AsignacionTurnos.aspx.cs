@@ -33,9 +33,13 @@ namespace ClinicaMedica
                 }
             }
         }
-        protected void btnUn_Login_Click(object sender, EventArgs e)
+        protected void Menu_MenuItemClick(object sender, MenuEventArgs e)
         {
-            Session["UsuarioActivo"] = null;
+            if (e.Item.Value == "cerrarSesion")
+            {
+                Session["UsuarioActivo"] = null;
+                Response.Redirect("ListadoTurnos.aspx");
+            }
         }
         protected void btnAsignarTurno_Click(object sender, EventArgs e)
         {
@@ -162,24 +166,34 @@ namespace ClinicaMedica
                 ddlMedicos.Items.Clear();
             }
         }
-
         protected void ddlFecha_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // si no hay especialidad marcada no deberia saltar nada
+            // si no hay especialidad marcada no deberia mostrarse nada
             int idFechaSeleccionada = int.Parse(ddlFechas.SelectedValue);
             int idEspecialidadSeleccionada = int.Parse(ddlEspecialidades.SelectedValue);
             int LegajoSeleccionado = int.Parse(ddlMedicos.SelectedValue);
-
+                ddlHoras.Items.Clear();
             if (idFechaSeleccionada != 0)
             {
-                gestorDdl.CargarHoras(ddlHoras, idEspecialidadSeleccionada, idFechaSeleccionada, LegajoSeleccionado);
-                if (LegajoSeleccionado == 0) 
+
+                gestorDdl.CargarHoras(ddlHoras, idEspecialidadSeleccionada, idFechaSeleccionada);
+                if (LegajoSeleccionado == 0)
                 {
                     gestorDdl.CargarMedicos(ddlMedicos, idEspecialidadSeleccionada, idFechaSeleccionada);
+                    gestorDdl.CargarHoras(ddlHoras, idEspecialidadSeleccionada, idFechaSeleccionada);
+                }
+                else 
+                {
+                    gestorDdl.CargarMedicos(ddlMedicos, idEspecialidadSeleccionada, idFechaSeleccionada, LegajoSeleccionado);
+                    gestorDdl.CargarHoras(ddlHoras, idEspecialidadSeleccionada, idFechaSeleccionada, LegajoSeleccionado);
                 }
             }
+            else
+            {
+                gestorDdl.CargarHoras(ddlHoras, idEspecialidadSeleccionada);
+                gestorDdl.CargarMedicos(ddlMedicos, idEspecialidadSeleccionada);
+            }
         }
-
         protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
         {
             int LegajoSeleccionado = int.Parse(ddlMedicos.SelectedValue);
@@ -190,20 +204,15 @@ namespace ClinicaMedica
             {
                 if (idFechaSeleccionada == 0)
                 {
-                    gestorDdl.CargarFechas(ddlFechas, idEspecialidadSeleccionada, /*idFechaSeleccionada*/ LegajoSeleccionado);
+                    gestorDdl.CargarFechas(ddlFechas, idEspecialidadSeleccionada, LegajoSeleccionado);
                 }
                 gestorDdl.CargarHoras(ddlHoras, idEspecialidadSeleccionada, idFechaSeleccionada, LegajoSeleccionado);
             }
-        }
-        protected void btnUnlogin_Click(object sender, EventArgs e)
-        {
-            Session["UsuarioActivo"] = null;
-            Response.Redirect("ListadoTurnos.aspx");
-        }
-
-        protected void btnUserImg_Click(object sender, ImageClickEventArgs e)
-        {
-            Response.Redirect("~/CambiarContraseña.aspx");
+            else
+            {
+                gestorDdl.CargarHoras(ddlHoras, idEspecialidadSeleccionada);
+                gestorDdl.CargarFechas(ddlFechas, idEspecialidadSeleccionada);
+            }
         }
     }
 }

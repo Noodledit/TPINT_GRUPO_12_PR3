@@ -60,12 +60,13 @@ namespace Servicios
                 ddlEspecialidades.Items.Insert(0, new ListItem("Seleccione Especialidad", "0"));
             }
         }
-        public void CargarMedicos(DropDownList ddlMedicos, int idEspecialidad, int? idDia = null)
+        public void CargarMedicos(DropDownList ddlMedicos, int idEspecialidad, int? idDia = null, int? legajo = null)
         {
             DataTable tablaMedicos = new DataTable();
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@IdEspecialidad", idEspecialidad),
+                new SqlParameter("@Legajo", legajo),
                 new SqlParameter("@IdDia", idDia)
             };
             tablaMedicos = acceso.EjecutarConsultaSelectDataAdapter("SP_RetornarListaMedicos", parametros);
@@ -95,7 +96,7 @@ namespace Servicios
                 ddlEstados.DataBind();
             }
         }
-        public void CargarFechas(DropDownList ddlFechas, int? idEspecialidad = null, int? LegajoMedico = null, string Estado = "1")
+        public void CargarFechas(DropDownList ddlFechas, int? idEspecialidad = null, int? Legajo = null, string Estado = "1")
         {
             int? estadoInterpretado;
 
@@ -111,7 +112,7 @@ namespace Servicios
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@IdEspecialidad", idEspecialidad),
-                new SqlParameter("@Legajo", LegajoMedico),
+                new SqlParameter("@Legajo", Legajo),
                 new SqlParameter("@Estado", estadoInterpretado)
             };
             DataTable tablaFechas = acceso.EjecutarConsultaSelectDataAdapter("SP_RetornarFechasTurnos", parametros);
@@ -129,8 +130,6 @@ namespace Servicios
                         row["FechaTexto"] = fecha.ToString("dd/MM/yyyy");
                     }
                 }
-
-                //HttpContext.Current.Session["IDSemana"] = tablaFechas;
 
                 ddlFechas.DataSource = tablaFechas;
                 ddlFechas.DataTextField = "FechaTexto";
@@ -157,6 +156,12 @@ namespace Servicios
                 ddlHoras.DataValueField = "Hora";
                 ddlHoras.DataBind();
                 ddlHoras.Items.Insert(0, new ListItem("Seleccione Hora"));
+            }
+            else
+            {
+                ddlHoras.DataSource = null;
+                ddlHoras.DataBind();
+                ddlHoras.Items.Insert(0, new ListItem("No disponible"));
             }
         }
     }

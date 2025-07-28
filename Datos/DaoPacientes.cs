@@ -1,19 +1,13 @@
-﻿using Entidades;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Data.SqlClient;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Entidades;
+using System;
 
 namespace Datos
 {
     public class DaoPacientes
     {
         AccesoDatos ds = new AccesoDatos();
-
         public int registroPaciente(Paciente paciente)
         {
             SqlCommand comand = new SqlCommand();
@@ -32,7 +26,6 @@ namespace Datos
 
             return ds.EjecutarProcedimientoAlmacenado(comand, "SP_RegistrarPaciente");
         }
-
         public bool verificarSiExistePaciente(string DNI)
         {
             using (SqlConnection conexion = ds.connection())
@@ -54,7 +47,6 @@ namespace Datos
                 return valorRetornado == 1;
             }
         }
-
         public int RegistrarSeguimiento(Turno TurnoConcluido, string observacion)
         {
             using (SqlConnection conexion = ds.connection())
@@ -74,7 +66,6 @@ namespace Datos
         { 
            return ds.EjecutarConsultaSelectDataAdapter("SP_RetornarListaPacientes");
         }
-
         public DataTable BuscarPorNombre(string nombre)
         {
             SqlParameter[] parametro = new SqlParameter[] {
@@ -82,7 +73,6 @@ namespace Datos
             };
             return ds.EjecutarConsultaSelectDataAdapter("SP_BuscarPacientes", parametro);
         }
-
         public DataTable BuscarPorDni(string dni)
         {
             SqlParameter[] parametro = new SqlParameter[] {
@@ -90,16 +80,14 @@ namespace Datos
             };
             return ds.EjecutarConsultaSelectDataAdapter("SP_BuscarPacientes", parametro);
         }
-
         public DataTable ListarHistorialDelPaciente(string DniPaciente)
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@DniPaciente", DniPaciente)
             };
-            return ds.EjecutarConsultaSelectDataAdapter("sp_ListarHistorialDePaciente", parametros);
+            return ds.EjecutarConsultaSelectDataAdapter("sp_ListarHistorialDelPaciente", parametros);
         }
-
         public bool ActualizarPacienteEdit(string dni, string nombre, string apellido, string telefono, string correo)
         {
             SqlCommand sqlCommand = new SqlCommand();
@@ -114,7 +102,6 @@ namespace Datos
 
             return ds.EjecutarProcedimientoAlmacenado(sqlCommand, "SP_ActualizarMedico") > 0;
         }
-
         public bool BajaPaciente(string dni)
         {
             SqlCommand sqlCommand = new SqlCommand();

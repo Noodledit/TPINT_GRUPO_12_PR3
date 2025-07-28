@@ -29,45 +29,6 @@ namespace ClinicaMedica
                 HabilitacionDeAcceso();
             }
         }
-
-        protected void Menu_MenuItemClick(object sender, MenuEventArgs e)
-        {
-            switch (e.Item.Value)
-            {
-                case "cerrarSesion":
-                    Session["UsuarioActivo"] = null;
-                    ComprobacionDeSesion();
-                    break;
-
-            }
-        }
-        protected void HabilitacionControlCrearCuentasAdmin()
-        {
-            MenuItem menuUsuario = MenuUsuario.Items[0];
-
-            bool ExistenciaDeOpcion = menuUsuario.ChildItems
-                .Cast<MenuItem>()
-                .Any(item => item.Value == "CreacionCuentaAdmin");
-
-            if (!ExistenciaDeOpcion && ((Session["UsuarioActivo"])as Usuario).TipoUsuario == 2)
-            {
-                MenuItem OpcionCrearCuenta = new MenuItem("Crear cuenta de administrador", "CreacionCuentaAdmin");
-                OpcionCrearCuenta.NavigateUrl = "~/CreacionCuentaAdmin.aspx"; // Opcional
-
-                menuUsuario.ChildItems.Add(OpcionCrearCuenta);
-            }
-            else
-            {
-                MenuItem OpcionCrearCuenta = menuUsuario.ChildItems
-                    .Cast<MenuItem>()
-                    .FirstOrDefault(mi => mi.Value == "CreacionCuentaAdmin");
-                if (ExistenciaDeOpcion && OpcionCrearCuenta != null)
-                {
-                    menuUsuario.ChildItems.Remove(OpcionCrearCuenta);
-                }
-            } 
-        }
-
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             if (Session["UsuarioActivo"] == null)
@@ -93,7 +54,6 @@ namespace ClinicaMedica
                 }
             }
         }
-
         protected void ComprobacionDeSesion()
         {
             if (Session["UsuarioActivo"] != null)
@@ -123,11 +83,10 @@ namespace ClinicaMedica
         }
         protected void HabilitacionDeAcceso()
         {
+            HabilitacionControlCrearCuentasAdmin();
             if (Session["UsuarioActivo"] != null)
             {
                 ColumnaOpciones = (CommandField)gvTurnos.Columns[7];
-
-                HabilitacionControlCrearCuentasAdmin();
 
                 if (((Usuario)Session["UsuarioActivo"]).TipoUsuario > 1)
                 {
@@ -136,7 +95,6 @@ namespace ClinicaMedica
                     hlInformes.Visible = true;
                     hlListarMedicos.Visible = true;
                     HlListarPacientes.Visible = true;
-                    hlCrearCuentaAdmin.Visible = true;
 
                     if (ddlFechas.SelectedItem != null 
                         && ddlFechas.SelectedValue != "0" 
@@ -205,7 +163,6 @@ namespace ClinicaMedica
                 hlInformes.Visible = false;
                 hlListarMedicos.Visible = false;
                 HlListarPacientes.Visible = false;
-                hlCrearCuentaAdmin.Visible = false;
                 hlListarTurnos.Visible = false;
                 lblFecha.Visible = false;
                 ddlFechas.Visible = false;
@@ -214,7 +171,54 @@ namespace ClinicaMedica
                 ddlEstados.Visible = false;
             }
         }
-        
+        protected void HabilitacionControlCrearCuentasAdmin()
+        {
+            MenuItem menuUsuario = MenuUsuario.Items[0];
+
+            bool ExistenciaDeOpcion = menuUsuario.ChildItems
+                .Cast<MenuItem>()
+                .Any(item => item.Value == "CreacionCuentaAdmin");
+            Usuario UsuarioLogeado = (Session["UsuarioActivo"]) as Usuario;
+            if (!ExistenciaDeOpcion && UsuarioLogeado!= null && UsuarioLogeado.TipoUsuario == 2)
+            {
+                MenuItem OpcionCrearCuenta = new MenuItem("Crear cuenta de administrador", "CreacionCuentaAdmin");
+                OpcionCrearCuenta.NavigateUrl = "~/CreacionCuentaAdmin.aspx";
+
+                menuUsuario.ChildItems.Add(OpcionCrearCuenta);
+            }
+        }
+        protected void Menu_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            switch (e.Item.Value)
+            {
+                case "cerrarSesion":
+                    Session["UsuarioActivo"] = null;
+                    ComprobacionDeSesion();
+                    break;
+            }
+        }
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            ConfiguracionTurno.DniPaciente = txtBuscador.Text.Trim();
+            if (Session["UsuarioActivo"] != null)
+            {
+                ConfiguracionTurno.LegajoMed = ((Usuario)Session["UsuarioActivo"]).LegajoDoctor;
+            }
+
+            if (!string.IsNullOrEmpty(txtBuscador.Text))
+            {
+                lblMensaje.Text = string.Empty;
+
+                DataTable tablaFiltrada = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, 2);//El estado se coloca en '2' por que seria un Turno Tomado.
+                gvTurnos.DataSource = tablaFiltrada;
+                gvTurnos.DataBind();
+            }
+            else
+            {
+                lblMensaje.Text = "Ingrese DNI a buscar.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+            }
+        }
         protected void gvTurnos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             string lblNumeroTurno = ((Label)gvTurnos.Rows[e.NewSelectedIndex].FindControl("lbl_it_NumeroTurno")).Text;
@@ -239,7 +243,6 @@ namespace ClinicaMedica
 
             Response.Redirect("SeguimientosPacientes.aspx");
         }
-
         protected void ddlEstados_SelectedIndexChanged(object sender, EventArgs e)
         {
             ConfiguracionTurno.LegajoMed = ((Usuario)Session["UsuarioActivo"]).LegajoDoctor;
@@ -267,7 +270,6 @@ namespace ClinicaMedica
             gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
             gvTurnos.DataBind();
         }
-
         protected void ddlFechas_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlFechas.SelectedItem != null && ddlFechas.SelectedValue != "0")
@@ -286,92 +288,12 @@ namespace ClinicaMedica
             gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
             gvTurnos.DataBind();
         }
-
-        protected void gvTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvTurnos.PageIndex = e.NewPageIndex;
-            Turno configuracionTurnos = Session["FiltroTurno"] as Turno ?? new Turno();
-
-            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(configuracionTurnos, Convert.ToInt32(ddlEstados.SelectedValue)); // se cambio el filtro
-            gvTurnos.DataBind();
-        }
-
         protected void gvTurnos_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvTurnos.EditIndex = e.NewEditIndex;            
             gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
             gvTurnos.DataBind();
         }
-
-        protected void gvTurnos_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            string NumeroTurno = gvTurnos.DataKeys[e.RowIndex].Value.ToString();
-            string[] Division = NumeroTurno.Split('-');
-            int semana = int.Parse(Division[0]);
-            int idDia = int.Parse(Division[1]);
-            int idEspecialidad = int.Parse(Division[2]);
-            int legajo = int.Parse(Division[3]);
-
-
-            GridViewRow fila = gvTurnos.Rows[e.RowIndex];
-            ConfiguracionTurno = new Turno(
-                dnipaciente: null,
-                nombrePaciente: null,
-                iDEspecialidad: idEspecialidad,
-                legajoMed: legajo,
-                fecha: Convert.ToDateTime(((System.Web.UI.WebControls.Label)fila.FindControl("lbl_it_Fecha")).Text),
-                hora: TimeSpan.Parse(((System.Web.UI.WebControls.Label)fila.FindControl("lbl_it_Horario")).Text)
-            );
-
-            int Retorno = GestorRegistros.RegistrarTurno(ConfiguracionTurno);
-
-            ConfiguracionTurno = new Turno();
-            Session["FiltroTurno"] = ConfiguracionTurno;
-
-            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
-            gvTurnos.DataBind();
-        }
-        
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
-            ConfiguracionTurno.DniPaciente = txtBuscador.Text.Trim();
-            if (Session["UsuarioActivo"] != null)
-            {
-                ConfiguracionTurno.LegajoMed = ((Usuario)Session["UsuarioActivo"]).LegajoDoctor;
-            }
-
-            if (!string.IsNullOrEmpty(txtBuscador.Text))
-            {
-                lblMensaje.Text = string.Empty;
-
-                DataTable tablaFiltrada = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, 2);//El estado se coloca en '2' por que seria un Turno Tomado.
-                gvTurnos.DataSource = tablaFiltrada;
-                gvTurnos.DataBind();
-            }
-            else
-            {
-                lblMensaje.Text = "Ingrese DNI a buscar.";
-                lblMensaje.ForeColor = System.Drawing.Color.Red;
-            }
-        }
-
-        protected void btnMostrarTodo_Click(object sender, EventArgs e)
-        {
-            ConfiguracionTurno.LegajoMed = ((Usuario)Session["UsuarioActivo"]).LegajoDoctor;
-
-            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
-            gvTurnos.DataBind();
-            txtBuscador.Text = string.Empty;
-            ddlFechas.SelectedIndex = 0;
-        }
-
-        protected void gvTurnos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            gvTurnos.EditIndex = -1;//Salir del Edit
-            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
-            gvTurnos.DataBind();
-        }
-
         protected void gvTurnos_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             string NumeroTurno = gvTurnos.DataKeys[e.RowIndex].Value.ToString();
@@ -397,10 +319,54 @@ namespace ClinicaMedica
             gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
             gvTurnos.DataBind();
         }
-
-        protected void btnUserImg_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        protected void gvTurnos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            Response.Redirect("~/CambiarContraseña.aspx");
+            gvTurnos.EditIndex = -1;//Salir del Edit
+            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
+            gvTurnos.DataBind();
+        }
+        protected void gvTurnos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string NumeroTurno = gvTurnos.DataKeys[e.RowIndex].Value.ToString();
+            string[] Division = NumeroTurno.Split('-');
+            int semana = int.Parse(Division[0]);
+            int idDia = int.Parse(Division[1]);
+            int idEspecialidad = int.Parse(Division[2]);
+            int legajo = int.Parse(Division[3]);
+
+            GridViewRow fila = gvTurnos.Rows[e.RowIndex];
+            ConfiguracionTurno = new Turno(
+                iDEspecialidad: idEspecialidad,
+                legajoMed: legajo,
+                fecha: Convert.ToDateTime(((System.Web.UI.WebControls.Label)fila.FindControl("lbl_it_Fecha")).Text),
+                hora: TimeSpan.Parse(((System.Web.UI.WebControls.Label)fila.FindControl("lbl_it_Horario")).Text)
+            );
+            ConfiguracionTurno.Estado = 0;
+
+            int Retorno = GestorRegistros.RegistrarTurno(ConfiguracionTurno);
+
+            ConfiguracionTurno = new Turno();
+            Session["FiltroTurno"] = ConfiguracionTurno;
+
+            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
+            gvTurnos.DataBind();
+        }
+        protected void gvTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvTurnos.PageIndex = e.NewPageIndex;
+            Turno configuracionTurnos = Session["FiltroTurno"] as Turno ?? new Turno();
+
+            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(configuracionTurnos, Convert.ToInt32(ddlEstados.SelectedValue)); // se cambio el filtro
+            gvTurnos.DataBind();
+        }
+        protected void btnMostrarTodo_Click(object sender, EventArgs e)
+        {
+            ConfiguracionTurno.LegajoMed = ((Usuario)Session["UsuarioActivo"]).LegajoDoctor;
+
+            gvTurnos.DataSource = gestionTablas.ObtenerTablaTurnos(ConfiguracionTurno, Convert.ToInt32(ddlEstados.SelectedValue));
+            gvTurnos.DataBind();
+            txtBuscador.Text = string.Empty;
+            ddlFechas.SelectedIndex = 0;
         }
     }
 }

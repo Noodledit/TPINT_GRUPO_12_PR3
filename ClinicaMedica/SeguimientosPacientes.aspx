@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SeguimientosPacientes.aspx.cs" Inherits="ClinicaMedica.SeguimientosPacientes" %>
+﻿ <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SeguimientosPacientes.aspx.cs" Inherits="ClinicaMedica.SeguimientosPacientes" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -22,7 +22,7 @@
                     Font-Names="Verdana" Font-Size="0.8em"
                     ForeColor="#7C6F57"
                     BackColor="#F7F6F3"
-                    StaticSubMenuIndent="10px">
+                    StaticSubMenuIndent="10px" OnMenuItemClick="Menu_MenuItemClick">
                     <Items>
                         <asp:MenuItem Text="Menú" Value="cuenta">
                             <asp:MenuItem Text="Cambiar contraseña" NavigateUrl="~/CambiarContraseña.aspx" />
@@ -74,14 +74,12 @@
                                         </li>
                                     </EditItemTemplate>
                                     <EmptyDataTemplate>
-                                        No data was returned.
+                                        <li>No hay historial disponible para este paciente.</li>
                                     </EmptyDataTemplate>
                                     <InsertItemTemplate>
                                         <li style="">Observacion:
                                         <asp:TextBox ID="ObservacionTextBox" runat="server" Text='<%# Bind("Observacion") %>' />
                                             <br />
-                                            <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" />
-                                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Clear" />
                                         </li>
                                     </InsertItemTemplate>
                                     <ItemSeparatorTemplate>
@@ -107,7 +105,6 @@
                                         </li>
                                     </SelectedItemTemplate>
                                 </asp:ListView>
-                                <asp:SqlDataSource ID="ClinicaMedica" runat="server" ConnectionString="<%$ ConnectionStrings:ClinicaMedicaConnectionString2 %>" ProviderName="<%$ ConnectionStrings:ClinicaMedicaConnectionString2.ProviderName %>" SelectCommand="SELECT [Observacion] FROM [SeguimientoPaciente]"></asp:SqlDataSource>
                             </li>
                         </ul>
                     </div>

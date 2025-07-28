@@ -22,53 +22,33 @@ namespace Datos
 
                 return accesoDatos.EjecutarConsultaSelectDataAdapter("SP_RetornarListaTurnos", parametros);
         }
-
-        public int registrarTurno(Turno turno, bool FinalizarTurno = false)
+        public int registrarTurno(Turno turno)
         {
             SqlCommand command = new SqlCommand
             {
                 CommandType = CommandType.StoredProcedure,
                 CommandText = "SP_AsignarTurno"
             };
-
-            if (!FinalizarTurno)
-            {
                 command.Parameters.AddWithValue("@DniPaciente", turno.DniPaciente);
                 command.Parameters.AddWithValue("@Fecha", turno.Fecha);
                 command.Parameters.AddWithValue("@IDEspecialidad", turno.IDEspecialidad);
                 command.Parameters.AddWithValue("@LegajoDoctor", turno.LegajoMed);
                 command.Parameters.AddWithValue("@Horario", turno.Hora);
-            }
-            else 
-            {
-                command.Parameters.AddWithValue("@DniPaciente", turno.DniPaciente);
-                command.Parameters.AddWithValue("@Fecha", turno.Fecha);
-                command.Parameters.AddWithValue("@IDEspecialidad", turno.IDEspecialidad);
-                command.Parameters.AddWithValue("@LegajoDoctor", turno.LegajoMed);
-                command.Parameters.AddWithValue("@Horario", turno.Hora);
-                command.Parameters.AddWithValue("@Estado", 0);
-
-            }
-
+                if (turno.Estado == 0) 
+                {
+                    command.Parameters.AddWithValue("@Estado", 0);
+                }
             return accesoDatos.EjecutarProcedimientoAlmacenado(command, "SP_AsignarTurno");
         }
-
-
-
         public DataTable InformeAsistencia(DateTime Desde, DateTime Hasta, string Tipo)
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@Desde",Desde),
                 new SqlParameter("@Hasta", Hasta),
-                new SqlParameter("@Tipo", Tipo)
+                new SqlParameter("@Tipo", Tipo) // Presentes Ausentes Total
             };
-
-            
-
             return accesoDatos.EjecutarConsultaSelectDataAdapter( "SP_InformeAsistencia", parametros);
         }
-
-
     }
 }

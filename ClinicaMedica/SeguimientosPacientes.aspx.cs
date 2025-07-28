@@ -2,7 +2,7 @@
 using Servicios;
 using System;
 using System.Data;
-using System.Web.UI;
+using System.Web.UI.WebControls;
 
 
 namespace ClinicaMedica
@@ -12,8 +12,7 @@ namespace ClinicaMedica
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack && Session["TurnoSeleccionado"] != null)
-            {
-               
+            { 
                 if (Session["UsuarioActivo"] != null)
                 {
                     btnUserImg.Visible = true;
@@ -35,7 +34,6 @@ namespace ClinicaMedica
                 }
             }
         }
-
         protected void btnFinalizarConsulta_Click(object sender, EventArgs e)
         {
             btnFinalizarConsulta.Enabled = false;
@@ -45,16 +43,16 @@ namespace ClinicaMedica
 
             txtComentario.EnableViewState = false;
           
-
             lblMensaje.Text = "Esta seguro de terminar la consulta?";
         }
-
-        protected void btnUnlogin_Click(object sender, EventArgs e)
+        protected void Menu_MenuItemClick(object sender, MenuEventArgs e)
         {
-            Session["UsuarioActivo"] = null;
-            Response.Redirect("ListadoTurnos.aspx");
+            if (e.Item.Value == "cerrarSesion")
+            {
+                Session["UsuarioActivo"] = null;
+                Response.Redirect("ListadoTurnos.aspx");
+            }
         }
-
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
             Turno turnoIniciado = (Turno)Session["TurnoSeleccionado"];
@@ -81,7 +79,6 @@ namespace ClinicaMedica
 
             btnAceptar.Visible = true;
         }
-
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             btnFinalizarConsulta.Enabled = true;
@@ -91,13 +88,11 @@ namespace ClinicaMedica
 
             txtComentario.EnableViewState = true;
         }
-
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             Session["TurnoSeleccionado"] = null;
             Response.Redirect("ListadoTurnos.aspx");
         }
-
         protected void ListarHistorialDelPaciente(string dni)
         {
             GestionRegistros gestionRegistros = new GestionRegistros();
@@ -108,11 +103,10 @@ namespace ClinicaMedica
                 lvHistorial.DataSource = HistorialPorPersona;
                 lvHistorial.DataBind();
             }
-        }
-
-        protected void btnUserImg_Click(object sender, ImageClickEventArgs e)
-        {
-            Response.Redirect("~/CambiarContraseña.aspx");
+            else
+            {
+                lvHistorial.DataBind();
+            }
         }
     }
 }

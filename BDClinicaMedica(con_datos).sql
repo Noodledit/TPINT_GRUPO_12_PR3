@@ -2,7 +2,7 @@ CREATE DATABASE ClinicaMedica
 GO
 USE ClinicaMedica
 GO
-SET DATEFORMAT dmy
+--SET DATEFORMAT dmy
 GO
 -- Eliminar tablas en orden correcto (de dependientes a independientes)
 DROP TABLE IF EXISTS TurnosDisponibles
@@ -62,12 +62,15 @@ DROP PROCEDURE IF EXISTS  SP_RegistrarConsulta
 GO
 DROP PROCEDURE IF EXISTS  sp_ListarHistorialDelPaciente
 GO
+--EXEC sp_ListarHistorialDelPaciente 
+
 DROP PROCEDURE IF EXISTS  SP_InformeAsistencia
 GO
 DROP PROCEDURE IF EXISTS  SP_ActualizarMedico
 GO
 DROP PROCEDURE IF EXISTS  SP_RetornarListaPacientes
 GO
+
 DROP PROCEDURE IF EXISTS  SP_BuscarPacientes
 GO
 DROP PROCEDURE IF EXISTS  SP_CambiarContraseñaUsuario
@@ -104,10 +107,9 @@ GO
 
 GO
 CREATE TABLE DiaSemana (
-    Semana_DS INT NOT NULL,
     IdDia_DS INT NOT NULL,
     Dia VARCHAR (9) NOT NULL,
-    CONSTRAINT PK_IdxSemana_DiaSemana PRIMARY KEY (Semana_DS, IdDia_DS)
+    CONSTRAINT PK_Id_DiaSemana PRIMARY KEY (IdDia_DS)
 )
 GO
 
@@ -171,7 +173,7 @@ CREATE TABLE TurnosDisponibles (
 	Estado_TD BIT NOT NULL DEFAULT 1,
 
     CONSTRAINT PK_Id_TD PRIMARY KEY (Semana_TD, IdDia_TD, LegajoDoctor, IdEspecialidad_TD, Horario_TD),
-    CONSTRAINT FK_IdxSemanaDia_TD FOREIGN KEY (Semana_TD, IdDia_TD) REFERENCES DiaSemana(Semana_DS, IdDia_DS),
+    CONSTRAINT FK_IdxSemanaDia_TD FOREIGN KEY (IdDia_TD) REFERENCES DiaSemana(IdDia_DS),
     CONSTRAINT FK_IdEspecialidad_TD FOREIGN KEY (IdEspecialidad_TD) REFERENCES Especialidades(Id_Esp),
     CONSTRAINT FK_LegajoDoctor_TD FOREIGN KEY (LegajoDoctor) REFERENCES Medicos (Legajo_Me),
     CONSTRAINT FK_DniPaciente_TD FOREIGN KEY (DniPaciente) REFERENCES DatosPersonales (Dni_DP)
@@ -186,7 +188,7 @@ CREATE TABLE SeguimientoPaciente (
     LegajoDoctor INT,
     IdEspecialidad INT,
     FechaYHora DATETIME DEFAULT GETDATE(),
-    Observacion VARCHAR(200),
+    Observacion VARCHAR(500),
 
     CONSTRAINT PK_NumeroSegxDniPaciente_SeguimientoPaciente PRIMARY KEY (NumeroSeguimiento, DniPaciente),
     CONSTRAINT FK_Dni_SeguimientoPaciente FOREIGN KEY (DniPaciente) REFERENCES DatosPersonales (Dni_DP),
@@ -417,7 +419,7 @@ BEGIN
         AND (@DniPaciente IS NULL OR TurnosDisponibles.DniPaciente = @DniPaciente)  
         AND (@Fecha IS NULL OR Fecha_TD = @Fecha)
         AND (@LegajoDoctor IS NULL OR TurnosDisponibles.LegajoDoctor = @LegajoDoctor)  
-        AND ((@Estado IS NULL AND TurnosDisponibles.DniPaciente IS NOT NULL)
+        AND ((@Estado IS NULL AND TurnosDisponibles.DniPaciente IS NOT NULL AND Estado_TD = 1)
             OR (Estado_TD = @Estado AND Estado_TD = 1 AND DniPaciente IS NULL)
             OR (Estado_TD = @Estado AND @Estado = 0))
 
@@ -425,7 +427,7 @@ BEGIN
 END
 GO
 
---exec SP_RetornarListaTurnos @LegajoDoctor = 11
+exec SP_RetornarListaTurnos
 
 GO
 
@@ -435,7 +437,7 @@ CREATE OR ALTER PROCEDURE SP_RetornarFechasTurnos
     @Estado BIT = NULL
 AS
 BEGIN
-    SELECT DISTINCT Fecha_TD as Fecha, IdDia_TD as IdDia, Semana_TD as Semana
+    SELECT DISTINCT Fecha_TD as Fecha, CAST(Semana_TD AS VARCHAR) + CAST(IdDia_TD AS VARCHAR) AS IdDia, Semana_TD
     FROM TurnosDisponibles
     WHERE (@IdEspecialidad IS NULL OR IdEspecialidad_TD = @IdEspecialidad)
     AND (@Legajo IS NULL OR LegajoDoctor = @Legajo)
@@ -493,12 +495,15 @@ AS
 BEGIN
     SELECT DISTINCT Horario_TD as Hora
     FROM TurnosDisponibles td
-    WHERE (@IdDia IS NULL OR IdDia_TD = @IdDia)
+    WHERE (@IdDia IS NULL OR (CAST(Semana_TD AS VARCHAR) + CAST(IdDia_TD AS VARCHAR)) = @IdDia)
     AND (@IdEspecialidad IS NULL OR IdEspecialidad_TD = @IdEspecialidad)
     AND (@Legajo IS NULL OR LegajoDoctor = @Legajo)
-    AND DniPaciente IS NULL -- esto me permite devolver solo los turnos que no tengan dni asignado
+    AND DniPaciente IS NULL
+    AND Estado_TD = 1
 END
 GO
+
+--exec SP_RetornarHorasTurnos @IdDia = 312, @IdEspecialidad = 1
 
 CREATE OR ALTER PROCEDURE SP_AsignarTurno  
     @DniPaciente VARCHAR(10) = NULL,
@@ -531,7 +536,8 @@ BEGIN
     BEGIN  
         UPDATE TurnosDisponibles
         SET Estado_TD = 0
-        WHERE Fecha_TD = @Fecha AND IdEspecialidad_TD = @IDEspecialidad   
+        WHERE Fecha_TD = @Fecha 
+        AND IdEspecialidad_TD = @IDEspecialidad   
         AND LegajoDoctor = @LegajoDoctor AND Horario_TD = @Horario
     END  
 END    
@@ -544,8 +550,8 @@ CREATE OR ALTER PROCEDURE SP_RegistrarConsulta
     @Observacion NVARCHAR(MAX)
 AS
 BEGIN
-    INSERT INTO SeguimientoPaciente (DniPaciente, LegajoDoctor, Observacion)
-    VALUES (@DniPaciente, @LegajoDoctor, @Observacion )
+    INSERT INTO SeguimientoPaciente (DniPaciente, IdEspecialidad, LegajoDoctor, Observacion)
+    VALUES (@DniPaciente, @IdEspecialidad, @LegajoDoctor, @Observacion )
 END
 GO
 
@@ -566,6 +572,9 @@ BEGIN
 END
 GO
 
+--EXEC sp_ListarHistorialDelPaciente '30648453'
+
+
 CREATE OR ALTER PROCEDURE SP_InformeAsistencia
     @Desde DATE,
     @Hasta DATE,
@@ -576,15 +585,28 @@ BEGIN
 
     IF @Tipo = 'p'
     BEGIN
-        SELECT Fecha_TD, DniPaciente, Estado_TD FROM TurnosDisponibles WHERE DniPaciente IS NOT NULL AND Fecha_TD BETWEEN @Desde AND @Hasta AND Estado_TD = 1
+        SELECT Fecha_TD, DniPaciente, Estado_TD 
+        FROM TurnosDisponibles 
+        WHERE DniPaciente IS NOT NULL 
+        AND Estado_TD = 1
+        AND Fecha_TD 
+        BETWEEN @Desde AND @Hasta
     END
     ELSE IF @Tipo = 'a'
     BEGIN
-        SELECT Fecha_TD, DniPaciente, Estado_TD FROM TurnosDisponibles WHERE DniPaciente IS NULL AND Fecha_TD BETWEEN @Desde AND @Hasta AND Estado_TD = 0
+        SELECT Fecha_TD, DniPaciente, Estado_TD 
+        FROM TurnosDisponibles 
+        WHERE DniPaciente IS NOT NULL 
+        AND Estado_TD = 0
+        AND Fecha_TD BETWEEN @Desde 
+        AND @Hasta
     END
 	ELSE IF @Tipo = 't'
 	BEGIN
-		SELECT Fecha_TD, DniPaciente, Estado_TD FROM TurnosDisponibles WHERE Fecha_TD BETWEEN @Desde AND @Hasta
+		SELECT Fecha_TD, DniPaciente
+        FROM TurnosDisponibles 
+        WHERE DniPaciente IS NOT NULL
+        AND Fecha_TD BETWEEN @Desde AND @Hasta
 	END
 END
 GO
@@ -3174,45 +3196,71 @@ VALUES
 GO
 
 PRINT 'Reinsertando días de la semana...'
-INSERT INTO DiaSemana (Semana_DS, IdDia_DS, Dia)
+INSERT INTO DiaSemana (IdDia_DS, Dia)
 VALUES
-(1, 1, 'Lunes'),
-(1, 2, 'Martes'),
-(1, 3, 'Miércoles'),
-(1, 4, 'Jueves'),
-(1, 5, 'Viernes'),
-(1, 6, 'Sábado'),
-(1, 7, 'Domingo')
+(1, 'Lunes'),
+(2, 'Martes'),
+(3, 'Miércoles'),
+(4, 'Jueves'),
+(5, 'Viernes'),
+(6, 'Sábado'),
+(7, 'Domingo')
 GO
 
 PRINT 'Reinsertando Datos Personales...' 
 
 INSERT INTO DatosPersonales (Dni_DP, Nombre_DP, Apellido_DP, Sexo_DP, Nacionalidad_DP, FechaNacimiento_DP, Direccion_DP, IdLocalidad_DP, IdProvincia_DP, CorreoElectronico_DP, Telefono_DP)
 VALUES
-    ('11111111', 'Claudio', 'Fernandez', 'Masculino', 'Argentina', '20-05-1990', 'Calle Falsa 123', 42, 15, 'claudio.fernandez@gmail.com', '3511234567'),
-	('11111112', 'Benito', 'Mussolini', 'Masculino', 'Argentina', '20-05-1990', 'Calle Falsa 123', 19, 7, 'ElBeniDeBaires@gmail.com', '114514414'),
-	('11111113', 'Luciana', 'Abbondanzieri', 'Femenino', 'Argentina', '03-07-1984', 'Calle Falsa 123', 33, 22, 'luciana.abbondanzieri@hotmail.com', '1123456789'),
-	('11111114', 'Sebastián', 'Battaglia', 'Masculino', 'Argentina', '06-07-1975', 'San Martín 100', 8, 3, 'sebastián.battaglia@gmail.com', '1123456789'),
-	('11111115', 'Yamila', 'Burdisso', 'Femenino', 'Argentina', '08-07-1967', 'San Martín 100', 27, 12, 'luciana.burdisso@hotmail.com', '3498654321'),
-	('11111116', 'Antonella', 'Quiñones', 'Femenino', 'Argentina', '07-07-1969', 'San Martín 100', 14, 9, 'antonella.abbondanzieri@gmail.com', '3412345678'),
-	('11111117', 'Martín', 'Figal', 'Masculino', 'Argentina', '29-06-2000', 'Av. Siempre Viva 742', 45, 18, 'martín.figal@hotmail.com', '3498654321'),
-	('11111118', 'Carlos', 'Tevez', 'Masculino', 'Argentina', '03-07-1985', 'Belgrano 200', 36, 5, 'martín.tevez@hotmail.com', '1156781234'),
-	('11111119', 'Juan Roman', 'Riquelme', 'Masculino', 'Argentina', '03-07-1986', 'Calle Falsa 123', 22, 14, 'hugo.figal@hotmail.com', '3412345678'),
-	('11111110', 'Claudio', 'Gago', 'Masculino', 'Argentina', '04-07-1982', 'Av. Siempre Viva 742', 50, 20, 'hugo.gago@xeneize.ar', '3498654321'),
-	('11111120', 'Darío', 'Mayorga', 'Masculino', 'Argentina', '03-07-1986', 'San Martín 100', 11, 1, 'darío.abbondanzieri@xeneize.ar', '2234567890'),
-	('11111121', 'Romina', 'Romero', 'Femenino', 'Argentina', '04-07-1982', 'Calle Falsa 123', 29, 16, 'romina.gago@boca.com', '3498654321'),
-	('11111122', 'Ángel', 'Palermo', 'Masculino', 'Argentina', '01-07-1993', 'Rivadavia 456', 17, 11, 'hugo.palermo@gmail.com', '1123456789'),
-	('11111123', 'Diego', 'Schelotto', 'Masculino', 'Argentina', '29-06-2002', 'Calle Falsa 123', 39, 23, 'diego.schelotto@xeneize.ar', '1156781234'),
-	('11111124', 'Miriam', 'Bregman', 'Femenino', 'Argentina', '06-07-1975', 'Rivadavia 456', 25, 8, 'antonella.palermo@gmail.com', '3412345678'),
-	('11111125', 'Estefanía', 'Latorre', 'Femenino', 'Argentina', '05-07-1977', 'Belgrano 200', 31, 19, 'romina.palermo@hotmail.com', '3498654321'),
-	('11111126', 'Edinson', 'Cavani', 'Masculino', 'Argentina', '03-07-1985', 'Calle Falsa 123', 47, 4, 'juan.schelotto@hotmail.com', '1156781234'),
-	('11111127', 'Julieta', 'Palomar', 'Femenino', 'Argentina', '05-07-1977', 'Rivadavia 456', 20, 13, 'julieta.abbondanzieri@boca.com', '2234567890'),
-	('11111128', 'Micaela', 'Maradona', 'Femenino', 'Argentina', '06-07-1975', 'Av. Siempre Viva 742', 34, 17, 'micaela.battaglia@xeneize.ar', '3412345678'),
-	('11111129', 'Daniela', 'Caniggia', 'Femenino', 'Argentina', '30-06-1996', 'Calle Falsa 123', 16, 6, 'daniela.battaglia@hotmail.com', '2234567890'),
-	('11111130', 'Florencia', 'Ojeda', 'Femenino', 'Argentina', '07-07-1968', 'San Martín 100', 28, 21, 'luciana.abbondanzieri@xeneize.ar', '1156781234'),
-	('11111131', 'Gabriel', 'Batistuta', 'Masculino', 'Argentina', '07-07-1970', 'Calle Falsa 123', 41, 10, 'martín.figal@xeneize.ar', '1156781234'),
-	('11111132', 'Javier Gerardo', 'Milei', 'Otro', 'Argentina', '22-10-1970', 'Alberdi 2023', 24, 2, 'bobotonto@gmai.co', '1131424397'),
-    ('11111133', 'Juan', 'Grabois', 'Masculino', 'Argentina', '22-12-1978', 'Roquepeña 2547', 24, 2, 'JuanG@gmai.com', '1136547894')
+('111222333', 'Benito', 'Mussolini', 'Masculino', 'Argentina', '20-05-1990', 'Calle Falsa 123', 19, 7, 'ElBeniDeBaires@gmail.com', '114514414'),
+('11223344', 'Sofia', 'Martines', 'Femenino', 'Argentina', '02-02-2000', 'Hipo lito 2000', 1258, 10, 'Camoy@gmail.com', '123452333'),
+('11223345', 'Lucas', 'Gomez', 'Masculino', 'Argentina', '02-04-2001', 'Pasaje Gutierrez 1436', 11, 1, 'SuperSonic@gmail.com', '1234445774'),
+('11223346', 'Valentina', 'Rodriguez', 'Femenino', 'Argentina', '05-05-1998', 'Pasaje Gutierrez 1436', 992, 9, 'Camoy@gmail.com', '1234447441'),
+('11223347', 'Mateo', 'Fernandez', 'Masculino', 'Argentina', '02-02-1996', 'Calle falsa 123', 101, 1, 'SuperSonic@gmail.com', '123452333'),
+('11223355', 'Sebastian', 'Sanches', 'Masculino', 'Venezolano', '02-05-2011', 'Hipo lito 2000', 13, 1, 'EverLudue@gmail.com', '1140977809'),
+('11223377', 'Aaron', 'King', 'Masculino', 'Ucrania', '05-03-1991', 'Calle falsa 123', 991, 9, 'SuperSonic@gmail.com', '123452333'),
+('11224455', 'Camila', 'Lopez', 'Femenino', 'Alemania', '02-03-1994', 'Pasaje Gutierrez 1436', 156, 2, 'Camoy@gmail.com', '1140977809'),
+('12124714', 'Julieta', 'Torres', 'Femenino', 'Venezolana', '02-03-2008', 'Pasaje Gutierrez 1436', 382, 5, 'Camoy@gmail.com', '123452333'),
+('12345678', 'Claudio', 'Fernandez', 'Masculino', 'Argentina', '20-05-1990', 'Calle Falsa 123', 42, 15, 'claudio.fernandez@gmail.com', '3511234567'),
+('22244441', 'Gonzalo', 'Blanco', 'Masculino', 'Argentina', '23-05-2001', 'Hipo lito 2000', 1429, 13, 'Camoy@gmail.com', '1140977809'),
+('30648453', 'Gabriel', 'Batistuta', 'Masculino', 'Argentina', '07-07-1970', 'Calle Falsa 123', 41, 10, 'martín.figal@xeneize.ar', '1156781234'),
+('30905510', 'Ángel', 'Palermo', 'Masculino', 'Argentina', '01-07-1993', 'Rivadavia 456', 17, 11, 'hugo.palermo@gmail.com', '1123456789'),
+('31132928', 'Sebastián', 'Battaglia', 'Masculino', 'Argentina', '06-07-1975', 'San Martín 100', 8, 3, 'sebastián.battaglia@gmail.com', '1123456789'),
+('32145765', 'Mateo', 'Friks', 'Masculino', 'Argentina', '07-09-1992', 'Hipo lito 2000', 14, 1, 'EverLudue@gmail.com', '123452333'),
+('33329213', 'Carlos', 'Tevez', 'Masculino', 'Argentina', '03-07-1985', 'Belgrano 200', 36, 5, 'martín.tevez@hotmail.com', '1156781234'),
+('33734151', 'Micaela', 'Maradona', 'Femenino', 'Argentina', '06-07-1975', 'Av. Siempre Viva 742', 34, 17, 'micaela.battaglia@xeneize.ar', '3412345678'),
+('34026835', 'Julieta', 'Palomar', 'Femenino', 'Argentina', '05-07-1977', 'Rivadavia 456', 20, 13, 'julieta.abbondanzieri@boca.com', '2234567890'),
+('35852988', 'Miriam', 'Bregman', 'Femenino', 'Argentina', '06-07-1975', 'Rivadavia 456', 25, 8, 'antonella.palermo@gmail.com', '3412345678'),
+('36611746', 'Darío', 'Mayorga', 'Masculino', 'Argentina', '03-07-1986', 'San Martín 100', 11, 1, 'darío.abbondanzieri@xeneize.ar', '2234567890'),
+('38385872', 'Antonella', 'Quiñones', 'Femenino', 'Argentina', '07-07-1969', 'San Martín 100', 14, 9, 'antonella.abbondanzieri@gmail.com', '3412345678'),
+('40766760', 'Juan Roman', 'Riquelme', 'Masculino', 'Argentina', '03-07-1986', 'Calle Falsa 123', 22, 14, 'hugo.figal@hotmail.com', '3412345678'),
+('44145634', 'Diego', 'Schelotto', 'Masculino', 'Argentina', '29-06-2002', 'Calle Falsa 123', 39, 23, 'diego.schelotto@xeneize.ar', '1156781234'),
+('44983535', 'Claudio', 'Gago', 'Masculino', 'Argentina', '04-07-1982', 'Av. Siempre Viva 742', 50, 20, 'hugo.gago@xeneize.ar', '3498654321'),
+('45723267', 'Luciana', 'Abbondanzieri', 'Femenino', 'Argentina', '03-07-1984', 'Calle Falsa 123', 33, 22, 'luciana.abbondanzieri@hotmail.com', '1123456789'),
+('45885108', 'Yamila', 'Burdisso', 'Femenino', 'Argentina', '08-07-1967', 'San Martín 100', 27, 12, 'luciana.burdisso@hotmail.com', '3498654321'),
+('46048605', 'Florencia', 'Ojeda', 'Femenino', 'Argentina', '07-07-1968', 'San Martín 100', 28, 21, 'luciana.abbondanzieri@xeneize.ar', '1156781234'),
+('46412949', 'Daniela', 'Caniggia', 'Femenino', 'Argentina', '30-06-1996', 'Calle Falsa 123', 16, 6, 'daniela.battaglia@hotmail.com', '2234567890'),
+('46645296', 'Martín', 'Figal', 'Masculino', 'Argentina', '29-06-2000', 'Av. Siempre Viva 742', 45, 18, 'martín.figal@hotmail.com', '3498654321'),
+('47999953', 'Edinson', 'Cavani', 'Masculino', 'Argentina', '03-07-1985', 'Calle Falsa 123', 47, 4, 'juan.schelotto@hotmail.com', '1156781234'),
+('49231607', 'Estefanía', 'Latorre', 'Femenino', 'Argentina', '05-07-1977', 'Belgrano 200', 31, 19, 'romina.palermo@hotmail.com', '3498654321'),
+('49232449', 'Romina', 'Romero', 'Femenino', 'Argentina', '04-07-1982', 'Calle Falsa 123', 29, 16, 'romina.gago@boca.com', '3498654321'),
+('53533244', 'Dante', 'The Hedchog', 'Masculino', 'Venezolana', '04-04-2004', 'Hipo lito 2000', 16, 1, 'SuperSonic@gmail.com', '1154577412'),
+('53533344', 'Sulivan', 'Poncio', 'Masculino', 'Venezolano', '02-04-2007', 'Hipo lito 2000', 293, 3, 'SuperSonic@gmail.com', '1234445774'),
+('55233344', 'Chilindrina', 'Del8', 'Femenino', 'Venezolano', '02-03-2010', 'Calle falsa 123', 14, 1, 'Camoy@gmail.com', '1234445774'),
+('554744111', 'Sonic', 'The Hedcho', 'Masculino', 'Argentina', '25-05-2001', 'Calle falsa 123', 12, 1, 'SuperSonic@gmail.com', '1234445774'),
+('55533343', 'Kim', 'Kardashian', 'Femenino', 'Venezolano', '03-03-2003', 'Calle falsa 123', 293, 3, 'Camoy@gmail.com', '1234445774'),
+('55533344', 'Fidel', 'Castro', 'Masculino', 'Cuba', '05-05-1953', 'Hipo lito 2000', 12, 1, 'SuperSonic@gmail.com', '1234445774'),
+('5555554', 'Ever', 'Ludueña', 'Masculino', 'Argentina', '23-09-1992', 'Calle falsa 123', 13, 1, 'EverLudue@gmail.com', '1234447441'),
+('5555555', 'Fito', 'Paez', 'Masculino', 'Argentina', '23-06-1983', 'Calle falsa 123', 11, 1, 'fito@gmail.com', '1234445774'),
+('66654454', 'Miguel', 'Fernandez', 'Masculino', 'Argentina', '02-06-2004', 'Calle falsa 123', 151, 2, 'SuperSonic@gmail.com', '1234445774'),
+('66666666', 'Javier Gerardo', 'Milei', 'Otro', 'Argentina', '22-10-1970', 'Alberdi 2023', 24, 2, 'bobotonto@gmai.co', '1131424397'),
+('99999226', 'Roman', 'Riquelme', 'Masculino', 'Argentina', '02-02-2002', 'Calle falsa 123', 15, 1, 'EverLudue@gmail.com', '1234445774'),
+('9999989', 'Miguel', 'Blanco', 'Masculino', 'Argentina', '04-04-1990', 'Calle falsa 123', 14, 1, 'Camoy@gmail.com', '1234445774'),
+('9999996', 'Roberto', 'Fernandez', 'Masculino', 'Argentina', '06-03-1985', 'Calle falsa 123', 10, 1, 'RoberFer@gmail.com', '1234555666'),
+('9999997', 'Camila', 'Moyano', 'Femenino', 'Argentina', '03-03-2010', 'Calle falsa 123', 8, 1, 'Camoy@gmail.com', '123452333'),
+('9999998', 'Dante', 'Blanco', 'Masculino', 'Argentina', '23-09-1992', 'Calle falsa 123', 10, 1, 'hblanco.nico@gmail.com', '1140977809'),
+('9999999', 'Miguel', 'Velasquez', 'Masculino', 'Venezolano', '05-05-2005', 'Hipo lito 2000', 13, 1, 'Miguelazques@gmail.com', '1154577412'),
+('99999999', 'Juan', 'Grabois', 'Masculino', 'Argentina', '22-12-1978', 'Roquepeña 2547', 24, 2, 'bobotonto@gmai.co', '1136547894')
+
 GO
 
 PRINT 'Reinsertando Especialidades...'
@@ -3229,272 +3277,254 @@ VALUES
 ('Otorrinolaringología'),
 ('Endocrinología')
 GO
---PRINT 'Reinsertando Medicos...'
---INSERT INTO Medicos(Dni_Me, IdEspecialidad_Me)
---VALUES 
---	('99999999', 1),
---	('49232449', 2),
---	('40766760', 3),
---	('30648453', 4),
---	('44145634', 5),
---	('45723267', 6),
---	('66666666', 7),
---	('33734151', 8),
---    ('30905510',9),
---    ('35852988',10),
---    ('111222333', 1),
---	('31132928', 2),
---	('36611746', 3),
---	('33329213', 4),
---	('49231607', 5),
---	('47999953', 6),
---	('44983535', 7),
---	('46048605', 8),
---    ('34026835',9),
---    ('45885108',10)
---GO
-
-PRINT 'Reinsertando Turnos Disponibles...'
---INSERT INTO TurnosDisponibles (Semana_TD, IdDia_TD, IdEspecialidad_TD, LegajoDoctor, Fecha_TD, Horario_TD, DniPaciente)
---VALUES 
---(1, 2, 4, 1, '25-06-2025', '9:00', '111222333'),
---(1, 2, 4, 1, '25-06-2025', '10:00', '111222333'),
---(1, 5, 1, 4, '25-07-2025', '15:00', '30648453'),
---(1, 5, 2, 4, '25-07-2025', '17:00', '30648453'),
---(1, 5, 3, 4, '25-07-2025', '16:00', '30648453'),
---(1, 5, 8, 4, '25-07-2025', '11:00', '30648453'),
---(1, 5, 6, 4, '25-07-2025', '14:00', '30648453'),
---(1, 5, 4, 8, '1-07-2025', '12:00', '33329213')
---GO
-
---INSERT INTO TurnosDisponibles (Semana_TD, IdDia_TD, IdEspecialidad_TD, LegajoDoctor, Fecha_TD, Horario_TD)
---VALUES
---(1, 1, 1, 1, '25-06-2025', '8:00'),
---(1, 1, 1, 1, '25-06-2025', '9:00'),
---(1, 1, 1, 1, '25-06-2025', '10:00'),
---(1, 1, 1, 1, '25-06-2025', '11:00'),
---(1, 1, 1, 1, '25-06-2025', '12:00'),
---(1, 1, 1, 1, '25-06-2025', '13:00'),
---(1, 1, 1, 1, '25-06-2025', '14:00'),
---(1, 1, 1, 1, '25-06-2025', '15:00'),
---(1, 1, 1, 1, '25-06-2025', '16:00'),
---(1, 1, 1, 1, '25-06-2025', '17:00'),
-
---(1, 1, 2, 2, '25-06-2025', '8:00'),
---(1, 1, 2, 2, '25-06-2025', '9:00'),
---(1, 1, 2, 2, '25-06-2025', '11:00'),
---(1, 1, 2, 2, '25-06-2025', '12:00'),
---(1, 1, 2, 2, '25-06-2025', '13:00'),
---(1, 1, 2, 2, '25-06-2025', '14:00'),
---(1, 1, 2, 2, '25-06-2025', '15:00'),
---(1, 1, 2, 2, '25-06-2025', '16:00'),
---(1, 1, 2, 2, '25-06-2025', '17:00'),
-
---(1, 2, 3, 3, '26-06-2025', '8:00'),
---(1, 2, 3, 3, '26-06-2025', '9:00'),
---(1, 2, 3, 3, '26-06-2025', '10:00'),
---(1, 2, 3, 3, '26-06-2025', '11:00'),
---(1, 2, 3, 3, '26-06-2025', '12:00'),
---(1, 2, 3, 3, '26-06-2025', '13:00'),
---(1, 2, 3, 3, '26-06-2025', '14:00'),
---(1, 2, 3, 3, '26-06-2025', '15:00'),
---(1, 2, 3, 3, '26-06-2025', '16:00'),
---(1, 2, 3, 3, '26-06-2025', '17:00'),
-
---(1, 2, 4, 4, '26-06-2025', '8:00'),
---(1, 2, 4, 4, '26-06-2025', '9:00'),
---(1, 2, 4, 4, '26-06-2025', '10:00'),
---(1, 2, 4, 4, '26-06-2025', '11:00'),
---(1, 2, 4, 4, '26-06-2025', '12:00'),
---(1, 2, 4, 4, '26-06-2025', '13:00'),
---(1, 2, 4, 4, '26-06-2025', '14:00'),
---(1, 2, 4, 4, '26-06-2025', '15:00'),
---(1, 2, 4, 4, '26-06-2025', '16:00'),
---(1, 2, 4, 4, '26-06-2025', '17:00'),
-
---(1, 3, 5, 5, '27-06-2025', '8:00'),
---(1, 3, 5, 5, '27-06-2025', '9:00'),
---(1, 3, 5, 5, '27-06-2025', '10:00'),
---(1, 3, 5, 5, '27-06-2025', '11:00'),
---(1, 3, 5, 5, '27-06-2025', '12:00'),
---(1, 3, 5, 5, '27-06-2025', '13:00'),
---(1, 3, 5, 5, '27-06-2025', '14:00'),
---(1, 3, 5, 5, '27-06-2025', '15:00'),
---(1, 3, 5, 5, '27-06-2025', '16:00'),
---(1, 3, 5, 5, '27-06-2025', '17:00'),
-
---(1, 3, 6, 6, '27-06-2025', '8:00'),
---(1, 3, 6, 6, '27-06-2025', '9:00'),
---(1, 3, 6, 6, '27-06-2025', '10:00'),
---(1, 3, 6, 6, '27-06-2025', '11:00'),
---(1, 3, 6, 6, '27-06-2025', '12:00'),
---(1, 3, 6, 6, '27-06-2025', '13:00'),
---(1, 3, 6, 6, '27-06-2025', '14:00'),
---(1, 3, 6, 6, '27-06-2025', '15:00'),
---(1, 3, 6, 6, '27-06-2025', '16:00'),
---(1, 3, 6, 6, '27-06-2025', '17:00'),
-
---(1, 4, 7, 7, '28-06-2025', '8:00'),
---(1, 4, 7, 7, '28-06-2025', '9:00'),
---(1, 4, 7, 7, '28-06-2025', '10:00'),
---(1, 4, 7, 7, '28-06-2025', '11:00'),
---(1, 4, 7, 7, '28-06-2025', '12:00'),
---(1, 4, 7, 7, '28-06-2025', '13:00'),
---(1, 4, 7, 7, '28-06-2025', '14:00'),
---(1, 4, 7, 7, '28-06-2025', '15:00'),
---(1, 4, 7, 7, '28-06-2025', '16:00'),
---(1, 4, 7, 7, '28-06-2025', '17:00'),
-
---(1, 4, 8, 8, '28-06-2025', '8:00'),
---(1, 4, 8, 8, '28-06-2025', '9:00'),
---(1, 4, 8, 8, '28-06-2025', '10:00'),
---(1, 4, 8, 8, '28-06-2025', '11:00'),
---(1, 4, 8, 8, '28-06-2025', '12:00'),
---(1, 4, 8, 8, '28-06-2025', '13:00'),
---(1, 4, 8, 8, '28-06-2025', '14:00'),
---(1, 4, 8, 8, '28-06-2025', '15:00'),
---(1, 4, 8, 8, '28-06-2025', '16:00'),
---(1, 4, 8, 8, '28-06-2025', '17:00'),
-
---(1, 5, 9, 9, '29-06-2025', '8:00'),
---(1, 5, 9, 9, '29-06-2025', '9:00'),
---(1, 5, 9, 9, '29-06-2025', '10:00'),
---(1, 5, 9, 9, '29-06-2025', '11:00'),
---(1, 5, 9, 9, '29-06-2025', '12:00'),
---(1, 5, 9, 9, '29-06-2025', '13:00'),
---(1, 5, 9, 9, '29-06-2025', '14:00'),
---(1, 5, 9, 9, '29-06-2025', '15:00'),
---(1, 5, 9, 9, '29-06-2025', '16:00'),
---(1, 5, 9, 9, '29-06-2025', '17:00'),
-
---(1, 5, 10, 10, '29-06-2025', '8:00'),
---(1, 5, 10, 10, '29-06-2025', '9:00'),
---(1, 5, 10, 10, '29-06-2025', '10:00'),
---(1, 5, 10, 10, '29-06-2025', '11:00'),
---(1, 5, 10, 10, '29-06-2025', '12:00'),
---(1, 5, 10, 10, '29-06-2025', '13:00'),
---(1, 5, 10, 10, '29-06-2025', '14:00'),
---(1, 5, 10, 10, '29-06-2025', '15:00'),
---(1, 5, 10, 10, '29-06-2025', '16:00'),
---(1, 5, 10, 10, '29-06-2025', '17:00'),
-
---(1, 2, 1, 11, '26-06-2025', '8:00'),
---(1, 2, 1, 11, '26-06-2025', '9:00'),
---(1, 2, 1, 11, '26-06-2025', '10:00'),
---(1, 2, 1, 11, '26-06-2025', '11:00'),
---(1, 2, 1, 11, '26-06-2025', '12:00'),
---(1, 2, 1, 11, '26-06-2025', '13:00'),
---(1, 2, 1, 11, '26-06-2025', '14:00'),
---(1, 2, 1, 11, '26-06-2025', '15:00'),
---(1, 2, 1, 11, '26-06-2025', '16:00'),
---(1, 2, 1, 11, '26-06-2025', '17:00'),
-
---(1, 1, 2, 12, '25-06-2025', '8:00'),
---(1, 1, 2, 12, '25-06-2025', '9:00'),
---(1, 1, 2, 12, '25-06-2025', '10:00'),
---(1, 1, 2, 12, '25-06-2025', '11:00'),
---(1, 1, 2, 12, '25-06-2025', '12:00'),
---(1, 1, 2, 12, '25-06-2025', '13:00'),
---(1, 1, 2, 12, '25-06-2025', '14:00'),
---(1, 1, 2, 12, '25-06-2025', '15:00'),
---(1, 1, 2, 12, '25-06-2025', '16:00'),
---(1, 1, 2, 12, '25-06-2025', '17:00'),
-
---(1, 3, 3, 13, '27-06-2025', '8:00'),
---(1, 3, 3, 13, '27-06-2025', '9:00'),
---(1, 3, 3, 13, '27-06-2025', '10:00'),
---(1, 3, 3, 13, '27-06-2025', '11:00'),
---(1, 3, 3, 13, '27-06-2025', '12:00'),
---(1, 3, 3, 13, '27-06-2025', '13:00'),
---(1, 3, 3, 13, '27-06-2025', '14:00'),
---(1, 3, 3, 13, '27-06-2025', '15:00'),
---(1, 3, 3, 13, '27-06-2025', '16:00'),
---(1, 3, 3, 13, '27-06-2025', '17:00'),
-
---(1, 2, 4, 14, '26-06-2025', '8:00'),
---(1, 2, 4, 14, '26-06-2025', '9:00'),
---(1, 2, 4, 14, '26-06-2025', '11:00'),
---(1, 2, 4, 14, '26-06-2025', '12:00'),
---(1, 2, 4, 14, '26-06-2025', '13:00'),
---(1, 2, 4, 14, '26-06-2025', '14:00'),
---(1, 2, 4, 14, '26-06-2025', '15:00'),
---(1, 2, 4, 14, '26-06-2025', '16:00'),
---(1, 2, 4, 14, '26-06-2025', '17:00'),
-
---(1, 4, 5, 15, '28-06-2025', '8:00'),
---(1, 4, 5, 15, '28-06-2025', '9:00'),
---(1, 4, 5, 15, '28-06-2025', '10:00'),
---(1, 4, 5, 15, '28-06-2025', '11:00'),
---(1, 4, 5, 15, '28-06-2025', '12:00'),
---(1, 4, 5, 15, '28-06-2025', '13:00'),
---(1, 4, 5, 15, '28-06-2025', '14:00'),
---(1, 4, 5, 15, '28-06-2025', '15:00'),
---(1, 4, 5, 15, '28-06-2025', '16:00'),
---(1, 4, 5, 15, '28-06-2025', '17:00'),
-
---(1, 3, 6, 16, '27-06-2025', '8:00'),
---(1, 3, 6, 16, '27-06-2025', '9:00'),
---(1, 3, 6, 16, '27-06-2025', '10:00'),
---(1, 3, 6, 16, '27-06-2025', '11:00'),
---(1, 3, 6, 16, '27-06-2025', '12:00'),
---(1, 3, 6, 16, '27-06-2025', '13:00'),
---(1, 3, 6, 16, '27-06-2025', '14:00'),
---(1, 3, 6, 16, '27-06-2025', '15:00'),
---(1, 3, 6, 16, '27-06-2025', '16:00'),
---(1, 3, 6, 16, '27-06-2025', '17:00'),
-
---(1, 6, 7, 17, '30-06-2025', '8:00'),
---(1, 6, 7, 17, '30-06-2025', '9:00'),
---(1, 6, 7, 17, '30-06-2025', '10:00'),
---(1, 6, 7, 17, '30-06-2025', '11:00'),
---(1, 6, 7, 17, '30-06-2025', '12:00'),
---(1, 6, 7, 17, '30-06-2025', '13:00'),
---(1, 6, 7, 17, '30-06-2025', '14:00'),
---(1, 6, 7, 17, '30-06-2025', '15:00'),
---(1, 6, 7, 17, '30-06-2025', '16:00'),
---(1, 6, 7, 17, '30-06-2025', '17:00'),
-
---(1, 5, 8, 18, '29-06-2025', '8:00'),
---(1, 5, 8, 18, '29-06-2025', '9:00'),
---(1, 5, 8, 18, '29-06-2025', '10:00'),
---(1, 5, 8, 18, '29-06-2025', '11:00'),
---(1, 5, 8, 18, '29-06-2025', '12:00'),
---(1, 5, 8, 18, '29-06-2025', '13:00'),
---(1, 5, 8, 18, '29-06-2025', '14:00'),
---(1, 5, 8, 18, '29-06-2025', '15:00'),
---(1, 5, 8, 18, '29-06-2025', '16:00'),
---(1, 5, 8, 18, '29-06-2025', '17:00'),
-
---(1, 7, 9, 19, '24-06-2025', '8:00'),
---(1, 7, 9, 19, '24-06-2025', '9:00'),
---(1, 7, 9, 19, '24-06-2025', '10:00'),
---(1, 7, 9, 19, '24-06-2025', '11:00'),
---(1, 7, 9, 19, '24-06-2025', '12:00'),
---(1, 7, 9, 19, '24-06-2025', '13:00'),
---(1, 7, 9, 19, '24-06-2025', '14:00'),
---(1, 7, 9, 19, '24-06-2025', '15:00'),
---(1, 7, 9, 19, '24-06-2025', '16:00'),
---(1, 7, 9, 19, '24-06-2025', '17:00'),
-
---(1, 5, 10, 20, '29-06-2025', '8:00'),
---(1, 5, 10, 20, '29-06-2025', '9:00'),
---(1, 5, 10, 20, '29-06-2025', '10:00'),
---(1, 5, 10, 20, '29-06-2025', '11:00'),
---(1, 5, 10, 20, '29-06-2025', '12:00'),
---(1, 5, 10, 20, '29-06-2025', '13:00'),
---(1, 5, 10, 20, '29-06-2025', '14:00'),
---(1, 5, 10, 20, '29-06-2025', '15:00'),
---(1, 5, 10, 20, '29-06-2025', '16:00'),
---(1, 5, 10, 20, '29-06-2025', '17:00')
---GO
-
-PRINT 'Reinsertando al Administrador'
-INSERT INTO Usuarios (NombreUsuario, Contraseña, TipoUsuario, DniUsuario)
+PRINT 'Reinsertando Medicos...'
+INSERT INTO Medicos(Dni_Me, IdEspecialidad_Me)
 VALUES 
-	('ClauFer','Aprobados',2,'11111111')
+('9999999', 1),
+('9999998', 2),
+('9999997', 3),
+('9999996', 4),
+('55533344', 5),
+('99999226', 6),
+('55533343', 7),
+('53533344', 8),
+('55233344', 9),
+('53533244', 10),
+('9999989', 1),
+('11223344', 2),
+('11223345', 3),
+('11223346', 4),
+('11223347', 5),
+('11224455', 6),
+('11223355', 7),
+('11223377', 8),
+('12124714', 9),
+('32145765', 10)
 GO
 
---INSERT INTO Usuarios (NombreUsuario, Contraseña, TipoUsuario, DniUsuario, LegajoDoctor)
---VALUES 	
---	('mussi','mussi',1,'111222333',11)
---GO
+PRINT 'Reinsertando Turnos Disponibles...'
+
+INSERT INTO TurnosDisponibles (Semana_TD, IdDia_TD, IdEspecialidad_TD, LegajoDoctor, Fecha_TD, Horario_TD)
+VALUES
+(31, 1, 1, 1, '28-07-2025', '8:00')
+GO
+
+INSERT INTO TurnosDisponibles (Semana_TD, IdDia_TD, IdEspecialidad_TD, LegajoDoctor, Fecha_TD, Horario_TD, DniPaciente)
+VALUES
+-- Semana 31 (28/07/2025 - 03/08/2025)
+(31, 1, 2, 2, '28-07-2025', '9:00', '11223344'),
+(31, 1, 3, 3, '28-07-2025', '10:00', '11223345'),
+(31, 1, 4, 4, '28-07-2025', '11:00', '11223346'),
+(31, 1, 5, 5, '28-07-2025', '12:00', '11223347'),
+(31, 1, 1, 6, '28-07-2025', '13:00', '11224455'),
+
+(31, 2, 2, 7, '29-07-2025', '8:00', '11223355'),
+(31, 2, 3, 8, '29-07-2025', '9:00', '11223377'),
+(31, 2, 4, 9, '29-07-2025', '10:00', '12124714'),
+(31, 2, 5, 10, '29-07-2025', '11:00', '32145765'),
+(31, 2, 1, 11, '29-07-2025', '12:00', '12345678'),
+(31, 2, 2, 12, '29-07-2025', '13:00', '22244441'),
+
+(31, 3, 3, 13, '30-07-2025', '8:00', '30648453'),
+(31, 3, 4, 14, '30-07-2025', '9:00', '30905510'),
+(31, 3, 5, 15, '30-07-2025', '10:00', '31132928'),
+(31, 3, 1, 16, '30-07-2025', '11:00', '33329213'),
+(31, 3, 2, 17, '30-07-2025', '12:00', '33734151'),
+(31, 3, 3, 18, '30-07-2025', '13:00', '34026835'),
+
+(31, 4, 4, 19, '31-07-2025', '8:00', '35852988'),
+(31, 4, 5, 20, '31-07-2025', '9:00', '36611746'),
+(31, 4, 1, 1, '31-07-2025', '10:00', '38385872'),
+(31, 4, 2, 2, '31-07-2025', '11:00', '40766760'),
+(31, 4, 3, 3, '31-07-2025', '12:00', '44145634'),
+(31, 4, 4, 4, '31-07-2025', '13:00', '44983535'),
+
+(31, 5, 5, 5, '01-08-2025', '8:00', '45723267'),
+(31, 5, 1, 6, '01-08-2025', '9:00', '45885108'),
+(31, 5, 2, 7, '01-08-2025', '10:00', '46048605'),
+(31, 5, 3, 8, '01-08-2025', '11:00', '46412949'),
+(31, 5, 4, 9, '01-08-2025', '12:00', '46645296'),
+(31, 5, 5, 10, '01-08-2025', '13:00', '47999953'),
+
+(31, 6, 1, 11, '02-08-2025', '8:00', '49231607'),
+(31, 6, 2, 12, '02-08-2025', '9:00', '49232449'),
+(31, 6, 3, 13, '02-08-2025', '10:00', '53533244'),
+(31, 6, 4, 14, '02-08-2025', '11:00', '53533344'),
+(31, 6, 5, 15, '02-08-2025', '12:00', '55233344'),
+(31, 6, 1, 16, '02-08-2025', '13:00', '554744111'),
+
+(31, 7, 2, 17, '03-08-2025', '8:00', '55533343'),
+(31, 7, 3, 18, '03-08-2025', '9:00', '55533344'),
+(31, 7, 4, 19, '03-08-2025', '10:00', '5555554'),
+(31, 7, 5, 20, '03-08-2025', '11:00', '5555555'),
+(31, 7, 1, 1, '03-08-2025', '12:00', '66654454'),
+(31, 7, 2, 2, '03-08-2025', '13:00', '66666666'),
+
+-- Semana 32 (04/08/2025 - 10/08/2025)
+(32, 1, 3, 3, '04-08-2025', '8:00', '9999999'),
+(32, 1, 4, 4, '04-08-2025', '9:00', '9999998'),
+(32, 1, 5, 5, '04-08-2025', '10:00', '9999997'),
+(32, 1, 1, 6, '04-08-2025', '11:00', '9999996'),
+(32, 1, 2, 7, '04-08-2025', '12:00', '55533344'),
+(32, 1, 3, 8, '04-08-2025', '13:00', '99999226'),
+
+(32, 2, 4, 9, '05-08-2025', '8:00', '55533343'),
+(32, 2, 5, 10, '05-08-2025', '9:00', '53533344'),
+(32, 2, 1, 11, '05-08-2025', '10:00', '55233344'),
+(32, 2, 2, 12, '05-08-2025', '11:00', '53533244'),
+(32, 2, 3, 13, '05-08-2025', '12:00', '9999989'),
+(32, 2, 4, 14, '05-08-2025', '13:00', '11223344'),
+
+(32, 3, 5, 15, '06-08-2025', '8:00', '11223345'),
+(32, 3, 1, 16, '06-08-2025', '9:00', '11223346'),
+(32, 3, 2, 17, '06-08-2025', '10:00', '11223347'),
+(32, 3, 3, 18, '06-08-2025', '11:00', '11224455'),
+(32, 3, 4, 19, '06-08-2025', '12:00', '11223355'),
+(32, 3, 5, 20, '06-08-2025', '13:00', '11223377'),
+
+(32, 4, 1, 1, '07-08-2025', '8:00', '12124714'),
+(32, 4, 2, 2, '07-08-2025', '9:00', '32145765'),
+(32, 4, 3, 3, '07-08-2025', '10:00', '99999999'),
+(32, 4, 4, 4, '07-08-2025', '11:00', '9999999'),
+(32, 4, 5, 5, '07-08-2025', '12:00', '9999998'),
+(32, 4, 1, 6, '07-08-2025', '13:00', '9999997'),
+
+(32, 5, 2, 7, '08-08-2025', '8:00', '9999996'),
+(32, 5, 3, 8, '08-08-2025', '9:00', '55533344'),
+(32, 5, 4, 9, '08-08-2025', '10:00', '99999226'),
+(32, 5, 5, 10, '08-08-2025', '11:00', '55533343'),
+(32, 5, 1, 11, '08-08-2025', '12:00', '53533344'),
+(32, 5, 2, 12, '08-08-2025', '13:00', '55233344'),
+
+(32, 6, 3, 13, '09-08-2025', '8:00', '53533244'),
+(32, 6, 4, 14, '09-08-2025', '9:00', '9999989'),
+(32, 6, 5, 15, '09-08-2025', '10:00', '11223344'),
+(32, 6, 1, 16, '09-08-2025', '11:00', '11223345'),
+(32, 6, 2, 17, '09-08-2025', '12:00', '11223346'),
+(32, 6, 3, 18, '09-08-2025', '13:00', '11223347'),
+
+(32, 7, 4, 19, '10-08-2025', '8:00', '11224455'),
+(32, 7, 5, 20, '10-08-2025', '9:00', '11223355'),
+(32, 7, 1, 1, '10-08-2025', '10:00', '11223377'),
+(32, 7, 2, 2, '10-08-2025', '11:00', '12124714'),
+(32, 7, 3, 3, '10-08-2025', '12:00', '32145765'),
+(32, 7, 4, 4, '10-08-2025', '13:00', '12345678')
+GO
+
+PRINT 'Reinsertando al Administrador'
+INSERT INTO Usuarios (NombreUsuario, Contraseña, TipoUsuario, DniUsuario, LegajoDoctor)
+VALUES
+	('ClauFer','Aprobados',2,'12345678',NULL),
+	('FitPae006','FitPae006',2,'5555555',NULL),
+	('EveLud007','EveLud007',2,'5555554',NULL),
+	('SonThe008','SonThe008',2,'554744111',NULL),
+	('MigFer025','Alquimia',2,'66654454',NULL)
+GO
+
+PRINT 'Reinsertando MEDICOS'
+INSERT INTO Usuarios (NombreUsuario, Contraseña, TipoUsuario, DniUsuario, LegajoDoctor)
+VALUES
+	('MigVel002','MigVel002',1,'9999999',1),
+	('DanBla003','DanBla003',1,'9999998',2),
+	('CamMoy004','CamMoy004',1,'9999997',3),
+	('RobFer005','RobFer005',1,'9999996',4),
+	('FidCas009','FidCas009',1,'55533344',5),
+	('RomRiq010','RomRiq010',1,'99999226',6),
+	('KimKar011','KimKar011',1,'55533343',7),
+	('SulPon012','SulPon012',1,'53533344',8),
+	('ChiDel013','ChiDel013',1,'55233344',9),
+	('DanThe014','DanThe014',1,'53533244',10),
+	('MigBla015','MigBla015',1,'9999989',11),
+	('SofMar016','SofMar016',1,'11223344',12),
+	('LucGom017','LucGom017',1,'11223345',13),
+	('ValRod018','ValRod018',1,'11223346',14),
+	('MatFer019','MatFer019',1,'11223347',15),
+	('CamLop020','CamLop020',1,'11224455',16),
+	('SebSan021','SebSan021',1,'11223355',17),
+	('AarKin022','AarKin022',1,'11223377',18),
+	('JulTor023','JulTor023',1,'12124714',19),
+	('MatFri024','MatFri024',1,'32145765',20)
+GO
+
+SET DATEFORMAT dmy;
+GO
+
+-- Seguimientos para 12345678
+INSERT INTO SeguimientoPaciente (DniPaciente, LegajoDoctor, IdEspecialidad, FechaYHora, Observacion)
+VALUES
+('12345678', 3, 2, '10-07-2025 08:00', 'Control general, sin novedades.'),
+('12345678', 3, 2, '17-07-2025 08:20', 'Dolor de cabeza persistente, se sugiere reposo.'),
+('12345678', 3, 2, '24-07-2025 08:30', 'Mejoría notable, sin cefaleas.');
+GO
+exec SP_RetornarListaTurnos
+-- Seguimientos para 22244441
+INSERT INTO SeguimientoPaciente (DniPaciente, LegajoDoctor, IdEspecialidad, FechaYHora, Observacion)
+VALUES
+('22244441', 5, 1, '11-07-2025 08:40', 'Paciente refiere molestias estomacales, se indica dieta blanda.'),
+('22244441', 5, 1, '18-07-2025 09:00', 'Mejoría en síntomas, se continúa observación.'),
+('22244441', 5, 1, '25-07-2025 09:10', 'Sin molestias, se autoriza actividad normal.');
+GO
+
+-- Seguimientos para 30648453
+INSERT INTO SeguimientoPaciente (DniPaciente, LegajoDoctor, IdEspecialidad, FechaYHora, Observacion)
+VALUES
+('30648453', 6, 3, '10-07-2025 09:20', 'Control postquirúrgico, evolución favorable.'),
+('30648453', 6, 3, '17-07-2025 09:40', 'Retiro de puntos, sin signos de infección.'),
+('30648453', 6, 3, '24-07-2025 09:50', 'Alta definitiva, recuperación completa.');
+GO
+
+-- Seguimientos para 30905510
+INSERT INTO SeguimientoPaciente (DniPaciente, LegajoDoctor, IdEspecialidad, FechaYHora, Observacion)
+VALUES
+('30905510', 7, 4, '11-07-2025 10:00', 'Consulta por tos persistente, se receta jarabe.'),
+('30905510', 7, 4, '18-07-2025 10:20', 'Síntomas ceden, se da el alta.'),
+('30905510', 7, 4, '25-07-2025 10:40', 'Sin tos, se recomienda control en un mes.');
+GO
+
+-- Seguimientos para 31132928
+INSERT INTO SeguimientoPaciente (DniPaciente, LegajoDoctor, IdEspecialidad, FechaYHora, Observacion)
+VALUES
+('31132928', 8, 2, '10-07-2025 10:40', 'Consulta de rutina, todo en orden.'),
+('31132928', 8, 2, '17-07-2025 11:00', 'Chequeo de presión arterial, valores normales.'),
+('31132928', 8, 2, '24-07-2025 11:10', 'Revisión mensual, sin novedades.');
+GO
+
+-- Seguimientos para 33329213
+INSERT INTO SeguimientoPaciente (DniPaciente, LegajoDoctor, IdEspecialidad, FechaYHora, Observacion)
+VALUES
+('33329213', 9, 5, '10-07-2025 11:20', 'Dolor en rodilla izquierda, se solicita RX.'),
+('33329213', 9, 5, '17-07-2025 11:40', 'RX muestra leve inflamación, se receta antiinflamatorio.'),
+('33329213', 9, 5, '24-07-2025 11:50', 'Dolor disminuyó, continuar con medicación.');
+GO
+
+-- Seguimientos para 33734151
+INSERT INTO SeguimientoPaciente (DniPaciente, LegajoDoctor, IdEspecialidad, FechaYHora, Observacion)
+VALUES
+('33734151', 10, 3, '11-07-2025 12:00', 'Paciente en tratamiento psicológico, evolución estable.'),
+('33734151', 10, 3, '18-07-2025 12:20', 'Continúa tratamiento, ánimo mejorado.'),
+('33734151', 10, 3, '25-07-2025 12:30', 'Sigue con buena evolución, se programa próxima sesión.');
+GO
+
+-- Seguimientos para 34026835
+INSERT INTO SeguimientoPaciente (DniPaciente, LegajoDoctor, IdEspecialidad, FechaYHora, Observacion)
+VALUES
+('34026835', 11, 2, '10-07-2025 12:40', 'Consulta por control de peso.'),
+('34026835', 11, 2, '17-07-2025 13:00', 'Se indica dieta y caminatas diarias.'),
+('34026835', 11, 2, '24-07-2025 13:10', 'Bajó 1,5 kg, buen cumplimiento.');
+GO
+
+-- Seguimientos para 35852988
+INSERT INTO SeguimientoPaciente (DniPaciente, LegajoDoctor, IdEspecialidad, FechaYHora, Observacion)
+VALUES
+('35852988', 12, 4, '11-07-2025 13:20', 'Consulta por dolor lumbar.'),
+('35852988', 12, 4, '18-07-2025 13:40', 'Mejoría tras sesiones de kinesiología.'),
+('35852988', 12, 4, '25-07-2025 13:50', 'Sin dolor, alta de tratamiento.');
+GO
+
+-- Seguimientos para 36611746
+INSERT INTO SeguimientoPaciente (DniPaciente, LegajoDoctor, IdEspecialidad, FechaYHora, Observacion)
+VALUES
+('36611746', 13, 1, '10-07-2025 14:00', 'Chequeo general, paciente sano.'),
+('36611746', 13, 1, '17-07-2025 14:20', 'Análisis de sangre normales.'),
+('36611746', 13, 1, '24-07-2025 14:30', 'Consulta por control mensual, todo en orden.');
+GO
