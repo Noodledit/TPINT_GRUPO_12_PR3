@@ -2,7 +2,7 @@ CREATE DATABASE ClinicaMedica
 GO
 USE ClinicaMedica
 GO
---SET DATEFORMAT dmy
+SET DATEFORMAT dmy
 GO
 -- Eliminar tablas en orden correcto (de dependientes a independientes)
 DROP TABLE IF EXISTS TurnosDisponibles
