@@ -575,6 +575,7 @@ GO
 --EXEC sp_ListarHistorialDelPaciente '30648453'
 
 
+
 CREATE OR ALTER PROCEDURE SP_InformeAsistencia
     @Desde DATE,
     @Hasta DATE,
@@ -583,33 +584,52 @@ AS
 BEGIN
     SET NOCOUNT ON
 
-    IF @Tipo = 'p'
+
+IF @Tipo = 'p' -- Presentes: tienen seguimiento en la misma fecha o posterior al turno
+BEGIN
+    SELECT 
+        TD.Fecha_TD, TD.DniPaciente, TD.Estado_TD
+    FROM TurnosDisponibles TD
+    WHERE TD.DniPaciente IS NOT NULL
+        AND TD.Estado_TD = 0
+        AND TD.Fecha_TD BETWEEN @Desde AND @Hasta
+        AND EXISTS (
+            SELECT 1 FROM SeguimientoPaciente SP WHERE SP.DniPaciente = TD.DniPaciente
+              AND SP.LegajoDoctor = TD.LegajoDoctor
+              AND SP.IdEspecialidad = TD.IdEspecialidad_TD
+			  AND SP.Observacion IS NOT NULL
+              --AND CONVERT(DATE, SP.FechaYHora) >= TD.Fecha_TD 
+        )
+END 
+
+
+    ELSE IF @Tipo = 'a' -- Ausentes
+    BEGIN
+        SELECT Fecha_TD, TurnosDisponibles.DniPaciente, Estado_TD FROM TurnosDisponibles
+        LEFT JOIN SeguimientoPaciente
+            ON SeguimientoPaciente.DniPaciente = TurnosDisponibles.DniPaciente
+            AND SeguimientoPaciente.LegajoDoctor = TurnosDisponibles.LegajoDoctor
+            AND SeguimientoPaciente.IdEspecialidad = TurnosDisponibles.IdEspecialidad_TD
+            AND CAST(SeguimientoPaciente.FechaYHora AS DATE) = TurnosDisponibles.Fecha_TD
+        WHERE TurnosDisponibles.DniPaciente IS NOT NULL
+            AND TurnosDisponibles.Estado_TD = 0
+            AND TurnosDisponibles.Fecha_TD BETWEEN @Desde AND @Hasta
+            AND SeguimientoPaciente.Observacion IS NULL
+    END
+	
+
+    ELSE IF @Tipo = 't' -- Todos los turnos
     BEGIN
         SELECT Fecha_TD, DniPaciente, Estado_TD 
-        FROM TurnosDisponibles 
+        FROM TurnosDisponibles
         WHERE DniPaciente IS NOT NULL 
-        AND Estado_TD = 1
-        AND Fecha_TD 
-        BETWEEN @Desde AND @Hasta
+		AND Fecha_TD BETWEEN @Desde AND @Hasta
     END
-    ELSE IF @Tipo = 'a'
-    BEGIN
-        SELECT Fecha_TD, DniPaciente, Estado_TD 
-        FROM TurnosDisponibles 
-        WHERE DniPaciente IS NOT NULL 
-        AND Estado_TD = 0
-        AND Fecha_TD BETWEEN @Desde 
-        AND @Hasta
-    END
-	ELSE IF @Tipo = 't'
-	BEGIN
-		SELECT Fecha_TD, DniPaciente
-        FROM TurnosDisponibles 
-        WHERE DniPaciente IS NOT NULL
-        AND Fecha_TD BETWEEN @Desde AND @Hasta
-	END
 END
 GO
+
+
+
 
 CREATE OR ALTER PROCEDURE SP_ActualizarMedico
     @Dni VARCHAR(10),
@@ -3263,6 +3283,8 @@ VALUES
 
 GO
 
+
+
 PRINT 'Reinsertando Especialidades...'
 INSERT INTO Especialidades (Nombre_Esp)
 VALUES 
@@ -3446,8 +3468,8 @@ VALUES
 	('MatFri024','MatFri024',1,'32145765',20)
 GO
 
-SET DATEFORMAT dmy;
-GO
+--SET DATEFORMAT dmy;
+--GO
 
 -- Seguimientos para 12345678
 INSERT INTO SeguimientoPaciente (DniPaciente, LegajoDoctor, IdEspecialidad, FechaYHora, Observacion)
