@@ -56,12 +56,14 @@ namespace ClinicaMedica
                 int totalPresent = present.Rows.Count;
                 int totalAusent = ausent.Rows.Count;
 
-                //lblMensaje.Text = totalPresent.ToString();
+                totalAusent = totalAusent - totalPresent;
+
+                //lblMensaje.Text = totalTurns.ToString();
 
                 if (totalTurns > 0)
                 {
-                    float porcentajePresentes = (float)(totalPresent * 100)/totalTurns;
-                    float porcentajeAusentes = (float)(totalAusent * 100) /totalTurns;
+                    float porcentajePresentes = (float)(totalPresent * 100f)/totalTurns;
+                    float porcentajeAusentes = (float)(totalAusent * 100f) /totalTurns;
 
                     lblPresentes.Text = porcentajePresentes.ToString("0.00")+"%";
                     lblAusentes.Text = porcentajeAusentes.ToString("0.00")+"%";

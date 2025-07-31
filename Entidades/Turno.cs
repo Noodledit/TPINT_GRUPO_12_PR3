@@ -18,7 +18,7 @@ namespace Entidades
 
         public Turno(string dnipaciente = null, string nombrePaciente = null, 
             int? iDEspecialidad = null, int? legajoMed = null, DateTime? 
-            fecha = null, TimeSpan? hora = null)
+            fecha = null, TimeSpan? hora = null, int estado = 1)
         {
             DniPaciente = dnipaciente;
             NombrePaciente = nombrePaciente;
@@ -26,6 +26,7 @@ namespace Entidades
             LegajoMed = legajoMed;
             Fecha = fecha;
             Hora = hora;
+            Estado = estado;
         }
     }
 }

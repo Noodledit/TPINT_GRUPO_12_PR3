@@ -4,6 +4,7 @@ using System;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Web.Configuration;
 using System.Web.UI.WebControls;
 
 
@@ -336,6 +337,7 @@ namespace ClinicaMedica
 
             GridViewRow fila = gvTurnos.Rows[e.RowIndex];
             ConfiguracionTurno = new Turno(
+                dnipaciente: ((System.Web.UI.WebControls.Label)fila.FindControl("lbl_it_DniPaciente")).Text,
                 iDEspecialidad: idEspecialidad,
                 legajoMed: legajo,
                 fecha: Convert.ToDateTime(((System.Web.UI.WebControls.Label)fila.FindControl("lbl_it_Fecha")).Text),

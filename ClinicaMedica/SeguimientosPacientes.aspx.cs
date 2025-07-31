@@ -22,7 +22,8 @@ namespace ClinicaMedica
                     ListarHistorialDelPaciente(turno.DniPaciente);
                     lblBienvenidoUsuario.Text = usuario.NombreUsuario + " " + usuario.ApellidoUsuario;
 
-                    DateTime Fecha = DateTime.Now;
+                    //DateTime Fecha = DateTime.Now;
+                    DateTime Fecha = Convert.ToDateTime(turno.Fecha);
 
                     lblDniPaciente.Text = turno.DniPaciente;
                     lblFechaTurno.Text = Fecha.ToString("dd/MM/yyyy");
