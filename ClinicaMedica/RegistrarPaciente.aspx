@@ -42,7 +42,7 @@
                 <img src="Estilo/logoClinica.png" class="header-image" alt="Logo Clinica" />
                 <div class="header-links">
                     <asp:HyperLink ID="hlListarTurnos" runat="server" CssClass="header-link" NavigateUrl="ListadoTurnos.aspx" Text="Listado de Turnos"></asp:HyperLink>
-                    <asp:HyperLink ID="hlCrearCuentaAdmin" runat="server" CssClass="header-link" NavigateUrl="~/CreacionCuentaAdmin.aspx" Text="Crear Cuenta Admin"></asp:HyperLink>
+                    <%--<asp:HyperLink ID="hlCrearCuentaAdmin" runat="server" CssClass="header-link" NavigateUrl="~/CreacionCuentaAdmin.aspx" Text="Crear Cuenta Admin"></asp:HyperLink>--%>
                     <asp:HyperLink ID="hlAsignarTurnos" runat="server" CssClass="header-link-active" NavigateUrl="AsignacionTurnos.aspx" Text="Asignar Turnos"></asp:HyperLink>
                     <asp:HyperLink ID="HlListarPacientes" runat="server" CssClass="header-link" NavigateUrl="ListadoPacientes.aspx" Text="Listar Pacientes"></asp:HyperLink>
                     <asp:HyperLink ID="hlListarMedicos" runat="server" CssClass="header-link" NavigateUrl="ListadoDeMedicos.aspx" Text="Listar Medicos"></asp:HyperLink>
@@ -62,40 +62,58 @@
                             <label class="form-label" for="txtNombre">Nombre:</label>
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="txtBox-caja" placeholder="Claudio"></asp:TextBox>
 
+                            <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" ErrorMessage="Por favor ingrese un Nombre">*</asp:RequiredFieldValidator>
+
                             <label class="form-label" for="txtApellido">Apellido:</label>
                             <asp:TextBox ID="txtApellido" runat="server" CssClass="txtBox-caja" placeholder="Fernandez"></asp:TextBox>
 
+                            <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" ErrorMessage="Por favor ingrese un Apellido">*</asp:RequiredFieldValidator>
+
                             <label class="form-label" for="ddlSexo">Sexo:</label>
                             <asp:DropDownList ID="ddlSexo" runat="server" CssClass="txtBox-caja">
-                                <asp:ListItem Text="Seleccione Sexo"></asp:ListItem>
-                                <asp:ListItem Text="Masculino" Value="Masculino"></asp:ListItem>
-                                <asp:ListItem Text="Femenino" Value="Femenino"></asp:ListItem>
-                                <asp:ListItem Text="Otro" Value="Otro"></asp:ListItem>
+                                <asp:ListItem Text="Seleccione Sexo" Value="0"></asp:ListItem>
+                                <asp:ListItem Text="Masculino" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Femenino" Value="2"></asp:ListItem>
+                                <asp:ListItem Text="Otro" Value="3"></asp:ListItem>
                             </asp:DropDownList>
+
+                            <asp:RequiredFieldValidator ID="rfvSexo" runat="server" ControlToValidate="ddlSexo" ErrorMessage="Por favor ingrese un Sexo" InitialValue="0">*</asp:RequiredFieldValidator>
 
                             <label class="form-label" for="txtNacionalidad">Nacionalidad:</label>
                             <asp:TextBox ID="txtNacionalidad" runat="server" CssClass="txtBox-caja" placeholder="Argentina"></asp:TextBox>
 
+                            <asp:RequiredFieldValidator ID="rfvNacionalidad" runat="server" ControlToValidate="txtNacionalidad" ErrorMessage="Por favor ingrese Nacionalidad">*</asp:RequiredFieldValidator>
+
                             <label class="form-label" for="txtFechaNacimiento">Fecha de nacimiento:</label>
                             <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="txtBox-caja" placeholder="1992/1/1" TextMode="Date"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvFecha" runat="server" ControlToValidate="txtFechaNacimiento" ErrorMessage="Por favor ingrese una Fecha">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-col" style="display: inline;">
                         <label class="form-label" for="txtDireccion">Direccion:</label>
                         <asp:TextBox ID="txtDireccion" runat="server" CssClass="txtBox-caja" placeholder="Hipólito Yrigoyen 288"></asp:TextBox>
 
+                        <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txtDireccion" ErrorMessage="Por favor ingrese Direccion">*</asp:RequiredFieldValidator>
+
                         <label class="form-label">Provincia:</label>
                         <asp:DropDownList ID="ddlProvincias" AutoPostBack="true" OnSelectedIndexChanged="ddlProvincias_OnSelectedIndexChanged" runat="server" CssClass="txtBox-caja"></asp:DropDownList>
+
+                        <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvincias" ErrorMessage="Por favor ingrese Provincia" InitialValue="0">*</asp:RequiredFieldValidator>
 
                         <label class="form-label">Localidad:</label>
                         <asp:DropDownList ID="ddlLocalidades" runat="server" CssClass="txtBox-caja"></asp:DropDownList>
 
+                        <asp:RequiredFieldValidator ID="rfvLocalidad" runat="server" ControlToValidate="ddlLocalidades" ErrorMessage="Por favor ingrese Localidad" InitialValue="0">*</asp:RequiredFieldValidator>
+
                         <label class="form-label" for="txtCorreo">Correo electrónico:</label>
                         <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="txtBox-caja" placeholder="ejemplo@correo.com" TextMode="Email"></asp:TextBox>
+
+                        <asp:RequiredFieldValidator ID="rfvCorreo" runat="server" ControlToValidate="txtCorreoElectronico" ErrorMessage="Por favor ingrese Correo">*</asp:RequiredFieldValidator>
 
                         <label class="form-label" for="txtTelefono">Numero de telefono:</label>
                         <asp:TextBox ID="txtNumeroTelefono" runat="server" CssClass="txtBox-caja" placeholder="1512345678" TextMode="Phone"></asp:TextBox>
                     </div>
+                    <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtNumeroTelefono" ErrorMessage="Por favor ingrese Telefono">*</asp:RequiredFieldValidator>
                     <br />
                 </div>
                 <!-- Botones de acción -->
@@ -104,6 +122,7 @@
                     <br />
                     <asp:Label ID="lbl2doMensaje" runat="server" Font-Bold="True"></asp:Label>
                     <br />
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="White" />
                     <br />
                     <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn-aceptar" OnClick="btnAceptar_Click" Visible="False" />
                     <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" CssClass="btn-aceptar" OnClick="btnConfirmar_Click" />

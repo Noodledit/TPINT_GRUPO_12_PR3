@@ -41,6 +41,9 @@ namespace ClinicaMedica
             {
                tabla = gestorTablas.ObtenerTablaMedicos();
             }
+
+            ViewState["MedicosData"] = tabla;
+
             gvMedicos.DataSource = tabla;
             gvMedicos.DataBind();
         }
@@ -133,12 +136,14 @@ namespace ClinicaMedica
         protected void gvMedicos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvMedicos.PageIndex = e.NewPageIndex;
-            llenarGrillaMedicos();
+            DataTable tabla = ViewState["MedicosData"] as DataTable;
+            llenarGrillaMedicos(tabla);
         }
         protected void gvMedicos_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvMedicos.EditIndex = e.NewEditIndex;
-            llenarGrillaMedicos();
+            DataTable tabla = ViewState["MedicosData"] as DataTable;
+            llenarGrillaMedicos(tabla);
         }
         protected void gvMedicos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
@@ -172,7 +177,10 @@ namespace ClinicaMedica
             }
             // Vuelve a cargar la grilla de médicos
             gvMedicos.EditIndex = -1;
-            llenarGrillaMedicos();
+
+            DataTable tabla = ViewState["MedicosData"] as DataTable;
+            llenarGrillaMedicos(tabla);
+
         }
     }
 }

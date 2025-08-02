@@ -447,9 +447,13 @@ BEGIN
         AND TurnosDisponibles.DniPaciente IS NULL) 
     OR (@Estado = TurnosDisponibles.Estado_TD))
 
+
+
     ORDER BY Semana_TD, Fecha_TD
 END
 GO
+
+
 
 --exec SP_RetornarFechasTurnos @IdEspecialidad = 1, @Estado = 1
 
@@ -670,8 +674,9 @@ BEGIN
     INNER JOIN Provincias ON DatosPersonales.IdProvincia_DP = Provincias.IdProvincia
     INNER JOIN Localidades ON DatosPersonales.IdLocalidad_DP = Localidades.IdLocalidad
     INNER JOIN SeguimientoPaciente ON DatosPersonales.Dni_DP = SeguimientoPaciente.DniPaciente
-	WHERE DatosPersonales.Estado = 1
+	--WHERE DatosPersonales.Estado = 1
     ORDER BY DatosPersonales.Apellido_DP, DatosPersonales.Nombre_DP
+
 END
 GO
 
@@ -698,8 +703,9 @@ BEGIN
     INNER JOIN Localidades ON DatosPersonales.IdLocalidad_DP = Localidades.IdLocalidad
     INNER JOIN Provincias ON DatosPersonales.IdProvincia_DP = Provincias.IdProvincia
 	INNER JOIN SeguimientoPaciente ON DatosPersonales.Dni_DP = SeguimientoPaciente.DniPaciente
-    WHERE (@Nombre IS NULL OR DatosPersonales.Nombre_DP LIKE '%' + @Nombre + '%') AND (@Dni IS NULL OR DatosPersonales.Dni_DP = @Dni) AND DatosPersonales.Estado = 1
+    WHERE (@Nombre IS NULL OR DatosPersonales.Nombre_DP LIKE '%' + @Nombre + '%') AND (@Dni IS NULL OR DatosPersonales.Dni_DP = @Dni) --AND DatosPersonales.Estado = 1
     ORDER BY DatosPersonales.Apellido_DP, DatosPersonales.Nombre_DP
+
 END
 GO
 
